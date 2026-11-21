@@ -596,7 +596,7 @@
           <p>Explora algunas ideas para inspirarte. Personalizamos cada propuesta con los detalles y la esencia de tu celebración.</p>
         </div>
         <div class="design-grid">
-          <article class="design-card reveal">
+          <article class="design-card reveal" id="diseno-olivo">
             <div class="design-art art-olive">
               <span class="design-label">Popular</span>
               <div class="art-mock"><span class="mock-top">Nuestra boda</span><span class="mock-title">Olivo &<br>Marfil</span><span class="mock-line"></span><span class="mock-bottom">UNA FECHA · UN RECUERDO</span></div>
@@ -610,7 +610,7 @@
               </div>
             </div>
           </article>
-          <article class="design-card reveal">
+          <article class="design-card reveal" id="diseno-jardin">
             <div class="design-art art-rose">
               <span class="design-label">Nuevo</span>
               <div class="art-mock"><span class="mock-top">Una noche especial</span><span class="mock-title">Jardín<br>eterno</span><span class="mock-line"></span><span class="mock-bottom">CELEBREMOS EL AMOR</span></div>
@@ -624,7 +624,7 @@
               </div>
             </div>
           </article>
-          <article class="design-card reveal">
+          <article class="design-card reveal" id="diseno-dorada">
             <div class="design-art art-gold">
               <span class="design-label">Elegante</span>
               <div class="art-mock"><span class="mock-top">Estás invitado</span><span class="mock-title">Noche<br>Dorada</span><span class="mock-line"></span><span class="mock-bottom">UNA CELEBRACIÓN ÚNICA</span></div>
@@ -638,7 +638,7 @@
               </div>
             </div>
           </article>
-          <article class="design-card reveal">
+          <article class="design-card reveal" id="diseno-aurora">
             <div class="design-art art-lilac">
               <span class="design-label">XV años</span>
               <div class="art-mock"><span class="mock-top">Mis quince años</span><span class="mock-title">Aurora</span><span class="mock-line"></span><span class="mock-bottom">UNA NOCHE PARA BRILLAR</span></div>
@@ -652,7 +652,7 @@
               </div>
             </div>
           </article>
-          <article class="design-card reveal">
+          <article class="design-card reveal" id="diseno-brisa">
             <div class="design-art art-blue">
               <span class="design-label">Cumpleaños</span>
               <div class="art-mock"><span class="mock-top">Ven a celebrar</span><span class="mock-title">Brisa<br>de fiesta</span><span class="mock-line"></span><span class="mock-bottom">ALEGRÍA · AMIGOS · RECUERDOS</span></div>
@@ -666,7 +666,7 @@
               </div>
             </div>
           </article>
-          <article class="design-card reveal">
+          <article class="design-card reveal" id="diseno-estrellas">
             <div class="design-art art-peach">
               <span class="design-label">Bautizo</span>
               <div class="art-mock"><span class="mock-top">Un día de bendición</span><span class="mock-title">Pequeñas<br>estrellas</span><span class="mock-line"></span><span class="mock-bottom">CON MUCHO AMOR</span></div>
@@ -934,12 +934,12 @@
         personalizada: "A consultar"
       },
       demos: {
-        olivo: "",
-        jardin: "",
-        dorada: "",
-        aurora: "",
-        brisa: "",
-        estrellas: ""
+        olivo: "demos/olivo/index.html",
+        jardin: "demos/jardin/index.html",
+        dorada: "demos/dorada/index.html",
+        aurora: "demos/aurora/index.html",
+        brisa: "demos/brisa/index.html",
+        estrellas: "demos/estrellas/index.html"
       }
     };
 
@@ -1008,7 +1008,7 @@
       button.addEventListener("click", () => {
         const key = button.dataset.demo;
         const url = CONFIG.demos[key];
-        if (url && /^https:\/\//i.test(url)) {
+        if (url && (/^https:\/\//i.test(url) || /^demos\/[a-z-]+\/index\.html$/i.test(url))) {
           window.open(url, "_blank", "noopener");
         } else {
           showDialog("Demo en preparación", "<p>Este espacio está listo para tu enlace de demostración. Abre el archivo HTML y pega la URL de este diseño en <strong>CONFIG.demos</strong>, en la parte final del código.</p>");

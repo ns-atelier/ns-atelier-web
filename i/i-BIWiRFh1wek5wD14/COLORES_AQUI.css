@@ -1,0 +1,30 @@
+/* N&S ATELIER — COLORES DE ESTA INVITACIÓN
+   Cambia los códigos HEX a tu gusto. Por ejemplo #f7e9eb.
+   Este archivo se carga después del diseño base. */
+:root {
+  --papel-personalizado: #fbf7ef;
+  --crema-personalizado: #f3eadb;
+  --rosa-personalizado: #bd9389;
+  --texto-personalizado: #56413b;
+  --dorado-personalizado: #a88961;
+  --vino-personalizado: #6e3443;
+  --fondo-seccion: #f7ecdf;
+}
+:root {
+  --paper: var(--papel-personalizado);
+  --cream: var(--crema-personalizado);
+  --rose: var(--rosa-personalizado);
+  --ink: var(--texto-personalizado);
+  --gold: var(--dorado-personalizado);
+  --wine: var(--vino-personalizado);
+}
+.invitation { background: var(--paper); }
+.hero { background: linear-gradient(180deg,var(--paper),var(--cream)); }
+.story { background: var(--fondo-seccion); }
+.venue { background: var(--cream); }
+.rsvp { background: linear-gradient(165deg,var(--cream),var(--paper)); }
+.hero h1,.section-kicker,h2,.timeline h3,.venue h3,.final h2 { color: var(--texto-personalizado); }
+.hero h1 em,.flower-script,.date-heading,.hero-date { color: var(--rosa-personalizado); }
+.seal-symbol,.btn-dark,.ctl { background: var(--vino-personalizado); }
+.btn-dark { border-color: var(--vino-personalizado); }
+.btn:not(.btn-dark) { color: var(--vino-personalizado); border-color: var(--dorado-personalizado); }

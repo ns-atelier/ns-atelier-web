@@ -1,0 +1,27 @@
+N&S ATELIER — TU INVITACIÓN NO LISTADA
+===================================
+Archivos editables:
+- EDITAR_DATOS.js: nombres, fecha, lugar, programa, enlaces, mensajes.
+- COLORES_AQUI.css: paleta y fondo de la invitación.
+- assets/ornamento.svg: flores y adornos (reemplaza por otro SVG).
+- assets/sobre-cerrado.webp: imagen del sobre al abrir el enlace.
+- assets/sobre-abierto.webp: fotograma auxiliar; puedes sustituirlo.
+- assets/sobre-portada.jpg: miniatura de enlace.
+- assets/apertura-original.mp4: video de apertura (sin audio).
+- assets/melodia-original.mp3: música de la invitación.
+- assets/jardin-venue.svg: imagen/ilustración del local.
+
+Cómo editar SIN programar:
+1. Abre la carpeta de tu web en VS Code.
+2. Pídele a ChatGPT: «Cambia [esto] en mi invitación, mantén todo lo demás».
+3. Comparte EDITAR_DATOS.js y COLORES_AQUI.css para ajustes simples;
+   si quieres cambiar elementos de la página, comparte también index.html.
+4. Verifica con Live Server y sube con los tres comandos Git habituales.
+
+NO PUBLICAR DATOS CONFIDENCIALES
+Este enlace no está anunciado y pedimos no indexarlo, pero NO exige login.
+Quien lo reciba puede reenviarlo; además, como GitHub es público, su contenido
+puede inspeccionarse desde el repositorio. No guardes datos privados de invitados.
+El enlace se protege de verdad solo con autenticación del lado del servidor.
+
+Nota: Google Forms y WhatsApp requieren pegar los links/número reales en EDITAR_DATOS.js.

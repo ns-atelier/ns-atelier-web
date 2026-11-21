@@ -1,0 +1,40 @@
+N&S ATELIER — UNA INVITACIÓN CON ENLACE NO LISTADO
+====================================================
+
+NUEVA RUTA DE ESTA INVITACIÓN
+  /i/i-BIWiRFh1wek5wD14/
+
+URL DESPUÉS DE PUBLICAR (si tu Netlify se llama nysatelier):
+  https://nysatelier.netlify.app/i/i-BIWiRFh1wek5wD14/
+
+No está enlazada desde la portada ni desde el catálogo público.
+Incluye meta noindex y cabecera X-Robots-Tag de Netlify.
+
+IMPORTANTE SOBRE «ENLACE OCULTO»
+Esta es una INVITACIÓN NO LISTADA, no un área con acceso protegido.
+Quien tenga el enlace podrá verla y reenviarla. En GitHub público,
+el código y recursos de la invitación también son visibles.
+Si necesitas privacidad efectiva, hay que implementar autenticación
+con validación del servidor y guardar datos privados fuera de GitHub.
+
+INSTALACIÓN:
+1. Haz copia de E:\ns-atelier-web.
+2. Extrae el ZIP y copia TODO SU CONTENIDO en E:\ns-atelier-web.
+3. Si existe la carpeta antigua E:\ns-atelier-web\demos\jardin-de-seda,
+   ELIMÍNALA para que deje de estar publicada en GitHub. Si tú no la subiste,
+   no habrá esa carpeta.
+4. No borres .git ni otras invitaciones que hayas creado.
+5. Verifica con Live Server la URL: http://127.0.0.1:5500/i/i-BIWiRFh1wek5wD14/
+6. Ejecuta:
+   git add -A
+   git commit -m "Invitacion premium solo por enlace"
+   git push origin main
+7. Comprueba el enlace final en una ventana privada.
+
+EDITAR PASO A PASO:
+/i/i-BIWiRFh1wek5wD14/EDITAR_DATOS.js  => datos, textos y enlaces
+/i/i-BIWiRFh1wek5wD14/COLORES_AQUI.css => paleta y secciones
+/i/i-BIWiRFh1wek5wD14/assets/          => flores, sobre, video, musica
+
+Las respuestas RSVP por Google Forms/WhatsApp no se guardan hasta pegar
+los enlaces o números reales. Todos los nombres actuales son ficticios.
