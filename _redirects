@@ -2,3 +2,6 @@
 /demos/jardin-de-seda       / 302!
 /demos/jardin-de-seda/      / 302!
 /demos/jardin-de-seda/*     / 302!
+
+# Visor de invitaciones del panel (debe ir antes de reglas generales)
+/inv/*  /inv/index.html  200

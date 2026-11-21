@@ -1,3 +1,7 @@
 /i/*
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
   Cache-Control: no-store
+
+/inv/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+  Referrer-Policy: no-referrer
