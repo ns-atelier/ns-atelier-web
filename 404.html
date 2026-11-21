@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Redirigiendo · N&amp;S ATELIER</title>
+  <script>
+    (function () {
+      var seg = location.pathname.split('/').filter(Boolean);
+      var idx = seg.indexOf('inv');
+      if (idx >= 0 && seg[idx + 1]) {
+        var base = '/' + seg.slice(0, idx + 1).join('/') + '/';
+        location.replace(base + '?t=' + encodeURIComponent(seg[idx + 1]));
+      } else {
+        location.replace('./');
+      }
+    })();
+  </script>
+</head>
+<body style="font-family:Georgia,serif;background:#f9f0e0;color:#6c513f;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;">
+  <p>Abriendo tu invitación…</p>
+</body>
+</html>

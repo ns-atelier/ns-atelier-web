@@ -1,120 +1,750 @@
-<!DOCTYPE html><html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow,noarchive,noimageindex,nosnippet">
-<meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#f7f0e5">
-<title>Invitación especial · N&S ATELIER</title>
-<meta name="description" content="Una invitación especial, creada para compartir momentos inolvidables.">
-<style>
-:root{--bg:#f7f0e5;--ink:#463d37;--accent:#a9846b;--warm:#fbfaf6;--line:rgba(116,86,59,.22)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e9e5dd;color:var(--ink);font-family:Georgia,'Times New Roman',serif}[hidden]{display:none!important}body.locked{overflow:hidden}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}img{max-width:100%}a{color:inherit}
-.surround{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px) minmax(0,1fr);max-width:1430px;margin:auto;min-height:100vh}.side{position:sticky;top:0;align-self:start;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:35px;gap:17px;text-align:center;color:#81716b}.side p{font:11px system-ui,sans-serif;letter-spacing:.25em;text-transform:uppercase}.side h1{font-size:clamp(27px,3vw,48px);font-weight:400;line-height:1.15}.side .monogram{font:30px Georgia,serif}.side-line{height:60px;width:1px;background:#bda79e}.side .micro{font:12px system-ui,sans-serif;letter-spacing:.08em;line-height:1.8;color:#867973}.side button{border:1px solid #b4a298;background:none;border-radius:999px;padding:10px 18px;color:#77655c}
-.invite{width:100%;min-width:0;min-height:100vh;background:var(--bg);box-shadow:0 20px 65px #463e3722;position:relative;overflow:hidden}.papergrain{pointer-events:none;position:absolute;inset:0;opacity:.1;z-index:1;background-image:radial-gradient(#8e806a 0.7px,transparent .8px);background-size:5px 5px}.inside{position:relative;z-index:2}.center{text-align:center}.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s ease, transform 1s ease}.reveal.seen{opacity:1;transform:none}.hero{min-height:760px;padding:88px 27px 45px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;isolation:isolate}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,#fffefbb3,transparent 73%);pointer-events:none;z-index:-1}.ornament{width:180px;max-height:135px;object-fit:contain;opacity:.7;margin:10px auto 32px;display:block}.ornament.flipped{transform:rotate(180deg);margin:32px auto 5px}.brand{font:10px system-ui,sans-serif;letter-spacing:.35em;text-transform:uppercase;color:var(--accent)}.divider{width:100px;height:1px;background:var(--accent);opacity:.65;margin:25px auto}.eyebrow{text-transform:uppercase;letter-spacing:.25em;font:11px system-ui,sans-serif;line-height:1.8;color:var(--accent)}.names{font-weight:400;font-size:clamp(47px,11vw,75px);line-height:1.13;letter-spacing:-.065em;margin:20px 0}.amp{display:block;font-style:italic;color:var(--accent);font-size:40px;margin:2px 0}.event-date{font-size:24px;line-height:1.5}.scrollcue{font:10px system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;opacity:.65;margin-top:65px;animation:float 2.7s infinite}
-section{padding:63px 35px;position:relative;text-align:center}.section-kicker{font:10px system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}h2{font-weight:400;font-size:clamp(30px,7vw,43px);line-height:1.16;margin:18px 0 17px}section p{font-size:16px;line-height:1.8;margin:10px auto;max-width:380px}.line{height:1px;background:var(--line);margin:0 45px}.count{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;max-width:400px;margin:35px auto 0}.unit{padding:10px 0}.unit b{font-weight:400;display:block;font-size:clamp(29px,7vw,43px);color:var(--accent)}.unit span{font:9px system-ui,sans-serif;text-transform:uppercase;letter-spacing:.13em}.timeline{position:relative;max-width:360px;margin:36px auto 0}.timeline:before{content:'';position:absolute;left:26%;top:8px;bottom:10px;width:1px;background:var(--line)}.moment{display:grid;grid-template-columns:26% 74%;padding:15px 0;align-items:start;text-align:left;position:relative}.moment:before{content:'';position:absolute;left:calc(26% - 3px);top:23px;width:7px;height:7px;background:var(--accent);border-radius:50%}.hour{font-size:16px;padding-right:18px}.moment .what{padding-left:22px}.moment h3{font-size:18px;font-weight:400;margin:0 0 4px}.moment small{font:12px system-ui,sans-serif;color:var(--ink);opacity:.65;line-height:1.4}.venueArt{display:block;width:min(90%,370px);max-height:235px;object-fit:contain;margin:25px auto}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:32px 0 0}.gallery figure{margin:0;aspect-ratio:3/4;overflow:hidden;background:#ddd1c1}.gallery figure:nth-child(3){grid-column:1/-1;aspect-ratio:16/9}.gallery img{width:100%;height:100%;object-fit:cover}.placeholder{display:grid;place-items:center;height:100%;font:12px system-ui,sans-serif;color:var(--accent);opacity:.6}.btn{border:1px solid var(--accent);color:var(--ink);background:transparent;border-radius:30px;padding:13px 19px;min-height:45px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font:12px system-ui,sans-serif;letter-spacing:.06em;text-decoration:none;transition:.2s;max-width:100%}.btn:hover{background:var(--accent);color:white}.btn.primary{background:var(--accent);color:#fff}.btn.primary:hover{filter:brightness(.9)}.btnRow{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;margin:25px 0}.rsvp{background:linear-gradient(165deg,transparent,#ffffff2e)}.small-print{font:11px system-ui,sans-serif;color:var(--ink);opacity:.7;line-height:1.7}.bottom{padding-bottom:100px}.bottom .names{font-size:40px;margin-top:30px}.copyright{text-align:center;font:10px system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.6;padding:30px 12px 45px}
-.controls{position:fixed;right:max(12px,calc((100vw - 520px)/2 + 10px));bottom:calc(17px + env(safe-area-inset-bottom,0px));z-index:150;display:none;gap:8px}.controls.visible{display:flex}.round{width:46px;height:46px;border:1px solid #c3a9a1;display:grid;place-items:center;border-radius:50%;background:#3a2b2af0;color:white;box-shadow:0 4px 18px #30231f26;font-size:17px}.round:focus-visible,.btn:focus-visible{outline:3px solid #658caa;outline-offset:3px}
-#intro{position:fixed;inset:0;background:#f3eadc;z-index:600;display:flex;justify-content:center;align-items:center;padding:15px;transition:opacity 1s ease}#intro .envelope{max-width:430px;width:100%;display:flex;flex-direction:column;align-items:center;position:relative}#intro img{display:block;max-height:calc(100vh - 110px);width:100%;object-fit:contain;filter:drop-shadow(0 10px 30px #654b392c)}#intro .open{margin-top:-40px;position:relative;border:1px solid #e6d1b9;background:#f9f0e8ed;border-radius:50px;padding:13px 25px;color:#6d443e;font:12px system-ui,sans-serif;letter-spacing:.2em;box-shadow:0 6px 20px #604c3b21;animation:float 2.6s infinite}#intro .open:hover{background:white}
-#film{position:fixed;inset:0;background:#f3eadc;z-index:610;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .45s ease}#film.show{opacity:1}#film video{max-width:470px;width:100%;max-height:100vh;height:auto;object-fit:contain}#skip{position:absolute;bottom:30px;right:20px;border:1px solid #baa69e;border-radius:30px;padding:10px 14px;background:#ffffffcc;color:#6c5550;z-index:1;font:12px system-ui,sans-serif}
-#loading{position:fixed;inset:0;z-index:1000;background:#f7f0e5;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;font:17px Georgia,serif;color:#68594a}#loading.hidden{display:none}.offline{background:#faf0e7;border:1px solid #ead7c4;border-radius:13px;margin:20px 0;padding:16px;font:13px system-ui,sans-serif}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@media (max-width:1040px){.surround{display:block;max-width:520px}.side{display:none}.controls{right:14px}.hero{min-height:85svh}}
-@media (max-width:530px){body{background:var(--bg)}.invite{box-shadow:none}.hero{min-height:100svh;padding-top:58px}.names{font-size:clamp(45px,13vw,68px)}.controls{bottom:calc(10px + env(safe-area-inset-bottom,0px))}section{padding:58px 26px}#intro{padding:0}#intro img{max-height:85svh}.btnRow{flex-direction:column;align-items:stretch}.btn{width:100%}}
-@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
-</style></head><body>
-<div id="loading" role="status">Preparando tu invitación…</div>
-<div id="intro" hidden><div class="envelope"><img id="envelopeImg" alt="Sobre de invitación elegante" src="/inv/assets/sobre-portada.jpg"><button id="openInvitation" class="open">✧ TOCA PARA ABRIR ✧</button></div></div>
-<div id="film"><video id="openingVideo" playsinline muted preload="none" aria-label="Animación de apertura"></video><button id="skip">Saltar apertura ›</button></div>
-<audio id="music" loop preload="none"></audio>
-<div class="surround" id="layout" hidden>
-<aside class="side"><span class="monogram">N&S</span><div class="side-line"></div><p>Invitación especial</p><h1 id="sideTitle">Momentos para recordar</h1><div class="side-line"></div><div class="micro">N&S ATELIER<br>Tus recuerdos, nuestra inspiración</div><button id="sideShare">Compartir enlace ↗</button></aside>
-<div class="invite" id="invite"><div class="papergrain"></div><div class="inside">
-<div class="hero center"><span class="brand">N&S ATELIER</span><img class="ornament" data-ornament src="/inv/assets/ornamento.svg" alt=""><span class="eyebrow" id="eventType">CELEBRACIÓN ESPECIAL</span><h1 class="names" id="heroNames">Amelia <span class="amp">&amp;</span> Gabriel</h1><div class="divider"></div><div class="event-date" id="eventDate">21 de agosto de 2027</div><div class="scrollcue">Desliza para descubrir ↓</div></div>
-<div class="line"></div>
-<section class="reveal"><div class="section-kicker">UNA HISTORIA PARA COMPARTIR</div><h2>Con todo nuestro cariño</h2><p id="introMessage">Hay momentos que merecen celebrarse con quienes iluminan nuestra historia.</p><img class="ornament flipped" data-ornament src="/inv/assets/ornamento.svg" alt=""></section>
-<div class="line"></div>
-<section class="reveal"><div class="section-kicker">LA CELEBRACIÓN COMIENZA EN</div><h2>Cuenta regresiva</h2><div class="count"><div class="unit"><b id="days">--</b><span>Días</span></div><div class="unit"><b id="hours">--</b><span>Horas</span></div><div class="unit"><b id="minutes">--</b><span>Minutos</span></div><div class="unit"><b id="seconds">--</b><span>Segundos</span></div></div><p class="small-print" id="countNote"></p></section>
-<div class="line"></div>
-<section class="reveal"><span class="section-kicker">CADA MOMENTO ES ESPECIAL</span><h2>Programa del evento</h2><div id="timeline" class="timeline"></div></section>
-<div class="line"></div>
-<section id="gallerySection" class="reveal"><span class="section-kicker">NUESTROS RECUERDOS</span><h2>Una historia en imágenes</h2><div class="gallery" id="gallery"></div></section>
-<div class="line"></div>
-<section class="reveal"><span class="section-kicker">NOS ENCONTRAMOS EN</span><h2 id="venueName">Jardines de la Alameda</h2><img id="venueArt" class="venueArt" src="/inv/assets/jardin-venue.svg" alt="Ilustración del lugar de celebración"><p id="venueAddress"></p><div class="btnRow"><a id="mapButton" class="btn primary" href="#" target="_blank" rel="noopener noreferrer" hidden>⌖ Cómo llegar</a></div></section>
-<div class="line"></div>
-<section class="reveal"><span class="section-kicker">PEQUEÑOS DETALLES</span><h2>Código de vestimenta</h2><p id="dressCode">Elegante en tonos suaves.</p><div class="divider"></div><h2>Con mucho cariño</h2><p id="giftNote">Tu presencia es nuestro mayor regalo.</p></section>
-<div class="line"></div>
-<section class="reveal rsvp"><span class="section-kicker">NOS HARÁ FELICES CONTAR CONTIGO</span><h2>Confirma tu asistencia</h2><p>Elige la forma más cómoda para confirmar tu participación en esta celebración.</p><div class="btnRow"><a id="googleButton" class="btn primary" href="#" target="_blank" rel="noopener noreferrer" hidden>✎ Confirmar con formulario</a><a id="waButton" class="btn" href="#" target="_blank" rel="noopener noreferrer" hidden>☏ Confirmar por WhatsApp</a></div><p id="rsvpFallback" class="small-print">Los enlaces de confirmación se activarán cuando los anfitriones los configuren.</p></section>
-<div class="line"></div>
-<section class="reveal bottom"><span class="section-kicker">CON GRATITUD Y AMOR</span><h2>¡Te esperamos!</h2><p id="goodbye">Gracias por compartir este momento con nosotros.</p><img class="ornament flipped" data-ornament src="/inv/assets/ornamento.svg" alt=""><div class="names" id="endingNames">Amelia & Gabriel</div><div class="btnRow"><button id="shareButton" class="btn">Compartir esta invitación</button></div></section>
-<div class="copyright">Hecho con cariño por N&S ATELIER</div>
-</div></div>
-<aside class="side"><span class="monogram">✧</span><div class="side-line"></div><p>Un día especial</p><h1 id="sideDate">Cada detalle cuenta una historia.</h1><div class="side-line"></div><div class="micro">DISEÑADO PARA COMPARTIR<br>EN CUALQUIER DISPOSITIVO</div></aside>
-</div>
-<div class="controls" id="controls"><button class="round" id="audioBtn" title="Activar o pausar música" aria-label="Activar o pausar música">♪</button><button class="round" id="fullBtn" title="Pantalla completa" aria-label="Pantalla completa">⛶</button><button class="round" id="repeatBtn" title="Repetir apertura" aria-label="Repetir apertura">↻</button></div>
-<script>
-/* PASO DE INSTALACIÓN: reemplaza ÚNICAMENTE la cadena siguiente con tu URL /exec de Apps Script. */
-const API_URL = 'https://script.google.com/macros/s/AKfycbwgoS7eicCYVUPE9qB3U9k9x0YZqXgbqJd72LedJ5nLv6mLM6OPsPHh5nWFjFaL5GUs/exec';
-const SAMPLE={ok:true,tipo:'plantilla',plantilla:{id:'jardin-seda',nombre:'Jardín de Seda',fondo:'#f7f0e5',texto:'#463d37',acento:'#a9846b',estilo:'romantico',media:{sobre:'/inv/assets/sobre-portada.jpg',video:'/inv/assets/apertura-original.mp4',musica:'/inv/assets/melodia-original.mp3',flores:'/inv/assets/ornamento.svg',lugar:'/inv/assets/jardin-venue.svg'}},datos:{titulo:'Demostración',nombre1:'Amelia',nombre2:'Gabriel',tipo:'Boda',fecha:'2027-08-21T17:00:00-05:00',fechaCorta:'21 de agosto de 2027',mensaje:'Hay momentos que merecen celebrarse con las personas que hacen especial nuestra historia. Nos encantará compartir esta celebración contigo.',despedida:'Gracias por acompañarnos. Tu presencia hará este día aún más memorable.',lugar:'Jardines de la Alameda',direccion:'Ubicación de ejemplo · Lima, Perú',vestimenta:'Formal y elegante en tonos suaves.',regalos:'El mejor regalo es contar con tu presencia.',mapaUrl:'',googleFormUrl:'',whatsapp:'',cronograma:[{hora:'16:30',nombre:'Bienvenida',detalle:'Los recibimos con alegría'},{hora:'17:00',nombre:'Ceremonia',detalle:'Un momento para siempre'},{hora:'19:00',nombre:'Recepción',detalle:'Brindis y celebración'}],medios:{},colores:{}}};
-const el=id=>document.getElementById(id);
-function setTxt(id,value){el(id).textContent=String(value||'');}
-function safeUrl(value){const u=String(value||'').trim();if(!u)return '';if(u.startsWith('/')&&!u.startsWith('//'))return u;if(/^https:\/\//i.test(u))return u;return ''}
-function absolute(url){try{return new URL(url,location.href).href}catch(e){return url}}
-function jsonp(query){return new Promise((resolve,reject)=>{
- if(!API_URL.startsWith('https://script.google.com/')){reject(Error('La URL de Apps Script todavía no está configurada.'));return;}
- const name='ns_callback_'+String(Date.now())+'_'+Math.floor(Math.random()*1000);
- const s=document.createElement('script');let settled=false;
- const stop=(error,data)=>{if(settled)return;settled=true;clearTimeout(timer);s.remove();delete window[name];error?reject(error):resolve(data)};
- const timer=setTimeout(()=>stop(Error('La conexión tardó demasiado')),12000);
- window[name]=data=>stop(null,data);
- s.onerror=()=>stop(Error('No se pudo consultar el evento'));
- s.src=API_URL+(API_URL.includes('?')?'&':'?')+new URLSearchParams({...query,callback:name}).toString();
- document.head.appendChild(s);
- });}
-function getQuery(){const demo=new URLSearchParams(location.search).get('demo');if(demo)return {tipo:'plantilla',id:demo};const seg=location.pathname.split('/').filter(Boolean);const i=seg.indexOf('inv');const token=seg[i+1]||'';if(!token)return null;return {tipo:'evento',token};}
-function showError(message){el('loading').innerHTML='';const box=document.createElement('div');box.className='offline';const h=document.createElement('h2');h.textContent='Invitación no disponible';const p=document.createElement('p');p.textContent=message;const l=document.createElement('a');l.textContent='Volver a N&S ATELIER';l.href='/';box.append(h,p,l);el('loading').append(box);}
-function render(data){const d=data.datos||{},t=data.plantilla||{},m={...(t.media||{}),...(Object.fromEntries(Object.entries(d.medios||{}).filter(([,v])=>!!v)))},c=d.colores||{};
- const colors={bg:c.fondo||t.fondo||'#f7f0e5',ink:c.texto||t.texto||'#463d37',accent:c.acento||t.acento||'#a9846b'};
- document.documentElement.style.setProperty('--bg',colors.bg);document.documentElement.style.setProperty('--ink',colors.ink);document.documentElement.style.setProperty('--accent',colors.accent);
- document.querySelector('meta[name="theme-color"]').setAttribute('content',colors.bg);
- const first=d.nombre1||'Tu nombre',second=d.nombre2||'';document.title=(first+(second?' & '+second:'')+' · Invitación | N&S ATELIER');
- el('heroNames').replaceChildren(document.createTextNode(first));if(second){const sp=document.createElement('span');sp.className='amp';sp.textContent='&';el('heroNames').append(sp,document.createTextNode(second));}
- setTxt('endingNames',first+(second?' & '+second:''));setTxt('sideTitle',first+(second?' & '+second:''));setTxt('sideDate',d.fechaCorta||'Un día especial');
- setTxt('eventType',d.tipo||'Invitación especial');setTxt('eventDate',d.fechaCorta||'');setTxt('introMessage',d.mensaje||'');setTxt('goodbye',d.despedida||'');
- setTxt('venueName',d.lugar||'Lugar por confirmar');setTxt('venueAddress',d.direccion||'');setTxt('dressCode',d.vestimenta||'Por confirmar');setTxt('giftNote',d.regalos||'Tu compañía es nuestro mejor regalo.');
- const flower=safeUrl(m.flores);document.querySelectorAll('[data-ornament]').forEach(img=>{img.src=flower||'/inv/assets/ornamento.svg';});
- el('envelopeImg').src=safeUrl(m.sobre)||'/inv/assets/sobre-portada.jpg';
- const venueImage=safeUrl(m.lugar);if(venueImage)el('venueArt').src=venueImage;else el('venueArt').hidden=true;
- const music=safeUrl(m.musica);if(music)el('music').src=music;else el('audioBtn').disabled=true;
- const video=safeUrl(m.video);if(video)el('openingVideo').src=video;
- const rows=Array.isArray(d.cronograma)?d.cronograma:[];el('timeline').innerHTML='';rows.forEach(item=>{const row=document.createElement('div');row.className='moment';const hour=document.createElement('div');hour.className='hour';hour.textContent=item.hora||'';const what=document.createElement('div');what.className='what';const title=document.createElement('h3');title.textContent=item.nombre||'';const det=document.createElement('small');det.textContent=item.detalle||'';what.append(title,det);row.append(hour,what);el('timeline').append(row)});if(!rows.length)el('timeline').textContent='El programa se anunciará próximamente.';
- const gallery=el('gallery');gallery.replaceChildren();const photos=['foto1','foto2','foto3'].map(k=>safeUrl(m[k])).filter(Boolean);if(!photos.length){el('gallerySection').hidden=true;}else{photos.forEach((src,i)=>{const f=document.createElement('figure');const img=document.createElement('img');img.loading='lazy';img.alt='Recuerdo fotográfico '+(i+1);img.src=src;f.append(img);gallery.append(f)})}
- const map=safeUrl(d.mapaUrl);if(map){el('mapButton').href=map;el('mapButton').hidden=false}
- const form=safeUrl(d.googleFormUrl);const wa=String(d.whatsapp||'').replace(/\D/g,'');const allowWa=wa.length>=10&&wa.length<=15;
- if(form){el('googleButton').href=form;el('googleButton').hidden=false;}
- if(allowWa){const text='Hola, confirmo mi asistencia a '+(d.tipo||'el evento')+' de '+first+(second?' y '+second:'')+'. Mi nombre es: ';el('waButton').href='https://wa.me/'+wa+'?text='+encodeURIComponent(text);el('waButton').hidden=false;}
- el('rsvpFallback').hidden=!!(form||allowWa);
- startCountdown(d.fecha);
- el('layout').hidden=false;el('intro').hidden=false;el('loading').classList.add('hidden');document.body.classList.add('locked');
- revealObserver();}
-function startCountdown(value){const date=new Date(String(value||''));if(isNaN(date.getTime())){setTxt('countNote','Fecha pendiente de confirmar');return;}
- function tick(){let ms=Math.max(0,date-Date.now());const days=Math.floor(ms/86400000);ms%=86400000;const hours=Math.floor(ms/3600000);ms%=3600000;const minutes=Math.floor(ms/60000);const seconds=Math.floor((ms%60000)/1000);setTxt('days',days);setTxt('hours',String(hours).padStart(2,'0'));setTxt('minutes',String(minutes).padStart(2,'0'));setTxt('seconds',String(seconds).padStart(2,'0'));setTxt('countNote',date<Date.now()?'¡Llegó el gran día!':'');}
- tick();setInterval(tick,1000);}
-let done=false,opening=false;
-function endIntro(){if(done)return;done=true;opening=false;const film=el('film');film.classList.remove('show');setTimeout(()=>film.style.display='none',500);document.body.classList.remove('locked');el('controls').classList.add('visible');updateAudio();}
-function openIntro(){if(opening)return;opening=true;done=false;el('intro').style.opacity='0';el('intro').style.pointerEvents='none';setTimeout(()=>el('intro').hidden=true,850);
- const v=el('openingVideo'),f=el('film');f.style.display='flex';requestAnimationFrame(()=>f.classList.add('show'));
- const audio=el('music');if(audio.getAttribute('src')){audio.volume=.65;audio.play().catch(()=>updateAudio());}
- if(v.getAttribute('src')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){v.currentTime=0;v.play().catch(()=>setTimeout(endIntro,1450));setTimeout(endIntro,10000)}else setTimeout(endIntro,1250);
-}
-el('openInvitation').addEventListener('click',openIntro);
-el('skip').addEventListener('click',()=>{el('openingVideo').pause();endIntro();});
-el('openingVideo').addEventListener('ended',endIntro);el('openingVideo').addEventListener('error',()=>{if(opening)setTimeout(endIntro,1000)});
-function updateAudio(){el('audioBtn').textContent=el('music').paused?'♪':'Ⅱ';}
-el('music').addEventListener('pause',updateAudio);el('music').addEventListener('play',updateAudio);
-el('audioBtn').addEventListener('click',()=>{const a=el('music');if(a.paused)a.play().catch(()=>{});else a.pause();});
-el('repeatBtn').addEventListener('click',()=>{const a=el('music');a.pause();a.currentTime=0;el('intro').hidden=false;el('intro').style.opacity='1';el('intro').style.pointerEvents='auto';el('controls').classList.remove('visible');done=false;opening=false;document.body.classList.add('locked');window.scrollTo({top:0,behavior:'instant'});});
-el('fullBtn').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else alert('Tu navegador no ofrece pantalla completa para esta página.');}catch(err){alert('Pantalla completa no disponible en este navegador.')}});
-async function share(){const url=location.href;try{if(navigator.share)await navigator.share({title:document.title,url});else if(navigator.clipboard){await navigator.clipboard.writeText(url);alert('Enlace copiado');}else prompt('Copia la dirección:',url);}catch(err){if(err.name!=='AbortError')prompt('Copia la dirección:',url)}}
-el('shareButton').addEventListener('click',share);el('sideShare').addEventListener('click',share);
-function revealObserver(){if(!('IntersectionObserver'in window)){document.querySelectorAll('.reveal').forEach(n=>n.classList.add('seen'));return;}const io=new IntersectionObserver(entries=>entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('seen');io.unobserve(x.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(n=>io.observe(n));}
-(async()=>{const q=getQuery();try{let data;if(!q){data=SAMPLE;}else if(!API_URL.startsWith('https://script.google.com/')&&q.tipo==='plantilla')data=SAMPLE;else data=await jsonp(q);
- if(!data||!data.ok)throw Error(data?.error||'Invitación no encontrada');render(data);
- }catch(err){showError(err.message+'. Comprueba que la invitación esté publicada y la API conectada.')}})();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow,noarchive,noimageindex,nosnippet" />
+  <meta name="theme-color" content="#f9f0e0" />
+  <title>Invitación especial · N&amp;S ATELIER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Ovo&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f9f0e0;
+      --ink: #6c513f;
+      --accent: #a67d2b;
+      --btn-bg: #5a0f1b;
+      --line: rgba(156, 133, 117, .32);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-ovo: 'Ovo', Georgia, serif;
+      --font-cinzel: 'Cinzel', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); overflow-x: hidden; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-display); overflow-x: hidden; }
+    body.locked { overflow: hidden; }
+    [hidden] { display: none !important; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+
+    /* Loading & Error */
+    #loading { position: fixed; inset: 0; z-index: 200000; background: var(--bg); display: flex; align-items: center; justify-content: center; text-align: center; padding: 28px; font: 20px Georgia, serif; color: var(--ink); }
+    #loading.hidden { display: none; }
+    .errBox { max-width: 420px; background: #fffaf3; border: 1px solid #e5d5c1; border-radius: 14px; padding: 26px; font-family: system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+    .errBox h2 { font-family: Georgia, serif; margin-bottom: 10px; color: var(--accent); }
+    .errBox a { display: inline-block; margin-top: 14px; color: var(--btn-bg); font-weight: 600; }
+
+    /* =====================================================================
+       ENVELOPE OVERLAY & VIDEO (SHARED)
+    ===================================================================== */
+    #weiOverlay { position: fixed; inset: 0; z-index: 99999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; transition: opacity 1.3s ease; }
+    #weiImg { width: 100%; max-width: 440px; max-height: 86vh; object-fit: contain; }
+    #weiTapWrap { position: absolute; bottom: 28%; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    #weiTapLabel { font-family: var(--font-cinzel); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: rgba(140, 100, 60, .82); animation: weiPulse 2.4s ease-in-out infinite; white-space: nowrap; background: rgba(249, 240, 224, .75); padding: 4px 12px; border-radius: 999px; }
+    .wei-chevron { width: 10px; height: 10px; border-right: 1.5px solid rgba(140, 100, 60, .65); border-top: 1.5px solid rgba(140, 100, 60, .65); transform: rotate(-45deg); animation: weiChev 2.4s ease-in-out infinite; }
+    @keyframes weiPulse { 0%, 100% { opacity: .55; letter-spacing: .26em; } 50% { opacity: 1; letter-spacing: .30em; } }
+    @keyframes weiChev { 0%, 100% { transform: rotate(-45deg) translate(0, 0); } 50% { transform: rotate(-45deg) translate(2px, -2px); } }
+
+    #weiVideoWrap { position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; background: var(--bg); opacity: 0; transition: opacity .7s ease; pointer-events: none; }
+    #weiVideoWrap.wei-video-in { opacity: 1; pointer-events: all; }
+    #weiVideoWrap.wei-video-out { opacity: 0; transition: opacity 1.2s ease; }
+    #weiVideo { width: 100%; max-width: 440px; max-height: 100vh; object-fit: contain; }
+    #skipVideoBtn { position: absolute; bottom: 26px; right: 20px; border: 1px solid rgba(140, 100, 60, .4); background: rgba(255, 250, 242, .85); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: 12px system-ui, sans-serif; }
+
+    #weiAudioBtn { position: fixed; bottom: 20px; right: 20px; width: 58px; height: 58px; background: var(--btn-bg); border: none; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 90000; box-shadow: 0 4px 14px rgba(90, 15, 27, .28); visibility: hidden; opacity: 0; transition: opacity .35s ease, transform .2s ease; }
+    #weiAudioBtn:hover { transform: scale(1.06); }
+    #weiAudioBtn svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* =====================================================================
+       ENGINE A: THE SACRED GARDEN (100% EDITABLE FROM PANEL)
+    ===================================================================== */
+    .sg-page { width: 100%; min-height: 100vh; background: var(--bg); overflow-x: hidden; }
+    .sg-artboard { position: relative; width: 100%; max-width: 450px; margin: 0 auto; background: var(--bg); }
+
+    .anim-fadein { opacity: 0; transition: opacity 1.1s ease; }
+    .anim-fadein.is-visible { opacity: 1; }
+    .anim-fadeinup { opacity: 0; transform: translateY(28px); transition: opacity 1.3s ease, transform 1.3s ease; }
+    .anim-fadeinup.is-visible { opacity: 1; transform: translateY(0); }
+    .anim-zoomin { opacity: 0; transform: scale(.92); transition: opacity 1.1s ease, transform 1.1s ease; }
+    .anim-zoomin.is-visible { opacity: 1; transform: scale(1); }
+
+    .sg-hero { height: 1240px; overflow: hidden; }
+    .sg-hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 762px; z-index: 1; overflow: hidden; }
+    .sg-hero-video video { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .sg-hero-glow { position: absolute; top: 0; left: 0; width: 100%; height: 676px; z-index: 2; opacity: .5; background-image: radial-gradient(circle at center, rgba(255, 249, 235, 1) 0%, rgba(255, 231, 192, 0) 85%); pointer-events: none; }
+    .sg-type { position: absolute; top: 154px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 40px; line-height: .95; font-weight: 300; }
+    .sg-date { position: absolute; top: 198px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 25px; font-weight: 600; letter-spacing: .08em; }
+    .sg-names { position: absolute; top: 288px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 74px; line-height: .75; font-weight: 700; }
+    .sg-names .sg-amp { display: block; font-size: 40px; font-weight: 300; font-style: italic; line-height: 1.25; }
+    .sg-scroll-lbl { position: absolute; top: 518px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 30px; font-weight: 300; text-decoration: none; }
+    .sg-scroll-chev { position: absolute; top: 558px; left: 50%; width: 25px; margin-left: -12.5px; z-index: 4; animation: sgBounce 1.1s ease-in-out infinite; }
+    @keyframes sgBounce { 0%, 100% { transform: translateY(0); } 54% { transform: translateY(5px); } }
+
+    .sg-branch-l { position: absolute; top: 566px; left: -16px; width: 224px; z-index: 3; pointer-events: none; transform-origin: bottom left; animation: swayL 4s ease-in-out infinite; }
+    .sg-branch-r { position: absolute; top: 547px; right: -16px; width: 236px; z-index: 3; pointer-events: none; transform-origin: bottom right; animation: swayR 4s ease-in-out infinite; }
+    @keyframes swayL { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.06) rotate(2deg); } }
+    @keyframes swayR { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.04) rotate(-2deg); } }
+
+    .sg-welcome-bg { position: absolute; top: 753px; left: 50%; transform: translateX(-50%); width: 744px; height: 487px; z-index: 2; pointer-events: none; }
+    .sg-welcome-bg img { width: 100%; height: 100%; object-fit: fill; }
+    .sg-calig { position: absolute; top: 813px; left: 50%; transform: translateX(-50%); width: 280px; max-height: 90px; object-fit: contain; z-index: 4; }
+    .sg-quote { position: absolute; top: 902px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 420px; text-align: center; z-index: 4; color: var(--accent); font-size: 36px; line-height: 1.08; font-weight: 300; white-space: pre-line; }
+    .sg-msg { position: absolute; top: 1048px; left: 50%; transform: translateX(-50%); width: 315px; max-width: 88%; text-align: center; z-index: 4; color: var(--ink); font-size: 20px; line-height: 1.28; white-space: pre-line; }
+
+    .sg-title { color: var(--accent); font-family: var(--font-display); font-size: 39px; line-height: 1.2; font-weight: 300; text-align: center; }
+
+    /* Countdown */
+    .sg-countdown { padding: 26px 12px 34px; text-align: center; }
+    .sg-cd-row { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 20px auto 8px; }
+    .sg-tb { text-align: center; min-width: 66px; }
+    .sg-num { font-size: 44px; font-family: var(--font-ovo); line-height: 1.15; background: linear-gradient(105deg, var(--accent) 0%, #d8ba72 52%, var(--accent) 100%); background-size: 260% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4.5s ease-in-out infinite; }
+    @keyframes shimmer { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
+    .sg-lbl { font-size: 17px; margin-top: 5px; color: var(--accent); font-family: var(--font-ovo); opacity: .85; }
+    .sg-sep { font-size: 46px; margin-top: -32px; color: var(--accent); font-family: var(--font-ovo); opacity: .85; }
+
+    /* Schedule */
+    .sg-schedule { position: relative; padding: 42px 16px 56px; overflow: hidden; min-height: 540px; }
+    .sg-sched-bg1 { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 744px; height: 346px; z-index: 1; pointer-events: none; }
+    .sg-sched-bg2 { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 744px; height: 259px; z-index: 1; pointer-events: none; }
+    .sg-sched-bg1 img, .sg-sched-bg2 img { width: 100%; height: 100%; object-fit: fill; }
+    .sg-sched-head { position: relative; z-index: 4; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 36px; }
+    .sg-sched-head img { width: 68px; flex-shrink: 0; }
+    .sg-timeline { position: relative; z-index: 4; max-width: 360px; margin: 0 auto; padding: 8px 0; }
+    .sg-timeline::before { content: ''; position: absolute; left: 50%; top: 14px; bottom: 14px; width: 1px; background: #9c8575; opacity: .7; transform: translateX(-50%); }
+    .sg-rose { position: absolute; top: 0; left: 50%; width: 52px; margin-left: -26px; z-index: 5; pointer-events: none; transform: translateY(0px) rotate(325deg); transition: transform .12s linear; }
+    .sg-row { display: grid; grid-template-columns: 1fr 24px 1fr; align-items: center; padding: 17px 0; position: relative; }
+    .sg-row-time { text-align: right; padding-right: 18px; color: #846f61; font-size: 28px; font-weight: 600; }
+    .sg-diamond { width: 8px; height: 8px; background: #8c7666; transform: rotate(45deg); margin: 0 auto; }
+    .sg-row-name { text-align: left; padding-left: 18px; color: var(--ink); font-size: 20px; line-height: 1.15; }
+    .sg-row-name small { display: block; font-size: 14px; opacity: .75; margin-top: 2px; }
+
+    /* Location & Petals */
+    .sg-location { padding: 30px 16px 20px; text-align: center; overflow: hidden; }
+    .sg-loc-decor { width: 96px; margin: 6px auto 4px; }
+    .sg-venue { font-size: 22px; font-weight: 500; margin-top: 6px; }
+    .sg-addr { font-size: 18px; line-height: 1.3; max-width: 310px; margin: 4px auto 10px; }
+    .sg-venue-art { width: 370px; max-width: 92%; margin: 6px auto 0; }
+    .sg-petal { position: absolute; z-index: 5; pointer-events: none; opacity: 0; }
+    .sg-location.petals-on .p1 { top: 45px; right: 24px; width: 40px; animation: pf1 8s ease-in-out infinite; }
+    .sg-location.petals-on .p2 { top: 40px; left: 54px; width: 42px; animation: pf2 8.5s .4s ease-in-out infinite; }
+    .sg-location.petals-on .p3 { top: 150px; left: 16px; width: 40px; animation: pf1 9s .8s ease-in-out infinite; }
+    .sg-location.petals-on .p4 { top: 170px; right: 16px; width: 36px; animation: pf2 8s 1.2s ease-in-out infinite; }
+    @keyframes pf1 { 0% { opacity: 0; transform: translate(0, 0) rotate(0deg); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(55px, 280px) rotate(-10deg); } }
+    @keyframes pf2 { 0% { opacity: 0; transform: translate(0, 0) rotate(180deg); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-55px, 280px) rotate(200deg); } }
+
+    /* Map */
+    .sg-map { padding: 34px 0 56px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .sg-map-frame { position: relative; width: 341px; max-width: 92vw; height: 341px; display: flex; align-items: center; justify-content: center; }
+    .sg-map-border { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .8; transform: rotate(180deg); pointer-events: none; z-index: 1; }
+    .sg-map-iframe { position: relative; z-index: 2; width: 335px; max-width: calc(92vw - 6px); height: 335px; border: 0; border-radius: 15px; }
+    .sg-map-top { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); width: 190px; z-index: 3; pointer-events: none; }
+    .sg-map-bot { position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); width: 190px; z-index: 3; pointer-events: none; }
+    .sg-map-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: var(--font-ovo); font-size: 14px; }
+
+    /* Dress Code & Gifts */
+    .sg-dg { height: 491px; overflow: hidden; text-align: center; }
+    .sg-dg-bg { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 744px; height: 453px; z-index: 1; pointer-events: none; }
+    .sg-dg-bg img { width: 100%; height: 100%; object-fit: fill; }
+    .sg-dg-r { position: absolute; top: 9px; right: -135px; width: 305px; z-index: 2; pointer-events: none; animation: swayR 7s ease-in-out infinite; }
+    .sg-dg-l { position: absolute; top: 264px; left: -82px; width: 251px; z-index: 2; pointer-events: none; transform: rotate(274deg); }
+    .sg-dg-inner { position: relative; z-index: 4; padding-top: 86px; }
+    .sg-dg-text { margin: 12px auto 0; max-width: 305px; font-size: 21px; line-height: 1.28; }
+
+    /* RSVP Section */
+    .sg-rsvp { padding: 48px 16px 38px; text-align: center; }
+    .sg-rsvp-desc { margin: 14px auto 0; max-width: 360px; font-size: 21px; line-height: 1.28; }
+    .sg-seal-btn { margin-top: 22px; background: transparent; border: none; padding: 0; transition: transform .25s ease; }
+    .sg-seal-btn:hover { transform: scale(1.05); }
+    .sg-seal-btn img { width: 190px; margin: 0 auto; }
+    .sg-click-cue { margin-top: 10px; display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; animation: sgBounce 1.1s ease-in-out infinite; }
+    .sg-click-cue span { color: var(--accent); font-size: 29px; font-weight: 300; }
+    .sg-rsvp-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+    .sg-pill-btn { padding: 11px 22px; border-radius: 999px; background: var(--btn-bg); color: #f9f0e0; text-decoration: none; font-family: var(--font-ovo); font-size: 15px; border: 1px solid var(--btn-bg); }
+    .sg-pill-btn.outline { background: transparent; color: var(--btn-bg); }
+
+    /* Footer */
+    .sg-footer { height: 673px; overflow: hidden; }
+    .sg-footer-photo { position: absolute; top: 0; left: 0; width: 100%; height: 675px; object-fit: cover; z-index: 1; }
+    .sg-footer-grad { position: absolute; top: 0; left: 0; width: 100%; height: 237px; background-image: linear-gradient(0turn, rgba(232, 221, 207, 0) 0%, var(--bg) 100%); z-index: 2; pointer-events: none; }
+    .sg-footer-title { position: absolute; top: 14px; left: 0; width: 100%; z-index: 4; }
+    .sg-footer-names { position: absolute; top: 72px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 28px; }
+    .sg-footer-wreath { position: absolute; top: 173px; left: 50%; width: 537px; margin-left: -268.5px; z-index: 3; pointer-events: none; animation: swayR 4.5s ease-in-out infinite; }
+
+    /* RSVP Modal */
+    .rsvp-backdrop { position: fixed; inset: 0; z-index: 100001; background: rgba(0, 0, 0, .62); display: flex; align-items: center; justify-content: center; padding: 18px; opacity: 0; visibility: hidden; transition: .3s; }
+    .rsvp-backdrop.is-open { opacity: 1; visibility: visible; }
+    .rsvp-close { position: fixed; top: 18px; right: 20px; width: 40px; height: 40px; background: transparent; border: none; color: #fff; font-size: 28px; z-index: 100002; }
+    .rsvp-dialog { width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; background: #fffaf8; border-radius: 6px; padding: 34px 30px; box-shadow: 0 20px 50px rgba(0, 0, 0, .28); font-family: var(--font-ovo); color: #4f4f4f; }
+    .rsvp-dialog h3 { text-align: center; font-size: 23px; font-weight: 400; margin-bottom: 6px; }
+    .rsvp-dialog .sub { text-align: center; font-size: 15px; color: #777; margin-bottom: 22px; }
+    .rsvp-field { margin-bottom: 16px; }
+    .rsvp-field label { display: block; font-size: 15px; margin-bottom: 6px; }
+    .rsvp-field input[type="text"] { width: 100%; height: 46px; padding: 0 13px; border: 1px solid #c9c9c9; border-radius: 5px; font: 15px var(--font-ovo); }
+    .rsvp-radios { display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+    .rsvp-radios label { display: flex; align-items: center; gap: 9px; margin: 0; cursor: pointer; }
+    .rsvp-submit { width: 100%; height: 52px; margin-top: 8px; background: var(--btn-bg); color: #f6f1e8; border: none; border-radius: 20px; font: 19px var(--font-ovo); }
+    .rsvp-err { color: #b91c1c; font-size: 12.5px; margin-top: 4px; display: none; }
+    .rsvp-err.on { display: block; }
+
+    /* =====================================================================
+       ENGINE B: CLASSIC N&S ATELIER TEMPLATES
+    ===================================================================== */
+    .cl-wrap { max-width: 520px; margin: 0 auto; min-height: 100vh; background: var(--bg); box-shadow: 0 20px 60px rgba(70, 62, 55, .14); text-align: center; }
+    .cl-sec { padding: 56px 28px; border-bottom: 1px solid var(--line); }
+    .cl-kicker { font: 10px system-ui, sans-serif; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
+    .cl-names { font-size: clamp(44px, 11vw, 68px); font-weight: 400; color: var(--ink); margin: 16px 0; line-height: 1.1; }
+    .cl-names span { display: block; font-style: italic; color: var(--accent); font-size: 36px; }
+    .cl-h2 { font-size: 34px; font-weight: 400; margin: 12px 0 14px; color: var(--accent); }
+    .cl-p { font-size: 17px; line-height: 1.75; max-width: 390px; margin: 8px auto; white-space: pre-line; }
+    .cl-orn { width: 165px; margin: 12px auto 20px; opacity: .75; }
+    .cl-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 22px; }
+    .cl-gallery img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 6px; }
+    .cl-gallery img:nth-child(3) { grid-column: 1 / -1; aspect-ratio: 16/9; }
+
+    @media (max-width: 410px) {
+      .sg-names { font-size: 62px; }
+      .sg-quote { font-size: 31px; }
+      .sg-title { font-size: 33px; }
+      .sg-num { font-size: 36px; }
+      .sg-tb { min-width: 54px; }
+      .sg-row-time { font-size: 24px; }
+      .sg-row-name { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading" role="status">Preparando tu invitación…</div>
+
+  <!-- Audio & Opening Sequence -->
+  <audio id="weiAudio" loop preload="auto"></audio>
+
+  <div id="weiOverlay" hidden role="button" tabindex="0" aria-label="Tap to open">
+    <img id="weiImg" alt="Open your invitation" draggable="false" />
+    <div id="weiTapWrap">
+      <div class="wei-chevron"></div>
+      <div id="weiTapLabel">Tap to open</div>
+    </div>
+  </div>
+
+  <div id="weiVideoWrap" aria-hidden="true">
+    <video id="weiVideo" muted playsinline preload="auto"></video>
+    <button type="button" id="skipVideoBtn">Saltar ›</button>
+  </div>
+
+  <button id="weiAudioBtn" type="button" aria-label="Pausar o reproducir música">
+    <svg id="weiIconPause" viewBox="0 0 24 24" style="display:block"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg id="weiIconPlay" viewBox="0 0 24 24" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+  </button>
+
+  <div id="root"></div>
+
+  <!-- RSVP Modal (Sacred Garden) -->
+  <div class="rsvp-backdrop" id="rsvpModal" role="dialog" aria-modal="true">
+    <button type="button" class="rsvp-close" id="closeRsvp" aria-label="Cerrar">&times;</button>
+    <div class="rsvp-dialog">
+      <div id="rsvpFormWrap">
+        <h3>Confirm Your Attendance</h3>
+        <div class="sub" id="rsvpModalSub">Please RSVP before August 09</div>
+        <form id="rsvpForm" novalidate>
+          <div class="rsvp-field">
+            <label for="inName">Your name</label>
+            <input type="text" id="inName" required />
+            <div class="rsvp-err" id="eName">Please enter your name.</div>
+          </div>
+          <div class="rsvp-field">
+            <label>Will you be attending?</label>
+            <div class="rsvp-radios">
+              <label><input type="radio" name="att" value="Accepts with pleasure" required /> Accepts with pleasure</label>
+              <label><input type="radio" name="att" value="Declines with regret" required /> Declines with regret</label>
+            </div>
+            <div class="rsvp-err" id="eAtt">Please select an option.</div>
+          </div>
+          <div class="rsvp-field">
+            <label for="inGuests">Number of Guests Attending</label>
+            <input type="text" id="inGuests" required />
+            <div class="rsvp-err" id="eGuests">Please enter number of guests.</div>
+          </div>
+          <div class="rsvp-field">
+            <label for="inSong">A Song That Gets You Dancing</label>
+            <input type="text" id="inSong" />
+          </div>
+          <div class="rsvp-field">
+            <label for="inKids">Children Attending (names &amp; ages)</label>
+            <input type="text" id="inKids" required />
+            <div class="rsvp-err" id="eKids">Please enter children details or "None".</div>
+          </div>
+          <button type="submit" class="rsvp-submit">Submit</button>
+        </form>
+      </div>
+      <div id="rsvpOkWrap" hidden style="text-align:center;padding:18px 8px">
+        <h3 style="color:var(--accent);font-family:var(--font-display);font-size:32px">Thank You!</h3>
+        <p id="rsvpOkText" style="margin:12px 0 20px;line-height:1.5"></p>
+        <button type="button" class="rsvp-submit" id="doneRsvp" style="max-width:180px">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* URL de tu Google Apps Script desplegado (termina en /exec) */
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwgoS7eicCYVUPE9qB3U9k9x0YZqXgbqJd72LedJ5nLv6mLM6OPsPHh5nWFjFaL5GUs/exec';
+
+    const SG_ASSETS = {
+      sobre: 'https://assets.webgencyinvitations.com/ChatGPT_Image_Jun_23_2026_04_40_29_PM_4_piptqn%20(2).png',
+      video: 'https://assets.webgencyinvitations.com/1782224012851_1_m6ww6v.mp4',
+      musica: 'https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Einaudi_%20Divenire%20(1)%20(1).mp3',
+      videoHero: 'https://assets.webgencyinvitations.com/Swans2_1_qwzsod.mov',
+      caligrafia: 'https://static.tildacdn.net/tild3438-6238-4236-b537-366632636138/noroot.png',
+      welcomeBg: 'https://static.tildacdn.net/tild3134-6461-4832-a236-633431616631/623915249_2629494717.png',
+      branchL: 'https://static.tildacdn.net/tild6639-3363-4136-a234-356639363561/noroot.png',
+      branchR: 'https://static.tildacdn.net/tild3764-3461-4436-a562-636534643333/noroot.png',
+      schedTop: 'https://static.tildacdn.net/tild6638-3365-4663-b834-363436333136/noroot.png',
+      schedBot: 'https://static.tildacdn.net/tild3633-3739-4961-b135-306530633566/noroot.png',
+      leftOrn: 'https://static.tildacdn.net/tild3638-3336-4136-a131-633463346265/left-element_1.png',
+      rightOrn: 'https://static.tildacdn.net/tild6131-6362-4663-b461-626531656438/right-element_1.png',
+      rose: 'https://static.tildacdn.net/tild3363-3665-4330-a361-666466346532/rose_-_Copy.png',
+      locDecor: 'https://static.tildacdn.net/tild3232-3638-4338-a134-336230313236/acomm-decor.png',
+      lugar: 'https://static.tildacdn.net/tild3637-3939-4864-a263-333836383139/ChatGPT_Image_May_25.png',
+      petals: [
+        'https://static.tildacdn.net/tild3865-6365-4762-a433-393764616530/noroot.png',
+        'https://static.tildacdn.net/tild3061-3635-4666-b537-356639373733/noroot.png',
+        'https://static.tildacdn.net/tild3164-3236-4638-a166-306230303738/noroot.png',
+        'https://static.tildacdn.net/tild3162-6263-4433-a230-653935613338/noroot.png'
+      ],
+      mapBorder: 'https://static.tildacdn.net/tild3830-3566-4961-a334-666539356637/Rectangle_270.svg',
+      mapTop: 'https://static.tildacdn.net/tild3931-3661-4661-b434-646566363730/noroot.png',
+      mapBot: 'https://static.tildacdn.net/tild6661-6464-4939-b433-346632643639/noroot.png',
+      dgBg: 'https://static.tildacdn.net/tild6566-6366-4963-a666-386132623862/623915249_2629494717.png',
+      dgR: 'https://static.tildacdn.net/tild3236-6664-4763-b031-323730383531/noroot.png',
+      dgL: 'https://static.tildacdn.net/tild3135-3265-4230-b538-636339323861/noroot.png',
+      sello: 'https://static.tildacdn.net/tild6638-6565-4665-a361-653962303137/wax_seal_1.png',
+      fotoCierre: 'https://static.tildacdn.net/tild6235-3237-4230-b632-326437376662/pexels-vinicius-quar.jpg',
+      coronaFinal: 'https://static.tildacdn.net/tild3732-6364-4131-b837-353363666335/623915249_2629494717.png'
+    };
+
+    const FALLBACK_SAMPLE = {
+      ok: true, tipo: 'plantilla',
+      plantilla: { id: 'the-sacred-garden', nombre: 'The Sacred Garden', fondo: '#f9f0e0', texto: '#6c513f', acento: '#a67d2b', estilo: 'sacred-garden', media: SG_ASSETS },
+      datos: {
+        nombre1: 'Zohan', nombre2: 'Rose', tipo: 'Wedding Day', fecha: '2026-12-08T16:00:00-05:00', fechaCorta: '27.09.26',
+        subtitulo: 'Two Souls\nOne destiny\nA Lifetime written by Allah',
+        mensaje: 'Dear Friends and Family\nJoin us for an evening of love, laughter, duas, and unforgettable memories as we begin our forever.',
+        lugar: 'Islamic Center of Melville', direccion: 'Address: 118 Old East Neck Road Melville, NY 11747',
+        mapaUrl: 'https://maps.google.com/?q=Islamic+Center+of+Melville',
+        mapaEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.060117798216!2d-73.40328222397078!3d40.78269247138302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e82bdb8c8a016b%3A0x50d592c0865c6b6e!2sIslamic%20Center%20of%20Melville!5e0!3m2!1sen!2smu!4v1782314483584!5m2!1sen!2smu',
+        vestimenta: 'We kindly ask guests to avoid deep red and maroon attire for the celebration.',
+        regalos: 'Kindly, no boxed gifts please.', rsvpLimite: 'Please RSVP before August 09',
+        despedida: 'Hope to see you there!',
+        cronograma: [
+          { hora: '5 PM', nombre: 'Guest Arrival', detalle: '' },
+          { hora: '6 PM', nombre: 'Nikkah Ceremony', detalle: '' },
+          { hora: '7 PM', nombre: 'Mocktail Hour', detalle: '' },
+          { hora: '8 PM', nombre: 'Dinner', detalle: '' },
+          { hora: '9 PM', nombre: 'Dance', detalle: '' }
+        ],
+        medios: {}, colores: {}
+      }
+    };
+
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    function safeUrl(v) {
+      const u = String(v || '').trim();
+      if (!u) return '';
+      if (/^https:\/\//i.test(u) || /^\.?\/(?!\/)/.test(u)) return u;
+      return '';
+    }
+
+    function getQuery() {
+      const sp = new URLSearchParams(location.search);
+      const t = sp.get('t') || sp.get('token');
+      if (t) return { tipo: 'evento', token: t, nocache: sp.get('v') ? '1' : '' };
+      const demo = sp.get('demo');
+      if (demo) return { tipo: 'plantilla', id: demo };
+      const seg = location.pathname.split('/').filter(Boolean);
+      const i = seg.indexOf('inv');
+      if (i >= 0 && seg[i + 1] && seg[i + 1] !== 'index.html') return { tipo: 'evento', token: seg[i + 1] };
+      return null;
+    }
+
+    function jsonp(query) {
+      return new Promise((resolve, reject) => {
+        const name = 'ns_cb_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+        const s = document.createElement('script');
+        let done = false;
+        const finish = (err, data) => {
+          if (done) return; done = true; clearTimeout(tm); s.remove(); delete window[name];
+          err ? reject(err) : resolve(data);
+        };
+        const tm = setTimeout(() => finish(Error('Tiempo de espera agotado al conectar con el panel.')), 12000);
+        window[name] = data => finish(null, data);
+        s.onerror = () => finish(Error('No se pudo conectar con Google Apps Script.'));
+        s.src = API_URL + (API_URL.includes('?') ? '&' : '?') + new URLSearchParams({ ...query, callback: name }).toString();
+        document.head.appendChild(s);
+      });
+    }
+
+    function showError(msg) {
+      $('loading').innerHTML = `<div class="errBox"><h2>Invitación no disponible</h2><p>${esc(msg)}</p><a href="../">Volver a N&amp;S ATELIER</a></div>`;
+    }
+
+    function setupIntro(media) {
+      const overlay = $('weiOverlay'), videoWrap = $('weiVideoWrap'), video = $('weiVideo');
+      const audio = $('weiAudio'), audioBtn = $('weiAudioBtn'), iPause = $('weiIconPause'), iPlay = $('weiIconPlay');
+      const overImg = safeUrl(media.sobre) || SG_ASSETS.sobre;
+      const vidSrc = safeUrl(media.video);
+      const audSrc = safeUrl(media.musica);
+
+      $('weiImg').src = overImg;
+      if (vidSrc) video.src = vidSrc;
+      if (audSrc) audio.src = audSrc;
+
+      overlay.hidden = false;
+      document.body.classList.add('locked');
+
+      let started = false, ended = false, timer = null;
+      function finish() {
+        if (ended) return; ended = true; clearTimeout(timer);
+        videoWrap.classList.remove('wei-video-in');
+        videoWrap.classList.add('wei-video-out');
+        setTimeout(() => { videoWrap.style.display = 'none'; }, 1100);
+        document.body.classList.remove('locked');
+        if (audSrc) { audioBtn.style.visibility = 'visible'; audioBtn.style.opacity = '1'; }
+        document.querySelectorAll('.hero-delay').forEach(el => el.classList.add('is-visible'));
+      }
+
+      function start() {
+        if (started) return; started = true;
+        overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+        setTimeout(() => { overlay.style.display = 'none'; }, 1200);
+        if (audSrc) {
+          audio.volume = 1;
+          audio.play().then(() => { iPlay.style.display = 'none'; iPause.style.display = 'block'; })
+            .catch(() => { iPlay.style.display = 'block'; iPause.style.display = 'none'; });
+        }
+        if (vidSrc) {
+          videoWrap.classList.add('wei-video-in');
+          video.play().catch(() => setTimeout(finish, 900));
+          timer = setTimeout(finish, 6800);
+        } else {
+          setTimeout(finish, 500);
+        }
+      }
+
+      overlay.addEventListener('click', start);
+      $('skipVideoBtn').addEventListener('click', () => { video.pause(); finish(); });
+      video.addEventListener('timeupdate', () => {
+        if (video.duration && video.currentTime >= video.duration - 0.8) finish();
+      });
+      video.addEventListener('ended', finish);
+      video.addEventListener('error', () => { if (started) finish(); });
+      audioBtn.addEventListener('click', () => {
+        if (audio.paused) { audio.play().catch(() => {}); iPlay.style.display = 'none'; iPause.style.display = 'block'; }
+        else { audio.pause(); iPlay.style.display = 'block'; iPause.style.display = 'none'; }
+      });
+    }
+
+    function startCountdown(dateStr) {
+      const target = new Date(String(dateStr || ''));
+      const dEl = $('cdDays'), hEl = $('cdHours'), mEl = $('cdMins'), sEl = $('cdSecs');
+      if (!dEl || isNaN(target.getTime())) return;
+      function tick() {
+        const dist = target - new Date();
+        if (dist <= 0) { dEl.textContent = '0'; hEl.textContent = '00'; mEl.textContent = '00'; sEl.textContent = '00'; return; }
+        dEl.textContent = String(Math.floor(dist / 86400000));
+        hEl.textContent = String(Math.floor((dist % 86400000) / 3600000)).padStart(2, '0');
+        mEl.textContent = String(Math.floor((dist % 3600000) / 60000)).padStart(2, '0');
+        sEl.textContent = String(Math.floor((dist % 60000) / 1000)).padStart(2, '0');
+      }
+      tick(); setInterval(tick, 1000);
+    }
+
+    function renderSacredGarden(d, t, m) {
+      const n1 = d.nombre1 || 'Zohan', n2 = d.nombre2 || '';
+      const fullNames = n1 + (n2 ? ' and ' + n2 : '');
+      const sched = Array.isArray(d.cronograma) && d.cronograma.length ? d.cronograma : FALLBACK_SAMPLE.datos.cronograma;
+      const mapEmbed = safeUrl(d.mapaEmbedUrl);
+      const mapUrl = safeUrl(d.mapaUrl);
+      const gForm = safeUrl(d.googleFormUrl);
+      const wa = String(d.whatsapp || '').replace(/\D/g, '');
+      const waLink = (wa.length >= 10 && wa.length <= 15)
+        ? ('https://wa.me/' + wa + '?text=' + encodeURIComponent('Hola, confirmo mi asistencia a ' + (d.tipo || 'el evento') + ' de ' + fullNames + '. Mi nombre es: '))
+        : '';
+
+      $('root').innerHTML = `
+      <main class="sg-page">
+        <section class="sg-artboard sg-hero">
+          <div class="sg-hero-video">
+            ${safeUrl(m.videoHero) ? `<video autoplay muted loop playsinline><source src="${esc(safeUrl(m.videoHero))}" type="video/mp4"><source src="${esc(safeUrl(m.videoHero))}" type="video/quicktime"></video>` : ''}
+          </div>
+          <div class="sg-hero-glow"></div>
+          <div class="sg-type hero-delay anim-fadeinup">${esc(d.tipo || 'Wedding Day')}</div>
+          <div class="sg-date hero-delay anim-fadeinup">${esc(d.fechaCorta || '')}</div>
+          <div class="sg-names hero-delay anim-fadeinup">${esc(n1)}${n2 ? `<span class="sg-amp">&amp;</span>${esc(n2)}` : ''}</div>
+          <a href="#sg-cd" class="sg-scroll-lbl">Scroll down</a>
+          <a href="#sg-cd" class="sg-scroll-chev" aria-label="Scroll down"><svg viewBox="0 0 25 16"><path fill="none" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" d="M1 1C4.4 5.4 9.1 9.6 12.5 14C16.8 9.6 19.7 5.4 24 1"/></svg></a>
+          <div class="sg-branch-l"><img src="${SG_ASSETS.branchL}" alt=""></div>
+          <div class="sg-branch-r"><img src="${SG_ASSETS.branchR}" alt=""></div>
+          <div class="sg-welcome-bg"><img src="${esc(safeUrl(m.flores) || SG_ASSETS.welcomeBg)}" alt=""></div>
+          ${safeUrl(m.caligrafia || SG_ASSETS.caligrafia) ? `<img class="sg-calig" src="${esc(safeUrl(m.caligrafia) || SG_ASSETS.caligrafia)}" alt="">` : ''}
+          <h1 class="sg-quote anim-fadein">${esc(d.subtitulo || 'Two Souls\nOne destiny\nA Lifetime written by Allah')}</h1>
+          <p class="sg-msg anim-fadein">${esc(d.mensaje || '')}</p>
+        </section>
+
+        <section class="sg-artboard sg-countdown" id="sg-cd">
+          <h2 class="sg-title">The Celebration Begins In</h2>
+          <div class="sg-cd-row anim-fadeinup">
+            <div class="sg-tb"><div class="sg-num" id="cdDays">--</div><div class="sg-lbl">Days</div></div>
+            <div class="sg-sep">:</div>
+            <div class="sg-tb"><div class="sg-num" id="cdHours">--</div><div class="sg-lbl">Hours</div></div>
+            <div class="sg-sep">:</div>
+            <div class="sg-tb"><div class="sg-num" id="cdMins">--</div><div class="sg-lbl">Minutes</div></div>
+            <div class="sg-sep">:</div>
+            <div class="sg-tb"><div class="sg-num" id="cdSecs">--</div><div class="sg-lbl">Seconds</div></div>
+          </div>
+        </section>
+
+        <section class="sg-artboard sg-schedule" id="sg-sched">
+          <div class="sg-sched-bg1"><img src="${SG_ASSETS.schedTop}" alt=""></div>
+          <div class="sg-sched-bg2"><img src="${SG_ASSETS.schedBot}" alt=""></div>
+          <div class="sg-sched-head">
+            <img src="${SG_ASSETS.leftOrn}" alt="">
+            <h2 class="sg-title">Schedule of Events</h2>
+            <img src="${SG_ASSETS.rightOrn}" alt="">
+          </div>
+          <div class="sg-timeline">
+            <img id="sgRose" class="sg-rose" src="${SG_ASSETS.rose}" alt="">
+            ${sched.map(item => `
+              <div class="sg-row anim-fadein">
+                <div class="sg-row-time">${esc(item.hora)}</div>
+                <div class="sg-diamond"></div>
+                <div class="sg-row-name">${esc(item.nombre)}${item.detalle ? `<small>${esc(item.detalle)}</small>` : ''}</div>
+              </div>`).join('')}
+          </div>
+        </section>
+
+        <section class="sg-artboard sg-location" id="sg-loc">
+          <h2 class="sg-title">Location</h2>
+          <img class="sg-loc-decor anim-zoomin" src="${SG_ASSETS.locDecor}" alt="">
+          <div class="sg-venue anim-fadeinup">${esc(d.lugar || '')}</div>
+          <div class="sg-addr anim-fadeinup">${esc(d.direccion || '')}</div>
+          <img class="sg-venue-art anim-zoomin" src="${esc(safeUrl(m.lugar) || SG_ASSETS.lugar)}" alt="">
+          ${SG_ASSETS.petals.map((p, idx) => `<img class="sg-petal p${idx + 1}" src="${p}" alt="">`).join('')}
+        </section>
+
+        ${(mapEmbed || mapUrl) ? `
+        <section class="sg-artboard sg-map">
+          ${mapEmbed ? `
+          <div class="sg-map-frame">
+            <img class="sg-map-border" src="${SG_ASSETS.mapBorder}" alt="">
+            <iframe class="sg-map-iframe" title="Mapa del evento" src="${esc(mapEmbed)}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <img class="sg-map-top" src="${SG_ASSETS.mapTop}" alt="">
+            <img class="sg-map-bot" src="${SG_ASSETS.mapBot}" alt="">
+          </div>` : ''}
+          ${mapUrl ? `<a class="sg-map-link" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>` : ''}
+        </section>` : ''}
+
+        <section class="sg-artboard sg-dg">
+          <div class="sg-dg-bg"><img src="${SG_ASSETS.dgBg}" alt=""></div>
+          <div class="sg-dg-r"><img src="${SG_ASSETS.dgR}" alt=""></div>
+          <div class="sg-dg-l"><img src="${SG_ASSETS.dgL}" alt=""></div>
+          <div class="sg-dg-inner">
+            <h2 class="sg-title">Dress Code</h2>
+            <p class="sg-dg-text anim-fadeinup">${esc(d.vestimenta || '')}</p>
+            <h2 class="sg-title" style="margin-top:44px">Gift Preference</h2>
+            <p class="sg-dg-text anim-fadeinup">${esc(d.regalos || '')}</p>
+          </div>
+        </section>
+
+        <section class="sg-artboard sg-rsvp">
+          <h2 class="sg-title">Confirm Your Attendance</h2>
+          <p class="sg-rsvp-desc anim-fadeinup">To help us prepare for a joyful celebration, kindly confirm your attendance.</p>
+          <button type="button" class="sg-seal-btn anim-zoomin" id="openSealBtn" aria-label="Confirmar asistencia">
+            <img src="${esc(safeUrl(m.sello) || SG_ASSETS.sello)}" alt="Wax seal RSVP">
+          </button>
+          <div>
+            <div class="sg-click-cue" id="openCueBtn" role="button" tabindex="0">
+              <svg width="25" height="16" viewBox="0 0 25 16" style="transform:rotate(180deg)"><path fill="none" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" d="M1 1C4.4 5.4 9.1 9.6 12.5 14C16.8 9.6 19.7 5.4 24 1"/></svg>
+              <span>Click to open</span>
+            </div>
+          </div>
+          ${(gForm || waLink) ? `<div class="sg-rsvp-links">
+            ${gForm ? `<a class="sg-pill-btn" href="${esc(gForm)}" target="_blank" rel="noopener noreferrer">Confirmar en Google Forms ↗</a>` : ''}
+            ${waLink ? `<a class="sg-pill-btn outline" href="${esc(waLink)}" target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp ↗</a>` : ''}
+          </div>` : ''}
+        </section>
+
+        <section class="sg-artboard sg-footer">
+          <img class="sg-footer-photo" src="${esc(safeUrl(m.fotoCierre) || SG_ASSETS.fotoCierre)}" alt="">
+          <div class="sg-footer-grad"></div>
+          <h2 class="sg-title sg-footer-title anim-fadein">${esc(d.despedida || 'Hope to see you there!')}</h2>
+          <div class="sg-footer-names anim-fadeinup">${esc(fullNames)}</div>
+          <img class="sg-footer-wreath" src="${esc(safeUrl(m.coronaFinal) || SG_ASSETS.coronaFinal)}" alt="">
+        </section>
+      </main>`;
+
+      // Wire RSVP seal modal (or direct Google Form if configured)
+      $('rsvpModalSub').textContent = d.rsvpLimite || 'Please RSVP before August 09';
+      const openRsvp = () => {
+        if (gForm) { window.open(gForm, '_blank', 'noopener'); return; }
+        $('rsvpModal').classList.add('is-open');
+      };
+      $('openSealBtn').addEventListener('click', openRsvp);
+      $('openCueBtn').addEventListener('click', openRsvp);
+
+      // Scroll-linked rose
+      const schedSec = $('sg-sched'), rose = $('sgRose');
+      const moveRose = () => {
+        const r = schedSec.getBoundingClientRect(), vh = window.innerHeight || 700;
+        const p = Math.max(0, Math.min(1, (vh * 0.65 - r.top) / (vh * 0.4 + r.height * 0.45)));
+        const maxTravel = Math.max(120, schedSec.querySelector('.sg-timeline').offsetHeight - 54);
+        rose.style.transform = 'translateY(' + Math.round(p * maxTravel) + 'px) rotate(325deg)';
+      };
+      window.addEventListener('scroll', moveRose, { passive: true });
+      moveRose();
+
+      // Petals observer
+      const locSec = $('sg-loc');
+      if ('IntersectionObserver' in window) {
+        const po = new IntersectionObserver(es => { if (es[0].isIntersecting) { locSec.classList.add('petals-on'); po.disconnect(); } }, { threshold: .2 });
+        po.observe(locSec);
+      } else locSec.classList.add('petals-on');
+    }
+
+    function renderClassic(d, t, m) {
+      const n1 = d.nombre1 || 'Amelia', n2 = d.nombre2 || '';
+      const photos = ['foto1', 'foto2', 'foto3'].map(k => safeUrl(m[k])).filter(Boolean);
+      const sched = Array.isArray(d.cronograma) ? d.cronograma : [];
+      const gForm = safeUrl(d.googleFormUrl);
+      const wa = String(d.whatsapp || '').replace(/\D/g, '');
+      const waLink = (wa.length >= 10 && wa.length <= 15) ? ('https://wa.me/' + wa + '?text=' + encodeURIComponent('Hola, confirmo mi asistencia al evento de ' + n1 + (n2 ? ' y ' + n2 : ''))) : '';
+      const mapUrl = safeUrl(d.mapaUrl);
+
+      $('root').innerHTML = `
+      <main class="cl-wrap">
+        <section class="cl-sec">
+          <div class="cl-kicker">${esc(d.tipo || 'INVITACIÓN ESPECIAL')}</div>
+          ${safeUrl(m.flores) ? `<img class="cl-orn" src="${esc(safeUrl(m.flores))}" alt="">` : ''}
+          <h1 class="cl-names">${esc(n1)}${n2 ? `<span>&amp;</span>${esc(n2)}` : ''}</h1>
+          <div class="cl-p" style="font-size:22px;color:var(--accent)">${esc(d.fechaCorta || '')}</div>
+        </section>
+        <section class="cl-sec anim-fadein">
+          <h2 class="cl-h2">Con todo nuestro cariño</h2>
+          <p class="cl-p">${esc(d.mensaje || '')}</p>
+        </section>
+        <section class="cl-sec anim-fadein">
+          <div class="cl-kicker">LA CELEBRACIÓN COMIENZA EN</div>
+          <div class="sg-cd-row">
+            <div class="sg-tb"><div class="sg-num" id="cdDays">--</div><div class="sg-lbl">Días</div></div>
+            <div class="sg-sep">:</div>
+            <div class="sg-tb"><div class="sg-num" id="cdHours">--</div><div class="sg-lbl">Horas</div></div>
+            <div class="sg-sep">:</div>
+            <div class="sg-tb"><div class="sg-num" id="cdMins">--</div><div class="sg-lbl">Min</div></div>
+            <div class="sg-sep">:</div>
+            <div class="sg-tb"><div class="sg-num" id="cdSecs">--</div><div class="sg-lbl">Seg</div></div>
+          </div>
+        </section>
+        ${sched.length ? `<section class="cl-sec anim-fadein">
+          <h2 class="cl-h2">Programa</h2>
+          ${sched.map(x => `<p class="cl-p"><b>${esc(x.hora)}</b> · ${esc(x.nombre)} ${x.detalle ? '— ' + esc(x.detalle) : ''}</p>`).join('')}
+        </section>` : ''}
+        ${photos.length ? `<section class="cl-sec anim-fadein"><h2 class="cl-h2">Nuestros recuerdos</h2><div class="cl-gallery">${photos.map(u => `<img src="${esc(u)}" loading="lazy" alt="">`).join('')}</div></section>` : ''}
+        <section class="cl-sec anim-fadein">
+          <h2 class="cl-h2">${esc(d.lugar || 'Ubicación')}</h2>
+          ${safeUrl(m.lugar) ? `<img class="sg-venue-art" src="${esc(safeUrl(m.lugar))}" alt="">` : ''}
+          <p class="cl-p">${esc(d.direccion || '')}</p>
+          ${mapUrl ? `<p style="margin-top:16px"><a class="sg-pill-btn" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a></p>` : ''}
+        </section>
+        <section class="cl-sec anim-fadein">
+          <h2 class="cl-h2">Detalles</h2>
+          ${d.vestimenta ? `<p class="cl-p"><b>Vestimenta:</b> ${esc(d.vestimenta)}</p>` : ''}
+          ${d.regalos ? `<p class="cl-p"><b>Regalos:</b> ${esc(d.regalos)}</p>` : ''}
+        </section>
+        <section class="cl-sec anim-fadein">
+          <h2 class="cl-h2">Confirma tu asistencia</h2>
+          <div class="sg-rsvp-links">
+            ${gForm ? `<a class="sg-pill-btn" href="${esc(gForm)}" target="_blank" rel="noopener noreferrer">Confirmar con formulario</a>` : ''}
+            ${waLink ? `<a class="sg-pill-btn outline" href="${esc(waLink)}" target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp</a>` : ''}
+          </div>
+          <p class="cl-p" style="margin-top:24px;color:var(--accent)">${esc(d.despedida || '¡Te esperamos!')}</p>
+        </section>
+      </main>`;
+    }
+
+    function wireRsvpModal() {
+      const close = () => $('rsvpModal').classList.remove('is-open');
+      $('closeRsvp').addEventListener('click', close);
+      $('doneRsvp').addEventListener('click', close);
+      $('rsvpModal').addEventListener('click', e => { if (e.target === $('rsvpModal')) close(); });
+      $('rsvpForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const name = $('inName').value.trim(), guests = $('inGuests').value.trim(), kids = $('inKids').value.trim();
+        const att = document.querySelector('input[name="att"]:checked');
+        ['eName', 'eAtt', 'eGuests', 'eKids'].forEach(id => $(id).classList.remove('on'));
+        let ok = true;
+        if (!name) { $('eName').classList.add('on'); ok = false; }
+        if (!att) { $('eAtt').classList.add('on'); ok = false; }
+        if (!guests) { $('eGuests').classList.add('on'); ok = false; }
+        if (!kids) { $('eKids').classList.add('on'); ok = false; }
+        if (!ok) return;
+        $('rsvpOkText').textContent = att.value === 'Accepts with pleasure'
+          ? ('Thank you, ' + name + '! We are delighted you will join us (' + guests + ' guest(s)).')
+          : ('Thank you for letting us know, ' + name + '. You will be warmly missed.');
+        $('rsvpFormWrap').hidden = true;
+        $('rsvpOkWrap').hidden = false;
+      });
+    }
+
+    function initObservers() {
+      const els = document.querySelectorAll('.anim-fadein, .anim-fadeinup, .anim-zoomin');
+      if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('is-visible')); return; }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting && !en.target.classList.contains('hero-delay')) {
+            en.target.classList.add('is-visible'); io.unobserve(en.target);
+          }
+        });
+      }, { threshold: .15 });
+      els.forEach(e => { if (!e.classList.contains('hero-delay')) io.observe(e); });
+    }
+
+    function renderAll(payload) {
+      const d = payload.datos || {}, t = payload.plantilla || {};
+      const m = Object.assign({}, t.media || {});
+      Object.entries(d.medios || {}).forEach(([k, v]) => { if (v) m[k] = v; });
+      const c = d.colores || {};
+      const bg = c.fondo || t.fondo || '#f9f0e0';
+      const ink = c.texto || t.texto || '#6c513f';
+      const accent = c.acento || t.acento || '#a67d2b';
+      const btnBg = c.boton || '#5a0f1b';
+
+      document.documentElement.style.setProperty('--bg', bg);
+      document.documentElement.style.setProperty('--ink', ink);
+      document.documentElement.style.setProperty('--accent', accent);
+      document.documentElement.style.setProperty('--btn-bg', btnBg);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', bg);
+      document.title = (d.nombre1 || 'Invitación') + (d.nombre2 ? ' & ' + d.nombre2 : '') + ' · N&S ATELIER';
+
+      if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
+      else renderClassic(d, t, m);
+
+      setupIntro(m);
+      startCountdown(d.fecha);
+      wireRsvpModal();
+      initObservers();
+      $('loading').classList.add('hidden');
+    }
+
+    (async () => {
+      const q = getQuery();
+      try {
+        const data = q ? await jsonp(q) : FALLBACK_SAMPLE;
+        if (!data || !data.ok) throw Error(data?.error || 'Invitación no encontrada');
+        renderAll(data);
+      } catch (err) {
+        showError(err.message + ' Verifica que la invitación esté en estado "Publicada".');
+      }
+    })();
+  </script>
+</body>
+</html>
