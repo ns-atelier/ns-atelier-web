@@ -52,9 +52,12 @@
     #weiVideo { width: 100%; max-width: 440px; max-height: 100vh; object-fit: contain; }
     #skipVideoBtn { position: absolute; bottom: 26px; right: 20px; border: 1px solid rgba(140, 100, 60, .4); background: rgba(255, 250, 242, .85); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: 12px system-ui, sans-serif; }
 
-    #weiAudioBtn { position: fixed; bottom: 20px; right: 20px; width: 58px; height: 58px; background: var(--btn-bg); border: none; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 90000; box-shadow: 0 4px 14px rgba(90, 15, 27, .28); visibility: hidden; opacity: 0; transition: opacity .35s ease, transform .2s ease; }
-    #weiAudioBtn:hover { transform: scale(1.06); }
-    #weiAudioBtn svg { width: 26px; height: 26px; fill: #fff; }
+    .fab-dock { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 90000; visibility: hidden; opacity: 0; transition: opacity .35s ease; }
+    .fab-dock.visible { visibility: visible; opacity: 1; }
+    .fab-btn { width: 50px; height: 50px; background: var(--btn-bg); color: #fff; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 14px rgba(40, 12, 18, .28); transition: transform .2s ease, opacity .2s ease; }
+    .fab-btn:hover { transform: scale(1.07); }
+    .fab-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .fab-btn.secondary { width: 44px; height: 44px; background: rgba(52, 42, 38, .88); }
 
     /* =====================================================================
        ENGINE A: THE SACRED GARDEN (100% EDITABLE FROM PANEL)
@@ -211,6 +214,283 @@
       .sg-row-time { font-size: 24px; }
       .sg-row-name { font-size: 18px; }
     }
+
+    /* =====================================================================
+       ENGINE C: PERLA & NÁCAR (N&S ATELIER ORIGINAL)
+    ===================================================================== */
+    .pn-page {
+      --pn-ivory: var(--bg, #faf6ee);
+      --pn-slate-bg: #a9b8c2;
+      --pn-slate-deep: var(--btn-bg, #4b5e75);
+      --pn-ink: var(--ink, #4a5d70);
+      --pn-gold: var(--accent, #b59457);
+      width: 100%; min-height: 100vh; background: var(--pn-ivory); color: var(--pn-ink);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    .pn-wrap { width: 100%; max-width: 460px; margin: 0 auto; background: var(--pn-ivory); box-shadow: 0 0 60px rgba(40,52,66,.12); overflow: hidden; }
+    .pn-script { font-family: 'Great Vibes', var(--font-display), cursive; font-weight: 400; line-height: 1.1; }
+    .pn-serif { font-family: 'Cormorant Garamond', var(--font-display), Georgia, serif; }
+    .pn-kicker { font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; opacity: .82; }
+
+    /* Iridescent mother-of-pearl sheen */
+    .pn-pearl-bg {
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,228,236,.78), transparent 45%),
+        radial-gradient(circle at 82% 28%, rgba(212,238,246,.82), transparent 48%),
+        radial-gradient(circle at 50% 78%, rgba(252,236,208,.85), transparent 52%),
+        linear-gradient(135deg, #f8f3ec 0%, #edf4f6 38%, #f8eef2 70%, #f5efe3 100%);
+    }
+    .pn-linen-blue {
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 4px),
+        linear-gradient(160deg, #b6c4ce 0%, #9fb1bd 52%, #a8b8c3 100%);
+      color: #fff;
+    }
+    .pn-deep-blue {
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(255,255,255,.06), transparent 45%),
+        linear-gradient(165deg, var(--pn-slate-deep), #354659);
+      color: #faf6ee;
+    }
+    .pn-paper {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.75), transparent 65%),
+        var(--pn-ivory);
+    }
+
+    /* Section spacing & buttons */
+    .pn-sec { padding: 54px 24px; text-align: center; position: relative; }
+    .pn-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 26px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      font-weight: 600; color: var(--pn-ink); background: transparent;
+      border: 1.5px solid var(--pn-ink); outline: 1px solid rgba(74,93,112,.35); outline-offset: 3px;
+      text-decoration: none; cursor: pointer; transition: all .25s ease;
+    }
+    .pn-btn:hover { background: var(--pn-ink); color: #faf6ee; }
+    .pn-btn-light { color: #faf6ee; border-color: #faf6ee; outline-color: rgba(250,246,238,.4); }
+    .pn-btn-light:hover { background: #faf6ee; color: var(--pn-slate-deep); }
+
+    /* 1. Hero Card */
+    .pn-hero { padding: 44px 20px 52px; }
+    .pn-arch-frame {
+      position: relative; padding: 48px 22px 42px; border-radius: 210px 210px 22px 22px;
+      background: rgba(255,253,249,.86);
+      border: 1.5px solid rgba(181,148,87,.42);
+      box-shadow: inset 0 0 0 6px rgba(250,246,238,.9), inset 0 0 0 7px rgba(169,184,194,.45), 0 18px 40px rgba(74,93,112,.09);
+    }
+    .pn-pearl-dots {
+      display: flex; justify-content: center; gap: 10px; margin: 14px 0;
+    }
+    .pn-pearl {
+      width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+      background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f4ede4 48%, #c9d5dc 85%, #9eb0bc 100%);
+      box-shadow: 0 2px 5px rgba(74,93,112,.25), inset -1px -1px 2px rgba(120,136,150,.35);
+    }
+    .pn-pearl.lg { width: 15px; height: 15px; }
+    .pn-hero-names { font-size: clamp(46px, 13vw, 60px); color: var(--pn-ink); margin: 14px 0 10px; }
+    .pn-hero-date { font-size: 24px; letter-spacing: .16em; color: var(--pn-ink); margin-bottom: 14px; }
+    .pn-hero-venue { font-size: 32px; color: var(--pn-ink); margin-bottom: 4px; }
+
+    /* 2. Baroque Relief Frame (Countdown & Gifts) */
+    .pn-relief-card {
+      background: var(--pn-ivory); color: var(--pn-ink);
+      border-radius: 28px; padding: 34px 20px; position: relative;
+      border: 6px solid #dce5ea;
+      box-shadow: 0 0 0 1.5px rgba(255,255,255,.75), 0 16px 36px rgba(42,57,72,.18), inset 0 0 0 1px rgba(169,184,194,.5);
+    }
+    .pn-cd-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin: 20px 0 8px; }
+    .pn-cd-cell b { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; font-weight: 600; line-height: 1; color: var(--pn-ink); }
+    .pn-cd-cell span { display: block; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; opacity: .75; margin-top: 4px; }
+
+    /* 3. Scratch-to-Reveal Card */
+    .pn-scratch-outer {
+      padding: 26px 20px; border-radius: 22px; position: relative;
+      border: 2px solid rgba(255,255,255,.85);
+      box-shadow: 0 14px 34px rgba(74,93,112,.14);
+    }
+    .pn-scratch-oval {
+      position: relative; width: 250px; height: 320px; margin: 0 auto;
+      border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--pn-gold);
+      box-shadow: 0 0 0 5px rgba(250,246,238,.9), 0 0 0 6.5px rgba(181,148,87,.55), 0 14px 28px rgba(74,93,112,.16);
+      background: #e9e2d8; touch-action: none; user-select: none;
+    }
+    .pn-scratch-under {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 20px; background: linear-gradient(160deg, #f3ece1, #dde6ec); color: var(--pn-ink);
+    }
+    .pn-scratch-under img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .pn-scratch-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; z-index: 2; }
+    .pn-scratch-hint { margin-top: 14px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--pn-ink); opacity: .8; }
+
+    /* 4. Venue / Location */
+    .pn-venue-art {
+      width: 100%; max-width: 310px; min-height: 190px; margin: 20px auto 22px;
+      border-radius: 16px; overflow: hidden; border: 1px solid rgba(169,184,194,.45);
+      background: #fff; display: flex; align-items: center; justify-content: center;
+    }
+    .pn-venue-art img { width: 100%; height: auto; object-fit: cover; }
+
+    /* 5. Pearl Timeline */
+    .pn-timeline { position: relative; max-width: 330px; margin: 28px auto 0; text-align: left; padding-left: 34px; }
+    .pn-timeline::before {
+      content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+      width: 1.5px; background: linear-gradient(180deg, transparent, var(--pn-ink), transparent);
+    }
+    .pn-tl-item { position: relative; padding-bottom: 24px; }
+    .pn-tl-item:last-child { padding-bottom: 0; }
+    .pn-tl-item .pn-pearl { position: absolute; left: -34px; top: 4px; }
+    .pn-tl-time { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 19px; font-weight: 700; color: var(--pn-ink); }
+    .pn-tl-title { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; color: var(--pn-gold); margin: 2px 0 3px; }
+    .pn-tl-desc { font-size: 13px; opacity: .85; line-height: 1.5; }
+
+    /* 6. Dress Code Frame + Wax Seal */
+    .pn-double-frame {
+      position: relative; border: 1.5px solid rgba(74,93,112,.45); padding: 36px 22px;
+      border-radius: 18px; background: rgba(255,253,249,.85);
+      outline: 1px solid rgba(74,93,112,.25); outline-offset: 6px;
+    }
+    .pn-wax-seal {
+      width: 68px; height: 68px; border-radius: 50%; margin: 0 auto;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 32% 28%, #fffaf0 0%, #ebd9b4 45%, #c5a15b 85%, #9a7836 100%);
+      color: #523e1a; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 21px; font-weight: 700;
+      box-shadow: 0 8px 20px rgba(82,62,26,.28), inset 0 0 0 3px rgba(255,250,240,.5);
+    }
+    .pn-wax-seal.pearl {
+      background: radial-gradient(circle at 30% 25%, #ffffff 0%, #f4ece6 42%, #d4dfe6 75%, #b8c6d0 100%);
+      color: var(--pn-ink); box-shadow: 0 8px 20px rgba(74,93,112,.25), inset 0 0 0 3px rgba(255,255,255,.7);
+    }
+    .pn-seal-corner { position: absolute; right: -12px; bottom: -22px; transform: rotate(-8deg); }
+
+    /* 7. Travel & Stay Cards */
+    .pn-ivory-card {
+      background: var(--pn-ivory); color: var(--pn-ink); border-radius: 16px;
+      padding: 28px 20px; border: 1px solid rgba(181,148,87,.35);
+      box-shadow: 0 12px 30px rgba(74,93,112,.12);
+    }
+    .pn-stay-grid { display: grid; gap: 18px; margin-top: 24px; }
+    .pn-stay-card {
+      background: #fffdf9; border-radius: 18px; padding: 24px 20px; text-align: center;
+      border: 2px solid rgba(181,148,87,.3);
+      box-shadow: 0 0 0 4px #f1ebe0, 0 10px 26px rgba(74,93,112,.08);
+    }
+    .pn-stay-meta { display: grid; gap: 6px; margin: 12px 0 16px; font-size: 12px; }
+    .pn-stay-meta strong { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--pn-gold); display: block; }
+
+    /* 9. Interactive Openable RSVP Envelope */
+    .pn-rsvp-env {
+      max-width: 370px; margin: 24px auto 0; background: var(--pn-ivory); color: var(--pn-ink);
+      border-radius: 14px; overflow: hidden; box-shadow: 0 20px 44px rgba(15,24,34,.35);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+    .pn-rsvp-flap {
+      padding: 36px 20px 28px; cursor: pointer; position: relative;
+      background: linear-gradient(160deg, #faf6ee, #e8eff3);
+      border-bottom: 1px dashed rgba(74,93,112,.25); transition: all .35s ease;
+    }
+    .pn-rsvp-body { max-height: 0; overflow: hidden; transition: max-height .6s ease, padding .4s ease; padding: 0 22px; text-align: left; }
+    .pn-rsvp-env.open .pn-rsvp-body { max-height: 900px; padding: 24px 22px 28px; }
+    .pn-rsvp-env.open .pn-rsvp-flap { padding: 16px 20px; }
+    .pn-rsvp-env.open .pn-rsvp-tap { display: none; }
+    .pn-field { margin-bottom: 16px; }
+    .pn-field label { display: block; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; color: var(--pn-ink); }
+    .pn-field input, .pn-field textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid rgba(74,93,112,.3); border-radius: 8px;
+      background: #fff; color: var(--pn-ink); font-family: inherit; font-size: 13.5px; outline: none;
+    }
+    .pn-field input:focus, .pn-field textarea:focus { border-color: var(--pn-gold); }
+    .pn-pearl-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .pn-pearl-opt {
+      display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 10px;
+      border: 1px solid rgba(74,93,112,.25); background: #fff; font-size: 12px; cursor: pointer;
+    }
+    .pn-pearl-opt.active { border-color: var(--pn-ink); background: #eef3f6; font-weight: 600; }
+    .pn-pearl-opt .pn-pearl { opacity: .35; transform: scale(.85); transition: all .2s; }
+    .pn-pearl-opt.active .pn-pearl { opacity: 1; transform: scale(1.08); }
+    .pn-stepper { display: inline-flex; align-items: center; gap: 14px; background: #fff; border: 1px solid rgba(74,93,112,.25); border-radius: 999px; padding: 5px 12px; }
+    .pn-stepper button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--pn-ink); background: transparent; color: var(--pn-ink); font-size: 16px; line-height: 1; cursor: pointer; }
+    .pn-stepper span { font-size: 13px; font-weight: 600; min-width: 78px; text-align: center; }
+
+    /* Standalone Envelope Overlay (when no custom cover photo is uploaded) */
+    .pn-env-overlay {
+      position: fixed; inset: 0; z-index: 99999; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; cursor: pointer; overflow: hidden;
+      background: linear-gradient(155deg, #f8f3eb 0%, #ebf1f4 50%, #f7efe8 100%);
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+    .pn-env-overlay.opened { opacity: 0; visibility: hidden; pointer-events: none; }
+    .pn-env-wing {
+      position: absolute; top: 0; bottom: 0; width: 52%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(235,227,214,.85) 55%, rgba(212,223,230,.75) 100%);
+      box-shadow: 0 0 40px rgba(74,93,112,.16);
+      transition: transform 1.05s cubic-bezier(.65,0,.35,1);
+    }
+    .pn-env-wing.left { left: 0; border-right: 1px solid rgba(181,148,87,.35); border-radius: 0 44% 44% 0 / 0 50% 50% 0; }
+    .pn-env-wing.right { right: 0; border-left: 1px solid rgba(181,148,87,.35); border-radius: 44% 0 0 44% / 50% 0 0 50%; }
+    .pn-env-overlay.opening .pn-env-wing.left { transform: translateX(-105%); }
+    .pn-env-overlay.opening .pn-env-wing.right { transform: translateX(105%); }
+    .pn-env-center { position: relative; z-index: 2; text-align: center; transition: opacity .45s ease, transform .45s ease; }
+    .pn-env-overlay.opening .pn-env-center { opacity: 0; transform: scale(1.12); }
+
+
+    .pn-hero-full {
+      position: relative; min-height: 100dvh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 48px 24px; overflow: hidden;
+      background: var(--pn-ivory);
+    }
+    .pn-hero-frame-img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      pointer-events: none; user-select: none; z-index: 1;
+    }
+    .pn-hero-content {
+      position: relative; z-index: 2; width: 100%; max-width: 340px; text-align: center;
+      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    }
+    .pn-hero-content.pn-wait { opacity: 0; transform: translateY(14px); }
+    .pn-curtain-sec {
+      position: relative; padding: 64px 24px 86px; text-align: center; overflow: hidden;
+    }
+    .pn-curtain-bg {
+      position: absolute; inset: 0; width: 100%; pointer-events: none; z-index: 0;
+      border-style: solid; border-color: transparent;
+      border-width: min(128vw, 520px) 0 min(70vw, 320px);
+      border-image-slice: 55% 0 30% fill; border-image-repeat: stretch;
+    }
+    .pn-dress-art { width: 148px; margin: 14px auto 16px; border-radius: 12px; }
+    .pn-seal-img { width: 68px; height: 68px; object-fit: contain; margin: 0 auto; display: block; }
+    .pn-scroll-fade { opacity: 0; transform: translateY(34px); transition: opacity .9s ease-out, transform .9s ease-out; }
+    .pn-scroll-fade.is-visible { opacity: 1; transform: translateY(0); }
+    /* Full-cover video for seamless bridge transition */
+    body.pn-mode #weiVideo { width: 100%; max-width: 460px; height: 100dvh; object-fit: cover; }
+    body.pn-mode #weiImg { width: 100%; max-width: 460px; height: 100dvh; object-fit: cover; }
+
+
+    .pn-cd-framed {
+      position: relative; width: 100%; max-width: 440px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pn-cd-framed img.pn-cd-bg { width: 100%; height: auto; display: block; border-radius: 10px; }
+    .pn-cd-framed .pn-cd-overlay {
+      position: absolute; inset: 14% 16%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; color: var(--pn-ink);
+    }
+    .pn-scratch-framed {
+      position: relative; width: 320px; height: 320px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pn-scratch-framed .pn-scratch-oval {
+      width: 158px; height: 204px; border: 0; box-shadow: none;
+    }
+    .pn-scratch-framed img.pn-scratch-mask {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      pointer-events: none; z-index: 4; border-radius: 14px;
+    }
+
   </style>
 </head>
 <body>
@@ -232,10 +512,18 @@
     <button type="button" id="skipVideoBtn">Saltar ›</button>
   </div>
 
-  <button id="weiAudioBtn" type="button" aria-label="Pausar o reproducir música">
-    <svg id="weiIconPause" viewBox="0 0 24 24" style="display:block"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-    <svg id="weiIconPlay" viewBox="0 0 24 24" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
-  </button>
+  <div class="fab-dock" id="fabDock">
+    <button id="fullBtn" class="fab-btn secondary" type="button" title="Pantalla completa" aria-label="Pantalla completa">
+      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+    </button>
+    <button id="repeatBtn" class="fab-btn secondary" type="button" title="Repetir sobre" aria-label="Repetir sobre">
+      <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+    </button>
+    <button id="weiAudioBtn" class="fab-btn" type="button" title="Música" aria-label="Pausar o reproducir música">
+      <svg id="weiIconPause" viewBox="0 0 24 24" style="display:block"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg id="weiIconPlay" viewBox="0 0 24 24" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+    </button>
+  </div>
 
   <div id="root"></div>
 
@@ -285,9 +573,9 @@
     </div>
   </div>
 
+  <script src="/assets/panel-api.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
-    const API_URL = 'https://script.google.com/macros/s/AKfycbwgoS7eicCYVUPE9qB3U9k9x0YZqXgbqJd72LedJ5nLv6mLM6OPsPHh5nWFjFaL5GUs/exec';
 
     const SG_ASSETS = {
       sobre: 'https://assets.webgencyinvitations.com/ChatGPT_Image_Jun_23_2026_04_40_29_PM_4_piptqn%20(2).png',
@@ -367,70 +655,84 @@
       return null;
     }
 
-    function jsonp(query) {
-      return new Promise((resolve, reject) => {
-        const name = 'ns_cb_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-        const s = document.createElement('script');
-        let done = false;
-        const finish = (err, data) => {
-          if (done) return; done = true; clearTimeout(tm); s.remove(); delete window[name];
-          err ? reject(err) : resolve(data);
-        };
-        const tm = setTimeout(() => finish(Error('Tiempo de espera agotado al conectar con el panel.')), 12000);
-        window[name] = data => finish(null, data);
-        s.onerror = () => finish(Error('No se pudo conectar con Google Apps Script.'));
-        s.src = API_URL + (API_URL.includes('?') ? '&' : '?') + new URLSearchParams({ ...query, callback: name }).toString();
-        document.head.appendChild(s);
-      });
-    }
-
     function showError(msg) {
-      $('loading').innerHTML = `<div class="errBox"><h2>Invitación no disponible</h2><p>${esc(msg)}</p><a href="../">Volver a N&amp;S ATELIER</a></div>`;
+      $('loading').innerHTML = `<div class="errBox"><h2>Invitación no disponible</h2><p>${esc(msg)}</p><a href="/">Volver a N&amp;S ATELIER</a></div>`;
     }
 
-    function setupIntro(media) {
+    function setupIntro(media, textos) {
       const overlay = $('weiOverlay'), videoWrap = $('weiVideoWrap'), video = $('weiVideo');
-      const audio = $('weiAudio'), audioBtn = $('weiAudioBtn'), iPause = $('weiIconPause'), iPlay = $('weiIconPlay');
+      const audio = $('weiAudio'), dock = $('fabDock'), audioBtn = $('weiAudioBtn');
+      const iPause = $('weiIconPause'), iPlay = $('weiIconPlay');
       const overImg = safeUrl(media.sobre) || SG_ASSETS.sobre;
       const vidSrc = safeUrl(media.video);
       const audSrc = safeUrl(media.musica);
 
+      if (textos && textos.tapAbrir) $('weiTapLabel').textContent = textos.tapAbrir;
       $('weiImg').src = overImg;
-      if (vidSrc) video.src = vidSrc;
-      if (audSrc) audio.src = audSrc;
+      if (vidSrc) { video.src = vidSrc; video.load(); }
+      if (audSrc) { audio.src = audSrc; audio.volume = 1; audio.load(); }
+      else { audioBtn.style.display = 'none'; }
 
       overlay.hidden = false;
       document.body.classList.add('locked');
 
-      let started = false, ended = false, timer = null;
+      let started = false, ended = false, timer = null, wantAudio = !!audSrc;
+      function syncIcons() {
+        iPlay.style.display = audio.paused ? 'block' : 'none';
+        iPause.style.display = audio.paused ? 'none' : 'block';
+      }
+      audio.addEventListener('play', syncIcons);
+      audio.addEventListener('pause', syncIcons);
+
+      function tryPlayAudio() {
+        if (!audSrc || !wantAudio) return;
+        audio.muted = false;
+        audio.volume = 1;
+        const p = audio.play();
+        if (p && p.then) p.then(syncIcons).catch(syncIcons);
+      }
+
+      // Desbloquear audio al primer toque (iOS Safari / Android Chrome / Brave)
+      function primeAudio() {
+        if (!audSrc || started) return;
+        const p = audio.play();
+        if (p && p.then) p.then(() => { if (!started) { audio.pause(); audio.currentTime = 0; } }).catch(() => {});
+      }
+
       function finish() {
         if (ended) return; ended = true; clearTimeout(timer);
         videoWrap.classList.remove('wei-video-in');
         videoWrap.classList.add('wei-video-out');
-        setTimeout(() => { videoWrap.style.display = 'none'; }, 1100);
+        setTimeout(() => { videoWrap.style.display = 'none'; }, 1000);
         document.body.classList.remove('locked');
-        if (audSrc) { audioBtn.style.visibility = 'visible'; audioBtn.style.opacity = '1'; }
+        dock.classList.add('visible');
+        syncIcons();
         document.querySelectorAll('.hero-delay').forEach(el => el.classList.add('is-visible'));
       }
 
       function start() {
         if (started) return; started = true;
         overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
-        setTimeout(() => { overlay.style.display = 'none'; }, 1200);
-        if (audSrc) {
-          audio.volume = 1;
-          audio.play().then(() => { iPlay.style.display = 'none'; iPause.style.display = 'block'; })
-            .catch(() => { iPlay.style.display = 'block'; iPause.style.display = 'none'; });
-        }
+        setTimeout(() => { overlay.style.display = 'none'; }, 1100);
+        tryPlayAudio();
         if (vidSrc) {
+          videoWrap.style.display = 'flex';
+          videoWrap.classList.remove('wei-video-out');
           videoWrap.classList.add('wei-video-in');
+          video.currentTime = 0;
           video.play().catch(() => setTimeout(finish, 900));
-          timer = setTimeout(finish, 6800);
+          timer = setTimeout(finish, 7000);
         } else {
-          setTimeout(finish, 500);
+          setTimeout(finish, 450);
         }
       }
 
+      // Reintentar audio en el siguiente toque si el navegador lo bloqueó al inicio
+      document.addEventListener('click', function retryOnce() {
+        if (started && wantAudio && audio.paused) tryPlayAudio();
+      }, { passive: true });
+
+      overlay.addEventListener('touchstart', primeAudio, { passive: true });
       overlay.addEventListener('click', start);
       $('skipVideoBtn').addEventListener('click', () => { video.pause(); finish(); });
       video.addEventListener('timeupdate', () => {
@@ -438,9 +740,32 @@
       });
       video.addEventListener('ended', finish);
       video.addEventListener('error', () => { if (started) finish(); });
-      audioBtn.addEventListener('click', () => {
-        if (audio.paused) { audio.play().catch(() => {}); iPlay.style.display = 'none'; iPause.style.display = 'block'; }
-        else { audio.pause(); iPlay.style.display = 'block'; iPause.style.display = 'none'; }
+
+      audioBtn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        if (audio.paused) { wantAudio = true; tryPlayAudio(); }
+        else { wantAudio = false; audio.pause(); }
+      });
+
+      $('fullBtn').addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        const docEl = document.documentElement;
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => {});
+          else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
+        } else {
+          if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+          else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        }
+      });
+
+      $('repeatBtn').addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        started = false; ended = false;
+        overlay.style.display = 'flex'; overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
+        dock.classList.remove('visible');
+        document.body.classList.add('locked');
+        window.scrollTo({ top: 0, behavior: 'instant' });
       });
     }
 
@@ -460,7 +785,7 @@
     }
 
     function renderSacredGarden(d, t, m) {
-      const n1 = d.nombre1 || 'Zohan', n2 = d.nombre2 || '';
+      const tx = d.textos || {}; const n1 = d.nombre1 || 'Zohan', n2 = d.nombre2 || '';
       const fullNames = n1 + (n2 ? ' and ' + n2 : '');
       const sched = Array.isArray(d.cronograma) && d.cronograma.length ? d.cronograma : FALLBACK_SAMPLE.datos.cronograma;
       const mapEmbed = safeUrl(d.mapaEmbedUrl);
@@ -481,10 +806,10 @@
           <div class="sg-type hero-delay anim-fadeinup">${esc(d.tipo || 'Wedding Day')}</div>
           <div class="sg-date hero-delay anim-fadeinup">${esc(d.fechaCorta || '')}</div>
           <div class="sg-names hero-delay anim-fadeinup">${esc(n1)}${n2 ? `<span class="sg-amp">&amp;</span>${esc(n2)}` : ''}</div>
-          <a href="#sg-cd" class="sg-scroll-lbl">Scroll down</a>
+          <a href="#sg-cd" class="sg-scroll-lbl">${esc(tx.deslizar || 'Scroll down')}</a>
           <a href="#sg-cd" class="sg-scroll-chev" aria-label="Scroll down"><svg viewBox="0 0 25 16"><path fill="none" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" d="M1 1C4.4 5.4 9.1 9.6 12.5 14C16.8 9.6 19.7 5.4 24 1"/></svg></a>
-          <div class="sg-branch-l"><img src="${SG_ASSETS.branchL}" alt=""></div>
-          <div class="sg-branch-r"><img src="${SG_ASSETS.branchR}" alt=""></div>
+          <div class="sg-branch-l"><img src="${esc(safeUrl(m.ramaIzq) || SG_ASSETS.branchL)}" alt=""></div>
+          <div class="sg-branch-r"><img src="${esc(safeUrl(m.ramaDer) || SG_ASSETS.branchR)}" alt=""></div>
           <div class="sg-welcome-bg"><img src="${esc(safeUrl(m.flores) || SG_ASSETS.welcomeBg)}" alt=""></div>
           ${safeUrl(m.caligrafia || SG_ASSETS.caligrafia) ? `<img class="sg-calig" src="${esc(safeUrl(m.caligrafia) || SG_ASSETS.caligrafia)}" alt="">` : ''}
           <h1 class="sg-quote anim-fadein">${esc(d.subtitulo || 'Two Souls\nOne destiny\nA Lifetime written by Allah')}</h1>
@@ -492,7 +817,7 @@
         </section>
 
         <section class="sg-artboard sg-countdown" id="sg-cd">
-          <h2 class="sg-title">The Celebration Begins In</h2>
+          <h2 class="sg-title">${esc(tx.tituloCuenta || "The Celebration Begins In")}</h2>
           <div class="sg-cd-row anim-fadeinup">
             <div class="sg-tb"><div class="sg-num" id="cdDays">--</div><div class="sg-lbl">Days</div></div>
             <div class="sg-sep">:</div>
@@ -509,11 +834,11 @@
           <div class="sg-sched-bg2"><img src="${SG_ASSETS.schedBot}" alt=""></div>
           <div class="sg-sched-head">
             <img src="${SG_ASSETS.leftOrn}" alt="">
-            <h2 class="sg-title">Schedule of Events</h2>
+            <h2 class="sg-title">${esc(tx.tituloPrograma || "Schedule of Events")}</h2>
             <img src="${SG_ASSETS.rightOrn}" alt="">
           </div>
           <div class="sg-timeline">
-            <img id="sgRose" class="sg-rose" src="${SG_ASSETS.rose}" alt="">
+            <img id="sgRose" class="sg-rose" src="${esc(safeUrl(m.rosaLinea) || SG_ASSETS.rose)}" alt="">
             ${sched.map(item => `
               <div class="sg-row anim-fadein">
                 <div class="sg-row-time">${esc(item.hora)}</div>
@@ -524,7 +849,7 @@
         </section>
 
         <section class="sg-artboard sg-location" id="sg-loc">
-          <h2 class="sg-title">Location</h2>
+          <h2 class="sg-title">${esc(tx.tituloUbicacion || "Location")}</h2>
           <img class="sg-loc-decor anim-zoomin" src="${SG_ASSETS.locDecor}" alt="">
           <div class="sg-venue anim-fadeinup">${esc(d.lugar || '')}</div>
           <div class="sg-addr anim-fadeinup">${esc(d.direccion || '')}</div>
@@ -549,23 +874,23 @@
           <div class="sg-dg-r"><img src="${SG_ASSETS.dgR}" alt=""></div>
           <div class="sg-dg-l"><img src="${SG_ASSETS.dgL}" alt=""></div>
           <div class="sg-dg-inner">
-            <h2 class="sg-title">Dress Code</h2>
+            <h2 class="sg-title">${esc(tx.tituloVestimenta || "Dress Code")}</h2>
             <p class="sg-dg-text anim-fadeinup">${esc(d.vestimenta || '')}</p>
-            <h2 class="sg-title" style="margin-top:44px">Gift Preference</h2>
+            <h2 class="sg-title" style="margin-top:44px">${esc(tx.tituloRegalos || "Gift Preference")}</h2>
             <p class="sg-dg-text anim-fadeinup">${esc(d.regalos || '')}</p>
           </div>
         </section>
 
         <section class="sg-artboard sg-rsvp">
-          <h2 class="sg-title">Confirm Your Attendance</h2>
-          <p class="sg-rsvp-desc anim-fadeinup">To help us prepare for a joyful celebration, kindly confirm your attendance.</p>
+          <h2 class="sg-title">${esc(tx.tituloRsvp || "Confirm Your Attendance")}</h2>
+          <p class="sg-rsvp-desc anim-fadeinup">${esc(tx.textoRsvp || "To help us prepare for a joyful celebration, kindly confirm your attendance.")}</p>
           <button type="button" class="sg-seal-btn anim-zoomin" id="openSealBtn" aria-label="Confirmar asistencia">
             <img src="${esc(safeUrl(m.sello) || SG_ASSETS.sello)}" alt="Wax seal RSVP">
           </button>
           <div>
             <div class="sg-click-cue" id="openCueBtn" role="button" tabindex="0">
               <svg width="25" height="16" viewBox="0 0 25 16" style="transform:rotate(180deg)"><path fill="none" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" d="M1 1C4.4 5.4 9.1 9.6 12.5 14C16.8 9.6 19.7 5.4 24 1"/></svg>
-              <span>Click to open</span>
+              <span>${esc(tx.clicAbrir || "Click to open")}</span>
             </div>
           </div>
           ${(gForm || waLink) ? `<div class="sg-rsvp-links">
@@ -627,6 +952,16 @@
         rsvpDesc: 'Para ayudarnos a preparar una celebración inolvidable, confirma tu asistencia.',
         rsvpBtn: 'Confirmar asistencia', formBtn: 'Confirmar con formulario ↗', waBtn: 'Confirmar por WhatsApp ↗'
       };
+      const tx = d.textos || {};
+      if (tx.deslizar) L.scroll = tx.deslizar;
+      if (tx.tituloCuenta) L.cd = tx.tituloCuenta;
+      if (tx.tituloPrograma) L.sched = tx.tituloPrograma;
+      if (tx.tituloUbicacion) L.loc = tx.tituloUbicacion;
+      if (tx.tituloVestimenta) L.dress = tx.tituloVestimenta;
+      if (tx.tituloRegalos) L.gifts = tx.tituloRegalos;
+      if (tx.tituloRsvp) L.rsvp = tx.tituloRsvp;
+      if (tx.textoRsvp) L.rsvpDesc = tx.textoRsvp;
+      if (tx.clicAbrir) L.rsvpBtn = tx.clicAbrir;
       const n1 = d.nombre1 || 'Amelia', n2 = d.nombre2 || '';
       const fullNames = n1 + (n2 ? ' & ' + n2 : '');
       const photos = ['foto1', 'foto2', 'foto3'].map(k => safeUrl(m[k])).filter(Boolean);
@@ -820,6 +1155,197 @@
       els.forEach(e => { if (!e.classList.contains('hero-delay')) io.observe(e); });
     }
 
+
+    function renderPerlaNacar(d, t, m) {
+      document.body.classList.add('pn-mode');
+      const tx = d.textos || {};
+      const n1 = d.nombre1 || 'Camila', n2 = d.nombre2 || 'Mateo';
+      const init = (n1.trim()[0] || 'C').toUpperCase() + (n2 ? '&' + (n2.trim()[0] || 'M').toUpperCase() : '');
+      const fullNames = n2 ? (esc(n1) + ' &amp; ' + esc(n2)) : esc(n1);
+      const fechaCorta = d.fechaCorta || '20 · 05 · 2027';
+      const crono = (d.cronograma && d.cronograma.length) ? d.cronograma : [
+        { hora: '4:30 PM', nombre: 'Bienvenida', detalle: 'Cóctel de bienvenida en los jardines.' },
+        { hora: '5:00 PM', nombre: 'Ceremonia', detalle: 'Nuestro «Sí, acepto» al atardecer.' },
+        { hora: '6:30 PM', nombre: 'Brindis', detalle: 'Aperitivos y música en la terraza.' },
+        { hora: '8:00 PM', nombre: 'Cena', detalle: 'Cena especial bajo las estrellas.' },
+        { hora: '10:00 PM', nombre: 'Fiesta', detalle: '¡A bailar hasta el amanecer!' }
+      ];
+      const mapHref = d.mapaUrl || (d.direccion ? ('https://maps.google.com/?q=' + encodeURIComponent(d.direccion)) : '');
+      const waNum = String(d.whatsapp || '').replace(/\D+/g, '');
+      const scratchPhoto = m.foto1 || m.fotoCierre || '';
+      const heroFrame = m.flores || '';
+      const curtainFrame = m.coronaFinal || '';
+      const dressArt = m.foto2 || '';
+      const cdFrame = m.ramaIzq || '';
+      const scratchFrame = m.ramaDer || '';
+      const nacreBg = m.foto3 || '';
+      const nacreStyle = nacreBg ? (' style="background-image:url(\'' + esc(nacreBg) + '\');background-size:cover;background-position:center"') : '';
+      const sealHtml = m.sello
+        ? '<img class="pn-seal-img" src="' + esc(m.sello) + '" alt="Sello" />'
+        : '<div class="pn-wax-seal pearl">' + esc(init) + '</div>';
+
+      const heroInner =
+        '<div class="pn-pearl-dots"><span class="pn-pearl"></span><span class="pn-pearl lg"></span><span class="pn-pearl"></span></div>' +
+        '<p class="pn-serif" style="font-size:17px;font-style:italic;opacity:.85">' + esc(d.subtitulo || 'Junto con nuestras familias') + '</p>' +
+        '<h1 class="pn-script pn-hero-names">' + fullNames + '</h1>' +
+        '<div class="pn-serif pn-hero-date">' + esc(fechaCorta) + '</div>' +
+        (d.lugar ? '<div class="pn-script pn-hero-venue">' + esc(d.lugar) + '</div>' : '') +
+        (d.direccion ? '<div class="pn-kicker">' + esc(d.direccion) + '</div>' : '') +
+        '<div class="pn-pearl-dots" style="margin-top:20px"><span class="pn-pearl"></span><span class="pn-pearl"></span><span class="pn-pearl"></span></div>';
+
+      const hasCoverMedia = !!(m.sobre || m.video);
+      const builtInEnv = hasCoverMedia ? '' :
+        '<div class="pn-env-overlay" id="pnBuiltinEnv" role="button" tabindex="0" aria-label="Toca para abrir">' +
+          '<div class="pn-env-wing left"></div><div class="pn-env-wing right"></div>' +
+          '<div class="pn-env-center">' +
+            '<div class="pn-wax-seal" style="width:92px;height:92px;font-size:28px;margin-bottom:18px">' + esc(init) + '</div>' +
+            '<div class="pn-kicker" style="color:#4a5d70;background:rgba(250,246,238,.88);padding:7px 18px;border-radius:999px;border:1px solid rgba(181,148,87,.35)">' + esc(tx.tapAbrir || 'Toca para abrir') + '</div>' +
+          '</div>' +
+        '</div>';
+
+      $('root').innerHTML =
+        builtInEnv +
+        '<div class="pn-page"><div class="pn-wrap">' +
+          '<section class="pn-hero-full pn-paper">' +
+            (heroFrame ? '<img class="pn-hero-frame-img" src="' + esc(heroFrame) + '" alt="" aria-hidden="true" draggable="false" />' : '') +
+            '<div class="pn-hero-content ' + (heroFrame ? '' : 'pn-arch-frame ') + 'pn-wait" id="pnHeroContent">' + heroInner + '</div>' +
+          '</section>' +
+
+          '<section class="pn-sec pn-linen-blue">' +
+            (cdFrame
+              ? '<div class="pn-cd-framed pn-scroll-fade"><img class="pn-cd-bg" src="' + esc(cdFrame) + '" alt="" aria-hidden="true" /><div class="pn-cd-overlay"><h2 class="pn-serif" style="font-size:24px;font-weight:500;margin-bottom:2px">' + esc(tx.tituloCuenta || 'Cuenta Regresiva') + '</h2><div class="pn-cd-grid" style="margin:6px 0 0;width:100%"><div class="pn-cd-cell"><b id="cd-d" style="font-size:26px">00</b><span>Días</span></div><div class="pn-cd-cell"><b id="cd-h" style="font-size:26px">00</b><span>Horas</span></div><div class="pn-cd-cell"><b id="cd-m" style="font-size:26px">00</b><span>Min</span></div><div class="pn-cd-cell"><b id="cd-s" style="font-size:26px">00</b><span>Seg</span></div></div></div></div>'
+              : '<div class="pn-relief-card pn-scroll-fade"><h2 class="pn-serif" style="font-size:32px;font-weight:500">' + esc(tx.tituloCuenta || 'Cuenta Regresiva') + '</h2><div class="pn-cd-grid"><div class="pn-cd-cell"><b id="cd-d">00</b><span>Días</span></div><div class="pn-cd-cell"><b id="cd-h">00</b><span>Horas</span></div><div class="pn-cd-cell"><b id="cd-m">00</b><span>Min</span></div><div class="pn-cd-cell"><b id="cd-s">00</b><span>Seg</span></div></div></div>') +
+            '<p class="pn-script pn-scroll-fade" style="font-size:34px;color:#fff;margin-top:16px">¡Nos vemos muy pronto!</p>' +
+          '</section>' +
+
+          '<section class="pn-sec pn-pearl-bg"' + nacreStyle + '>' +
+            (scratchFrame
+              ? '<div class="pn-scratch-framed pn-scroll-fade"><div class="pn-scratch-oval"><div class="pn-scratch-under">' + (scratchPhoto ? '<img src="' + esc(scratchPhoto) + '" alt="Foto especial" />' : '<div class="pn-wax-seal pearl" style="margin-bottom:8px">' + esc(init) + '</div>') + '</div><canvas class="pn-scratch-canvas" id="pnScratchCanvas" width="250" height="320"></canvas></div><img class="pn-scratch-mask" src="' + esc(scratchFrame) + '" alt="" aria-hidden="true" /></div><p class="pn-scratch-hint">Raspa con tu dedo para descubrir</p>'
+              : '<div class="pn-scratch-outer pn-scroll-fade"><div class="pn-pearl-dots" style="margin-bottom:18px"><span class="pn-pearl"></span><span class="pn-pearl lg"></span><span class="pn-pearl"></span><span class="pn-pearl lg"></span><span class="pn-pearl"></span></div><div class="pn-scratch-oval"><div class="pn-scratch-under">' + (scratchPhoto ? '<img src="' + esc(scratchPhoto) + '" alt="Foto especial" />' : '<div class="pn-wax-seal pearl" style="margin-bottom:10px">' + esc(init) + '</div><p class="pn-script" style="font-size:32px">' + fullNames + '</p>') + '</div><canvas class="pn-scratch-canvas" id="pnScratchCanvas" width="250" height="320"></canvas></div><p class="pn-scratch-hint">Raspa con tu dedo para descubrir</p></div>') +
+          '</section>' +
+
+          '<section class="pn-sec pn-paper">' +
+            '<div class="pn-scroll-fade">' +
+              '<h2 class="pn-script" style="font-size:44px;margin-bottom:4px">' + esc(tx.tituloUbicacion || 'Ubicación') + '</h2>' +
+              (d.lugar ? '<div class="pn-serif" style="font-size:28px;font-weight:500">' + esc(d.lugar) + '</div>' : '') +
+              (d.direccion ? '<div class="pn-kicker" style="margin-bottom:14px">' + esc(d.direccion) + '</div>' : '') +
+              (d.mensaje ? '<p style="font-size:13.5px;line-height:1.7;opacity:.88;max-width:340px;margin:0 auto 18px">' + esc(d.mensaje) + '</p>' : '') +
+              (m.lugar ? '<div class="pn-venue-art"><img src="' + esc(m.lugar) + '" alt="Lugar" /></div>' : '') +
+              (mapHref ? '<a class="pn-btn" href="' + esc(mapHref) + '" target="_blank" rel="noopener">Cómo llegar ↗</a>' : '') +
+            '</div>' +
+          '</section>' +
+
+          '<section class="' + (curtainFrame ? 'pn-curtain-sec pn-paper' : 'pn-sec pn-pearl-bg') + '">' +
+            (curtainFrame ? '<div class="pn-curtain-bg" style="border-image-source:url(\'' + esc(curtainFrame) + '\')"></div>' : '') +
+            '<div class="' + (curtainFrame ? '' : 'pn-ivory-card ') + 'pn-scroll-fade" style="position:relative;z-index:2">' +
+              '<h2 class="pn-script" style="font-size:44px;margin-bottom:8px">' + esc(tx.tituloPrograma || 'El Gran Día') + '</h2>' +
+              '<div class="pn-timeline">' +
+                crono.map(it => '<div class="pn-tl-item"><span class="pn-pearl lg"></span><div class="pn-tl-time">' + esc(it.hora) + '</div><div class="pn-tl-title">' + esc(it.nombre) + '</div><div class="pn-tl-desc">' + esc(it.detalle) + '</div></div>').join('') +
+              '</div>' +
+            '</div>' +
+          '</section>' +
+
+          (d.vestimenta ? '<section class="pn-sec pn-paper"><div class="pn-double-frame pn-scroll-fade"><div class="pn-kicker" style="margin-bottom:6px">' + esc(tx.tituloVestimenta || 'Código de Vestimenta') + '</div><h2 class="pn-script" style="font-size:40px;margin-bottom:10px">Etiqueta Formal</h2>' + (dressArt ? '<img class="pn-dress-art" src="' + esc(dressArt) + '" alt="Vestimenta" />' : '') + '<p style="font-size:13.5px;line-height:1.7;opacity:.88">' + esc(d.vestimenta) + '</p><div class="pn-seal-corner">' + sealHtml + '</div></div></section>' : '') +
+
+          (d.regalos ? '<section class="pn-sec pn-linen-blue"><div class="pn-relief-card pn-scroll-fade"><h2 class="pn-script" style="font-size:42px;margin-bottom:10px">' + esc(tx.tituloRegalos || 'Detalle de Regalos') + '</h2><p style="font-size:13.5px;line-height:1.7;opacity:.9">' + esc(d.regalos) + '</p></div></section>' : '') +
+
+          '<section class="pn-sec pn-deep-blue">' +
+            '<h2 class="pn-serif pn-scroll-fade" style="font-size:32px;font-weight:500;letter-spacing:.06em">' + esc(tx.tituloRsvp || 'Confirmación de Asistencia') + '</h2>' +
+            (d.rsvpLimite ? '<p class="pn-scroll-fade" style="font-size:13px;opacity:.85;margin-top:6px">' + esc(d.rsvpLimite) + '</p>' : '') +
+            '<div class="pn-rsvp-env pn-scroll-fade" id="pnRsvpEnv">' +
+              '<div class="pn-rsvp-flap" id="pnRsvpFlap"><div style="margin-bottom:8px">' + sealHtml + '</div><div class="pn-kicker pn-rsvp-tap">Toca para confirmar</div></div>' +
+              '<form class="pn-rsvp-body" id="pnRsvpForm">' +
+                '<div class="pn-field"><label>Tu nombre</label><input id="pnName" type="text" required placeholder="Nombre completo" /></div>' +
+                '<div class="pn-field"><label>¿Asistirás?</label><div class="pn-pearl-opts" data-group="asiste"><div class="pn-pearl-opt active" data-val="Sí, asistiré"><span class="pn-pearl"></span>Sí, asistiré</div><div class="pn-pearl-opt" data-val="No podré asistir"><span class="pn-pearl"></span>No podré ir</div></div></div>' +
+                '<div class="pn-field"><label>Acompañante</label><div class="pn-pearl-opts" data-group="plus"><div class="pn-pearl-opt" data-val="Con acompañante (+1)"><span class="pn-pearl"></span>Sí, +1</div><div class="pn-pearl-opt active" data-val="Solo yo"><span class="pn-pearl"></span>Solo yo</div></div></div>' +
+                '<div class="pn-field"><label>Mensaje o alergias (opcional)</label><textarea id="pnNote" rows="2" placeholder="Escribe un mensaje…"></textarea></div>' +
+                '<button type="submit" class="pn-btn" style="width:100%">Enviar confirmación</button>' +
+              '</form>' +
+            '</div>' +
+          '</section>' +
+
+          '<section class="pn-sec pn-paper" style="padding:44px 24px">' +
+            '<div style="margin-bottom:14px">' + sealHtml + '</div>' +
+            '<p class="pn-serif" style="font-size:21px;margin-bottom:8px">' + esc(d.despedida || '¡Esperamos celebrar contigo!') + '</p>' +
+            '<p class="pn-script" style="font-size:38px;margin:4px 0">' + fullNames + '</p>' +
+            '<div class="pn-kicker" style="margin-bottom:16px">' + esc(fechaCorta) + '</div>' +
+            '<div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.5">N&amp;S ATELIER</div>' +
+          '</section>' +
+        '</div></div>';
+
+      // Revelado suave de la portada
+      const revealHero = () => { const hc = $('pnHeroContent'); if (hc) hc.classList.remove('pn-wait'); };
+      const builtin = $('pnBuiltinEnv');
+      if (builtin) {
+        document.body.classList.add('locked');
+        builtin.addEventListener('click', () => {
+          builtin.classList.add('opening');
+          const a = $('weiAudio'); if (a && a.src) a.play().catch(() => {});
+          setTimeout(() => { builtin.classList.add('opened'); document.body.classList.remove('locked'); revealHero(); }, 750);
+        });
+      } else {
+        setTimeout(revealHero, 300);
+      }
+
+      // Observador de scroll suave para las secciones
+      const fades = document.querySelectorAll('.pn-scroll-fade');
+      if ('IntersectionObserver' in window) {
+        const io2 = new IntersectionObserver(es => {
+          es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io2.unobserve(en.target); } });
+        }, { threshold: .12 });
+        fades.forEach(el => io2.observe(el));
+      } else {
+        fades.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // Raspadita real en Canvas
+      const cv = $('pnScratchCanvas');
+      if (cv) {
+        const cx = cv.getContext('2d');
+        const gr = cx.createLinearGradient(0, 0, cv.width, cv.height);
+        gr.addColorStop(0, '#f7efe3'); gr.addColorStop(.5, '#e8dfd1'); gr.addColorStop(1, '#f3ebe0');
+        cx.fillStyle = gr; cx.fillRect(0, 0, cv.width, cv.height);
+        cx.fillStyle = '#8b7355'; cx.font = 'italic 22px Georgia, serif'; cx.textAlign = 'center';
+        cx.fillText('Raspa para', cv.width / 2, cv.height / 2 - 8);
+        cx.fillText('descubrir', cv.width / 2, cv.height / 2 + 20);
+        let down = false;
+        const rub = (e) => {
+          const r = cv.getBoundingClientRect();
+          cx.globalCompositeOperation = 'destination-out';
+          cx.beginPath();
+          cx.arc((e.clientX - r.left) * (cv.width / r.width), (e.clientY - r.top) * (cv.height / r.height), 24, 0, Math.PI * 2);
+          cx.fill();
+        };
+        cv.addEventListener('pointerdown', e => { down = true; rub(e); });
+        cv.addEventListener('pointermove', e => { if (down) rub(e); });
+        window.addEventListener('pointerup', () => down = false);
+      }
+      // Sobre desplegable de confirmación
+      const envEl = $('pnRsvpEnv'), flapEl = $('pnRsvpFlap');
+      if (flapEl && envEl) flapEl.addEventListener('click', () => envEl.classList.toggle('open'));
+      document.querySelectorAll('.pn-pearl-opts').forEach(g => {
+        g.addEventListener('click', e => {
+          const o = e.target.closest('.pn-pearl-opt'); if (!o) return;
+          g.querySelectorAll('.pn-pearl-opt').forEach(x => x.classList.remove('active'));
+          o.classList.add('active');
+        });
+      });
+      const formEl = $('pnRsvpForm');
+      if (formEl) {
+        formEl.addEventListener('submit', e => {
+          e.preventDefault();
+          if (d.googleFormUrl) { window.open(d.googleFormUrl, '_blank', 'noopener'); return; }
+          const nm = ($('pnName')?.value || '').trim();
+          const as = document.querySelector('[data-group="asiste"] .active')?.dataset.val || 'Sí, asistiré';
+          const pl = document.querySelector('[data-group="plus"] .active')?.dataset.val || 'Solo yo';
+          const nt = ($('pnNote')?.value || '').trim();
+          const msg = 'Hola, confirmo asistencia para ' + (n1 + (n2 ? ' & ' + n2 : '')) + ': ' + nm + ' — ' + as + ' (' + pl + ')' + (nt ? '. Nota: ' + nt : '');
+          if (waNum) window.open('https://wa.me/' + waNum + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+          else alert('¡Gracias ' + nm + '! Confirmación registrada.');
+        });
+      }
+    }
+
     function renderAll(payload) {
       const d = payload.datos || {}, t = payload.plantilla || {};
       const m = Object.assign({}, t.media || {});
@@ -851,9 +1377,10 @@
       document.title = (d.nombre1 || 'Invitación') + (d.nombre2 ? ' & ' + d.nombre2 : '') + ' · N&S ATELIER';
 
       if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
+      else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m);
       else renderUniversal(d, t, m);
 
-      setupIntro(m);
+      setupIntro(m, d.textos || {});
       startCountdown(d.fecha);
       wireRsvpModal();
       initObservers();
@@ -863,7 +1390,7 @@
     (async () => {
       const q = getQuery();
       try {
-        const data = q ? await jsonp(q) : FALLBACK_SAMPLE;
+        const data = q ? await window.consultarPanel(q) : FALLBACK_SAMPLE;
         if (!data || !data.ok) throw Error(data?.error || 'Invitación no encontrada');
         renderAll(data);
       } catch (err) {

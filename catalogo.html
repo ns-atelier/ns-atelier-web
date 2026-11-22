@@ -210,6 +210,7 @@
     .catalog-callout p { color: var(--ink-soft); font-size: 14.5px; max-width: 560px; }
 
     /* Catalog Page Grid */
+    #catalogStatus { text-align: center; margin: 0 0 24px; }
     .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 34px; }
     .filter-btn {
       padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line);
@@ -387,7 +388,86 @@
           <button class="filter-btn" data-filter="gala">Gala &amp; Aniversario</button>
           <button class="filter-btn" data-filter="infantil">Bautizo &amp; Cumpleaños</button>
         </div>
+        <p id="catalogStatus" role="status" hidden></p>
         <div class="catalog-grid" id="catalogGrid">
+          <article class="design-card featured reveal" data-cat="boda">
+            <div class="design-media"><img src="inv/assets/coleccion/perla-nacar.jpg" alt="Perla &amp; Nácar" loading="lazy" /><span class="design-badge luxury">★ Nueva · Lujo</span></div>
+            <div class="design-body">
+              <div class="design-cat">Boda de lujo</div>
+              <h3>Perla &amp; Nácar</h3>
+              <p>Relieve nacarado de peonías y hojas de ginkgo, cuenta regresiva azul polvo, foto raspable y sobre de confirmación.</p>
+              <div class="design-actions">
+                <a class="btn btn-primary" href="inv/?demo=perla-nacar" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Perla & Nácar." href="#contacto">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card featured reveal" data-cat="boda">
+            <div class="design-media"><img src="inv/assets/coleccion/encaje-marfil.jpg" alt="Encaje &amp; Marfil" loading="lazy" /><span class="design-badge luxury">★ Boda Clásica</span></div>
+            <div class="design-body">
+              <div class="design-cat">Boda clásica</div>
+              <h3>Encaje &amp; Marfil</h3>
+              <p>Encaje artesanal en marfil con perlas delicadas, lazo champán y tipografía romántica atemporal.</p>
+              <div class="design-actions">
+                <a class="btn btn-primary" href="inv/?demo=encaje-marfil" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Encaje & Marfil." href="#contacto">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card featured reveal" data-cat="boda">
+            <div class="design-media"><img src="inv/assets/coleccion/vitral-floral.jpg" alt="Vitral Floral" loading="lazy" /><span class="design-badge luxury">★ Editorial</span></div>
+            <div class="design-body">
+              <div class="design-cat">Boda artística</div>
+              <h3>Vitral Floral</h3>
+              <p>Arco de vitral botánico con rosas pastel y destellos perlados para una celebración luminosa.</p>
+              <div class="design-actions">
+                <a class="btn btn-primary" href="inv/?demo=vitral-floral" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Vitral Floral." href="#contacto">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card featured reveal" data-cat="boda">
+            <div class="design-media"><img src="inv/assets/coleccion/villa-toscana.jpg" alt="Villa Toscana" loading="lazy" /><span class="design-badge luxury">★ Destino</span></div>
+            <div class="design-body">
+              <div class="design-cat">Boda de destino</div>
+              <h3>Villa Toscana</h3>
+              <p>Acuarela italiana de villa en piedra, ramas de olivo y luces cálidas al atardecer.</p>
+              <div class="design-actions">
+                <a class="btn btn-primary" href="inv/?demo=villa-toscana" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Villa Toscana." href="#contacto">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card featured reveal" data-cat="boda">
+            <div class="design-media"><img src="inv/assets/coleccion/costa-azul.jpg" alt="Costa Azul" loading="lazy" /><span class="design-badge luxury">★ Verano</span></div>
+            <div class="design-body">
+              <div class="design-cat">Boda de verano</div>
+              <h3>Costa Azul</h3>
+              <p>Arco mediterráneo en acuarela con buganvilias, azahares de limón y detalles en azul cobalto.</p>
+              <div class="design-actions">
+                <a class="btn btn-primary" href="inv/?demo=costa-azul" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Costa Azul." href="#contacto">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card featured reveal" data-cat="gala">
+            <div class="design-media"><img src="inv/assets/coleccion/gala-terciopelo.jpg" alt="Gala Terciopelo" loading="lazy" /><span class="design-badge luxury">★ Gala Nocturna</span></div>
+            <div class="design-body">
+              <div class="design-cat">Gala &amp; Aniversario</div>
+              <h3>Gala Terciopelo</h3>
+              <p>Terciopelo borgoña y carbón con marco dorado barroco para bodas de noche y galas formales.</p>
+              <div class="design-actions">
+                <a class="btn btn-primary" href="inv/?demo=gala-terciopelo" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Gala Terciopelo." href="#contacto">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
           <article class="design-card featured reveal" data-cat="boda">
             <div class="design-media">
               <img src="https://assets.webgencyinvitations.com/ChatGPT_Image_Jun_23_2026_04_40_29_PM_4_piptqn%20(2).png" alt="The Sacred Garden" loading="lazy" />
@@ -510,6 +590,7 @@
     <span>Cotizar por WhatsApp</span>
   </a>
 
+  <script src="assets/panel-api.js"></script>
   <script>
     const SITE_CONFIG = {
       whatsapp: '51999999999' // Reemplaza con tu número real (ej. 51987654321)
@@ -538,16 +619,92 @@
       document.getElementById('scrollProgress').style.width = pct + '%';
     }, { passive: true });
 
-    document.getElementById('filterBar').addEventListener('click', e => {
-      const btn = e.target.closest('[data-filter]');
-      if (!btn) return;
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      document.querySelectorAll('#catalogGrid .design-card').forEach(card => {
-        card.style.display = (f === 'all' || card.dataset.cat === f) ? 'flex' : 'none';
+    const filterBar = document.getElementById('filterBar');
+    const catalogGrid = document.getElementById('catalogGrid');
+    const catalogStatus = document.getElementById('catalogStatus');
+    const filters = Array.from(filterBar.querySelectorAll('[data-filter]'));
+
+    let catalogUnavailable = false;
+
+    function applyFilter(selected) {
+      filters.forEach(button => {
+        const active = button === selected;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
       });
+      let visible = 0;
+      for (const card of catalogGrid.children) {
+        const show = selected.dataset.filter === 'all' || card.dataset.cat === selected.dataset.filter;
+        card.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+      }
+      catalogStatus.hidden = visible > 0 && !catalogUnavailable;
+      catalogStatus.textContent = catalogUnavailable
+        ? 'El catálogo actualizado no está disponible. Estas son muestras de referencia.'
+        : 'No hay modelos en esta categoría.';
+    }
+
+    filterBar.addEventListener('click', event => {
+      const button = event.target.closest('[data-filter]');
+      if (button) applyFilter(button);
     });
+
+    function catalogImage(value) {
+      if (typeof value !== 'string') return 'images/diseno-01.jpg';
+      if (/^https:\/\//i.test(value)) return value;
+      if (/^\/(?:inv\/assets|images)\/[\w.%/-]+$/i.test(value)) return value;
+      if (/^(?:\.\/)?assets\/[\w.%/-]+$/i.test(value)) {
+        return '/inv/' + value.replace(/^\.\//, '');
+      }
+      if (/^images\/[\w.%/-]+$/i.test(value)) return value;
+      return 'images/diseno-01.jpg';
+    }
+
+    function createCard(item, layout) {
+      const card = layout.cloneNode(true);
+      card.classList.remove('reveal');
+      card.classList.toggle('featured', Boolean(item.destacado));
+      card.dataset.cat = item.filtroWeb;
+      const image = card.querySelector('img');
+      image.alt = '';
+      image.src = catalogImage(item.portadaWeb);
+      const badge = card.querySelector('.design-badge');
+      badge.classList.toggle('luxury', Boolean(item.destacado));
+      badge.textContent = item.etiqueta || item.categoria || 'Modelo';
+      card.querySelector('.design-cat').textContent = item.categoria || 'Evento';
+      card.querySelector('h3').textContent = item.nombre;
+      card.querySelector('p').textContent = item.descripcion || '';
+      if (item.precio) {
+        const price = document.createElement('p');
+        price.textContent = item.precio;
+        card.querySelector('.design-actions').before(price);
+      }
+      card.querySelector('.btn-primary').href = 'inv/?demo=' + encodeURIComponent(item.id);
+      const quote = card.querySelector('[data-wa]');
+      quote.dataset.wa = 'Hola, quiero cotizar el modelo ' + item.nombre + '.';
+      quote.href = waUrl(quote.dataset.wa);
+      return card;
+    }
+
+    async function loadCatalog() {
+      const layout = catalogGrid.querySelector('.design-card');
+      applyFilter(filterBar.querySelector('.active'));
+      try {
+        const response = await window.consultarPanel({ tipo: 'catalogo' });
+        if (!response || response.ok !== true || !Array.isArray(response.items)) throw new Error();
+        const items = response.items.filter(item => item && /^[a-z0-9-]{3,60}$/i.test(item.id) && typeof item.nombre === 'string');
+        if (items.length !== response.items.length) throw new Error();
+        const cards = items.sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
+          .map(item => createCard(item, layout));
+        catalogGrid.replaceChildren(...cards);
+        applyFilter(filterBar.querySelector('.active'));
+      } catch {
+        catalogUnavailable = true;
+        applyFilter(filterBar.querySelector('.active'));
+      }
+    }
+
+    loadCatalog();
 
     const reveals = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
