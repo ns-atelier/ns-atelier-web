@@ -210,6 +210,7 @@
     .catalog-callout p { color: var(--ink-soft); font-size: 14.5px; max-width: 560px; }
 
     /* Catalog Page Grid */
+    #catalogGrid[hidden] { display: none; }
     #catalogStatus { text-align: center; margin: 0 0 24px; }
     .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     .design-card {
@@ -556,9 +557,11 @@
     const catalogGrid = document.getElementById('catalogGrid');
     const catalogStatus = document.getElementById('catalogStatus');
 
-    const localCovers = new Map(Array.from(catalogGrid.children, card => [
-      new URL(card.querySelector('.btn-primary').href).searchParams.get('demo'),
-      card.querySelector('img').getAttribute('src')
+    const localCards = new Map(Array.from(catalogGrid.children, card => [
+      new URL(card.querySelector('.btn-primary').href).searchParams.get('demo'), card
+    ]));
+    const localCovers = new Map(Array.from(localCards, ([id, card]) => [
+      id, card.querySelector('img').getAttribute('src')
     ]));
     localCovers.set('jardin-seda', '/inv/assets/sobre-portada.jpg');
 
@@ -614,21 +617,41 @@
       return card;
     }
 
+    function assembleCatalog(response, layout) {
+      if (!response || response.ok !== true || !Array.isArray(response.items)) throw new Error();
+      const items = response.items.filter(item => item && /^[a-z0-9-]{3,60}$/i.test(item.id) && typeof item.nombre === 'string');
+      if (items.length !== response.items.length) throw new Error();
+      const registered = new Set(items.map(item => item.id));
+      if (Array.isArray(response.coleccionRegistrada)) {
+        response.coleccionRegistrada.forEach(id => registered.add(id));
+      }
+      const samples = Array.from(localCards).filter(([id]) =>
+        !registered.has(id) && localCovers.get(id).startsWith('inv/assets/coleccion/')
+      ).map(([, card]) => card);
+      const cards = items.filter(belongsToCollection)
+        .sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
+        .map(item => createCard(item, layout));
+      return [...samples, ...cards];
+    }
+
     async function loadCatalog() {
       const layout = catalogGrid.querySelector('.design-card');
+      catalogStatus.textContent = 'Cargando invitaciones…';
+      catalogStatus.hidden = false;
+      catalogGrid.hidden = true;
+      catalogGrid.setAttribute('aria-busy', 'true');
       try {
         const response = await window.consultarPanel({ tipo: 'catalogo' });
-        if (!response || response.ok !== true || !Array.isArray(response.items)) throw new Error();
-        const items = response.items.filter(item => item && /^[a-z0-9-]{3,60}$/i.test(item.id) && typeof item.nombre === 'string');
-        if (items.length !== response.items.length) throw new Error();
-        const cards = items.filter(belongsToCollection).sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
-          .map(item => createCard(item, layout));
+        const cards = assembleCatalog(response, layout);
         catalogGrid.replaceChildren(...cards);
         catalogStatus.hidden = cards.length > 0;
         catalogStatus.textContent = 'Por ahora no hay modelos disponibles.';
       } catch {
-        catalogStatus.hidden = false;
         catalogStatus.textContent = 'Estás viendo una selección de referencia.';
+      } finally {
+        catalogGrid.querySelectorAll('.reveal').forEach(card => card.classList.remove('reveal'));
+        catalogGrid.removeAttribute('aria-busy');
+        catalogGrid.hidden = false;
       }
     }
 
