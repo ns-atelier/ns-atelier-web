@@ -211,23 +211,14 @@
     }
     .marquee-line strong { color: #702837; font-weight: 700; }
     .marquee-separator { color: #946631; }
-    .marquee-toggle {
-      min-width: 46px; padding: 0 12px;
-      border: 0; border-inline-start: 1px solid #dac8ae; background: #efe6d9;
-      color: #702837; font: 700 12px var(--sans); cursor: pointer;
-    }
-    .marquee-toggle:focus-visible { outline: 2px solid #702837; outline-offset: -4px; }
-    .marquee-toggle[hidden] { display: none; }
-    .marquee-strip.is-paused .marquee-track { animation-play-state: paused; }
     @keyframes mover-cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (max-width: 600px) {
       .marquee-track { animation-duration: 15s; }
-      .marquee-toggle { padding: 0 8px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .marquee-track { animation: none; width: auto; }
       .marquee-line { min-width: 0; flex: 1; flex-wrap: wrap; padding: 10px 14px; gap: 6px 16px; text-align: center; white-space: normal; }
-      .marquee-line[aria-hidden="true"], .marquee-separator, .marquee-toggle { display: none; }
+      .marquee-line[aria-hidden="true"], .marquee-separator { display: none; }
     }
 
     /* Videohistorias */
@@ -577,7 +568,6 @@
           </ul>
         </div>
       </div>
-      <button class="marquee-toggle" id="controlCinta" type="button" aria-label="Pausar cinta" hidden>Pausar</button>
     </div>
 
     <section class="section section-dark" id="video3d" aria-labelledby="video3d-titulo">
@@ -600,7 +590,7 @@
               poster="/assets/videohistorias/portada-34s.webp" aria-label="Muestra del proceso de creación de una videohistoria 3D">
               <source src="/assets/videohistorias/videohistorias-34s.mp4" type="video/mp4">
             </video>
-            <button id="reproducirConSonido" class="btn btn-light btn-sm" type="button" hidden>Reproducir con sonido</button>
+            <button id="reproducirConSonido" class="btn btn-light btn-sm" type="button" hidden>Activar sonido</button>
             <figcaption><span>Del personaje a la escena animada</span><time datetime="PT34.806S">0:34</time></figcaption>
           </figure>
         </div>
@@ -895,15 +885,6 @@
       document.getElementById('scrollProgress').style.width = pct + '%';
     }, { passive: true });
 
-    const cintaServicios = document.getElementById('cintaServicios');
-    const controlCinta = document.getElementById('controlCinta');
-    controlCinta.hidden = false;
-    controlCinta.addEventListener('click', () => {
-      const paused = cintaServicios.classList.toggle('is-paused');
-      controlCinta.textContent = paused ? 'Reanudar' : 'Pausar';
-      controlCinta.setAttribute('aria-label', paused ? 'Reanudar cinta' : 'Pausar cinta');
-    });
-
     const goldPhrases = {
       inicio: ['para recuerdos eternos.', 'para días inolvidables.', 'para momentos especiales.'],
       videohistorias: ['una película.']
@@ -964,39 +945,59 @@
 
     const tieneObservador = 'IntersectionObserver' in window;
     let videoVisible = false;
+    let mutedByAutoplay = false;
 
-    function iniciarVideohistoria() {
-      videoHistorias.play().catch(error => {
-        if (error.name === 'NotAllowedError') reproducirConSonido.hidden = false;
-      });
+    function videoPuedeReproducirse() {
+      return !document.hidden && (!tieneObservador || videoVisible);
+    }
+
+    function actualizarBotonSonido() {
+      reproducirConSonido.hidden = !mutedByAutoplay || !videoHistorias.muted;
+    }
+
+    async function iniciarVideohistoria() {
+      try {
+        await videoHistorias.play();
+      } catch (error) {
+        if (error.name !== 'NotAllowedError' || videoHistorias.muted || !videoPuedeReproducirse()) return;
+        mutedByAutoplay = true;
+        videoHistorias.muted = true;
+        actualizarBotonSonido();
+        try {
+          await videoHistorias.play();
+        } catch {
+          // Los controles nativos siguen disponibles si el navegador exige interacción.
+          reproducirConSonido.textContent = 'Reproducir con sonido';
+        }
+      }
     }
 
     videoHistorias.addEventListener('playing', () => {
-      reproducirConSonido.hidden = true;
-      if (document.hidden || (tieneObservador && !videoVisible)) videoHistorias.pause();
+      reproducirConSonido.textContent = 'Activar sonido';
+      actualizarBotonSonido();
+      if (!videoPuedeReproducirse()) videoHistorias.pause();
     });
+    videoHistorias.addEventListener('volumechange', actualizarBotonSonido);
     reproducirConSonido.addEventListener('click', () => {
+      mutedByAutoplay = false;
       videoHistorias.muted = false;
+      actualizarBotonSonido();
       iniciarVideohistoria();
     });
+
+    function actualizarReproduccion() {
+      if (videoPuedeReproducirse()) iniciarVideohistoria();
+      else videoHistorias.pause();
+    }
+
     if (tieneObservador) {
       const umbralVisible = 0.25;
-
-      function actualizarReproduccion() {
-        if (videoVisible && !document.hidden) {
-          iniciarVideohistoria();
-        } else {
-          videoHistorias.pause();
-        }
-      }
-
       const observadorVideo = new IntersectionObserver(([entrada]) => {
         const visible = entrada.isIntersecting && entrada.intersectionRatio >= umbralVisible;
         if (visible === videoVisible) return;
         videoVisible = visible;
         actualizarReproduccion();
       }, { rootMargin: '-74px 0px 0px', threshold: umbralVisible });
-
       observadorVideo.observe(videoHistorias);
       document.addEventListener('visibilitychange', actualizarReproduccion);
     }
