@@ -94,81 +94,113 @@
     .nav-links a:hover, .nav-links a.active-link { color: var(--burgundy); font-weight: 600; }
     .menu-toggle {
       display: none; background: #fff; border: 1px solid var(--line); border-radius: 10px;
-      width: 42px; height: 42px; font-size: 20px; cursor: pointer; color: var(--ink);
+      width: 44px; height: 44px; font-size: 20px; cursor: pointer; color: var(--ink);
     }
 
-    /* Hero */
+    /* Portada */
     .hero {
-      padding: 58px 0 74px;
-      background:
-        radial-gradient(620px 420px at 85% 18%, rgba(212, 180, 106, .18), transparent 70%),
-        radial-gradient(520px 380px at 10% 80%, rgba(90, 15, 27, .07), transparent 70%),
-        var(--bg);
+      padding: clamp(42px, 6vw, 84px) 0;
+      background: radial-gradient(ellipse at 78% 38%, #f2e4cb, transparent 55%),
+        linear-gradient(120deg, var(--bg) 20%, #f6eee1);
     }
-    .hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 46px; align-items: center; }
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line);
-      font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 18px;
-      box-shadow: var(--shadow-sm);
+    .hero-grid {
+      display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(0, .78fr);
+      gap: clamp(28px, 6vw, 90px); align-items: center;
     }
-    .hero-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
-    .hero h1 { font-size: clamp(38px, 5vw, 62px); margin-bottom: 18px; letter-spacing: -.01em; }
-    .typed-wrap { color: var(--gold); font-style: italic; border-right: 2px solid var(--gold); padding-right: 4px; animation: blinkCaret .85s step-end infinite; }
-    @keyframes blinkCaret { 50% { border-color: transparent; } }
-    .hero-lead { font-size: 16px; color: var(--ink-soft); max-width: 540px; margin-bottom: 26px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
-    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 22px; border-top: 1px solid var(--line); max-width: 540px; }
-    .stat strong { display: block; font-family: var(--serif); font-size: 26px; color: var(--burgundy); line-height: 1.1; }
-    .stat span { font-size: 12px; color: var(--ink-soft); }
+    .hero-copy { min-width: 0; }
+    .hero h1 {
+      font-size: clamp(36px, 4.8vw, 71px); line-height: 1.01;
+      margin-bottom: 23px; letter-spacing: -.035em; text-wrap: balance;
+    }
+    .hero-gold {
+      display: block; width: max-content; margin-top: .11em;
+      color: #8b6425; font-style: italic; white-space: nowrap;
+      animation: hero-reveal .7s .14s both;
+    }
+    @keyframes hero-reveal {
+      from { opacity: 0; transform: translateY(.18em); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-lead { font-size: clamp(15px, 1.4vw, 17px); color: var(--ink-soft); max-width: 48ch; margin-bottom: 24px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .nav-links .btn-primary { color: #faf6f0; }
+    .nav-links .btn-primary:hover { color: #fff; font-weight: 500; }
 
-    /* Interactive Phone Mockup */
-    .phone-stage { display: flex; flex-direction: column; align-items: center; gap: 16px; position: relative; }
-    .phone-glow {
-      position: absolute; width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,180,106,.32), transparent 70%);
-      filter: blur(22px); z-index: 0; top: 40px;
-    }
+    /* Demostración interactiva */
+    .phone-stage { min-width: 0; display: grid; justify-items: center; gap: 18px; }
     .phone-frame {
-      position: relative; z-index: 1; width: 296px; border-radius: 38px; padding: 11px;
-      background: linear-gradient(145deg, #2d2420, #16110f);
-      box-shadow: 0 30px 70px rgba(34, 28, 25, .26), 0 0 0 1px rgba(212,180,106,.35);
-      animation: floatPhone 5.5s ease-in-out infinite;
+      position: relative; isolation: isolate; width: min(100%, clamp(216px, 22vw, 274px));
+      aspect-ratio: 9 / 19.5; display: grid; padding: 8px;
+      border-radius: 40px; border: 1px solid #b4a589;
+      background: linear-gradient(140deg, #64594f, #211b18 27%, #120f0d 65%, #5f5347);
+      box-shadow: 0 26px 64px #36221639, 0 0 0 2px #332823;
     }
-    @keyframes floatPhone { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
-    .phone-notch { width: 92px; height: 20px; background: #16110f; border-radius: 0 0 14px 14px; margin: 0 auto -12px; position: relative; z-index: 2; }
     .phone-screen {
-      border-radius: 28px; min-height: 468px; padding: 34px 20px 24px;
-      display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center;
-      transition: background .45s ease, color .45s ease;
-      background: #f9f0e0; color: #6c513f; border: 1px solid rgba(255,255,255,.35);
+      position: relative; overflow: hidden; min-height: 0; border-radius: 32px;
+      background: #f5eddf; text-align: center;
     }
-    .phone-screen .p-kicker { font-family: var(--cinzel); font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase; opacity: .8; }
-    .phone-screen .p-date { font-family: var(--cinzel); font-size: 12px; letter-spacing: .16em; margin-top: 6px; }
-    .phone-screen .p-names { font-family: var(--serif); font-size: 38px; line-height: 1; margin: 16px 0 8px; }
-    .phone-screen .p-names em { display: block; font-size: 24px; font-weight: 400; margin: 4px 0; }
-    .phone-screen .p-msg { font-size: 12px; opacity: .85; max-width: 210px; line-height: 1.5; }
-    .phone-screen .p-cd { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; width: 100%; margin: 14px 0; }
-    .phone-screen .p-cd div { background: rgba(255,255,255,.45); border-radius: 10px; padding: 7px 4px; border: 1px solid rgba(166,125,43,.2); }
-    .phone-screen .p-cd b { display: block; font-family: var(--serif); font-size: 19px; line-height: 1; }
-    .phone-screen .p-cd small { font-size: 8.5px; text-transform: uppercase; letter-spacing: .08em; opacity: .75; }
-    .phone-screen .p-cta { display: inline-block; padding: 9px 18px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: var(--burgundy); color: #faf6f0; }
-    .theme-switcher { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .phone-camera, .phone-gesture { position: absolute; z-index: 3; left: 50%; translate: -50% 0; pointer-events: none; }
+    .phone-camera { top: 17px; width: 46px; height: 12px; border-radius: 999px; background: #181310; }
+    .phone-gesture { bottom: 15px; width: 68px; height: 3px; border-radius: 999px; background: #77716d; }
+    .phone-preview, .phone-envelope { position: absolute; inset: 0; }
+    .phone-preview[hidden] { display: none; }
+    .phone-preview {
+      display: grid; align-content: end; gap: 8px; padding: 28px 13px 35px;
+      color: #fff8ed; background: #30231d;
+    }
+    .phone-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .phone-preview::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(0deg, #231714f5 0%, #231714c4 17%, transparent 58%);
+    }
+    .phone-preview strong, .phone-preview a { position: relative; z-index: 1; }
+    .phone-preview strong { font-family: var(--serif); font-weight: 600; font-size: clamp(24px, 2.5vw, 34px); line-height: 1; }
+    .phone-preview a { justify-self: center; }
+    .phone-envelope {
+      z-index: 2; display: grid; place-items: center; align-content: center; gap: 14px; width: 100%;
+      border: 0; padding: 20px; color: #594026; font: inherit; cursor: pointer;
+      background: linear-gradient(141deg, #f8efdf 0 49.8%, transparent 50%),
+        linear-gradient(218deg, #eddfc9, #fbf1e1);
+      transition: transform .62s cubic-bezier(.28,.66,.2,1), opacity .5s ease, visibility .62s;
+    }
+    .phone-envelope::before {
+      content: ''; position: absolute; inset: 0 0 auto; height: 56%; pointer-events: none;
+      clip-path: polygon(0 0, 100% 0, 100% 57%, 50% 98%, 0 57%);
+      background: linear-gradient(150deg, #fbf3e4, #d9c3a2);
+    }
+    .phone-envelope[aria-expanded="true"] { transform: translateY(-101%); opacity: 0; visibility: hidden; pointer-events: none; }
+    .phone-seal {
+      z-index: 1; display: grid; place-items: center; width: 67px; height: 67px; border-radius: 48% 51% 46% 50%;
+      border: 2px solid #9b4e55; background: radial-gradient(circle at 34% 24%, #954c53, #571726 66%);
+      box-shadow: inset 0 0 0 4px #f4bc8a35, 0 5px 12px #4b242050;
+      color: #fff2db; font-family: var(--cinzel); font-size: 19px; transition: transform .22s ease;
+    }
+    .phone-envelope:hover .phone-seal { transform: scale(1.08); }
+    .phone-open-label { z-index: 1; font-size: 13px; font-weight: 700; }
+    .theme-switcher { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
     .theme-chip {
-      border: 1px solid var(--line); background: #fff; color: var(--ink-soft);
-      padding: 6px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 600; cursor: pointer;
-      transition: all .2s;
+      border: 1px solid var(--line); background: #fffaf1; color: var(--ink-soft);
+      min-height: 44px; padding: 8px 12px; border-radius: 999px; font: 600 12px var(--sans); cursor: pointer;
+      transition: background .2s, color .2s;
     }
-    .theme-chip.active, .theme-chip:hover { background: var(--ink); color: #faf6f0; border-color: var(--ink); }
+    .theme-chip[aria-pressed="true"], .theme-chip:hover { background: var(--burgundy); color: #fff9ef; }
+    .phone-stage :focus-visible { outline: 2px solid #946322; outline-offset: 3px; }
+    .phone-envelope:focus-visible { outline-offset: -6px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-gold { animation: none; }
+      .phone-envelope, .phone-seal, .reveal { transition: none; }
+      .reveal { opacity: 1; transform: none; }
+    }
 
-    /* Marquee */
     .marquee-strip {
-      overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-      background: #fff; padding: 14px 0;
+      border-block: 1px solid var(--line); background: #fffdf8; padding: 14px 0;
     }
-    .marquee-track { display: flex; gap: 38px; width: max-content; animation: marquee 28s linear infinite; }
-    .marquee-track span { font-family: var(--cinzel); font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px;
+      color: var(--ink-soft); font-size: 12px; list-style: none;
+    }
+    .marquee-track li::before { content: '✦'; margin-right: 6px; color: #8b6425; }
 
     /* Video 3D */
     .video3d-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 44px; align-items: center; }
@@ -321,12 +353,17 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 980px) {
-      .hero-grid, .video3d-grid, .builder-box, .faq-grid, .footer-grid { grid-template-columns: 1fr; }
+      .video3d-grid, .builder-box, .faq-grid, .footer-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .catalog-grid, .packages-grid, .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .pkg.popular { transform: none; }
     }
-    @media (max-width: 720px) {
+    @media (max-width: 875px) {
+      .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+      .hero-actions .btn { min-height: 48px; justify-content: center; }
+      .phone-preview a { min-height: 44px; }
+      .theme-switcher { max-width: 330px; }
+      .hero h1 { font-size: clamp(30px, 6.5vw, 52px); text-wrap: initial; }
       .section { padding: 62px 0; }
       .nav-links {
         display: none; position: absolute; top: 74px; left: 0; right: 0;
@@ -336,11 +373,39 @@
       .nav-links.open { display: flex; }
       .menu-toggle { display: inline-grid; place-items: center; }
       .features-grid, .catalog-grid, .packages-grid, .steps-grid, .builder-controls { grid-template-columns: 1fr; }
-      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .stat strong { font-size: 21px; }
       .wa-float span { display: none; }
       .wa-float { width: 54px; height: 54px; justify-content: center; padding: 0; }
       .catalog-callout { padding: 24px 20px; }
+    }
+    @media (max-width: 420px) {
+      .hero h1 { font-size: clamp(27px, 8vw, 34px); }
+      .hero-actions { display: grid; }
+      .hero-lead { margin-bottom: 20px; }
+    }
+
+    .preview-close {
+      position: absolute; z-index: 2; top: 18px; right: 8px; width: 44px; height: 44px;
+      border: 1px solid #bca887; border-radius: 50%; color: #442e22; background: #fffbf1eb;
+      font: 24px/1 system-ui; cursor: pointer;
+    }
+    .phone-stage { position: relative; isolation: isolate; }
+    .phone-stage::before {
+      content: ''; position: absolute; z-index: -1; inset: 5% 2% 13%;
+      border-radius: 48% 48% 4px 4px; border: 1px solid #bba17c55;
+      background: linear-gradient(145deg, #fffaf080, #dec6a126);
+    }
+    .phone-envelope { background: linear-gradient(#fff9ec85, #f7ecda75), var(--cover) center / cover, #ede0cc; }
+    .phone-envelope::before { opacity: .83; }
+    .phone-open-label { padding: 4px 11px; background: #fbf5e9ed; border-radius: 2px; }
+    .theme-switcher { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: min(100%,370px); gap: 6px; }
+    .theme-chip { display: grid; justify-items: center; align-content: start; gap: 6px; border-radius: 10px; padding: 7px 3px; line-height: 1.25; }
+    .theme-chip img { width: 38px; height: 46px; object-fit: cover; border-radius: 4px; }
+    .theme-chip[aria-pressed="true"] { background: #fff8ef; color: #581826; border-color: #874451; box-shadow: inset 0 0 0 1px #874451; }
+    .hero-copy { container-type: inline-size; }
+    .hero-gold { font-size: min(1em, 9cqi); }
+    @media (max-width: 875px) {
+      .phone-stage::before { inset-inline: max(0px, calc(50% - 184px)); }
+      .phone-frame { width: min(62vw, 250px); }
     }
 </style>
 </head>
@@ -360,7 +425,7 @@
       <nav class="nav-links" id="mainNav">
         <a href="#video3d">Videohistorias 3D</a>
         <a href="#funciones">¿Qué incluyen?</a>
-        <a href="catalogo.html" target="_blank" rel="noopener">Catálogo de modelos ↗</a>
+        <a href='/catalogo' rel='noopener' target='_blank'>Catálogo de modelos ↗</a>
         <a href="#paquetes">Paquetes</a>
         <a href="#preguntas">Preguntas</a>
         <a class="btn btn-primary btn-sm" data-wa="Hola, quiero cotizar una invitación digital o videohistoria 3D con N&S ATELIER." href="#contacto">Cotizar ahora</a>
@@ -374,56 +439,50 @@
     <!-- 1. HERO -->
     <section class="hero" id="inicio">
       <div class="container hero-grid">
-        <div>
-          <div class="hero-pill"><span class="dot"></span> Invitaciones interactivas · Videohistorias animadas 3D</div>
-          <h1>Invitaciones digitales y videohistorias 3D para <span class="typed-wrap" id="typedPhrase">momentos eternos.</span></h1>
-          <p class="hero-lead">Sorprende a tus invitados desde el primer toque: sobre animado con sello de lacre, música de fondo, cuenta regresiva, mapa interactivo y confirmación de asistencia en un solo enlace elegante.</p>
+        <div class="hero-copy">
+          <h1>Invitaciones digitales y videohistorias 3D <span class="hero-gold">para momentos eternos.</span></h1>
+          <p class="hero-lead">Abre un sobre animado y descubre una invitación con música, mapa y confirmación de asistencia. Personalizamos cada diseño con tu historia.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="catalogo.html" target="_blank" rel="noopener">Ver catálogo de modelos ↗</a>
-            <a class="btn btn-outline" href="#video3d">Videohistorias 3D</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat"><strong>100%</strong><span>Personalizable en colores y fuentes</span></div>
-            <div class="stat"><strong>2–5 días</strong><span>Entrega rápida y acompañada</span></div>
-            <div class="stat"><strong>Varios</strong><span>Métodos de pago disponibles</span></div>
+            <a class="btn btn-primary" href="/catalogo">Explorar invitaciones</a>
+            <a class="btn btn-outline" href="#video3d">Ver videohistorias 3D</a>
           </div>
         </div>
 
-        <!-- Interactive Live Phone Mockup -->
         <div class="phone-stage">
-          <div class="phone-glow"></div>
           <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen" id="phoneScreen">
-              <div class="p-kicker" id="phType">WEDDING DAY</div>
-              <div class="p-date" id="phDate">27 · 09 · 26</div>
-              <div class="p-names" id="phNames">Zohan<em>&amp;</em>Rose</div>
-              <p class="p-msg" id="phMsg">Acompáñanos a celebrar el inicio de nuestra historia para siempre.</p>
-              <div class="p-cd">
-                <div><b id="phD">48</b><small>Días</small></div>
-                <div><b id="phH">12</b><small>Hrs</small></div>
-                <div><b id="phM">30</b><small>Min</small></div>
-                <div><b id="phS">15</b><small>Seg</small></div>
+            <div class="phone-camera" aria-hidden="true"></div>
+            <div class="phone-screen">
+              <div class="phone-preview" id="phonePreview" hidden>
+                <img id="phoneArtwork" alt="" width="600" height="804" decoding="async">
+                <button class="preview-close" id="previewClose" type="button" aria-label="Volver al sobre">×</button>
+                <strong id="phoneModel">Perla &amp; Nácar</strong>
+                <a class="btn btn-light btn-sm" id="phoneDemo" href="/inv/?demo=perla-nacar">Ver demo completa <span aria-hidden="true">↗</span></a>
               </div>
-              <a class="p-cta" id="phDemoLink" href="inv/?demo=the-sacred-garden" target="_blank" rel="noopener">Probar demo real ↗</a>
+              <button class="phone-envelope" id="phoneEnvelope" type="button" aria-expanded="false" aria-controls="phonePreview">
+                <span class="phone-seal" aria-hidden="true">N&amp;S</span>
+                <span class="phone-open-label">Abrir invitación</span>
+              </button>
             </div>
+            <div class="phone-gesture" aria-hidden="true"></div>
           </div>
-          <div class="theme-switcher" id="themeSwitcher">
-            <button class="theme-chip active" data-theme="sacred">The Sacred Garden</button>
-            <button class="theme-chip" data-theme="olivo">Olivo &amp; Marfil</button>
-            <button class="theme-chip" data-theme="noche">Noche Dorada</button>
-            <button class="theme-chip" data-theme="aurora">Aurora XV</button>
+          <div class="theme-switcher" id="themeSwitcher" role="group" aria-label="Elegir diseño de invitación">
+            <button class="theme-chip" type="button" data-theme="perla-nacar" aria-pressed="true"><img src="/assets/portada/perla-nacar.webp" alt="" width="40" height="52" decoding="async"><span>Perla &amp; Nácar</span></button>
+            <button class="theme-chip" type="button" data-theme="vitral-floral" aria-pressed="false"><img src="/assets/portada/vitral-floral.webp" alt="" width="40" height="52" decoding="async"><span>Vitral Floral</span></button>
+            <button class="theme-chip" type="button" data-theme="gala-terciopelo" aria-pressed="false"><img src="/assets/portada/gala-terciopelo.webp" alt="" width="40" height="52" decoding="async"><span>Gala Terciopelo</span></button>
           </div>
+          <noscript><a class="btn btn-outline" href="/inv/?demo=perla-nacar">Ver demo de Perla &amp; Nácar</a></noscript>
         </div>
       </div>
     </section>
 
-    <!-- MARQUEE -->
-    <div class="marquee-strip" aria-hidden="true">
-      <div class="marquee-track">
-        <span>✦ Sobre animado con lacre</span><span>✦ Música automática</span><span>✦ Confirmación de asistencia</span><span>✦ Mapa interactivo</span><span>✦ Videohistorias animadas 3D</span><span>✦ Cuenta regresiva en vivo</span><span>✦ Varios métodos de pago</span>
-        <span>✦ Sobre animado con lacre</span><span>✦ Música automática</span><span>✦ Confirmación de asistencia</span><span>✦ Mapa interactivo</span><span>✦ Videohistorias animadas 3D</span><span>✦ Cuenta regresiva en vivo</span><span>✦ Varios métodos de pago</span>
-      </div>
+    <div class="marquee-strip">
+      <ul class="container marquee-track" aria-label="Funciones de las invitaciones">
+        <li>Sobre animado</li>
+        <li>Música de fondo</li>
+        <li>Confirmación de asistencia</li>
+        <li>Mapa interactivo</li>
+        <li>Cuenta regresiva</li>
+      </ul>
     </div>
 
     <!-- 2. VIDEOHISTORIAS ANIMADAS 3D (DESTACADO ARRIBA) -->
@@ -480,10 +539,10 @@
         <div class="catalog-callout reveal">
           <div>
             <div class="eyebrow" style="margin-bottom:6px">Catálogo exclusivo</div>
-            <h3>¿Quieres ver todos nuestros <span class="accent-italic">modelos y demos</span>?</h3>
-            <p>Abre nuestro catálogo completo en una pestaña dedicada para filtrar por tipo de evento y probar cada invitación interactiva en tu celular.</p>
+            <h3>Descubre la <span class="accent-italic">Colección de Lujo</span></h3>
+            <p>Explora seis diseños de boda y gala. Prueba el sobre animado de Perla &amp; Nácar o elige otro modelo para personalizar con tus fotos y los datos de tu evento.</p>
           </div>
-          <a class="btn btn-primary" href="catalogo.html" target="_blank" rel="noopener">Abrir catálogo de modelos ↗</a>
+          <a class='btn btn-primary' href='/catalogo'>Ver colección y demos</a>
         </div>
       </div>
     </section>
@@ -651,7 +710,7 @@
           <div class="footer-links">
             <a href="#video3d">Videohistorias 3D</a>
             <a href="#funciones">¿Qué incluyen?</a>
-            <a href="catalogo.html" target="_blank" rel="noopener">Catálogo de modelos ↗</a>
+            <a href='/catalogo' rel='noopener' target='_blank'>Catálogo de modelos ↗</a>
             <a href="#paquetes">Paquetes y cotizador</a>
             <a href="#preguntas">Preguntas frecuentes</a>
           </div>
@@ -731,55 +790,42 @@
       document.getElementById('scrollProgress').style.width = pct + '%';
     }, { passive: true });
 
-    // Efecto de escritura en el Hero
-    (function () {
-      const el = document.getElementById('typedPhrase');
-      const frases = ['momentos eternos.', 'días especiales.', 'recuerdos inolvidables.'];
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      let i = 0, c = frases[0].length, del = true;
-      function loop() {
-        const txt = Array.from(frases[i]);
-        if (del) {
-          c--;
-          el.textContent = txt.slice(0, c).join('');
-          if (c === 0) { del = false; i = (i + 1) % frases.length; setTimeout(loop, 360); }
-          else setTimeout(loop, 42);
-        } else {
-          c++;
-          el.textContent = txt.slice(0, c).join('');
-          if (c === txt.length) { del = true; setTimeout(loop, 1900); }
-          else setTimeout(loop, 82);
-        }
-      }
-      setTimeout(loop, 1800);
-    })();
+    const envelope = document.getElementById('phoneEnvelope');
+    const phonePreview = document.getElementById('phonePreview');
+    const artwork = document.getElementById('phoneArtwork');
+    const phoneModel = document.getElementById('phoneModel');
+    const phoneDemo = document.getElementById('phoneDemo');
+    const themeSwitcher = document.getElementById('themeSwitcher');
+    const themeButtons = themeSwitcher.querySelectorAll('[data-theme]');
 
-    // Selector interactivo de temas en el teléfono del Hero
-    const PHONE_THEMES = {
-      sacred: { bg: '#f9f0e0', ink: '#6c513f', accent: '#a67d2b', btn: '#5a0f1b', type: 'WEDDING DAY', date: '27 · 09 · 26', n1: 'Zohan', n2: 'Rose', msg: 'Acompáñanos a celebrar el inicio de nuestra historia para siempre.', demo: 'inv/?demo=the-sacred-garden' },
-      olivo: { bg: '#f4f2e8', ink: '#3c483b', accent: '#627660', btn: '#485b46', type: 'NUESTRA BODA', date: '21 · 08 · 27', n1: 'Amelia', n2: 'Gabriel', msg: 'Bajo los olivos celebramos el amor que nos une.', demo: 'inv/?demo=olivo-marfil' },
-      noche: { bg: '#221d1a', ink: '#f6ead9', accent: '#d4b46a', btn: '#a67d2b', type: 'GALA & ANIVERSARIO', date: '14 · 11 · 26', n1: 'Sofía', n2: 'Mateo', msg: 'Una velada dorada para brindar por cada recuerdo compartido.', demo: 'inv/?demo=noche-dorada' },
-      aurora: { bg: '#f4eef9', ink: '#4c3f58', accent: '#8e70a8', btn: '#6c4d87', type: 'MIS XV AÑOS', date: '05 · 12 · 26', n1: 'Valentina', n2: '', msg: 'Te invito a vivir conmigo una noche llena de magia y música.', demo: 'inv/?demo=aurora' }
-    };
-    document.getElementById('themeSwitcher').addEventListener('click', e => {
-      const btn = e.target.closest('[data-theme]');
-      if (!btn) return;
-      document.querySelectorAll('.theme-chip').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const t = PHONE_THEMES[btn.dataset.theme];
-      const sc = document.getElementById('phoneScreen');
-      sc.style.background = t.bg;
-      sc.style.color = t.ink;
-      document.getElementById('phType').textContent = t.type;
-      document.getElementById('phType').style.color = t.accent;
-      document.getElementById('phDate').textContent = t.date;
-      document.getElementById('phDate').style.color = t.accent;
-      document.getElementById('phNames').innerHTML = t.n2 ? (t.n1 + '<em>&amp;</em>' + t.n2) : t.n1;
-      document.getElementById('phNames').style.color = t.accent;
-      document.getElementById('phMsg').textContent = t.msg;
-      const cta = document.getElementById('phDemoLink');
-      cta.href = t.demo;
-      cta.style.background = t.btn;
+    function selectPreview(button) {
+      const id = button.dataset.theme;
+      artwork.src = '/assets/portada/' + id + '.webp';
+      phoneModel.textContent = button.textContent.trim();
+      envelope.setAttribute('aria-label', 'Abrir invitación ' + phoneModel.textContent);
+      envelope.style.setProperty('--cover', 'url("/assets/portada/' + id + '.webp")');
+      phoneDemo.href = '/inv/?demo=' + encodeURIComponent(id);
+      themeButtons.forEach(theme => theme.setAttribute('aria-pressed', String(theme === button)));
+    }
+
+    document.getElementById('previewClose').addEventListener('click', () => {
+      envelope.setAttribute('aria-expanded', 'false');
+      phonePreview.hidden = true;
+      envelope.focus({ preventScroll: true });
+    });
+
+    selectPreview(themeButtons[0]);
+    envelope.addEventListener('click', () => {
+      phonePreview.hidden = false;
+      envelope.setAttribute('aria-expanded', 'true');
+      phoneDemo.focus({ preventScroll: true });
+    });
+    themeSwitcher.addEventListener('click', event => {
+      const button = event.target.closest('[data-theme]');
+      if (!button) return;
+      selectPreview(button);
+      phonePreview.hidden = false;
+      envelope.setAttribute('aria-expanded', 'true');
     });
 
     // Cotizador interactivo por WhatsApp
