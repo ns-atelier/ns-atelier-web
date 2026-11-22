@@ -197,13 +197,38 @@
     }
 
     .marquee-strip {
-      border-block: 1px solid var(--line); background: #fffdf8; padding: 14px 0;
+      display: flex; align-items: stretch; border-block: 1px solid #dac8ae;
+      background: #efe6d9; color: #422f28;
     }
-    .marquee-track {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px;
-      color: var(--ink-soft); font-size: 12px; list-style: none;
+    .marquee-window { flex: 1; min-width: 0; overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: mover-cinta 18s linear infinite; }
+    .marquee-line {
+      display: flex; flex: 0 0 auto; min-width: 100vw; justify-content: space-around;
+      gap: clamp(22px, 3.4vw, 62px); align-items: center;
+      padding: 0 clamp(11px, 1.7vw, 31px); min-height: clamp(62px, 5vw, 80px);
+      list-style: none; font-size: clamp(16px, 1.25vw, 23px); white-space: nowrap;
+      font-weight: 500;
     }
-    .marquee-track li::before { content: '✦'; margin-right: 6px; color: #8b6425; }
+    .marquee-line strong { color: #702837; font-weight: 700; }
+    .marquee-separator { color: #946631; }
+    .marquee-toggle {
+      min-width: 46px; padding: 0 12px;
+      border: 0; border-inline-start: 1px solid #dac8ae; background: #efe6d9;
+      color: #702837; font: 700 12px var(--sans); cursor: pointer;
+    }
+    .marquee-toggle:focus-visible { outline: 2px solid #702837; outline-offset: -4px; }
+    .marquee-toggle[hidden] { display: none; }
+    .marquee-strip.is-paused .marquee-track { animation-play-state: paused; }
+    @keyframes mover-cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (max-width: 600px) {
+      .marquee-track { animation-duration: 15s; }
+      .marquee-toggle { padding: 0 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; width: auto; }
+      .marquee-line { min-width: 0; flex: 1; flex-wrap: wrap; padding: 10px 14px; gap: 6px 16px; text-align: center; white-space: normal; }
+      .marquee-line[aria-hidden="true"], .marquee-separator, .marquee-toggle { display: none; }
+    }
 
     /* Videohistorias */
     /* Videohistorias 3D */
@@ -523,14 +548,36 @@
       </div>
     </section>
 
-    <div class="marquee-strip">
-      <ul class="container marquee-track" aria-label="Funciones de las invitaciones">
-        <li>Sobre animado</li>
-        <li>Música de fondo</li>
-        <li>Confirmación de asistencia</li>
-        <li>Mapa interactivo</li>
-        <li>Cuenta regresiva</li>
-      </ul>
+    <div class="marquee-strip" id="cintaServicios">
+      <div class="marquee-window">
+        <div class="marquee-track">
+          <ul class="marquee-line" aria-label="Ocasiones para tarjetas y videohistorias">
+            <li><strong>Tarjetas para bodas</strong></li>
+            <li>Compromisos</li>
+            <li>Aniversarios</li>
+            <li class="marquee-separator" aria-hidden="true">✦</li>
+            <li><strong>Videohistorias para bodas</strong></li>
+            <li>Aniversarios</li>
+            <li>Familia</li>
+            <li>Graduaciones</li>
+            <li>Viajes</li>
+            <li class="marquee-separator" aria-hidden="true">✦</li>
+          </ul>
+          <ul class="marquee-line" aria-hidden="true">
+            <li><strong>Tarjetas para bodas</strong></li>
+            <li>Compromisos</li>
+            <li>Aniversarios</li>
+            <li class="marquee-separator" aria-hidden="true">✦</li>
+            <li><strong>Videohistorias para bodas</strong></li>
+            <li>Aniversarios</li>
+            <li>Familia</li>
+            <li>Graduaciones</li>
+            <li>Viajes</li>
+            <li class="marquee-separator" aria-hidden="true">✦</li>
+          </ul>
+        </div>
+      </div>
+      <button class="marquee-toggle" id="controlCinta" type="button" aria-label="Pausar cinta" hidden>Pausar</button>
     </div>
 
     <section class="section section-dark" id="video3d" aria-labelledby="video3d-titulo">
@@ -847,6 +894,15 @@
       const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
       document.getElementById('scrollProgress').style.width = pct + '%';
     }, { passive: true });
+
+    const cintaServicios = document.getElementById('cintaServicios');
+    const controlCinta = document.getElementById('controlCinta');
+    controlCinta.hidden = false;
+    controlCinta.addEventListener('click', () => {
+      const paused = cintaServicios.classList.toggle('is-paused');
+      controlCinta.textContent = paused ? 'Reanudar' : 'Pausar';
+      controlCinta.setAttribute('aria-label', paused ? 'Reanudar cinta' : 'Pausar cinta');
+    });
 
     const goldPhrases = {
       inicio: ['para recuerdos eternos.', 'para días inolvidables.', 'para momentos especiales.'],
