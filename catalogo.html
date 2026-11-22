@@ -86,7 +86,7 @@
     }
     .nav-bar { display: flex; align-items: center; justify-content: space-between; min-height: 74px; gap: 16px; }
     .brand { display: flex; align-items: center; gap: 12px; }
-    .brand-logo { width: 46px; height: 46px; border-radius: 12px; object-fit: cover; border: 1px solid var(--line); }
+    .brand-logo { width: 46px; height: 46px; border-radius: 12px; object-fit: contain; padding: 2px; background: #fff9ef; border: 1px solid var(--line); }
     .brand-text strong { display: block; font-family: var(--cinzel); font-size: 15px; letter-spacing: .16em; }
     .brand-text span { display: block; font-size: 11px; color: var(--ink-soft); }
     .nav-links { display: flex; align-items: center; gap: 22px; }
@@ -211,13 +211,6 @@
 
     /* Catalog Page Grid */
     #catalogStatus { text-align: center; margin: 0 0 24px; }
-    .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 34px; }
-    .filter-btn {
-      padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line);
-      background: #fff; color: var(--ink-soft); font-size: 13px; font-weight: 600; cursor: pointer;
-      transition: all .2s;
-    }
-    .filter-btn.active, .filter-btn:hover { background: var(--burgundy); color: #faf6f0; border-color: var(--burgundy); }
     .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     .design-card {
       background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
@@ -231,14 +224,7 @@
     .design-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #ede3d5; }
     .design-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
     .design-card:hover .design-media img { transform: scale(1.06); }
-    .design-badge {
-      position: absolute; top: 12px; left: 12px; padding: 5px 11px; border-radius: 999px;
-      font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      background: rgba(34, 28, 25, .82); color: #faf6f0; backdrop-filter: blur(6px);
-    }
-    .design-badge.luxury { background: linear-gradient(90deg, var(--burgundy), var(--gold)); }
     .design-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-    .design-cat { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
     .design-body h3 { font-size: 25px; margin-bottom: 8px; }
     .design-body p { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; flex: 1; }
     .design-actions { display: flex; gap: 10px; }
@@ -346,6 +332,7 @@
       .catalog-callout { padding: 24px 20px; }
     }
 </style>
+<link rel="icon" type="image/webp" href="/assets/logo-ns.webp">
 </head>
 <body>
   <div id="scrollProgress"></div>
@@ -354,7 +341,7 @@
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="index.html">
-        <img class="brand-logo" src="/assets/logo-ns.jpg" alt="Logo N&amp;S ATELIER" />
+        <img class="brand-logo" src="/assets/logo-ns.webp" alt="Logo N&amp;S ATELIER" />
         <div class="brand-text">
           <strong>N&amp;S ATELIER</strong>
           <span>Catálogo de Modelos</span>
@@ -378,24 +365,16 @@
           <a class="btn btn-outline btn-sm" href="index.html">← Volver a la página principal</a>
         </div>
         <div class="section-head">
-          <div class="eyebrow">Catálogo exclusivo</div>
+          <div class="eyebrow">Colección de invitaciones</div>
           <h1 style="font-size:clamp(34px,4.6vw,54px);margin-bottom:14px">Modelos que <span class="accent-italic">cuentan tu historia</span></h1>
           <p>Prueba cualquier demo interactivo en tu celular. Todos los modelos se personalizan con tus nombres, colores, fuente, música y fotografías.</p>
         </div>
         
-        <div class="filter-bar" id="filterBar">
-          <button class="filter-btn active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="boda">Bodas</button>
-          <button class="filter-btn" data-filter="xv">XV Años</button>
-          <button class="filter-btn" data-filter="gala">Gala &amp; Aniversario</button>
-          <button class="filter-btn" data-filter="infantil">Bautizo &amp; Cumpleaños</button>
-        </div>
         <p id="catalogStatus" role="status" hidden></p>
         <div class="catalog-grid" id="catalogGrid">
-          <article class="design-card featured reveal" data-cat="boda">
-            <div class="design-media"><img src="inv/assets/coleccion/perla-nacar.jpg" alt="Perla &amp; Nácar" loading="lazy" /><span class="design-badge luxury">★ Nueva · Lujo</span></div>
+          <article class="design-card featured reveal">
+            <div class="design-media"><img src="inv/assets/coleccion/perla-nacar.jpg" alt="Perla &amp; Nácar" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda de lujo</div>
               <h3>Perla &amp; Nácar</h3>
               <p>Relieve nacarado de peonías y hojas de ginkgo, cuenta regresiva azul polvo, foto raspable y sobre de confirmación.</p>
               <div class="design-actions">
@@ -405,10 +384,9 @@
             </div>
           </article>
 
-          <article class="design-card featured reveal" data-cat="boda">
-            <div class="design-media"><img src="inv/assets/coleccion/encaje-marfil.jpg" alt="Encaje &amp; Marfil" loading="lazy" /><span class="design-badge luxury">★ Boda Clásica</span></div>
+          <article class="design-card featured reveal">
+            <div class="design-media"><img src="inv/assets/coleccion/encaje-marfil.jpg" alt="Encaje &amp; Marfil" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda clásica</div>
               <h3>Encaje &amp; Marfil</h3>
               <p>Encaje artesanal en marfil con perlas delicadas, lazo champán y tipografía romántica atemporal.</p>
               <div class="design-actions">
@@ -418,10 +396,9 @@
             </div>
           </article>
 
-          <article class="design-card featured reveal" data-cat="boda">
-            <div class="design-media"><img src="inv/assets/coleccion/vitral-floral.jpg" alt="Vitral Floral" loading="lazy" /><span class="design-badge luxury">★ Editorial</span></div>
+          <article class="design-card featured reveal">
+            <div class="design-media"><img src="inv/assets/coleccion/vitral-floral.jpg" alt="Vitral Floral" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda artística</div>
               <h3>Vitral Floral</h3>
               <p>Arco de vitral botánico con rosas pastel y destellos perlados para una celebración luminosa.</p>
               <div class="design-actions">
@@ -431,10 +408,9 @@
             </div>
           </article>
 
-          <article class="design-card featured reveal" data-cat="boda">
-            <div class="design-media"><img src="inv/assets/coleccion/villa-toscana.jpg" alt="Villa Toscana" loading="lazy" /><span class="design-badge luxury">★ Destino</span></div>
+          <article class="design-card featured reveal">
+            <div class="design-media"><img src="inv/assets/coleccion/villa-toscana.jpg" alt="Villa Toscana" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda de destino</div>
               <h3>Villa Toscana</h3>
               <p>Acuarela italiana de villa en piedra, ramas de olivo y luces cálidas al atardecer.</p>
               <div class="design-actions">
@@ -444,10 +420,9 @@
             </div>
           </article>
 
-          <article class="design-card featured reveal" data-cat="boda">
-            <div class="design-media"><img src="inv/assets/coleccion/costa-azul.jpg" alt="Costa Azul" loading="lazy" /><span class="design-badge luxury">★ Verano</span></div>
+          <article class="design-card featured reveal">
+            <div class="design-media"><img src="inv/assets/coleccion/costa-azul.jpg" alt="Costa Azul" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda de verano</div>
               <h3>Costa Azul</h3>
               <p>Arco mediterráneo en acuarela con buganvilias, azahares de limón y detalles en azul cobalto.</p>
               <div class="design-actions">
@@ -457,10 +432,9 @@
             </div>
           </article>
 
-          <article class="design-card featured reveal" data-cat="gala">
-            <div class="design-media"><img src="inv/assets/coleccion/gala-terciopelo.jpg" alt="Gala Terciopelo" loading="lazy" /><span class="design-badge luxury">★ Gala Nocturna</span></div>
+          <article class="design-card featured reveal">
+            <div class="design-media"><img src="inv/assets/coleccion/gala-terciopelo.jpg" alt="Gala Terciopelo" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Gala &amp; Aniversario</div>
               <h3>Gala Terciopelo</h3>
               <p>Terciopelo borgoña y carbón con marco dorado barroco para bodas de noche y galas formales.</p>
               <div class="design-actions">
@@ -470,13 +444,12 @@
             </div>
           </article>
 
-          <article class="design-card featured reveal" data-cat="boda">
+          <article class="design-card featured reveal">
             <div class="design-media">
               <img src="https://assets.webgencyinvitations.com/ChatGPT_Image_Jun_23_2026_04_40_29_PM_4_piptqn%20(2).png" alt="The Sacred Garden" loading="lazy" />
-              <span class="design-badge luxury">★ Edición de Lujo</span>
+              
             </div>
             <div class="design-body">
-              <div class="design-cat">Boda de lujo</div>
               <h3>The Sacred Garden</h3>
               <p>Sobre animado con lacre borgoña, video de cisnes, cuenta regresiva dorada, rosa al scroll y mapa con marco floral.</p>
               <div class="design-actions">
@@ -486,10 +459,9 @@
             </div>
           </article>
 
-          <article class="design-card reveal" data-cat="boda">
-            <div class="design-media"><img src="images/diseno-01.jpg" alt="Olivo &amp; Marfil" loading="lazy" /><span class="design-badge">Boda</span></div>
+          <article class="design-card reveal">
+            <div class="design-media"><img src="images/diseno-01.jpg" alt="Olivo &amp; Marfil" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda editorial</div>
               <h3>Olivo &amp; Marfil</h3>
               <p>Ramas botánicas serenas, tipografía editorial y paleta marfil con verde olivo para bodas al aire libre.</p>
               <div class="design-actions">
@@ -499,10 +471,9 @@
             </div>
           </article>
 
-          <article class="design-card reveal" data-cat="boda">
-            <div class="design-media"><img src="images/diseno-02.jpg" alt="Jardín Eterno" loading="lazy" /><span class="design-badge">Boda</span></div>
+          <article class="design-card reveal">
+            <div class="design-media"><img src="images/diseno-02.jpg" alt="Jardín Eterno" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Boda romántica</div>
               <h3>Jardín Eterno</h3>
               <p>Romance floral en tonos rosa empolvado y crema, ideal para celebraciones íntimas y clásicas.</p>
               <div class="design-actions">
@@ -512,10 +483,9 @@
             </div>
           </article>
 
-          <article class="design-card reveal" data-cat="gala">
-            <div class="design-media"><img src="images/diseno-03.jpg" alt="Noche Dorada" loading="lazy" /><span class="design-badge">Gala</span></div>
+          <article class="design-card reveal">
+            <div class="design-media"><img src="images/diseno-03.jpg" alt="Noche Dorada" loading="lazy" /></div>
             <div class="design-body">
-              <div class="design-cat">Gala &amp; Aniversario</div>
               <h3>Noche Dorada</h3>
               <p>Estética nocturna refinada en carbón profundo y destellos dorados para eventos de etiqueta.</p>
               <div class="design-actions">
@@ -525,44 +495,6 @@
             </div>
           </article>
 
-          <article class="design-card reveal" data-cat="xv">
-            <div class="design-media"><img src="images/diseno-04.jpg" alt="Aurora XV" loading="lazy" /><span class="design-badge">XV Años</span></div>
-            <div class="design-body">
-              <div class="design-cat">XV Años</div>
-              <h3>Aurora</h3>
-              <p>Lavanda delicada, detalles luminosos y música personalizada para una noche mágica de quinceañera.</p>
-              <div class="design-actions">
-                <a class="btn btn-primary" href="inv/?demo=aurora" target="_blank" rel="noopener">Ver demo ↗</a>
-                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Aurora para XV años." href="#contacto">Cotizar</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="design-card reveal" data-cat="infantil">
-            <div class="design-media"><img src="images/diseno-05.jpg" alt="Brisa de Fiesta" loading="lazy" /><span class="design-badge">Cumpleaños</span></div>
-            <div class="design-body">
-              <div class="design-cat">Cumpleaños</div>
-              <h3>Brisa de Fiesta</h3>
-              <p>Celebración luminosa, fresca y minimalista con mapa, horario y confirmación en segundos.</p>
-              <div class="design-actions">
-                <a class="btn btn-primary" href="inv/?demo=brisa-fiesta" target="_blank" rel="noopener">Ver demo ↗</a>
-                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Brisa de Fiesta." href="#contacto">Cotizar</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="design-card reveal" data-cat="infantil">
-            <div class="design-media"><img src="images/diseno-06.jpg" alt="Pequeñas Estrellas" loading="lazy" /><span class="design-badge">Bautizo</span></div>
-            <div class="design-body">
-              <div class="design-cat">Bautizo &amp; Baby Shower</div>
-              <h3>Pequeñas Estrellas</h3>
-              <p>Cielo marfil, calma y delicadeza diseñados con ternura para dar la bienvenida o celebrar su bautizo.</p>
-              <div class="design-actions">
-                <a class="btn btn-primary" href="inv/?demo=pequenas-estrellas" target="_blank" rel="noopener">Ver demo ↗</a>
-                <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Pequeñas Estrellas." href="#contacto">Cotizar</a>
-              </div>
-            </div>
-          </article>
         </div>
 
       </div>
@@ -621,10 +553,8 @@
       document.getElementById('scrollProgress').style.width = pct + '%';
     }, { passive: true });
 
-    const filterBar = document.getElementById('filterBar');
     const catalogGrid = document.getElementById('catalogGrid');
     const catalogStatus = document.getElementById('catalogStatus');
-    const filters = Array.from(filterBar.querySelectorAll('[data-filter]'));
 
     const localCovers = new Map(Array.from(catalogGrid.children, card => [
       new URL(card.querySelector('.btn-primary').href).searchParams.get('demo'),
@@ -632,30 +562,14 @@
     ]));
     localCovers.set('jardin-seda', '/inv/assets/sobre-portada.jpg');
 
-    let catalogUnavailable = false;
+    const excludedModels = new Set(['aurora', 'aurora-xv', 'brisa-fiesta', 'pequenas-estrellas']);
 
-    function applyFilter(selected) {
-      filters.forEach(button => {
-        const active = button === selected;
-        button.classList.toggle('active', active);
-        button.setAttribute('aria-pressed', String(active));
-      });
-      let visible = 0;
-      for (const card of catalogGrid.children) {
-        const show = selected.dataset.filter === 'all' || card.dataset.cat === selected.dataset.filter;
-        card.style.display = show ? 'flex' : 'none';
-        if (show) visible++;
-      }
-      catalogStatus.hidden = visible > 0 && !catalogUnavailable;
-      catalogStatus.textContent = catalogUnavailable
-        ? 'El catálogo actualizado no está disponible. Estas son muestras de referencia.'
-        : 'No hay modelos en esta categoría.';
+    function belongsToCollection(item) {
+      const tags = [item.filtroWeb, item.categoria, item.etiqueta, item.nombre].join(' ')
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      return !excludedModels.has(item.id) &&
+        !/\b(?:xv|15\s*anos|quince[^\s]*|bautiz\w*|cumple\w*|infantil\w*|baby\s*shower)\b/.test(tags);
     }
-
-    filterBar.addEventListener('click', event => {
-      const button = event.target.closest('[data-filter]');
-      if (button) applyFilter(button);
-    });
 
     function catalogImage(value) {
       if (typeof value !== 'string' || !value.trim()) return '';
@@ -673,7 +587,6 @@
       const card = layout.cloneNode(true);
       card.classList.remove('reveal');
       card.classList.toggle('featured', Boolean(item.destacado));
-      card.dataset.cat = item.filtroWeb;
       const image = card.querySelector('img');
       const localCover = localCovers.get(item.id);
       const sheetCover = catalogImage(item.portadaWeb);
@@ -687,10 +600,6 @@
           else image.remove();
         });
       } else image.remove();
-      const badge = card.querySelector('.design-badge');
-      badge.classList.toggle('luxury', Boolean(item.destacado));
-      badge.textContent = item.etiqueta || item.categoria || 'Modelo';
-      card.querySelector('.design-cat').textContent = item.categoria || 'Evento';
       card.querySelector('h3').textContent = item.nombre;
       card.querySelector('p').textContent = item.descripcion || '';
       if (item.precio) {
@@ -707,19 +616,19 @@
 
     async function loadCatalog() {
       const layout = catalogGrid.querySelector('.design-card');
-      applyFilter(filterBar.querySelector('.active'));
       try {
         const response = await window.consultarPanel({ tipo: 'catalogo' });
         if (!response || response.ok !== true || !Array.isArray(response.items)) throw new Error();
         const items = response.items.filter(item => item && /^[a-z0-9-]{3,60}$/i.test(item.id) && typeof item.nombre === 'string');
         if (items.length !== response.items.length) throw new Error();
-        const cards = items.sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
+        const cards = items.filter(belongsToCollection).sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
           .map(item => createCard(item, layout));
         catalogGrid.replaceChildren(...cards);
-        applyFilter(filterBar.querySelector('.active'));
+        catalogStatus.hidden = cards.length > 0;
+        catalogStatus.textContent = 'Por ahora no hay modelos disponibles.';
       } catch {
-        catalogUnavailable = true;
-        applyFilter(filterBar.querySelector('.active'));
+        catalogStatus.hidden = false;
+        catalogStatus.textContent = 'Estás viendo una selección de referencia.';
       }
     }
 
