@@ -113,7 +113,7 @@
       margin-bottom: 23px; letter-spacing: -.035em; text-wrap: balance;
     }
     .hero-gold {
-      display: block; width: max-content; margin-top: .11em;
+      width: 100%; margin-top: .11em;
       color: #8b6425; font-style: italic; white-space: nowrap;
     }
     .typed-gold { display: grid; }
@@ -457,7 +457,12 @@
     }
 
     .hero-copy { container-type: inline-size; }
-    .hero-gold { font-size: min(1em, 9cqi); }
+    .hero-gold { font-size: min(1em, 8.6cqi); }
+    @media (max-width: 420px) {
+      .hero-gold { font-size: min(1em, 8.2cqi); }
+      .video3d-figure { width: 100%; }
+      .video3d-figure figcaption { flex-wrap: wrap; gap: 4px 12px; }
+    }
 </style>
 <link rel="icon" type="image/webp" href="/assets/logo-ns.webp">
 </head>
@@ -492,7 +497,7 @@
     <section class="hero" id="inicio">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <h1>Invitaciones digitales y videohistorias 3D <span class="hero-gold typed-gold" data-typing="inicio"><span class="typed-original">para momentos eternos.</span></span></h1>
+          <h1>Invitaciones digitales y videohistorias 3D <span class="hero-gold typed-gold" data-typing="inicio"><span class="typed-original">para recuerdos eternos.</span></span></h1>
           <p class="hero-lead">Abre un sobre animado y descubre una invitación con música, mapa y confirmación de asistencia. Personalizamos cada diseño con tu historia.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="/catalogo">Explorar invitaciones</a>
@@ -843,46 +848,66 @@
       document.getElementById('scrollProgress').style.width = pct + '%';
     }, { passive: true });
 
-    function typeGoldPhrase(phrase, waitForViewport) {
-      const original = phrase.querySelector('.typed-original');
-      const letters = Array.from(original.textContent);
+    const goldPhrases = {
+      inicio: ['para recuerdos eternos.', 'para días inolvidables.', 'para momentos especiales.'],
+      videohistorias: ['una película.']
+    };
+
+    function animateGoldPhrase(phrase) {
+      const phrases = goldPhrases[phrase.dataset.typing].map(text => Array.from(text));
       const output = document.createElement('span');
       output.className = 'typed-output';
       output.setAttribute('aria-hidden', 'true');
       phrase.append(output);
-      phrase.classList.add('is-typing');
 
-      let index = 0;
-      function writeLetter() {
-        index++;
-        output.textContent = letters.slice(0, index).join('');
-        if (index < letters.length) setTimeout(writeLetter, 65);
-        else {
-          phrase.classList.remove('is-typing');
-          output.remove();
+      let phraseIndex = 0;
+      let length = 0;
+      let deleting = false;
+      let visible = false;
+      let timer;
+
+      function step() {
+        const current = phrases[phraseIndex];
+        length += deleting ? -1 : 1;
+        output.textContent = current.slice(0, length).join('');
+        let delay = deleting ? 34 : 65;
+        if (!deleting && length === current.length) {
+          deleting = true;
+          delay = 1900;
+        } else if (deleting && length === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          delay = 300;
+        }
+        timer = setTimeout(step, delay);
+      }
+
+      function syncTyping() {
+        clearTimeout(timer);
+        if (visible && !document.hidden) {
+          phrase.classList.add('is-typing');
+          timer = setTimeout(step, 250);
         }
       }
 
-      if (waitForViewport && 'IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(([entry]) => {
-          if (!entry.isIntersecting) return;
-          observer.disconnect();
-          setTimeout(writeLetter, 320);
-        }, { threshold: 0.6 });
-        observer.observe(phrase);
-      } else {
-        setTimeout(writeLetter, 300);
-      }
+      const observer = new IntersectionObserver(([entry]) => {
+        if (visible === entry.isIntersecting) return;
+        visible = entry.isIntersecting;
+        syncTyping();
+      });
+      observer.observe(phrase);
+      document.addEventListener('visibilitychange', syncTyping);
     }
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('[data-typing]').forEach(phrase => {
-        typeGoldPhrase(phrase, phrase.dataset.typing === 'videohistorias');
-      });
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('[data-typing]').forEach(animateGoldPhrase);
     }
 
     const videoHistorias = document.getElementById('videoHistorias');
     const reproducirConSonido = document.getElementById('reproducirConSonido');
+
+    const tieneObservador = 'IntersectionObserver' in window;
+    let videoVisible = false;
 
     function iniciarVideohistoria() {
       videoHistorias.play().catch(error => {
@@ -890,14 +915,16 @@
       });
     }
 
-    videoHistorias.addEventListener('playing', () => { reproducirConSonido.hidden = true; });
+    videoHistorias.addEventListener('playing', () => {
+      reproducirConSonido.hidden = true;
+      if (document.hidden || (tieneObservador && !videoVisible)) videoHistorias.pause();
+    });
     reproducirConSonido.addEventListener('click', () => {
       videoHistorias.muted = false;
       iniciarVideohistoria();
     });
-    if ('IntersectionObserver' in window) {
+    if (tieneObservador) {
       const umbralVisible = 0.25;
-      let videoVisible = false;
 
       function actualizarReproduccion() {
         if (videoVisible && !document.hidden) {
@@ -912,7 +939,7 @@
         if (visible === videoVisible) return;
         videoVisible = visible;
         actualizarReproduccion();
-      }, { threshold: umbralVisible });
+      }, { rootMargin: '-74px 0px 0px', threshold: umbralVisible });
 
       observadorVideo.observe(videoHistorias);
       document.addEventListener('visibilitychange', actualizarReproduccion);
