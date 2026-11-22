@@ -648,7 +648,7 @@
       const t = sp.get('t') || sp.get('token');
       if (t) return { tipo: 'evento', token: t, nocache: sp.get('v') ? '1' : '' };
       const demo = sp.get('demo');
-      if (demo) return { tipo: 'plantilla', id: demo };
+      if (demo) return { tipo: 'plantilla', id: demo, preview: sp.get('preview') || '' };
       const seg = location.pathname.split('/').filter(Boolean);
       const i = seg.indexOf('inv');
       if (i >= 0 && seg[i + 1] && seg[i + 1] !== 'index.html') return { tipo: 'evento', token: seg[i + 1] };
@@ -1388,20 +1388,8 @@
       $('loading').classList.add('hidden');
     }
 
-    const localDemoIds = new Set(['perla-nacar', 'encaje-marfil', 'vitral-floral', 'villa-toscana', 'costa-azul', 'gala-terciopelo']);
-
     async function loadInvitation(query) {
-      if (!query) return FALLBACK_SAMPLE;
-      if (query.tipo !== 'plantilla' || !localDemoIds.has(query.id)) return window.consultarPanel(query);
-      try {
-        const data = await window.consultarPanel(query);
-        if (data?.ok) return data;
-      } catch {
-        // Si Sheets no responde, la muestra pública sigue disponible.
-      }
-      const response = await fetch('/assets/demos-coleccion-lujo.json');
-      if (!response.ok) throw new Error('No se pudo cargar la muestra.');
-      return (await response.json())[query.id];
+      return query ? window.consultarPanel(query) : FALLBACK_SAMPLE;
     }
 
     (async () => {

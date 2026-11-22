@@ -582,7 +582,7 @@
               <li><strong>Le damos vida.</strong> Diseñamos personajes inspirados en tus fotos y recreamos tus escenas.</li>
               <li><strong>Comparte tu video.</strong> Regálalo, muéstralo en tu celebración o inclúyelo en tu invitación digital.</li>
             </ol>
-            <a class="btn btn-gold" data-wa-number="51964513429" data-wa="Hola, quiero cotizar una videohistoria 3D personalizada. ¿Qué fotos y datos les envío?" href="https://wa.me/51964513429?text=Hola%2C%20quiero%20cotizar%20una%20videohistoria%203D%20personalizada.">Cotizar por WhatsApp <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-gold" data-wa="Hola, quiero cotizar una videohistoria 3D personalizada. ¿Qué fotos y datos les envío?" href="https://wa.me/51964513429?text=Hola%2C%20quiero%20cotizar%20una%20videohistoria%203D%20personalizada.">Cotizar por WhatsApp <span aria-hidden="true">↗</span></a>
           </div>
 
           <figure class="video3d-figure reveal">
@@ -825,7 +825,7 @@
         <span>Hecho con cariño en Perú</span>
       </div>
     </div>
-  </footer>
+  <p style="text-align:center;padding:1rem"><a href="/condiciones.html">Condiciones del servicio y privacidad</a></p></footer>
 
   <!-- FLOATING WHATSAPP -->
   <a class="wa-float" data-wa="Hola, estoy viendo su web y quiero cotizar una invitación digital." href="#contacto" aria-label="Escribir por WhatsApp">
@@ -833,12 +833,13 @@
     <span>Cotizar por WhatsApp</span>
   </a>
 
+  <script src="/assets/panel-api.js"></script>
   <script>
     /* =====================================================================
        CONFIGURACIÓN RÁPIDA — EDITA AQUÍ TU WHATSAPP, REDES Y PRECIOS
     ===================================================================== */
     const SITE_CONFIG = {
-      whatsapp: '51999999999', // Reemplaza con tu número real (ej. 51987654321)
+      whatsapp: '51964513429', // Reemplaza con tu número real (ej. 51987654321)
       instagram: 'https://instagram.com/tuusuario',
       tiktok: 'https://tiktok.com/@tuusuario',
       email: 'hola@nsatelier.pe',
@@ -858,6 +859,12 @@
       el.target = '_blank';
       el.rel = 'noopener noreferrer';
     });
+    window.consultarPanel({tipo:'contacto'}).then(res => {
+      if (!/^[1-9]\d{7,14}$/.test(res.whatsapp)) return;
+      SITE_CONFIG.whatsapp = res.whatsapp;
+      document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa));
+      updateBuilder();
+    }).catch(() => {});
     document.querySelectorAll('[data-price]').forEach(el => {
       const k = el.dataset.price;
       if (SITE_CONFIG.precios[k]) el.textContent = SITE_CONFIG.precios[k];
