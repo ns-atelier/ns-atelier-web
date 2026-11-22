@@ -202,17 +202,43 @@
     }
     .marquee-track li::before { content: '✦'; margin-right: 6px; color: #8b6425; }
 
-    /* Video 3D */
-    .video3d-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 44px; align-items: center; }
-    .video3d-card {
-      border-radius: 24px; padding: 34px;
-      background: linear-gradient(145deg, #2b211e, #181210);
-      border: 1px solid rgba(212, 180, 106, .28);
-      box-shadow: 0 26px 60px rgba(0, 0, 0, .35);
+    /* Videohistorias */
+    #video3d {
+      scroll-margin-top: 74px;
+      background: radial-gradient(ellipse at 79% 26%, #49302a 0%, transparent 53%), #211918;
     }
-    .video3d-list { list-style: none; display: grid; gap: 14px; margin: 24px 0 30px; }
-    .video3d-list li { display: flex; gap: 12px; align-items: flex-start; color: #e2d8d0; font-size: 14.5px; }
-    .video3d-list li span { color: var(--gold-light); font-weight: 700; }
+    .video3d-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(28px, 6vw, 88px); align-items: center; }
+    .video3d-copy h2 { font-size: clamp(40px, 6vw, 74px); line-height: 1; margin-bottom: 20px; text-wrap: balance; }
+    .video3d-copy h2 em { display: block; color: #efd2a2; }
+    .video3d-lead { color: #e5d7cf; max-width: 48ch; }
+    .video3d-steps { color: #e5d7cf; font-size: 14px; margin: 24px 0; padding-left: 22px; max-width: 53ch; }
+    .video3d-steps li { padding-left: 6px; margin-bottom: 9px; }
+    .video3d-steps li::marker { color: #efd2a2; font-weight: 700; }
+    .video3d-steps strong { color: #fff9ee; }
+    .video3d-copy .btn { min-height: 48px; background: #efd2a2; color: #302019; justify-content: center; text-align: center; }
+    .video3d-copy .btn:hover { background: #f8e3c3; }
+    .video3d-copy .btn:focus-visible, .video3d-figure video:focus-visible { outline: 2px solid #fff5da; outline-offset: 4px; }
+    .video3d-figure { width: min(100%, 340px); justify-self: center; }
+    .video3d-figure video {
+      display: block; width: 100%; height: auto; aspect-ratio: 3 / 4;
+      border-radius: 18px; border: 1px solid #eacf9c55; background: #111;
+      box-shadow: 0 16px 40px #0007;
+    }
+    .video3d-figure figcaption { color: #e5d7cf; text-align: center; margin: 10px 0 0; font-size: 12px; }
+    .video3d-examples {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+      margin-top: clamp(24px, 5vw, 48px);
+    }
+    .video3d-examples figure { border-radius: 14px; overflow: hidden; border: 1px solid #edcfa442; background: #2b2220; }
+    .video3d-examples img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+    .video3d-examples .video3d-character { object-fit: contain; background: #fff; }
+    .video3d-examples figcaption { padding: 11px 12px; font-size: 14px; font-weight: 600; }
+    @media (max-width: 600px) {
+      .video3d-copy .btn { display: flex; width: 100%; }
+      .video3d-examples { grid-template-columns: minmax(0, 1fr); }
+      .video3d-examples figure { display: grid; grid-template-columns: minmax(96px, .42fr) minmax(0, .58fr); align-items: center; }
+      .video3d-examples img { aspect-ratio: 4 / 3; }
+    }
 
     /* Features */
     .features-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
@@ -485,34 +511,43 @@
       </ul>
     </div>
 
-    <!-- 2. VIDEOHISTORIAS ANIMADAS 3D (DESTACADO ARRIBA) -->
-    <section class="section section-dark" id="video3d">
-      <div class="container video3d-grid">
-        <div class="reveal">
-          <div class="eyebrow">Diferenciador N&amp;S ATELIER</div>
-          <h2 style="font-size:clamp(34px,4.5vw,52px);margin-bottom:16px">Tus fotos cobran vida en <span class="accent-italic">Videohistorias Animadas 3D</span></h2>
-          <p style="color:#d0c4bc;font-size:15.5px">Transformamos tus recuerdos fotográficos en una pieza audiovisual emotiva con profundidad 3D, música cinematográfica y narrativa personalizada. Ideal para proyectar en tu recepción o enviar junto a tu invitación.</p>
-          <ul class="video3d-list">
-            <li><span>✦</span> Puedes contratarla junto a tu invitación digital o de forma independiente.</li>
-            <li><span>✦</span> Calidad HD lista para pantalla gigante, TV y redes sociales.</li>
-            <li><span>✦</span> Guion visual adaptado a tu historia de amor, infancia o aniversario.</li>
-          </ul>
-          <a class="btn btn-gold" data-wa="Hola, quiero cotizar una Videohistoria animada en 3D personalizada." href="#contacto">Cotizar mi videohistoria 3D ↗</a>
-        </div>
-        <div class="video3d-card reveal">
-          <p class="eyebrow" style="margin-bottom:10px">Experiencia cinematográfica</p>
-          <h3 style="font-size:32px;margin-bottom:12px;color:#faf6f0">Sobre animado + Historia 3D</h3>
-          <p style="color:#c9bdb5;font-size:14px;line-height:1.65;margin-bottom:20px">Creamos tanto la animación de apertura del sobre con tus iniciales en lacre como tu videohistoria completa con tus mejores fotografías.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div style="background:rgba(255,255,255,.05);padding:16px;border-radius:14px;border:1px solid rgba(212,180,106,.2)">
-              <strong style="display:block;font-family:var(--serif);font-size:26px;color:var(--gold-light)">HD / 4K</strong>
-              <span style="font-size:12px;color:#bfb2a8">Formato vertical u horizontal</span>
-            </div>
-            <div style="background:rgba(255,255,255,.05);padding:16px;border-radius:14px;border:1px solid rgba(212,180,106,.2)">
-              <strong style="display:block;font-family:var(--serif);font-size:26px;color:var(--gold-light)">100%</strong>
-              <span style="font-size:12px;color:#bfb2a8">Edición a medida y revisiones</span>
-            </div>
+    <section class="section section-dark" id="video3d" aria-labelledby="video3d-titulo">
+      <div class="container">
+        <div class="video3d-grid">
+          <div class="video3d-copy">
+            <p class="eyebrow">Videohistorias 3D personalizadas</p>
+            <h2 id="video3d-titulo">Tu historia merece <em>una película.</em></h2>
+            <p class="video3d-lead">Con tus fotos reales y los lugares que significan algo para ti, creamos un video corto en animación 3D para celebrar a tus personas favoritas.</p>
+            <ol class="video3d-steps">
+              <li><strong>Cuéntanos tu historia.</strong> Comparte tus fotos, los lugares y los momentos que quieres incluir.</li>
+              <li><strong>Le damos vida.</strong> Diseñamos personajes inspirados en tus fotos y recreamos tus escenas.</li>
+              <li><strong>Comparte tu video.</strong> Regálalo, muéstralo en tu celebración o inclúyelo en tu invitación digital.</li>
+            </ol>
+            <a class="btn btn-gold" data-wa-number="51964513429" data-wa="Hola, quiero cotizar una videohistoria 3D personalizada. ¿Qué fotos y datos les envío?" href="https://wa.me/51964513429?text=Hola%2C%20quiero%20cotizar%20una%20videohistoria%203D%20personalizada.">Cotizar por WhatsApp <span aria-hidden="true">↗</span></a>
           </div>
+
+          <figure class="video3d-figure">
+            <video controls playsinline preload="none" width="720" height="960"
+              poster="/assets/videohistorias/muestra.webp" aria-label="Muestra del proceso de creación de una videohistoria 3D">
+              <source src="/assets/videohistorias/historias-3d.mp4" type="video/mp4">
+            </video>
+            <figcaption>Del diseño de personajes a la escena animada · 40 s</figcaption>
+          </figure>
+        </div>
+
+        <div class="video3d-examples">
+          <figure>
+            <img src="/assets/videohistorias/aniversarios.webp" width="395" height="250" loading="lazy" decoding="async" alt="Pareja animada caminando por la playa al atardecer">
+            <figcaption>Aniversarios y bodas</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/videohistorias/familia.webp" width="495" height="303" loading="lazy" decoding="async" alt="Tres generaciones de una familia abrazándose en una escena 3D">
+            <figcaption>Familia, amistad y graduaciones</figcaption>
+          </figure>
+          <figure>
+            <img class="video3d-character" src="/assets/videohistorias/personaje.webp" width="700" height="938" loading="lazy" decoding="async" alt="Vistas y expresiones de un personaje 3D con camisa a cuadros">
+            <figcaption>Diseño de personajes</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -754,12 +789,12 @@
       }
     };
 
-    function waUrl(msg) {
-      return 'https://wa.me/' + SITE_CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
+    function waUrl(msg, number = SITE_CONFIG.whatsapp) {
+      return 'https://wa.me/' + number + '?text=' + encodeURIComponent(msg);
     }
 
     document.querySelectorAll('[data-wa]').forEach(el => {
-      el.href = waUrl(el.dataset.wa);
+      el.href = waUrl(el.dataset.wa, el.dataset.waNumber);
       el.target = '_blank';
       el.rel = 'noopener noreferrer';
     });
