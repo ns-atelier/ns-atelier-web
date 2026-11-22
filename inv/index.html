@@ -1156,7 +1156,7 @@
     }
 
 
-    function renderPerlaNacar(d, t, m) {
+    function renderPerlaNacar(d, t, m, isDemo) {
       document.body.classList.add('pn-mode');
       const tx = d.textos || {};
       const n1 = d.nombre1 || 'Camila', n2 = d.nombre2 || 'Mateo';
@@ -1334,6 +1334,7 @@
       if (formEl) {
         formEl.addEventListener('submit', e => {
           e.preventDefault();
+          if (isDemo) { alert('Esta invitación es una demo. Tu respuesta no se guarda.'); return; }
           if (d.googleFormUrl) { window.open(d.googleFormUrl, '_blank', 'noopener'); return; }
           const nm = ($('pnName')?.value || '').trim();
           const as = document.querySelector('[data-group="asiste"] .active')?.dataset.val || 'Sí, asistiré';
@@ -1341,7 +1342,7 @@
           const nt = ($('pnNote')?.value || '').trim();
           const msg = 'Hola, confirmo asistencia para ' + (n1 + (n2 ? ' & ' + n2 : '')) + ': ' + nm + ' — ' + as + ' (' + pl + ')' + (nt ? '. Nota: ' + nt : '');
           if (waNum) window.open('https://wa.me/' + waNum + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-          else alert('¡Gracias ' + nm + '! Confirmación registrada.');
+          else alert('La confirmación aún no está habilitada para este evento.');
         });
       }
     }
@@ -1377,7 +1378,7 @@
       document.title = (d.nombre1 || 'Invitación') + (d.nombre2 ? ' & ' + d.nombre2 : '') + ' · N&S ATELIER';
 
       if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
-      else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m);
+      else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m, payload.tipo === 'plantilla');
       else renderUniversal(d, t, m);
 
       setupIntro(m, d.textos || {});
@@ -1387,14 +1388,30 @@
       $('loading').classList.add('hidden');
     }
 
+    const localDemoIds = new Set(['perla-nacar', 'encaje-marfil', 'vitral-floral', 'villa-toscana', 'costa-azul', 'gala-terciopelo']);
+
+    async function loadInvitation(query) {
+      if (!query) return FALLBACK_SAMPLE;
+      if (query.tipo !== 'plantilla' || !localDemoIds.has(query.id)) return window.consultarPanel(query);
+      try {
+        const data = await window.consultarPanel(query);
+        if (data?.ok) return data;
+      } catch {
+        // Si Sheets no responde, la muestra pública sigue disponible.
+      }
+      const response = await fetch('/assets/demos-coleccion-lujo.json');
+      if (!response.ok) throw new Error('No se pudo cargar la muestra.');
+      return (await response.json())[query.id];
+    }
+
     (async () => {
       const q = getQuery();
       try {
-        const data = q ? await window.consultarPanel(q) : FALLBACK_SAMPLE;
+        const data = await loadInvitation(q);
         if (!data || !data.ok) throw Error(data?.error || 'Invitación no encontrada');
         renderAll(data);
       } catch (err) {
-        showError(err.message + ' Verifica que la invitación esté en estado "Publicada".');
+        showError(err.message + (q?.tipo === 'evento' ? ' Verifica que la invitación esté en estado "Publicada".' : ''));
       }
     })();
   </script>
