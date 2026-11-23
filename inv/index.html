@@ -672,6 +672,7 @@
   <link rel="stylesheet" href="red-vibrante.css" />
   <link rel="stylesheet" href="nacar.css" />
   <link rel="stylesheet" href="eleganza.css" />
+  <link rel="stylesheet" href="odette.css" />
   <script src="../assets/demo-ids.js"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
@@ -679,6 +680,7 @@
   <script src="nacar.js"></script>
   <script src="eleganza-original.js"></script>
   <script src="eleganza.js"></script>
+  <script src="odette.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -956,7 +958,7 @@
           videoWrap.classList.add('wei-video-in');
           video.currentTime = 0;
           video.play().catch(() => setTimeout(finish, 900));
-          if (!ended) timer = setTimeout(finish, (media.__nacar || media.__eleganza) ? 10500 : 15000);
+          if (!ended) timer = setTimeout(finish, (media.__nacar || media.__eleganza || media.__odette) ? 10500 : 15000);
         } else {
           setTimeout(finish, 450);
         }
@@ -973,7 +975,7 @@
       video.addEventListener('timeupdate', () => {
         if (video.duration && video.currentTime >= video.duration - 0.8) finish();
       });
-      video.addEventListener('playing', () => { if (!media.__nacar && !media.__eleganza) clearTimeout(timer); });
+      video.addEventListener('playing', () => { if (!media.__nacar && !media.__eleganza && !media.__odette) clearTimeout(timer); });
       video.addEventListener('waiting', () => { clearTimeout(timer); timer = setTimeout(finish,15000); });
       video.addEventListener('ended', finish);
       video.addEventListener('error', () => { if (started) finish(); });
@@ -1780,7 +1782,11 @@
       const eleganza = (isPublicDemo && publicId === 'eleganza' &&
         (id === 'eleganza' || id === 'jardin-eterno')) ||
         (isPreview && id === 'eleganza') || style === 'eleganza';
-      if (eleganza) await window.renderEleganza(d,t,m,payload);
+      const odette = (isPublicDemo && publicId === 'odette' &&
+        (id === 'odette' || id === 'noche-dorada')) ||
+        (isPreview && id === 'odette') || style === 'odette';
+      if (odette) await window.renderOdette(d,t,m,payload);
+      else if (eleganza) await window.renderEleganza(d,t,m,payload);
       else if (nacar) await window.renderNacar(d,t,m,payload);
       else if (red) await window.renderRedVibrante(d,t,m,payload);
       else if (style === 'sacred-garden' || id === 'the-sacred-garden') renderSacredGarden(d,t,m);
@@ -1850,6 +1856,26 @@
             despedida: 'Hope to see you there!',
             cronograma: [{hora:'16:00',nombre:'Wedding Ceremony'},{hora:'17:00',nombre:'Cocktail Hour'},
               {hora:'19:00',nombre:'Dinner'},{hora:'20:00',nombre:'Party'}] }
+        };
+      }
+      if (query.id === 'odette') {
+        return {
+          ok:true,tipo:'plantilla',
+          plantilla:{id:'odette',nombre:'Odette',categoria:'Boda premium',
+            descripcion:'Bordados azul empolvado y cisnes inspirados en el Lago de los Cisnes.',
+            estilo:'odette',fondo:'#c8ced2',texto:'#1a2a40',acento:'#b79a6c',media:{}},
+          datos:{nombre1:'Waleed',nombre2:'Julia',tipo:'Wedding Day',
+            fecha:'2026-09-29T15:30:00-03:00',fechaCorta:'September 29, 2026',
+            lugar:'Mansão Alvite',direccion:'Santa Teresa, Rio de Janeiro',
+            mapaUrl:'https://www.google.com/maps/search/?api=1&query=Mans%C3%A3o+Alvite+Rio+de+Janeiro',
+            vestimenta:'Smart – Dress to Impress',
+            regalos:'Your presence is the greatest gift.',
+            despedida:'Waleed & Julia',
+            cronograma:[{hora:'3:00 PM',nombre:'Welcome Drinks'},
+              {hora:'4:00 PM',nombre:'Ceremony'},
+              {hora:'5:00 PM',nombre:'Cocktail Hour'},
+              {hora:'6:00 PM',nombre:'Dinner'},
+              {hora:'11:00 PM',nombre:'End of Party'}]}
         };
       }
       if (query.id === 'eleganza') {
