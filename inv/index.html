@@ -765,6 +765,63 @@
       document.body.classList.add('locked');
 
       let started = false, ended = false, timer = null, wantAudio = !!audSrc;
+      let controlsTimer = null;
+
+      function showCinemaControls() {
+        if (!ended || !dock.classList.contains('visible')) return;
+        dock.classList.remove('is-idle');
+        clearTimeout(controlsTimer);
+        controlsTimer = setTimeout(() => dock.classList.add('is-idle'), 3400);
+      }
+
+      // Un toque muestra los controles sin bloquear clics, scroll ni enlaces.
+      document.addEventListener('pointerdown', showCinemaControls, { capture: true, passive: true });
+      if (!window.PointerEvent) {
+        document.addEventListener('touchstart', showCinemaControls, { capture: true, passive: true });
+      }
+      document.addEventListener('pointermove', ev => {
+        if (ev.pointerType === 'mouse') showCinemaControls();
+      }, { passive: true });
+      document.addEventListener('keydown', ev => {
+        if (ev.key === 'Tab' || ev.key === 'Enter' || ev.key === ' ') showCinemaControls();
+      }, { capture: true });
+
+      // En teléfonos el Fullscreen API muestra un aviso obligatorio del navegador.
+      // En vez de invocarlo, ampliar el visor mediante CSS sin ese aviso.
+      const rootView = $('root');
+      const fullButton = $('fullBtn');
+      function isMobileTouch() {
+        return window.matchMedia('(pointer: coarse)').matches ||
+          /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
+      function exitMobileImmersive() {
+        if (!document.body.classList.contains('ns-mobile-immersive')) return;
+        const scrollTop = rootView.scrollTop;
+        document.body.classList.remove('ns-mobile-immersive');
+        fullButton.setAttribute('aria-label', 'Ampliar visualización');
+        fullButton.title = 'Ampliar visualización';
+        requestAnimationFrame(() => window.scrollTo({ top: scrollTop, behavior: 'instant' }));
+      }
+      function toggleMobileImmersive() {
+        if (document.body.classList.contains('ns-mobile-immersive')) {
+          exitMobileImmersive();
+        } else {
+          const scrollTop = window.scrollY;
+          document.body.classList.add('ns-mobile-immersive');
+          rootView.scrollTop = scrollTop;
+          fullButton.setAttribute('aria-label', 'Volver a la vista normal');
+          fullButton.title = 'Volver a la vista normal';
+        }
+        showCinemaControls();
+      }
+      rootView.addEventListener('scroll', () => {
+        if (document.body.classList.contains('ns-mobile-immersive')) {
+          window.dispatchEvent(new Event('scroll'));
+        }
+      }, { passive: true });
+      document.addEventListener('keydown', ev => {
+        if (ev.key === 'Escape') exitMobileImmersive();
+      });
       function syncIcons() {
         iPlay.style.display = audio.paused ? 'block' : 'none';
         iPause.style.display = audio.paused ? 'none' : 'block';
@@ -794,6 +851,7 @@
         setTimeout(() => { videoWrap.style.display = 'none'; }, 1000);
         document.body.classList.remove('locked');
         dock.classList.add('visible');
+        showCinemaControls();
         syncIcons();
         document.querySelectorAll('.hero-delay').forEach(el => el.classList.add('is-visible'));
       }
@@ -837,8 +895,13 @@
         else { wantAudio = false; audio.pause(); }
       });
 
-      $('fullBtn').addEventListener('click', (ev) => {
+      fullButton.addEventListener('click', (ev) => {
         ev.stopPropagation();
+        if (isMobileTouch()) {
+          toggleMobileImmersive();
+          return;
+        }
+        // En computadora se conserva la pantalla completa nativa.
         const docEl = document.documentElement;
         if (!document.fullscreenElement && !document.webkitFullscreenElement) {
           if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => {});
@@ -847,13 +910,16 @@
           if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
           else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
         }
+        showCinemaControls();
       });
 
       $('repeatBtn').addEventListener('click', (ev) => {
         ev.stopPropagation();
         started = false; ended = false;
         overlay.style.display = 'flex'; overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
-        dock.classList.remove('visible');
+        clearTimeout(controlsTimer);
+        dock.classList.remove('visible', 'is-idle');
+        exitMobileImmersive();
         document.body.classList.add('locked');
         window.scrollTo({ top: 0, behavior: 'instant' });
       });
