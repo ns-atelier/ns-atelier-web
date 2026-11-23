@@ -186,6 +186,12 @@
     if(typeof window.startNacarOriginal!=='function')
       throw Error('El motor de interacciones de Nácar no está disponible.');
     window.startNacarOriginal();
+    // El audio ambiental original inicia con el mismo toque que abre la invitación.
+    if (!media.musica) {
+      document.getElementById('weiOverlay')?.addEventListener('click',() => {
+        try {window.__startWeddingAudio?.();} catch (_) {}
+      },{once:true});
+    }
     const originalAudio=rv.querySelector('#audio-toggle-btn');
     const dock=document.getElementById('fabDock');
     if(originalAudio && dock) {
