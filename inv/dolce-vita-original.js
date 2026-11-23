@@ -276,24 +276,26 @@ window.startDolceVitaOriginal=function(){
       const scheduleSection = document.getElementById('schedule-section');
       const cloudTop = document.getElementById('cloud-top');
       const cloudBottom = document.getElementById('cloud-bottom');
+      const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let frame = 0;
 
       function onScroll() {
+        frame = 0;
         const vh = window.innerHeight;
 
         // Subtle upward letter rise inside the envelope as user scrolls
         if (letterSection && letterCard) {
           const rect = letterSection.getBoundingClientRect();
-          const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
-          const offsetY = (0.5 - progress) * 44; // glides gently upward
-          letterCard.style.transform = `translateY(${offsetY.toFixed(1)}px)`;
+          const progress = movimientoReducido.matches ? 1 : Math.min(1, Math.max(0, (vh * 0.98 - rect.top) / (vh * 0.53)));
+          letterCard.style.setProperty('--dv-letter-progress', progress.toFixed(3));
         }
 
         // Parting clouds horizontally as Schedule section enters viewport
         if (scheduleSection && cloudTop && cloudBottom) {
           const rect = scheduleSection.getBoundingClientRect();
           // Starts parting as section enters from bottom, fully parted near upper middle
-          const raw = (vh * 0.92 - rect.top) / (vh * 0.72);
-          const progress = Math.min(1, Math.max(0, raw));
+          const raw = (vh * 0.76 - rect.top) / (vh * 0.60);
+          const progress = movimientoReducido.matches ? 1 : Math.min(1, Math.max(0, raw));
           const shiftRight = progress * 460;
           const shiftLeft = -progress * 460;
           const cloudOpacity = Math.max(0, 1 - progress * 0.85);
@@ -305,8 +307,12 @@ window.startDolceVitaOriginal=function(){
         }
       }
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
+      function scheduleScroll() {
+        if (!frame) frame = requestAnimationFrame(onScroll);
+      }
+      window.addEventListener('scroll', scheduleScroll, { passive: true });
+      window.addEventListener('resize', scheduleScroll);
+      movimientoReducido.addEventListener('change', scheduleScroll);
       onScroll();
     })();
 

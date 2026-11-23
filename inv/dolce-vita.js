@@ -122,7 +122,11 @@
     if(!source||!source.querySelector('#tdr-cvs-day')||!source.querySelector('#rsvp-form')||!source.querySelector('#dress-gallery'))
       throw Error('La maqueta de Dolce Vita está incompleta.');
     const mount=document.getElementById('root');
-    mount.replaceChildren(document.importNode(source,true));
+    const invitation = document.importNode(source,true);
+    for (const image of invitation.querySelectorAll('img[data-fallback]')) {
+      image.addEventListener('error', () => { image.src = image.dataset.fallback; }, {once:true});
+    }
+    mount.replaceChildren(invitation);
     const root=mount.querySelector('.dv-root');
     document.body.classList.add('dv-mode');
     fontStyles();

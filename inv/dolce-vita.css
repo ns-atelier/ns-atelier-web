@@ -1576,3 +1576,44 @@ body.ns-mobile-immersive .dv-root{max-width:none;}
 #weiOverlay.dv-opening .wei-chevron{display:none;}
 @media(max-width:560px){.dv-root{max-width:100%;}.dv-root #hero-video{object-position:center;}.dv-root #letter-section{overflow:hidden;}}
 @media(prefers-reduced-motion:reduce){.dv-root .reveal,.dv-root .fade-only,.dv-root.dv-motion-ready .reveal,.dv-root.dv-motion-ready .fade-only{opacity:1!important;transform:none!important;transition:none!important;}#weiOverlay.dv-opening .env-flap{transition-duration:.01ms!important;}}
+
+/* Capas de la carta de Dolce Vita. */
+.dv-root .dv-letter-envelope {
+  position: relative;
+  width: min(100%, 440px);
+  margin: -12px auto 0;
+  display: grid;
+  justify-items: center;
+  isolation: isolate;
+  padding: 44px 0 clamp(115px, 33vw, 175px);
+}
+.dv-root .dv-envelope-back,
+.dv-root .dv-envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: min(110%, 480px);
+  max-width: none;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.dv-root .dv-envelope-back { z-index: 1; }
+.dv-root .dv-envelope-pocket { z-index: 3; }
+.dv-root .dv-letter-paper {
+  position: relative;
+  z-index: 2;
+  width: min(78%, 306px);
+  padding: clamp(18px, 5vw, 36px) clamp(13px, 4vw, 24px) 40px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 -6px 22px rgba(42, 38, 38, .12);
+  transform: translateY(calc((1 - var(--dv-letter-progress, 1)) * clamp(72px, 24vw, 135px)));
+}
+.dv-root .dv-letter-paper p {
+  font-size: clamp(15px, 4.7vw, 18px);
+  overflow-wrap: break-word;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dv-root .dv-letter-paper { transform: none; }
+}
