@@ -352,6 +352,132 @@
       .wa-float { width: 54px; height: 54px; justify-content: center; padding: 0; }
       .catalog-callout { padding: 24px 20px; }
     }
+
+    /* Catálogo móvil: dos portadas por fila, estética editorial premium. */
+    @media (max-width: 720px) {
+      .catalog-page { padding-top: 28px !important; padding-bottom: 56px; }
+      .catalog-page > .container { width: calc(100% - 28px); max-width: 600px; }
+      .catalog-page .section-head { text-align: left; margin: 0 0 24px; }
+      .catalog-page .section-head .eyebrow { font-size: 10px; letter-spacing: .19em; margin-bottom: 10px; }
+      .catalog-page .section-head h1 {
+        font-size: clamp(28px, 7.3vw, 39px) !important;
+        line-height: 1.07; letter-spacing: -.025em; margin-bottom: 10px !important;
+      }
+      .catalog-page .section-head > p { font-size: 12.5px; line-height: 1.55; max-width: 40ch; }
+      .catalog-page .container > div:first-child { margin-bottom: 22px !important; }
+      .catalog-page .container > div:first-child .btn {
+        font-size: 11px; padding: 8px 12px; min-height: 34px;
+      }
+      .catalog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 12px; row-gap: 16px;
+        align-items: stretch;
+      }
+      .catalog-grid .design-card {
+        min-width: 0; border-radius: 17px;
+        background: linear-gradient(165deg,#fffefd 0%,#fffaf4 100%);
+        border: 1px solid rgba(176, 146, 119, .27);
+        box-shadow: 0 9px 24px rgba(67, 45, 39, .065), 0 2px 4px rgba(67, 45, 39, .035);
+        -webkit-tap-highlight-color: transparent;
+        isolation: isolate;
+      }
+      .catalog-grid .design-card.featured {
+        border-color: rgba(166, 125, 43, .65);
+        box-shadow: 0 9px 25px rgba(116, 76, 43, .09);
+      }
+      .catalog-grid .design-card:hover { transform: none; box-shadow: 0 9px 24px rgba(67, 45, 39, .065); }
+      .catalog-grid .design-card:active { transform: scale(.985); }
+      .catalog-grid .design-media { aspect-ratio: 4 / 4.65; background: #ebe3d9; }
+      .catalog-grid .design-media::after {
+        content: ""; position: absolute; inset: auto 0 0; height: 28%; z-index: 1;
+        background: linear-gradient(transparent, rgba(53, 34, 30, .095)); pointer-events: none;
+      }
+      .catalog-grid .design-media-link {
+        position: relative; display: block; width: 100%; height: 100%; overflow: hidden;
+      }
+      .catalog-grid .design-media-link::after {
+        content: "↗"; position: absolute; right: 9px; bottom: 9px; z-index: 2;
+        width: 27px; height: 27px; border-radius: 50%;
+        display: grid; place-items: center;
+        background: rgba(255, 252, 247, .92); color: #634b40;
+        border: 1px solid rgba(255,255,255,.8);
+        font: 18px/1 Georgia,serif; box-shadow: 0 2px 10px rgba(35,22,20,.09);
+        transition: transform .35s ease, background .35s ease;
+      }
+      .catalog-grid .design-card.featured .design-media::before {
+        content: "DESTACADO"; position: absolute; top: 10px; left: 9px; z-index: 3;
+        padding: 5px 7px 4px; border-radius: 5px;
+        background: rgba(255, 252, 246, .92); color: #866b40;
+        font: 700 8px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: .11em;
+        box-shadow: 0 2px 8px rgba(30,20,12,.05);
+      }
+      .catalog-grid .design-media img {
+        object-position: center 24%; transform: scale(1.01);
+        transition: transform .8s cubic-bezier(.22, 1, .36, 1);
+      }
+      .catalog-grid .design-body { padding: 12px 11px 13px; min-width: 0; }
+      .catalog-grid .design-body h3 {
+        font-size: clamp(16.5px, 4.25vw, 20px); line-height: 1.08;
+        letter-spacing: -.015em; margin: 0 0 6px;
+        overflow-wrap: anywhere;
+      }
+      .catalog-grid .design-body > p:not(.design-price) {
+        font-size: 11px; line-height: 1.42; margin: 0 0 12px;
+        color: #766d69; min-height: 31px;
+        display: -webkit-box; -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+        flex: 0 0 auto;
+      }
+      .catalog-grid .design-body .design-price {
+        min-height: 0; margin: 0 0 8px; font-size: 11.5px;
+        color: var(--burgundy); font-weight: 700;
+      }
+      .catalog-grid .design-actions { margin-top: auto; display: flex; flex-direction: column; gap: 5px; }
+      .catalog-grid .design-actions .btn {
+        width: 100%; min-height: 35px; flex: none; border-radius: 10px;
+        font-size: 11.5px; line-height: 1.15; padding: 8px 7px;
+      }
+      .catalog-grid .design-actions .btn-primary {
+        background: #642b34; box-shadow: none;
+        border: 1px solid rgba(74, 28, 37, .15);
+      }
+      .catalog-grid .design-actions .btn-outline {
+        min-height: 24px; padding: 2px 5px; border: 0; background: transparent;
+        color: #745c57; font-size: 11px; font-weight: 600;
+        text-decoration: underline; text-decoration-color: rgba(116, 92, 87, .34);
+        text-underline-offset: 3px;
+      }
+      #catalogStatus { font-size: 12px; color: var(--ink-soft); margin-bottom: 18px; }
+      .catalog-grid .catalog-placeholder .design-media::after,
+      .catalog-grid .catalog-placeholder .design-media::before { display: none; }
+      .catalog-grid .catalog-placeholder .design-body > .skeleton-title { width: 74%; height: 17px; }
+      .catalog-grid .catalog-placeholder .design-body > .skeleton-line { height: 10px; }
+      /* Entrada progresiva; los datos no dependen de la animación para existir. */
+      .catalog-grid .design-card:not(.catalog-placeholder) {
+        animation: catalogCardAppear .58s cubic-bezier(.2, .78, .23, 1) both;
+        animation-delay: calc(var(--card-order, 0) * 65ms);
+      }
+      @keyframes catalogCardAppear {
+        from { opacity: 0; transform: translateY(17px) scale(.976); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+    }
+    @media (max-width: 360px) {
+      .catalog-page > .container { width: calc(100% - 22px); }
+      .catalog-grid { column-gap: 9px; row-gap: 13px; }
+      .catalog-grid .design-body { padding: 10px 9px 11px; }
+      .catalog-grid .design-body h3 { font-size: 16px; }
+      .catalog-grid .design-body > p:not(.design-price) { font-size: 10.5px; }
+      .catalog-grid .design-actions .btn { font-size: 11px; }
+    }
+    @media (hover: hover) and (max-width: 720px) {
+      .catalog-grid .design-card:hover .design-media img { transform: scale(1.07); }
+      .catalog-grid .design-card:hover .design-media-link::after { transform: translate(2px, -2px); background: #fff; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .catalog-grid .design-card:not(.catalog-placeholder) { animation: none; opacity: 1; transform: none; }
+      .catalog-grid .design-media img, .catalog-grid .design-media-link::after { transition: none; }
+    }
 </style>
 <link rel="preload" as="image" href="assets/catalogo/perla-nacar.webp" type="image/webp" fetchpriority="high">
 <link rel="icon" type="image/webp" href="assets/logo-ns.webp">
@@ -381,7 +507,7 @@
   </header>
 
   <main>
-    <section class="section section-soft" style="padding-top:52px">
+    <section class="section section-soft catalog-page" style="padding-top:52px">
       <div class="container">
         <div style="margin-bottom:20px">
           <a class="btn btn-outline btn-sm" href="index.html">← Volver a la página principal</a>
@@ -582,9 +708,20 @@
       if (item.precio) {
         const price = document.createElement('p');
         price.textContent = item.precio;
+        price.className = 'design-price';
         card.querySelector('.design-actions').before(price);
       }
-      card.querySelector('.btn-primary').href = 'inv/?demo=' + encodeURIComponent(item.id);
+      const demoHref = 'inv/?demo=' + encodeURIComponent(item.id);
+      card.querySelector('.btn-primary').href = demoHref;
+      // La portada completa es un enlace táctil, además del botón de la tarjeta.
+      if (cover && image.isConnected) {
+        const coverLink = document.createElement('a');
+        coverLink.className = 'design-media-link';
+        coverLink.href = demoHref;
+        coverLink.setAttribute('aria-label', 'Ver demo de ' + item.nombre);
+        image.replaceWith(coverLink);
+        coverLink.appendChild(image);
+      }
       const quote = card.querySelector('[data-wa]');
       quote.dataset.wa = 'Hola, quiero cotizar el modelo ' + item.nombre + '.';
       quote.href = waUrl(quote.dataset.wa);
@@ -615,6 +752,8 @@
       const cards = assembleCatalog(response, cardTemplate);
       cards.forEach((card, index) => {
         card.classList.add('visible');
+        // Retardo corto y limitado: ninguna tarjeta queda esperando varios segundos.
+        card.style.setProperty('--card-order', String(Math.min(index, 7)));
         const image = card.querySelector('img');
         if (image) {
           image.loading = index === 0 ? 'eager' : 'lazy';
