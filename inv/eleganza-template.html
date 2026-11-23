@@ -1,0 +1,557 @@
+<div class="eleganza-root" data-template="eleganza">
+<div class="w-full max-w-[540px] mx-auto min-h-screen bg-background text-foreground shadow-2xl relative overflow-x-hidden">
+    <main class="bg-background text-foreground overflow-x-hidden">
+
+      <!-- =================================================================== -->
+      <!-- 2. HERO SECTION                                                     -->
+      <!-- =================================================================== -->
+      <section id="hero-section" class="relative min-h-[100dvh] flex flex-col overflow-hidden bg-background">
+        <div class="absolute inset-0 overflow-hidden">
+          <img
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+            draggable="false"
+          />
+        </div>
+
+        <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+          <h1 class="font-display font-bold leading-[1.05] text-primary text-6xl sm:text-7xl">
+            <span class="block hero-stagger" style="transition-delay: 0ms;">Alessia</span>
+            <span class="block hero-stagger" style="transition-delay: 700ms;">&amp;</span>
+            <span class="block hero-stagger" style="transition-delay: 1400ms;">Matteo</span>
+          </h1>
+
+          <div class="mt-10 sm:mt-12">
+            <p
+              class="font-body text-xs sm:text-sm tracking-[0.18em] uppercase text-primary/90 hero-stagger"
+              style="transition-delay: 2200ms;"
+            >
+              September 12, 2027
+            </p>
+            <p
+              class="font-body text-xs sm:text-sm tracking-[0.18em] uppercase text-primary/90 mt-2 hero-stagger"
+              style="transition-delay: 2900ms;"
+            >
+              Lake Como &middot; Italy
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 3. COUNTDOWN SECTION                                                -->
+      <!-- =================================================================== -->
+      <section class="bg-background py-10 sm:py-14 px-6">
+        <div class="mx-auto max-w-xl text-center reveal">
+          <p class="font-body uppercase tracking-[0.28em] text-[0.65rem] sm:text-xs text-primary/80">
+            Counting the days
+          </p>
+
+          <div class="mt-6 flex items-start justify-center gap-4 sm:gap-8">
+            <div class="flex-1">
+              <p id="cd-days" class="font-display text-primary leading-none text-[clamp(2rem,9vw,3.4rem)] tabular-nums">00</p>
+              <p class="mt-2 font-body uppercase tracking-[0.18em] text-[0.55rem] sm:text-xs text-primary/70">Days</p>
+            </div>
+            <div class="flex-1">
+              <p id="cd-hours" class="font-display text-primary leading-none text-[clamp(2rem,9vw,3.4rem)] tabular-nums">00</p>
+              <p class="mt-2 font-body uppercase tracking-[0.18em] text-[0.55rem] sm:text-xs text-primary/70">Hours</p>
+            </div>
+            <div class="flex-1">
+              <p id="cd-minutes" class="font-display text-primary leading-none text-[clamp(2rem,9vw,3.4rem)] tabular-nums">00</p>
+              <p class="mt-2 font-body uppercase tracking-[0.18em] text-[0.55rem] sm:text-xs text-primary/70">Minutes</p>
+            </div>
+            <div class="flex-1">
+              <p id="cd-seconds" class="font-display text-primary leading-none text-[clamp(2rem,9vw,3.4rem)] tabular-nums">00</p>
+              <p class="mt-2 font-body uppercase tracking-[0.18em] text-[0.55rem] sm:text-xs text-primary/70">Seconds</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 4. WHEN & WHERE SECTION                                             -->
+      <!-- =================================================================== -->
+      <section id="when-where" class="relative pt-2 pb-6 sm:pb-10 bg-background">
+        <div class="relative w-full cq-inline reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/3915452c-8a51-4f96-8e6f-42ee02b69673/when-where-frame.png"
+            alt=""
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+
+          <div class="absolute inset-x-0 top-[56%] bottom-[6%] flex flex-col items-center justify-center text-center px-8">
+            <h2 class="font-display text-primary leading-none" style="font-size: 9cqw;">When &amp; Where</h2>
+            <p class="font-body uppercase tracking-[0.2em] text-primary" style="font-size: 2.6cqw; margin-top: 2.5cqw;">
+              Ceremony and Celebration
+            </p>
+            <div class="font-body leading-relaxed text-primary" style="font-size: 3.6cqw; margin-top: 2.8cqw;">
+              <p>Villa Cipressi</p>
+              <p>Lake Como, Italy</p>
+              <p>September 12, 2027</p>
+              <p>Ceremony at 5PM</p>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Villa+Cipressi+Lake+Como+Italy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block rounded-full border border-primary/30 bg-background/75 font-body text-primary shadow-sm transition-colors duration-300 hover:bg-primary hover:text-background"
+              style="margin-top: 4.5cqw; font-size: 3.1cqw; padding: 1.6cqw 6.5cqw;"
+            >
+              View map
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 5. OUR VENUE SECTION                                                -->
+      <!-- =================================================================== -->
+      <section class="w-full py-6 sm:py-10">
+        <div class="w-full reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/485f0f75-d204-407c-b2c2-53409fce7922/venue-villa.png"
+            alt="Our Venue: Villa Cipressi on Lake Como"
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+
+          <div class="flex flex-col items-center text-center text-foreground px-8 mt-6 sm:mt-8">
+            <p class="font-display text-4xl sm:text-5xl leading-none">Our Venue</p>
+            <p class="font-display text-2xl sm:text-3xl leading-tight mt-2">Villa Cipressi</p>
+            <p class="font-body uppercase tracking-[0.2em] text-xs sm:text-sm mt-4 text-foreground/80">
+              Varenna, Lake Como, Italy
+            </p>
+            <p class="font-body text-sm sm:text-base max-w-md mt-4 leading-relaxed opacity-90">
+              A historic lakeside villa with terraced gardens, ancient cypress trees, and timeless Italian elegance.
+            </p>
+            <a
+              href="https://maps.google.com/?q=Villa+Cipressi+Varenna+Lake+Como+Italy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-body uppercase tracking-[0.2em] text-xs sm:text-sm border border-foreground/40 rounded-full px-8 py-3 mt-7 transition-colors duration-300 hover:bg-foreground hover:text-background"
+            >
+              View map
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 6. THE CELEBRATIONS SECTION                                         -->
+      <!-- =================================================================== -->
+      <section class="py-10 sm:py-14 px-6">
+        <div class="max-w-lg mx-auto">
+          <div class="text-center mb-8 reveal">
+            <h2 class="font-display text-5xl sm:text-6xl text-foreground">The Celebrations</h2>
+          </div>
+
+          <div class="reveal">
+            <!-- Overlapping Illustration -->
+            <div class="relative z-10 flex justify-center -mb-8">
+              <img
+                loading="lazy"
+                decoding="async"
+                src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/14c85bd5-d8fd-4897-b67a-eef5d9d15427/villa-illustration.png"
+                alt="Villa Cipressi illustration"
+                class="w-72 sm:w-80 h-auto drop-shadow-sm pointer-events-none select-none"
+                draggable="false"
+              />
+            </div>
+
+            <!-- Celebration Card -->
+            <div class="relative text-center bg-foreground/[0.03] border border-foreground/10 rounded-2xl px-6 py-10 sm:px-10 sm:py-12">
+              <!-- Bottom-Right Key Tassel Ornament -->
+              <img
+                loading="lazy"
+                decoding="async"
+                src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/59745157-22d7-443c-8b72-353ad416e54c/key-tassel.png"
+                alt=""
+                aria-hidden="true"
+                draggable="false"
+                class="pointer-events-none select-none absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-6 w-28 sm:w-36 h-auto z-20 drop-shadow-sm"
+              />
+
+              <p class="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-foreground/70 mb-3">
+                A Celebration of Love
+              </p>
+              <h3 class="font-display text-5xl sm:text-6xl text-foreground mb-3 leading-tight">
+                Villa<br />Cipressi
+              </h3>
+              <p class="font-body text-base text-foreground/80">Lakeside Ceremony</p>
+              <p class="font-body text-base text-foreground/80">Followed by an Italian dinner on the terrace</p>
+
+              <div class="w-10 h-px bg-foreground/20 mx-auto my-5"></div>
+
+              <div class="space-y-1.5">
+                <p class="font-body text-base text-foreground italic tracking-wide">12 September 2027</p>
+                <p class="font-body text-base text-foreground italic tracking-wide">5:00 PM</p>
+              </div>
+
+              <a
+                href="https://maps.app.goo.gl/6PuohKkbUqTcSj56A"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block mt-5 font-body text-xs sm:text-sm tracking-[0.15em] uppercase text-foreground/75 hover:text-foreground transition-colors border-b border-foreground/30 hover:border-foreground/60 pb-1"
+              >
+                View on Map
+              </a>
+
+              <div class="mt-8 pt-6 border-t border-foreground/15">
+                <p class="font-body text-xs tracking-[0.3em] uppercase text-foreground/60 mb-2">Dress Code</p>
+                <p class="font-display text-3xl sm:text-4xl text-foreground leading-tight">Italian Garden Formal</p>
+                <p class="font-body text-sm text-foreground/70 italic mt-2">Soft lake tones &middot; Elegant formal attire</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 7. DRESS CODE FRAME SECTION                                         -->
+      <!-- =================================================================== -->
+      <section class="w-full py-6 sm:py-10">
+        <div class="relative w-full reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/0fdede2c-f70e-4a98-ae71-81f0c9a85d04/dress-code-frame.png"
+            alt="Dress Code: Italian Garden Formal"
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 8. PROGRAMME SECTION (Container Query Scaling)                      -->
+      <!-- =================================================================== -->
+      <section class="w-full py-6 sm:py-10">
+        <div class="relative w-full cq-inline reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/ecd1261b-1ba0-4778-9268-da6cc192e797/programme-linen.png"
+            alt="Wedding programme on embroidered linen"
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+
+          <div class="absolute inset-y-0 left-[44%] right-[8%] flex flex-col justify-center items-center text-foreground pointer-events-none select-none">
+            <p class="font-display leading-none" style="font-size: 8cqw; margin-bottom: 9cqw;">Programme</p>
+
+            <div class="flex flex-col" style="gap: 7.5cqw;">
+              <div class="flex items-baseline">
+                <span class="font-body text-right" style="font-size: 4.5cqw; width: 10.5cqw;">5:30</span>
+                <span class="font-body uppercase" style="font-size: 2.9cqw; margin-left: 1.2cqw; letter-spacing: 0.06em;">PM</span>
+                <span class="font-display text-left" style="font-size: 6.4cqw; margin-left: 2.5cqw; width: 22cqw; line-height: 1;">Welcome</span>
+              </div>
+
+              <div class="flex items-baseline">
+                <span class="font-body text-right" style="font-size: 4.5cqw; width: 10.5cqw;">6:00</span>
+                <span class="font-body uppercase" style="font-size: 2.9cqw; margin-left: 1.2cqw; letter-spacing: 0.06em;">PM</span>
+                <span class="font-display text-left" style="font-size: 6.4cqw; margin-left: 2.5cqw; width: 22cqw; line-height: 1;">Ceremony</span>
+              </div>
+
+              <div class="flex items-baseline">
+                <span class="font-body text-right" style="font-size: 4.5cqw; width: 10.5cqw;">7:00</span>
+                <span class="font-body uppercase" style="font-size: 2.9cqw; margin-left: 1.2cqw; letter-spacing: 0.06em;">PM</span>
+                <span class="font-display text-left" style="font-size: 6.4cqw; margin-left: 2.5cqw; width: 22cqw; line-height: 1;">Cocktail</span>
+              </div>
+
+              <div class="flex items-baseline">
+                <span class="font-body text-right" style="font-size: 4.5cqw; width: 10.5cqw;">9:00</span>
+                <span class="font-body uppercase" style="font-size: 2.9cqw; margin-left: 1.2cqw; letter-spacing: 0.06em;">PM</span>
+                <span class="font-display text-left" style="font-size: 6.4cqw; margin-left: 2.5cqw; width: 22cqw; line-height: 1;">Dinner</span>
+              </div>
+
+              <div class="flex items-baseline">
+                <span class="font-body text-right" style="font-size: 4.5cqw; width: 10.5cqw;">11:30</span>
+                <span class="font-body uppercase" style="font-size: 2.9cqw; margin-left: 1.2cqw; letter-spacing: 0.06em;">PM</span>
+                <span class="font-display text-left" style="font-size: 6.4cqw; margin-left: 2.5cqw; width: 22cqw; line-height: 1;">Dancing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 9. GIFTS SECTION ('A Thoughtful Gesture')                           -->
+      <!-- =================================================================== -->
+      <section class="relative w-full bg-background overflow-hidden py-6 sm:py-10">
+        <div class="relative w-full cq-inline reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/f1b926d0-7ea3-45d2-9101-954ae88ea171/gifts-frame.png"
+            alt=""
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+
+          <div class="absolute inset-x-0 top-[16%] flex flex-col items-center text-center px-8">
+            <p class="font-body tracking-[0.28em] uppercase text-primary" style="font-size: 2.7cqw;">
+              A Thoughtful Gesture
+            </p>
+            <div class="font-body leading-relaxed text-primary" style="font-size: 3.5cqw; margin-top: 3cqw;">
+              <p>Your presence is the greatest gift.</p>
+              <p>If you wish to contribute to</p>
+              <p>our new life together,</p>
+              <p>we leave our details here.</p>
+            </div>
+          </div>
+
+          <!-- Clickable IBAN at Bottom -->
+          <div class="absolute inset-x-0 bottom-[2.5%] flex justify-center px-6">
+            <button
+              id="copy-iban-btn"
+              type="button"
+              title="Click to copy IBAN"
+              class="group inline-flex items-center gap-2 rounded-full px-4 py-1 font-body tracking-wide text-primary transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
+              style="font-size: 3.2cqw;"
+            >
+              <span id="iban-text">IT00 0000 0000 0000 0000 000</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="opacity-65 group-hover:opacity-100 transition-opacity"
+                style="width: 3.2cqw; height: 3.2cqw;"
+              >
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="w-12 h-px bg-foreground/20 mx-auto my-4"></div>
+
+      <!-- =================================================================== -->
+      <!-- 10. RSVP SECTION (Container Query Scaling)                          -->
+      <!-- =================================================================== -->
+      <section id="rsvp" class="relative bg-background py-6 sm:py-10">
+        <div class="relative w-full cq-inline reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/f8dd714c-0111-4644-b87b-b539bfc093c2/rsvp-frame.png"
+            alt=""
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+
+          <div class="absolute inset-x-[16%] top-[26%] bottom-[14%] flex flex-col items-center justify-start text-center text-primary">
+            <h2 class="font-display leading-none" style="font-size: 9cqw;">RSVP</h2>
+            <p class="font-body italic" style="font-size: 3.2cqw; margin-top: 2.8cqw;">
+              Kindly reply before the 1st of April, 2027.
+            </p>
+
+            <!-- Interactive RSVP Form -->
+            <form id="rsvp-form" class="w-full text-left" style="margin-top: 5.5cqw;">
+              <label for="rsvp-name" class="font-body block italic" style="font-size: 3.3cqw;">Full name</label>
+              <input
+                id="rsvp-name"
+                type="text"
+                required
+                class="w-full border-0 border-b border-primary/50 bg-transparent font-body text-primary outline-none focus:border-primary transition-colors"
+                style="font-size: 3.2cqw; padding-bottom: 1cqw; margin-top: 1.2cqw;"
+              />
+
+              <!-- Will you attend? Custom square checkboxes -->
+              <div class="flex items-center flex-wrap" style="gap: 3cqw; margin-top: 4.8cqw;">
+                <span class="font-body italic" style="font-size: 3.3cqw;">Will you attend?</span>
+
+                <button
+                  type="button"
+                  data-attend="yes"
+                  aria-pressed="true"
+                  class="attend-btn flex items-center font-body capitalize text-primary cursor-pointer"
+                  style="gap: 1.2cqw; font-size: 3.3cqw;"
+                >
+                  <span
+                    class="inline-flex items-center justify-center border border-primary/60"
+                    style="width: 3cqw; height: 3cqw;"
+                  >
+                    <span class="attend-check bg-primary transition-opacity duration-200" style="width: 1.6cqw; height: 1.6cqw; opacity: 1;"></span>
+                  </span>
+                  yes
+                </button>
+
+                <button
+                  type="button"
+                  data-attend="no"
+                  aria-pressed="false"
+                  class="attend-btn flex items-center font-body capitalize text-primary cursor-pointer"
+                  style="gap: 1.2cqw; font-size: 3.3cqw;"
+                >
+                  <span
+                    class="inline-flex items-center justify-center border border-primary/60"
+                    style="width: 3cqw; height: 3cqw;"
+                  >
+                    <span class="attend-check bg-primary transition-opacity duration-200" style="width: 1.6cqw; height: 1.6cqw; opacity: 0;"></span>
+                  </span>
+                  no
+                </button>
+              </div>
+
+              <label for="rsvp-dietary" class="font-body block italic" style="font-size: 3.3cqw; margin-top: 4.8cqw;">
+                Dietary needs
+              </label>
+              <input
+                id="rsvp-dietary"
+                type="text"
+                class="w-full border-0 border-b border-primary/50 bg-transparent font-body text-primary outline-none focus:border-primary transition-colors"
+                style="font-size: 3.2cqw; padding-bottom: 1cqw; margin-top: 1.2cqw;"
+              />
+
+              <div class="flex justify-center" style="margin-top: 6.5cqw;">
+                <button
+                  type="submit"
+                  class="rounded-full border border-primary/30 bg-background/75 font-body text-primary shadow-sm transition-colors duration-300 hover:bg-primary hover:text-background cursor-pointer"
+                  style="font-size: 3.3cqw; padding: 1.6cqw 8.5cqw;"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+
+            <!-- Confirmation State inside Frame -->
+            <div id="rsvp-confirmation" class="hidden flex-col items-center justify-center flex-1 text-center px-2">
+              <p class="font-display italic text-primary" style="font-size: 7.5cqw;">Grazie!</p>
+              <p class="font-body text-primary/90 leading-relaxed" style="font-size: 3.4cqw; margin-top: 2.5cqw;">
+                Thank you, <span id="confirm-guest-name" class="font-medium"></span>.<br />
+                Your response has been received.
+              </p>
+              <p id="confirm-guest-note" class="font-body italic text-primary/75" style="font-size: 3cqw; margin-top: 2.5cqw;"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 11. FOOTER SECTION                                                  -->
+      <!-- =================================================================== -->
+      <footer class="relative bg-background pt-6 pb-0">
+        <div class="relative w-full cq-inline reveal">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/f3d34d2c-bd46-449a-8527-094613acd545/footer-frame.png"
+            alt=""
+            class="w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-[14%]">
+            <p class="font-display italic text-primary leading-tight" style="font-size: 5.2cqw;">
+              We cannot wait to celebrate with you
+            </p>
+            <p class="font-display uppercase text-primary tracking-[0.08em]" style="font-size: 4.5cqw; margin-top: 2.2cqw;">
+              ALESSIA &amp; MATTEO
+            </p>
+            <p class="font-body uppercase text-primary tracking-[0.14em]" style="font-size: 2.1cqw; margin-top: 2cqw;">
+              VILLA CIPRESSI &middot; LAKE COMO &middot; 12 SEPTEMBER 2027
+            </p>
+            <p class="font-body text-primary/65" style="font-size: 1.9cqw; margin-top: 5cqw;">
+              Made with love by
+              <a
+                href="https://www.thedigitalyes.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline underline-offset-2 transition-colors hover:text-primary"
+              >
+                The Digital Yes
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST NOTIFICATION (IBAN COPIED)                                      -->
+  <!-- ===================================================================== -->
+  <div
+    id="copy-toast"
+    role="status"
+    aria-live="polite"
+    class="copy-toast fixed bottom-20 left-1/2 z-50 rounded-full bg-primary text-background px-5 py-2.5 font-body text-xs tracking-[0.15em] uppercase shadow-lg"
+  >
+    IBAN copied to clipboard
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- FLOATING AMBIENT AUDIO MUTE/UNMUTE BUTTON                             -->
+  <!-- ===================================================================== -->
+  <button
+    id="audio-toggle-btn"
+    type="button"
+    aria-label="Toggle ambient music"
+    class="fixed bottom-5 right-5 z-40 rounded-full border border-primary/30 p-[3px] bg-background/85 backdrop-blur-sm shadow-md transition-colors duration-300 hover:border-primary/70 cursor-pointer"
+  >
+    <span class="flex h-10 w-10 items-center justify-center rounded-full text-primary border border-primary/15">
+      <!-- Muted Icon -->
+      <svg
+        id="icon-muted"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+        <line x1="22" y1="9" x2="16" y2="15" />
+        <line x1="16" y1="9" x2="22" y2="15" />
+      </svg>
+
+      <!-- Playing Icon -->
+      <svg
+        id="icon-playing"
+        class="hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+        <path d="M16 9a5 5 0 0 1 0 6" />
+        <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
+      </svg>
+    </span>
+  </button>
+</div>
