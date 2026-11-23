@@ -6,7 +6,8 @@
   const records=[
     {id:'red-vibrante',name:'Red Vibrante',aliases:['jardin-seda']},
     {id:'nacar',name:'Nácar',aliases:['olivo-marfil']},
-    {id:'eleganza',name:'Eleganza',aliases:['jardin-eterno']}
+    {id:'eleganza',name:'Eleganza',aliases:['jardin-eterno']},
+    {id:'odette',name:'Odette',aliases:['noche-dorada']}
   ];
   const aliases=Object.create(null);
   const names=Object.create(null);
