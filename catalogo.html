@@ -505,7 +505,7 @@
       ['costa-azul', 'assets/catalogo/costa-azul.webp'],
       ['gala-terciopelo', 'assets/catalogo/gala-terciopelo.webp'],
       ['the-sacred-garden', 'assets/catalogo/the-sacred-garden.webp'],
-      ['olivo-marfil', 'images/diseno-01.webp'],
+      ['olivo-marfil', 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png'],
       ['jardin-eterno', 'images/diseno-02.webp'],
       ['noche-dorada', 'images/diseno-03.webp'],
       ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png']
@@ -542,6 +542,13 @@
     }
 
     function createCard(item, layout) {
+      // Nácar sustituye a Olivo & Marfil únicamente en el catálogo público.
+      if (item.id === 'olivo-marfil') {
+        item = { ...item, nombre: 'Nácar',
+          descripcion: /olivo|marfil|vegetal|serena|natural/i.test(item.descripcion || '')
+            ? 'Perlas, encaje, detalles nacarados, fotografía que se descubre al raspar y una elegante ceremonia.'
+            : item.descripcion };
+      }
       // Red Vibrante reemplaza a Jardín de Seda sin cambiar el ID que usa el panel.
       // El nombre del panel se podrá actualizar después sin perder enlaces existentes.
       if (item.id === 'jardin-seda') {

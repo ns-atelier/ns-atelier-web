@@ -1,0 +1,2029 @@
+/*! tailwindcss v4.1.10 | MIT License | https://tailwindcss.com */
+@layer properties;
+.nacar-root, .nacar-root {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: 0.25rem;
+  --container-md: 28rem;
+  --container-xl: 36rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-relaxed: 1.625;
+  --radius-lg: 0.5rem;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --blur-sm: 8px;
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-font-family: var(--font-sans);
+  --default-mono-font-family: var(--font-mono);
+  --color-background: #f8f6f2;
+  --color-foreground: #3c4b5d;
+  --font-display: "Cormorant Garamond",Georgia,serif;
+  --font-ballet: "Ballet",cursive;
+  --font-doulaise: "Monsieur La Doulaise",cursive;
+  --font-body: "Jost",sans-serif;
+  --font-helvetica: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.nacar-root :where(.pointer-events-none) {
+  pointer-events: none;
+}
+.nacar-root :where(.absolute) {
+  position: absolute;
+}
+.nacar-root :where(.fixed) {
+  position: fixed;
+}
+.nacar-root :where(.relative) {
+  position: relative;
+}
+.nacar-root :where(.inset-0) {
+  inset: calc(var(--spacing) * 0);
+}
+.nacar-root :where(.inset-y-0) {
+  inset-block: calc(var(--spacing) * 0);
+}
+.nacar-root :where(.top-3) {
+  top: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.top-5) {
+  top: calc(var(--spacing) * 5);
+}
+.nacar-root :where(.top-\[9\%\]) {
+  top: 9%;
+}
+.nacar-root :where(.top-\[18\%\]) {
+  top: 18%;
+}
+.nacar-root :where(.top-\[33\%\]) {
+  top: 33%;
+}
+.nacar-root :where(.right-0) {
+  right: calc(var(--spacing) * 0);
+}
+.nacar-root :where(.right-4) {
+  right: calc(var(--spacing) * 4);
+}
+.nacar-root :where(.right-5) {
+  right: calc(var(--spacing) * 5);
+}
+.nacar-root :where(.right-\[2\%\]) {
+  right: 2%;
+}
+.nacar-root :where(.right-\[17\%\]) {
+  right: 17%;
+}
+.nacar-root :where(.right-\[20\%\]) {
+  right: 20%;
+}
+.nacar-root :where(.-bottom-7) {
+  bottom: calc(var(--spacing) * -7);
+}
+.nacar-root :where(.bottom-3) {
+  bottom: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.bottom-5) {
+  bottom: calc(var(--spacing) * 5);
+}
+.nacar-root :where(.bottom-\[4\%\]) {
+  bottom: 4%;
+}
+.nacar-root :where(.bottom-\[7\%\]) {
+  bottom: 7%;
+}
+.nacar-root :where(.bottom-\[10\%\]) {
+  bottom: 10%;
+}
+.nacar-root :where(.bottom-\[34\%\]) {
+  bottom: 34%;
+}
+.nacar-root :where(.left-0) {
+  left: calc(var(--spacing) * 0);
+}
+.nacar-root :where(.left-1\/2) {
+  left: calc(1/2 * 100%);
+}
+.nacar-root :where(.left-\[5\.5px\]) {
+  left: 5.5px;
+}
+.nacar-root :where(.left-\[17\%\]) {
+  left: 17%;
+}
+.nacar-root :where(.left-\[20\%\]) {
+  left: 20%;
+}
+.nacar-root :where(.-z-10) {
+  z-index: calc(10 * -1);
+}
+.nacar-root :where(.z-0) {
+  z-index: 0;
+}
+.nacar-root :where(.z-10) {
+  z-index: 10;
+}
+.nacar-root :where(.z-20) {
+  z-index: 20;
+}
+.nacar-root :where(.z-40) {
+  z-index: 40;
+}
+.nacar-root :where(.z-50) {
+  z-index: 50;
+}
+.nacar-root :where(.z-\[1\]) {
+  z-index: 1;
+}
+.nacar-root :where(.-mx-\[10\%\]) {
+  margin-inline: calc(10% * -1);
+}
+.nacar-root :where(.mx-auto) {
+  margin-inline: auto;
+}
+.nacar-root :where(.my-2\.5) {
+  margin-block: calc(var(--spacing) * 2.5);
+}
+.nacar-root :where(.-mt-3) {
+  margin-top: calc(var(--spacing) * -3);
+}
+.nacar-root :where(.-mt-\[30px\]) {
+  margin-top: calc(30px * -1);
+}
+.nacar-root :where(.mt-1) {
+  margin-top: calc(var(--spacing) * 1);
+}
+.nacar-root :where(.mt-1\.5) {
+  margin-top: calc(var(--spacing) * 1.5);
+}
+.nacar-root :where(.mt-2) {
+  margin-top: calc(var(--spacing) * 2);
+}
+.nacar-root :where(.mt-3) {
+  margin-top: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.mt-4) {
+  margin-top: calc(var(--spacing) * 4);
+}
+.nacar-root :where(.mt-5) {
+  margin-top: calc(var(--spacing) * 5);
+}
+.nacar-root :where(.mt-6) {
+  margin-top: calc(var(--spacing) * 6);
+}
+.nacar-root :where(.mt-7) {
+  margin-top: calc(var(--spacing) * 7);
+}
+.nacar-root :where(.mt-8) {
+  margin-top: calc(var(--spacing) * 8);
+}
+.nacar-root :where(.mt-10) {
+  margin-top: calc(var(--spacing) * 10);
+}
+.nacar-root :where(.mt-24) {
+  margin-top: calc(var(--spacing) * 24);
+}
+.nacar-root :where(.mt-\[18px\]) {
+  margin-top: 18px;
+}
+.nacar-root :where(.mt-\[22px\]) {
+  margin-top: 22px;
+}
+.nacar-root :where(.mt-\[70px\]) {
+  margin-top: 70px;
+}
+.nacar-root :where(.mb-1) {
+  margin-bottom: calc(var(--spacing) * 1);
+}
+.nacar-root :where(.mb-1\.5) {
+  margin-bottom: calc(var(--spacing) * 1.5);
+}
+.nacar-root :where(.mb-2) {
+  margin-bottom: calc(var(--spacing) * 2);
+}
+.nacar-root :where(.mb-3) {
+  margin-bottom: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.mb-4) {
+  margin-bottom: calc(var(--spacing) * 4);
+}
+.nacar-root :where(.mb-5) {
+  margin-bottom: calc(var(--spacing) * 5);
+}
+.nacar-root :where(.mb-6) {
+  margin-bottom: calc(var(--spacing) * 6);
+}
+.nacar-root :where(.mb-8) {
+  margin-bottom: calc(var(--spacing) * 8);
+}
+.nacar-root :where(.mb-10) {
+  margin-bottom: calc(var(--spacing) * 10);
+}
+.nacar-root :where(.mb-12) {
+  margin-bottom: calc(var(--spacing) * 12);
+}
+.nacar-root :where(.mb-\[8px\]) {
+  margin-bottom: 8px;
+}
+.nacar-root :where(.ml-1) {
+  margin-left: calc(var(--spacing) * 1);
+}
+.nacar-root :where(.block) {
+  display: block;
+}
+.nacar-root :where(.flex) {
+  display: flex;
+}
+.nacar-root :where(.grid) {
+  display: grid;
+}
+.nacar-root :where(.hidden) {
+  display: none;
+}
+.nacar-root :where(.inline-flex) {
+  display: inline-flex;
+}
+.nacar-root :where(.aspect-\[942\/1164\]) {
+  aspect-ratio: 942/1164;
+}
+.nacar-root :where(.aspect-\[1920\/1126\]) {
+  aspect-ratio: 1920/1126;
+}
+.nacar-root :where(.aspect-square) {
+  aspect-ratio: 1 / 1;
+}
+.nacar-root :where(.h-3) {
+  height: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.h-10) {
+  height: calc(var(--spacing) * 10);
+}
+.nacar-root :where(.h-\[140px\]) {
+  height: 140px;
+}
+.nacar-root :where(.h-auto) {
+  height: auto;
+}
+.nacar-root :where(.h-full) {
+  height: 100%;
+}
+.nacar-root :where(.min-h-\[16px\]) {
+  min-height: 16px;
+}
+.nacar-root :where(.min-h-\[100dvh\]) {
+  min-height: 100dvh;
+}
+.nacar-root :where(.w-3) {
+  width: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.w-10) {
+  width: calc(var(--spacing) * 10);
+}
+.nacar-root :where(.w-28) {
+  width: calc(var(--spacing) * 28);
+}
+.nacar-root :where(.w-32) {
+  width: calc(var(--spacing) * 32);
+}
+.nacar-root :where(.w-\[26\%\]) {
+  width: 26%;
+}
+.nacar-root :where(.w-\[70\%\]) {
+  width: 70%;
+}
+.nacar-root :where(.w-\[160px\]) {
+  width: 160px;
+}
+.nacar-root :where(.w-\[260px\]) {
+  width: 260px;
+}
+.nacar-root :where(.w-\[calc\(88\%\+4px\)\]) {
+  width: calc(88% + 4px);
+}
+.nacar-root :where(.w-auto) {
+  width: auto;
+}
+.nacar-root :where(.w-fit) {
+  width: fit-content;
+}
+.nacar-root :where(.w-full) {
+  width: 100%;
+}
+.nacar-root :where(.w-px) {
+  width: 1px;
+}
+.nacar-root :where(.max-w-2xl) {
+  max-width: var(--container-2xl);
+}
+.nacar-root :where(.max-w-3xl) {
+  max-width: var(--container-3xl);
+}
+.nacar-root :where(.max-w-\[185px\]) {
+  max-width: 185px;
+}
+.nacar-root :where(.max-w-\[280px\]) {
+  max-width: 280px;
+}
+.nacar-root :where(.max-w-\[340px\]) {
+  max-width: 340px;
+}
+.nacar-root :where(.max-w-md) {
+  max-width: var(--container-md);
+}
+.nacar-root :where(.max-w-none) {
+  max-width: none;
+}
+.nacar-root :where(.max-w-xl) {
+  max-width: var(--container-xl);
+}
+.nacar-root :where(.min-w-0) {
+  min-width: calc(var(--spacing) * 0);
+}
+.nacar-root :where(.flex-1) {
+  flex: 1;
+}
+.nacar-root :where(.shrink-0) {
+  flex-shrink: 0;
+}
+.nacar-root :where(.-translate-x-1\/2) {
+  --tw-translate-x: calc(calc(1/2 * 100%) * -1);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.nacar-root :where(.-translate-x-4) {
+  --tw-translate-x: calc(var(--spacing) * -4);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.nacar-root :where(.translate-x-\[10px\]) {
+  --tw-translate-x: 10px;
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.nacar-root :where(.-translate-y-\[5px\]) {
+  --tw-translate-y: calc(5px * -1);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.nacar-root :where(.-rotate-6) {
+  rotate: calc(6deg * -1);
+}
+.nacar-root :where(.rotate-\[24deg\]) {
+  rotate: 24deg;
+}
+.nacar-root :where(.cursor-pointer) {
+  cursor: pointer;
+}
+.nacar-root :where(.grid-cols-2) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.nacar-root :where(.grid-cols-4) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.nacar-root :where(.grid-cols-\[12px_minmax\(0\,1fr\)\]) {
+  grid-template-columns: 12px minmax(0,1fr);
+}
+.nacar-root :where(.flex-col) {
+  flex-direction: column;
+}
+.nacar-root :where(.items-center) {
+  align-items: center;
+}
+.nacar-root :where(.justify-center) {
+  justify-content: center;
+}
+.nacar-root :where(.gap-2) {
+  gap: calc(var(--spacing) * 2);
+}
+.nacar-root :where(.gap-3) {
+  gap: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.space-y-1\.5) {
+  .nacar-root :where(:where(& > :not(:last-child))) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 1.5) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 1.5) * calc(1 - var(--tw-space-y-reverse)));
+  }
+}
+.nacar-root :where(.space-y-3) {
+  .nacar-root :where(:where(& > :not(:last-child))) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
+  }
+}
+.nacar-root :where(.space-y-5) {
+  .nacar-root :where(:where(& > :not(:last-child))) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 5) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 5) * calc(1 - var(--tw-space-y-reverse)));
+  }
+}
+.nacar-root :where(.space-y-8) {
+  .nacar-root :where(:where(& > :not(:last-child))) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
+  }
+}
+.nacar-root :where(.space-y-10) {
+  .nacar-root :where(:where(& > :not(:last-child))) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
+  }
+}
+.nacar-root :where(.gap-x-5) {
+  column-gap: calc(var(--spacing) * 5);
+}
+.nacar-root :where(.overflow-hidden) {
+  overflow: hidden;
+}
+.nacar-root :where(.overflow-x-clip) {
+  overflow-x: clip;
+}
+.nacar-root :where(.rounded) {
+  border-radius: 0.25rem;
+}
+.nacar-root :where(.rounded-full) {
+  border-radius: calc(infinity * 1px);
+}
+.nacar-root :where(.rounded-lg) {
+  border-radius: var(--radius-lg);
+}
+.nacar-root :where(.border) {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+}
+.nacar-root :where(.border-b) {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 1px;
+}
+.nacar-root :where(.border-\[\#f8f6f2\]\/20) {
+  border-color: color-mix(in oklab, #f8f6f2 20%, transparent);
+}
+.nacar-root :where(.border-foreground\/15) {
+  border-color: color-mix(in srgb, #3c4b5d 15%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
+  }
+}
+.nacar-root :where(.border-foreground\/20) {
+  border-color: color-mix(in srgb, #3c4b5d 20%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-foreground) 20%, transparent);
+  }
+}
+.nacar-root :where(.border-foreground\/25) {
+  border-color: color-mix(in srgb, #3c4b5d 25%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-foreground) 25%, transparent);
+  }
+}
+.nacar-root :where(.border-foreground\/30) {
+  border-color: color-mix(in srgb, #3c4b5d 30%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-foreground) 30%, transparent);
+  }
+}
+.nacar-root :where(.border-foreground\/40) {
+  border-color: color-mix(in srgb, #3c4b5d 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-foreground) 40%, transparent);
+  }
+}
+.nacar-root :where(.border-white\/40) {
+  border-color: color-mix(in srgb, #fff 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-white) 40%, transparent);
+  }
+}
+.nacar-root :where(.bg-\[\#2f3a47\]) {
+  background-color: #2f3a47;
+}
+.nacar-root :where(.bg-\[\#f8f6f2\]) {
+  background-color: #f8f6f2;
+}
+.nacar-root :where(.bg-background) {
+  background-color: var(--color-background);
+}
+.nacar-root :where(.bg-background\/80) {
+  background-color: color-mix(in srgb, #f8f6f2 80%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-background) 80%, transparent);
+  }
+}
+.nacar-root :where(.bg-black\/25) {
+  background-color: color-mix(in srgb, #000 25%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-black) 25%, transparent);
+  }
+}
+.nacar-root :where(.bg-foreground) {
+  background-color: var(--color-foreground);
+}
+.nacar-root :where(.bg-foreground\/50) {
+  background-color: color-mix(in srgb, #3c4b5d 50%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-foreground) 50%, transparent);
+  }
+}
+.nacar-root :where(.bg-white) {
+  background-color: var(--color-white);
+}
+.nacar-root :where(.bg-white\/45) {
+  background-color: color-mix(in srgb, #fff 45%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-white) 45%, transparent);
+  }
+}
+.nacar-root :where(.bg-white\/80) {
+  background-color: color-mix(in srgb, #fff 80%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-white) 80%, transparent);
+  }
+}
+.nacar-root :where(.object-contain) {
+  object-fit: contain;
+}
+.nacar-root :where(.object-cover) {
+  object-fit: cover;
+}
+.nacar-root :where(.object-fill) {
+  object-fit: fill;
+}
+.nacar-root :where(.object-bottom) {
+  object-position: bottom;
+}
+.nacar-root :where(.p-4) {
+  padding: calc(var(--spacing) * 4);
+}
+.nacar-root :where(.p-7) {
+  padding: calc(var(--spacing) * 7);
+}
+.nacar-root :where(.p-8) {
+  padding: calc(var(--spacing) * 8);
+}
+.nacar-root :where(.p-\[3px\]) {
+  padding: 3px;
+}
+.nacar-root :where(.px-3) {
+  padding-inline: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.px-3\.5) {
+  padding-inline: calc(var(--spacing) * 3.5);
+}
+.nacar-root :where(.px-4) {
+  padding-inline: calc(var(--spacing) * 4);
+}
+.nacar-root :where(.px-6) {
+  padding-inline: calc(var(--spacing) * 6);
+}
+.nacar-root :where(.px-8) {
+  padding-inline: calc(var(--spacing) * 8);
+}
+.nacar-root :where(.px-10) {
+  padding-inline: calc(var(--spacing) * 10);
+}
+.nacar-root :where(.px-\[22\%\]) {
+  padding-inline: 22%;
+}
+.nacar-root :where(.px-\[24\%\]) {
+  padding-inline: 24%;
+}
+.nacar-root :where(.py-1\.5) {
+  padding-block: calc(var(--spacing) * 1.5);
+}
+.nacar-root :where(.py-2\.5) {
+  padding-block: calc(var(--spacing) * 2.5);
+}
+.nacar-root :where(.py-3) {
+  padding-block: calc(var(--spacing) * 3);
+}
+.nacar-root :where(.py-6) {
+  padding-block: calc(var(--spacing) * 6);
+}
+.nacar-root :where(.py-14) {
+  padding-block: calc(var(--spacing) * 14);
+}
+.nacar-root :where(.py-16) {
+  padding-block: calc(var(--spacing) * 16);
+}
+.nacar-root :where(.py-20) {
+  padding-block: calc(var(--spacing) * 20);
+}
+.nacar-root :where(.py-36) {
+  padding-block: calc(var(--spacing) * 36);
+}
+.nacar-root :where(.pt-0) {
+  padding-top: calc(var(--spacing) * 0);
+}
+.nacar-root :where(.pt-2) {
+  padding-top: calc(var(--spacing) * 2);
+}
+.nacar-root :where(.pt-6) {
+  padding-top: calc(var(--spacing) * 6);
+}
+.nacar-root :where(.pt-10) {
+  padding-top: calc(var(--spacing) * 10);
+}
+.nacar-root :where(.pt-20) {
+  padding-top: calc(var(--spacing) * 20);
+}
+.nacar-root :where(.pt-32) {
+  padding-top: calc(var(--spacing) * 32);
+}
+.nacar-root :where(.pt-\[40px\]) {
+  padding-top: 40px;
+}
+.nacar-root :where(.pt-\[110px\]) {
+  padding-top: 110px;
+}
+.nacar-root :where(.pb-1) {
+  padding-bottom: calc(var(--spacing) * 1);
+}
+.nacar-root :where(.pb-4) {
+  padding-bottom: calc(var(--spacing) * 4);
+}
+.nacar-root :where(.pb-20) {
+  padding-bottom: calc(var(--spacing) * 20);
+}
+.nacar-root :where(.pb-\[7\%\]) {
+  padding-bottom: 7%;
+}
+.nacar-root :where(.pb-\[130px\]) {
+  padding-bottom: 130px;
+}
+.nacar-root :where(.pb-\[min\(60vw\,460px\)\]) {
+  padding-bottom: min(60vw, 460px);
+}
+.nacar-root :where(.text-center) {
+  text-align: center;
+}
+.nacar-root :where(.text-left) {
+  text-align: left;
+}
+.nacar-root :where(.font-ballet) {
+  font-family: var(--font-ballet);
+}
+.nacar-root :where(.font-body) {
+  font-family: var(--font-body);
+}
+.nacar-root :where(.font-display) {
+  font-family: var(--font-display);
+}
+.nacar-root :where(.font-doulaise) {
+  font-family: var(--font-doulaise);
+}
+.nacar-root :where(.font-helvetica) {
+  font-family: var(--font-helvetica);
+}
+.nacar-root :where(.font-mono) {
+  font-family: var(--font-mono);
+}
+.nacar-root :where(.text-2xl) {
+  font-size: var(--text-2xl);
+  line-height: var(--tw-leading, var(--text-2xl--line-height));
+}
+.nacar-root :where(.text-3xl) {
+  font-size: var(--text-3xl);
+  line-height: var(--tw-leading, var(--text-3xl--line-height));
+}
+.nacar-root :where(.text-4xl) {
+  font-size: var(--text-4xl);
+  line-height: var(--tw-leading, var(--text-4xl--line-height));
+}
+.nacar-root :where(.text-5xl) {
+  font-size: var(--text-5xl);
+  line-height: var(--tw-leading, var(--text-5xl--line-height));
+}
+.nacar-root :where(.text-6xl) {
+  font-size: var(--text-6xl);
+  line-height: var(--tw-leading, var(--text-6xl--line-height));
+}
+.nacar-root :where(.text-base) {
+  font-size: var(--text-base);
+  line-height: var(--tw-leading, var(--text-base--line-height));
+}
+.nacar-root :where(.text-lg) {
+  font-size: var(--text-lg);
+  line-height: var(--tw-leading, var(--text-lg--line-height));
+}
+.nacar-root :where(.text-sm) {
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+}
+.nacar-root :where(.text-xl) {
+  font-size: var(--text-xl);
+  line-height: var(--tw-leading, var(--text-xl--line-height));
+}
+.nacar-root :where(.text-xs) {
+  font-size: var(--text-xs);
+  line-height: var(--tw-leading, var(--text-xs--line-height));
+}
+.nacar-root :where(.text-\[0\.5em\]) {
+  font-size: 0.5em;
+}
+.nacar-root :where(.text-\[2vw\]) {
+  font-size: 2vw;
+}
+.nacar-root :where(.text-\[6\.5vw\]) {
+  font-size: 6.5vw;
+}
+.nacar-root :where(.text-\[7vw\]) {
+  font-size: 7vw;
+}
+.nacar-root :where(.text-\[8vw\]) {
+  font-size: 8vw;
+}
+.nacar-root :where(.text-\[10px\]) {
+  font-size: 10px;
+}
+.nacar-root :where(.text-\[11px\]) {
+  font-size: 11px;
+}
+.nacar-root :where(.text-\[12px\]) {
+  font-size: 12px;
+}
+.nacar-root :where(.text-\[13px\]) {
+  font-size: 13px;
+}
+.nacar-root :where(.text-\[15px\]) {
+  font-size: 15px;
+}
+.nacar-root :where(.text-\[17px\]) {
+  font-size: 17px;
+}
+.nacar-root :where(.text-\[38px\]) {
+  font-size: 38px;
+}
+.nacar-root :where(.text-\[40px\]) {
+  font-size: 40px;
+}
+.nacar-root :where(.text-\[50px\]) {
+  font-size: 50px;
+}
+.nacar-root :where(.leading-\[0\.9\]) {
+  --tw-leading: 0.9;
+  line-height: 0.9;
+}
+.nacar-root :where(.leading-\[0\.95\]) {
+  --tw-leading: 0.95;
+  line-height: 0.95;
+}
+.nacar-root :where(.leading-none) {
+  --tw-leading: 1;
+  line-height: 1;
+}
+.nacar-root :where(.leading-relaxed) {
+  --tw-leading: var(--leading-relaxed);
+  line-height: var(--leading-relaxed);
+}
+.nacar-root :where(.leading-snug) {
+  --tw-leading: var(--leading-snug);
+  line-height: var(--leading-snug);
+}
+.nacar-root :where(.leading-tight) {
+  --tw-leading: var(--leading-tight);
+  line-height: var(--leading-tight);
+}
+.nacar-root :where(.tracking-\[0\.1em\]) {
+  --tw-tracking: 0.1em;
+  letter-spacing: 0.1em;
+}
+.nacar-root :where(.tracking-\[0\.2em\]) {
+  --tw-tracking: 0.2em;
+  letter-spacing: 0.2em;
+}
+.nacar-root :where(.tracking-\[0\.3em\]) {
+  --tw-tracking: 0.3em;
+  letter-spacing: 0.3em;
+}
+.nacar-root :where(.tracking-\[0\.14em\]) {
+  --tw-tracking: 0.14em;
+  letter-spacing: 0.14em;
+}
+.nacar-root :where(.tracking-\[0\.15em\]) {
+  --tw-tracking: 0.15em;
+  letter-spacing: 0.15em;
+}
+.nacar-root :where(.tracking-\[0\.24em\]) {
+  --tw-tracking: 0.24em;
+  letter-spacing: 0.24em;
+}
+.nacar-root :where(.tracking-\[0\.25em\]) {
+  --tw-tracking: 0.25em;
+  letter-spacing: 0.25em;
+}
+.nacar-root :where(.tracking-\[0\.28em\]) {
+  --tw-tracking: 0.28em;
+  letter-spacing: 0.28em;
+}
+.nacar-root :where(.tracking-\[0\.32em\]) {
+  --tw-tracking: 0.32em;
+  letter-spacing: 0.32em;
+}
+.nacar-root :where(.tracking-wide) {
+  --tw-tracking: var(--tracking-wide);
+  letter-spacing: var(--tracking-wide);
+}
+.nacar-root :where(.tracking-wider) {
+  --tw-tracking: var(--tracking-wider);
+  letter-spacing: var(--tracking-wider);
+}
+.nacar-root :where(.break-words) {
+  overflow-wrap: break-word;
+}
+.nacar-root :where(.whitespace-nowrap) {
+  white-space: nowrap;
+}
+.nacar-root :where(.text-\[\#3c4b5d\]) {
+  color: #3c4b5d;
+}
+.nacar-root :where(.text-\[\#f5f0e8\]) {
+  color: #f5f0e8;
+}
+.nacar-root :where(.text-\[\#f8f6f2\]) {
+  color: #f8f6f2;
+}
+.nacar-root :where(.text-\[\#f8f6f2\]\/80) {
+  color: color-mix(in oklab, #f8f6f2 80%, transparent);
+}
+.nacar-root :where(.text-background) {
+  color: var(--color-background);
+}
+.nacar-root :where(.text-foreground) {
+  color: var(--color-foreground);
+}
+.nacar-root :where(.text-foreground\/50) {
+  color: color-mix(in srgb, #3c4b5d 50%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 50%, transparent);
+  }
+}
+.nacar-root :where(.text-foreground\/60) {
+  color: color-mix(in srgb, #3c4b5d 60%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 60%, transparent);
+  }
+}
+.nacar-root :where(.text-foreground\/65) {
+  color: color-mix(in srgb, #3c4b5d 65%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 65%, transparent);
+  }
+}
+.nacar-root :where(.text-foreground\/70) {
+  color: color-mix(in srgb, #3c4b5d 70%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 70%, transparent);
+  }
+}
+.nacar-root :where(.text-foreground\/75) {
+  color: color-mix(in srgb, #3c4b5d 75%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 75%, transparent);
+  }
+}
+.nacar-root :where(.text-foreground\/80) {
+  color: color-mix(in srgb, #3c4b5d 80%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 80%, transparent);
+  }
+}
+.nacar-root :where(.text-foreground\/85) {
+  color: color-mix(in srgb, #3c4b5d 85%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-foreground) 85%, transparent);
+  }
+}
+.nacar-root :where(.text-white\/90) {
+  color: color-mix(in srgb, #fff 90%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    color: color-mix(in oklab, var(--color-white) 90%, transparent);
+  }
+}
+.nacar-root :where(.uppercase) {
+  text-transform: uppercase;
+}
+.nacar-root :where(.tabular-nums) {
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);
+}
+.nacar-root :where(.accent-\[\#3c4b5d\]) {
+  accent-color: #3c4b5d;
+}
+.nacar-root :where(.opacity-0) {
+  opacity: 0%;
+}
+.nacar-root :where(.opacity-100) {
+  opacity: 100%;
+}
+.nacar-root :where(.mix-blend-multiply) {
+  mix-blend-mode: multiply;
+}
+.nacar-root :where(.shadow-2xl) {
+  --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.nacar-root :where(.shadow-\[0_1px_2px_rgba\(60\,75\,93\,0\.3\)\]) {
+  --tw-shadow: 0 1px 2px var(--tw-shadow-color, rgba(60,75,93,0.3));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.nacar-root :where(.shadow-\[0_10px_30px_-12px_rgba\(60\,75\,93\,0\.35\)\]) {
+  --tw-shadow: 0 10px 30px -12px var(--tw-shadow-color, rgba(60,75,93,0.35));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.nacar-root :where(.shadow-md) {
+  --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.nacar-root :where(.drop-shadow-\[0_2px_3px_rgba\(60\,75\,93\,0\.15\)\]) {
+  --tw-drop-shadow-size: drop-shadow(0 2px 3px var(--tw-drop-shadow-color, rgba(60,75,93,0.15)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+.nacar-root :where(.drop-shadow-\[0_2px_6px_rgba\(0\,0\,0\,0\.15\)\]) {
+  --tw-drop-shadow-size: drop-shadow(0 2px 6px var(--tw-drop-shadow-color, rgba(0,0,0,0.15)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+.nacar-root :where(.drop-shadow-\[0_6px_6px_rgba\(60\,75\,93\,0\.12\)\]) {
+  --tw-drop-shadow-size: drop-shadow(0 6px 6px var(--tw-drop-shadow-color, rgba(60,75,93,0.12)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+.nacar-root :where(.drop-shadow-\[0_8px_18px_rgba\(60\,75\,93\,0\.22\)\]) {
+  --tw-drop-shadow-size: drop-shadow(0 8px 18px var(--tw-drop-shadow-color, rgba(60,75,93,0.22)));
+  --tw-drop-shadow: var(--tw-drop-shadow-size);
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+.nacar-root :where(.backdrop-blur-sm) {
+  --tw-backdrop-blur: blur(var(--blur-sm));
+  -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+}
+.nacar-root :where(.transition-all) {
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.nacar-root :where(.transition-colors) {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.nacar-root :where(.transition-opacity) {
+  transition-property: opacity;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.nacar-root :where(.transition-transform) {
+  transition-property: transform, translate, scale, rotate;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.nacar-root :where(.duration-300) {
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+}
+.nacar-root :where(.duration-500) {
+  --tw-duration: 500ms;
+  transition-duration: 500ms;
+}
+.nacar-root :where(.duration-700) {
+  --tw-duration: 700ms;
+  transition-duration: 700ms;
+}
+.nacar-root :where(.duration-\[800ms\]) {
+  --tw-duration: 800ms;
+  transition-duration: 800ms;
+}
+.nacar-root :where(.duration-\[1600ms\]) {
+  --tw-duration: 1600ms;
+  transition-duration: 1600ms;
+}
+.nacar-root :where(.ease-in-out) {
+  --tw-ease: var(--ease-in-out);
+  transition-timing-function: var(--ease-in-out);
+}
+.nacar-root :where(.ease-out) {
+  --tw-ease: var(--ease-out);
+  transition-timing-function: var(--ease-out);
+}
+.nacar-root :where(.outline-none) {
+  --tw-outline-style: none;
+  outline-style: none;
+}
+.nacar-root :where(.select-all) {
+  -webkit-user-select: all;
+  user-select: all;
+}
+.nacar-root :where(.select-none) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.nacar-root :where(.group-hover\:scale-105) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      --tw-scale-x: 105%;
+      --tw-scale-y: 105%;
+      --tw-scale-z: 105%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.nacar-root :where(.group-hover\:border-foreground) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      border-color: var(--color-foreground);
+    }
+  }
+}
+.nacar-root :where(.group-hover\:border-foreground\/70) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      border-color: color-mix(in srgb, #3c4b5d 70%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        border-color: color-mix(in oklab, var(--color-foreground) 70%, transparent);
+      }
+    }
+  }
+}
+.nacar-root :where(.group-hover\:bg-foreground) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      background-color: var(--color-foreground);
+    }
+  }
+}
+.nacar-root :where(.group-hover\:bg-foreground\/90) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      background-color: color-mix(in srgb, #3c4b5d 90%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-foreground) 90%, transparent);
+      }
+    }
+  }
+}
+.nacar-root :where(.group-hover\:text-background) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      color: var(--color-background);
+    }
+  }
+}
+.nacar-root :where(.group-hover\:text-foreground) {
+  .nacar-root :where(&:is(:where(.group):hover *)) {
+    @media (hover: hover) {
+      color: var(--color-foreground);
+    }
+  }
+}
+.nacar-root :where(.group-active\:scale-95) {
+  .nacar-root :where(&:is(:where(.group):active *)) {
+    --tw-scale-x: 95%;
+    --tw-scale-y: 95%;
+    --tw-scale-z: 95%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+}
+.nacar-root :where(.selection\:bg-foreground\/15) {
+  .nacar-root :where(& *::selection) {
+    background-color: color-mix(in srgb, #3c4b5d 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
+    }
+  }
+  .nacar-root :where(&::selection) {
+    background-color: color-mix(in srgb, #3c4b5d 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
+    }
+  }
+}
+.nacar-root :where(.hover\:scale-\[1\.03\]) {
+  .nacar-root :where(&:hover) {
+    @media (hover: hover) {
+      scale: 1.03;
+    }
+  }
+}
+.nacar-root :where(.hover\:border-foreground\/60) {
+  .nacar-root :where(&:hover) {
+    @media (hover: hover) {
+      border-color: color-mix(in srgb, #3c4b5d 60%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        border-color: color-mix(in oklab, var(--color-foreground) 60%, transparent);
+      }
+    }
+  }
+}
+.nacar-root :where(.hover\:bg-black\/45) {
+  .nacar-root :where(&:hover) {
+    @media (hover: hover) {
+      background-color: color-mix(in srgb, #000 45%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-black) 45%, transparent);
+      }
+    }
+  }
+}
+.nacar-root :where(.hover\:text-foreground) {
+  .nacar-root :where(&:hover) {
+    @media (hover: hover) {
+      color: var(--color-foreground);
+    }
+  }
+}
+.nacar-root :where(.focus\:border-foreground) {
+  .nacar-root :where(&:focus) {
+    border-color: var(--color-foreground);
+  }
+}
+.nacar-root :where(.focus\:outline-none) {
+  .nacar-root :where(&:focus) {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+}
+.nacar-root :where(.disabled\:cursor-default) {
+  .nacar-root :where(&:disabled) {
+    cursor: default;
+  }
+}
+.nacar-root :where(.md\:left-0) {
+  @media (width >= 48rem) {
+    left: calc(var(--spacing) * 0);
+  }
+}
+.nacar-root :where(.md\:mx-auto) {
+  @media (width >= 48rem) {
+    margin-inline: auto;
+  }
+}
+.nacar-root :where(.md\:my-3\.5) {
+  @media (width >= 48rem) {
+    margin-block: calc(var(--spacing) * 3.5);
+  }
+}
+.nacar-root :where(.md\:mt-3) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 3);
+  }
+}
+.nacar-root :where(.md\:mt-6) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 6);
+  }
+}
+.nacar-root :where(.md\:mt-7) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 7);
+  }
+}
+.nacar-root :where(.md\:mt-8) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 8);
+  }
+}
+.nacar-root :where(.md\:mt-10) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 10);
+  }
+}
+.nacar-root :where(.md\:mt-12) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 12);
+  }
+}
+.nacar-root :where(.md\:mt-28) {
+  @media (width >= 48rem) {
+    margin-top: calc(var(--spacing) * 28);
+  }
+}
+.nacar-root :where(.md\:mt-\[30px\]) {
+  @media (width >= 48rem) {
+    margin-top: 30px;
+  }
+}
+.nacar-root :where(.md\:mt-\[110px\]) {
+  @media (width >= 48rem) {
+    margin-top: 110px;
+  }
+}
+.nacar-root :where(.md\:mb-4) {
+  @media (width >= 48rem) {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+}
+.nacar-root :where(.md\:mb-6) {
+  @media (width >= 48rem) {
+    margin-bottom: calc(var(--spacing) * 6);
+  }
+}
+.nacar-root :where(.md\:mb-8) {
+  @media (width >= 48rem) {
+    margin-bottom: calc(var(--spacing) * 8);
+  }
+}
+.nacar-root :where(.md\:mb-\[24px\]) {
+  @media (width >= 48rem) {
+    margin-bottom: 24px;
+  }
+}
+.nacar-root :where(.md\:h-\[240px\]) {
+  @media (width >= 48rem) {
+    height: 240px;
+  }
+}
+.nacar-root :where(.md\:w-36) {
+  @media (width >= 48rem) {
+    width: calc(var(--spacing) * 36);
+  }
+}
+.nacar-root :where(.md\:w-40) {
+  @media (width >= 48rem) {
+    width: calc(var(--spacing) * 40);
+  }
+}
+.nacar-root :where(.md\:w-\[60\%\]) {
+  @media (width >= 48rem) {
+    width: 60%;
+  }
+}
+.nacar-root :where(.md\:w-\[200px\]) {
+  @media (width >= 48rem) {
+    width: 200px;
+  }
+}
+.nacar-root :where(.md\:w-\[340px\]) {
+  @media (width >= 48rem) {
+    width: 340px;
+  }
+}
+.nacar-root :where(.md\:w-full) {
+  @media (width >= 48rem) {
+    width: 100%;
+  }
+}
+.nacar-root :where(.md\:max-w-\[215px\]) {
+  @media (width >= 48rem) {
+    max-width: 215px;
+  }
+}
+.nacar-root :where(.md\:max-w-\[300px\]) {
+  @media (width >= 48rem) {
+    max-width: 300px;
+  }
+}
+.nacar-root :where(.md\:max-w-\[465px\]) {
+  @media (width >= 48rem) {
+    max-width: 465px;
+  }
+}
+.nacar-root :where(.md\:max-w-md) {
+  @media (width >= 48rem) {
+    max-width: var(--container-md);
+  }
+}
+.nacar-root :where(.md\:translate-x-0) {
+  @media (width >= 48rem) {
+    --tw-translate-x: calc(var(--spacing) * 0);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+}
+.nacar-root :where(.md\:space-y-10) {
+  @media (width >= 48rem) {
+    .nacar-root :where(:where(& > :not(:last-child))) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+}
+.nacar-root :where(.md\:space-y-12) {
+  @media (width >= 48rem) {
+    .nacar-root :where(:where(& > :not(:last-child))) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 12) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+}
+.nacar-root :where(.md\:p-9) {
+  @media (width >= 48rem) {
+    padding: calc(var(--spacing) * 9);
+  }
+}
+.nacar-root :where(.md\:px-10) {
+  @media (width >= 48rem) {
+    padding-inline: calc(var(--spacing) * 10);
+  }
+}
+.nacar-root :where(.md\:px-12) {
+  @media (width >= 48rem) {
+    padding-inline: calc(var(--spacing) * 12);
+  }
+}
+.nacar-root :where(.md\:py-16) {
+  @media (width >= 48rem) {
+    padding-block: calc(var(--spacing) * 16);
+  }
+}
+.nacar-root :where(.md\:py-24) {
+  @media (width >= 48rem) {
+    padding-block: calc(var(--spacing) * 24);
+  }
+}
+.nacar-root :where(.md\:py-28) {
+  @media (width >= 48rem) {
+    padding-block: calc(var(--spacing) * 28);
+  }
+}
+.nacar-root :where(.md\:py-56) {
+  @media (width >= 48rem) {
+    padding-block: calc(var(--spacing) * 56);
+  }
+}
+.nacar-root :where(.md\:pt-10) {
+  @media (width >= 48rem) {
+    padding-top: calc(var(--spacing) * 10);
+  }
+}
+.nacar-root :where(.md\:pt-16) {
+  @media (width >= 48rem) {
+    padding-top: calc(var(--spacing) * 16);
+  }
+}
+.nacar-root :where(.md\:pt-28) {
+  @media (width >= 48rem) {
+    padding-top: calc(var(--spacing) * 28);
+  }
+}
+.nacar-root :where(.md\:pt-44) {
+  @media (width >= 48rem) {
+    padding-top: calc(var(--spacing) * 44);
+  }
+}
+.nacar-root :where(.md\:pt-\[60px\]) {
+  @media (width >= 48rem) {
+    padding-top: 60px;
+  }
+}
+.nacar-root :where(.md\:pt-\[145px\]) {
+  @media (width >= 48rem) {
+    padding-top: 145px;
+  }
+}
+.nacar-root :where(.md\:pb-28) {
+  @media (width >= 48rem) {
+    padding-bottom: calc(var(--spacing) * 28);
+  }
+}
+.nacar-root :where(.md\:pb-\[70px\]) {
+  @media (width >= 48rem) {
+    padding-bottom: 70px;
+  }
+}
+.nacar-root :where(.md\:pb-\[170px\]) {
+  @media (width >= 48rem) {
+    padding-bottom: 170px;
+  }
+}
+.nacar-root :where(.md\:text-2xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-3xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-4xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-5xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-6xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-6xl);
+    line-height: var(--tw-leading, var(--text-6xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-7xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-7xl);
+    line-height: var(--tw-leading, var(--text-7xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-8xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-8xl);
+    line-height: var(--tw-leading, var(--text-8xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-base) {
+  @media (width >= 48rem) {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+}
+.nacar-root :where(.md\:text-lg) {
+  @media (width >= 48rem) {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
+}
+.nacar-root :where(.md\:text-sm) {
+  @media (width >= 48rem) {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+}
+.nacar-root :where(.md\:text-xl) {
+  @media (width >= 48rem) {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+}
+.nacar-root :where(.md\:text-xs) {
+  @media (width >= 48rem) {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+}
+.nacar-root :where(.md\:text-\[13px\]) {
+  @media (width >= 48rem) {
+    font-size: 13px;
+  }
+}
+.nacar-root :where(.md\:text-\[14px\]) {
+  @media (width >= 48rem) {
+    font-size: 14px;
+  }
+}
+.nacar-root :where(.md\:text-\[15px\]) {
+  @media (width >= 48rem) {
+    font-size: 15px;
+  }
+}
+.nacar-root :where(.md\:text-\[19px\]) {
+  @media (width >= 48rem) {
+    font-size: 19px;
+  }
+}
+.nacar-root :where(.md\:text-\[50px\]) {
+  @media (width >= 48rem) {
+    font-size: 50px;
+  }
+}
+.nacar-root :where(.md\:text-\[62px\]) {
+  @media (width >= 48rem) {
+    font-size: 62px;
+  }
+}
+.nacar-root :where(.md\:text-\[64px\]) {
+  @media (width >= 48rem) {
+    font-size: 64px;
+  }
+}
+.nacar-root :where(*), .nacar-root :where(::after), .nacar-root :where(::before), .nacar-root :where(::backdrop), .nacar-root :where(::file-selector-button) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+.nacar-root, .nacar-root {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji');
+  font-feature-settings: var(--default-font-feature-settings, normal);
+  font-variation-settings: var(--default-font-variation-settings, normal);
+  -webkit-tap-highlight-color: transparent;
+}
+.nacar-root :where(hr) {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+.nacar-root :where(abbr:where([title])) {
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+.nacar-root :where(h1), .nacar-root :where(h2), .nacar-root :where(h3), .nacar-root :where(h4), .nacar-root :where(h5), .nacar-root :where(h6) {
+  font-size: inherit;
+  font-weight: inherit;
+}
+.nacar-root :where(a) {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+.nacar-root :where(b), .nacar-root :where(strong) {
+  font-weight: bolder;
+}
+.nacar-root :where(code), .nacar-root :where(kbd), .nacar-root :where(samp), .nacar-root :where(pre) {
+  font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace);
+  font-feature-settings: var(--default-mono-font-feature-settings, normal);
+  font-variation-settings: var(--default-mono-font-variation-settings, normal);
+  font-size: 1em;
+}
+.nacar-root :where(small) {
+  font-size: 80%;
+}
+.nacar-root :where(sub), .nacar-root :where(sup) {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.nacar-root :where(sub) {
+  bottom: -0.25em;
+}
+.nacar-root :where(sup) {
+  top: -0.5em;
+}
+.nacar-root :where(table) {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+}
+.nacar-root :where(:-moz-focusring) {
+  outline: auto;
+}
+.nacar-root :where(progress) {
+  vertical-align: baseline;
+}
+.nacar-root :where(summary) {
+  display: list-item;
+}
+.nacar-root :where(ol), .nacar-root :where(ul), .nacar-root :where(menu) {
+  list-style: none;
+}
+.nacar-root :where(img), .nacar-root :where(svg), .nacar-root :where(video), .nacar-root :where(canvas), .nacar-root :where(audio), .nacar-root :where(iframe), .nacar-root :where(embed), .nacar-root :where(object) {
+  display: block;
+  vertical-align: middle;
+}
+.nacar-root :where(img), .nacar-root :where(video) {
+  max-width: 100%;
+  height: auto;
+}
+.nacar-root :where(button), .nacar-root :where(input), .nacar-root :where(select), .nacar-root :where(optgroup), .nacar-root :where(textarea), .nacar-root :where(::file-selector-button) {
+  font: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  border-radius: 0;
+  background-color: transparent;
+  opacity: 1;
+}
+.nacar-root :where(:where(select:is([multiple], [size])) optgroup) {
+  font-weight: bolder;
+}
+.nacar-root :where(:where(select:is([multiple], [size])) optgroup option) {
+  padding-inline-start: 20px;
+}
+.nacar-root :where(::file-selector-button) {
+  margin-inline-end: 4px;
+}
+.nacar-root :where(::placeholder) {
+  opacity: 1;
+}
+@supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+  .nacar-root :where(::placeholder) {
+    color: currentcolor;
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, currentcolor 50%, transparent);
+    }
+  }
+}
+.nacar-root :where(textarea) {
+  resize: vertical;
+}
+.nacar-root :where(::-webkit-search-decoration) {
+  -webkit-appearance: none;
+}
+.nacar-root :where(::-webkit-date-and-time-value) {
+  min-height: 1lh;
+  text-align: inherit;
+}
+.nacar-root :where(::-webkit-datetime-edit) {
+  display: inline-flex;
+}
+.nacar-root :where(::-webkit-datetime-edit-fields-wrapper) {
+  padding: 0;
+}
+.nacar-root :where(::-webkit-datetime-edit), .nacar-root :where(::-webkit-datetime-edit-year-field), .nacar-root :where(::-webkit-datetime-edit-month-field), .nacar-root :where(::-webkit-datetime-edit-day-field), .nacar-root :where(::-webkit-datetime-edit-hour-field), .nacar-root :where(::-webkit-datetime-edit-minute-field), .nacar-root :where(::-webkit-datetime-edit-second-field), .nacar-root :where(::-webkit-datetime-edit-millisecond-field), .nacar-root :where(::-webkit-datetime-edit-meridiem-field) {
+  padding-block: 0;
+}
+.nacar-root :where(:-moz-ui-invalid) {
+  box-shadow: none;
+}
+.nacar-root :where(button), .nacar-root :where(input:where([type='button'], [type='reset'], [type='submit'])), .nacar-root :where(::file-selector-button) {
+  appearance: button;
+}
+.nacar-root :where(::-webkit-inner-spin-button), .nacar-root :where(::-webkit-outer-spin-button) {
+  height: auto;
+}
+.nacar-root :where([hidden]:where(:not([hidden='until-found']))) {
+  display: none !important;
+}
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ordinal {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-slashed-zero {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-figure {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-spacing {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-fraction {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    .nacar-root :where(*), .nacar-root :where(::before), .nacar-root :where(::after), .nacar-root :where(::backdrop) {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-leading: initial;
+      --tw-tracking: initial;
+      --tw-ordinal: initial;
+      --tw-slashed-zero: initial;
+      --tw-numeric-figure: initial;
+      --tw-numeric-spacing: initial;
+      --tw-numeric-fraction: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-blur: initial;
+      --tw-brightness: initial;
+      --tw-contrast: initial;
+      --tw-grayscale: initial;
+      --tw-hue-rotate: initial;
+      --tw-invert: initial;
+      --tw-opacity: initial;
+      --tw-saturate: initial;
+      --tw-sepia: initial;
+      --tw-drop-shadow: initial;
+      --tw-drop-shadow-color: initial;
+      --tw-drop-shadow-alpha: 100%;
+      --tw-drop-shadow-size: initial;
+      --tw-backdrop-blur: initial;
+      --tw-backdrop-brightness: initial;
+      --tw-backdrop-contrast: initial;
+      --tw-backdrop-grayscale: initial;
+      --tw-backdrop-hue-rotate: initial;
+      --tw-backdrop-invert: initial;
+      --tw-backdrop-opacity: initial;
+      --tw-backdrop-saturate: initial;
+      --tw-backdrop-sepia: initial;
+      --tw-duration: initial;
+      --tw-ease: initial;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
+    }
+  }
+}
+
+
+    .nacar-root {
+      --background: 40 33% 96%;
+      --foreground: 213 22% 30%;
+    }
+
+    .nacar-root {
+      scroll-behavior: smooth;
+    }
+
+    .nacar-root {
+      background-color: #f8f6f2;
+      color: #3c4b5d;
+      font-family: 'Jost', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nacar-root.scroll-locked {
+      overflow: hidden;
+      height: 100dvh;
+    }
+
+    /* Smooth scroll-reveal animation */
+    .nacar-root :where(.reveal) {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nacar-root :where(.reveal.is-visible) {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Inline RSVP form smooth expansion */
+    .nacar-root :where(.rsvp-form-collapse) {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.65s ease 0.15s;
+    }
+
+    .nacar-root :where(.rsvp-form-collapse.is-open) {
+      max-height: 1100px;
+      opacity: 1;
+    }
+  
+/* Component scope and shared N&S Atelier viewer integration */
+.nacar-root{--color-background:#f8f6f2;--color-foreground:#3c4b5d;position:relative;width:100%;min-height:100vh;max-width:560px;margin:0 auto;background:#f8f6f2;color:#3c4b5d;font-family:"Jost",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;}
+.nacar-root .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease;}
+.nacar-root .reveal.is-visible{opacity:1;transform:translateY(0);}
+.nacar-root .rsvp-form-collapse{max-height:0;opacity:0;overflow:hidden;transition:max-height .85s ease,opacity .65s ease;}
+.nacar-root .rsvp-form-collapse.is-open{max-height:1100px;opacity:1;}
+.nacar-root #hero-content{opacity:1;transition:opacity 1.6s ease-out;}
+#weiOverlay.nacar-opening{background:radial-gradient(circle at 50% 42%,#fff 0%,#f8f6f2 55%,#eae3d5 100%);color:#3c4b5d;}
+#weiOverlay.nacar-opening #weiImg{width:135px;height:auto;max-width:60vw;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(60,75,93,.22));}
+#weiOverlay.nacar-opening #weiTapLabel{font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.22em;color:#3c4b5d;text-transform:uppercase;background:transparent;animation:none;}
+#weiOverlay.nacar-opening .nacar-welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:100%;padding:24px;text-align:center;gap:24px;}
+#weiOverlay.nacar-opening .nacar-welcome h2{font:400 44px/1.1 "Monsieur La Doulaise",cursive;color:#3c4b5d;}
+#weiOverlay.nacar-opening .nacar-welcome p{font:400 16px/1.4 "Cormorant Garamond",serif;letter-spacing:.25em;text-transform:uppercase;}
+#weiOverlay.nacar-opening #weiTapWrap{position:static;transform:none;}
+#weiOverlay.nacar-opening .wei-chevron{display:none;}
+body.ns-mobile-immersive .nacar-root{max-width:none;}
+@media(max-width:560px){.nacar-root{max-width:100%;}}
+@media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}
+/* Controles ambientales ocultos durante la inactividad, igual que el visor */
+.nacar-root #audio-toggle-btn.nacar-idle{opacity:0!important;pointer-events:none!important;}

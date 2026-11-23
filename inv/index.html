@@ -670,8 +670,11 @@
   </div>
 
   <link rel="stylesheet" href="red-vibrante.css" />
+  <link rel="stylesheet" href="nacar.css" />
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
+  <script src="nacar-original.js"></script>
+  <script src="nacar.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -1752,7 +1755,15 @@
         !editingView && payload.tipo === 'plantilla' && demoId === 'jardin-seda';
       const redVibranteEditor = editingView && payload.tipo === 'plantilla' &&
         t.id === 'jardin-seda' && /red\s+vibrante/i.test(t.nombre || '');
-      if (redVibrantePublica || redVibranteEditor || t.estilo === 'red-vibrante') {
+      // Olivo & Marfil se convierte SOLO en la demo pública Nácar.
+      // No tocar las invitaciones de clientes ni la plantilla privada con este ID.
+      const nacarPublico = t.id === 'olivo-marfil' &&
+        !editingView && payload.tipo === 'plantilla' && demoId === 'olivo-marfil';
+      const nacarEditor = editingView && payload.tipo === 'plantilla' &&
+        t.id === 'olivo-marfil' && /^n[aá]car$/i.test((t.nombre || '').trim());
+      if (nacarPublico || nacarEditor || t.estilo === 'nacar') {
+        await window.renderNacar(d, t, m, payload);
+      } else if (redVibrantePublica || redVibranteEditor || t.estilo === 'red-vibrante') {
         await window.renderRedVibrante(d, t, m, payload);
       } else if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
       else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m, payload.tipo === 'plantilla');
@@ -1786,6 +1797,26 @@
         if (query.tipo !== 'plantilla') return response;
       } catch (error) {
         if (query.tipo !== 'plantilla') throw error;
+      }
+      // Respaldo local exclusivo de la demo: la plantilla privada no se modifica.
+      if (query.id === 'olivo-marfil') {
+        return {
+          ok:true, tipo:'plantilla',
+          plantilla:{id:'olivo-marfil',nombre:'Nácar',categoria:'Boda',
+            descripcion:'Perlas, encaje, sobre animado y fotografía interactiva.',
+            estilo:'editorial',fondo:'#f8f6f2',texto:'#3c4b5d',acento:'#cbb486',media:{}},
+          datos:{nombre1:'Cornelia',nombre2:'James',tipo:'Wedding Day',
+            fecha:'2027-05-20T16:30:00+02:00',fechaCorta:'20.05.2027',
+            lugar:'Villa Aurelia',direccion:'Rome, Italy',
+            vestimenta:'Formal Attire',regalos:'Your presence is our greatest gift.',
+            despedida:'We cannot wait to celebrate with you.',
+            rsvpLimite:'Please reply by May 1, 2027',
+            cronograma:[{hora:'4:30 PM',nombre:'Welcome',detalle:'Drinks in the gardens'},
+              {hora:'5:00 PM',nombre:'Ceremony',detalle:'We say I do'},
+              {hora:'6:00 PM',nombre:'Cocktail Hour',detalle:'Aperitivo'},
+              {hora:'8:00 PM',nombre:'Dinner',detalle:'Under the stars'},
+              {hora:'10:30 PM',nombre:'Dancing',detalle:'Until late'}]}
+        };
       }
       // Catálogo público descargado con el proyecto: seis demostraciones de boda.
       if (query.id === 'jardin-seda') {

@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en" class="light" translate="no" style="color-scheme: light only;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Cornelia &amp; James · Villa Aurelia, Rome · 20.05.2027</title>
+
+  <!-- Google Fonts: Cormorant Garamond, Ballet, Monsieur La Doulaise, Jost -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Monsieur+La+Doulaise&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#f8f6f2',
+            foreground: '#3c4b5d',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            ballet: ['"Ballet"', 'cursive'],
+            doulaise: ['"Monsieur La Doulaise"', 'cursive'],
+            body: ['"Jost"', 'sans-serif'],
+            helvetica: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --background: 40 33% 96%;
+      --foreground: 213 22% 30%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #f8f6f2;
+      color: #3c4b5d;
+      font-family: 'Jost', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.scroll-locked {
+      overflow: hidden;
+      height: 100dvh;
+    }
+
+    /* Smooth scroll-reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Inline RSVP form smooth expansion */
+    .rsvp-form-collapse {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.65s ease 0.15s;
+    }
+
+    .rsvp-form-collapse.is-open {
+      max-height: 1100px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground overflow-x-clip selection:bg-foreground/15 scroll-locked">
+
+  <!-- ===================================================================== -->
+  <!-- 0. FULLSCREEN INTRO OVERLAY & VIDEO SEQUENCE                          -->
+  <!-- ===================================================================== -->
+  <div
+    id="intro-overlay"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-[#f8f6f2] transition-opacity duration-[800ms] ease-in-out"
+  >
+    <!-- Intro Video (plays fullscreen on tap) -->
+    <video
+      id="intro-video"
+      src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/7781d503-b1ec-46c6-bc7b-d41a48374f14/intro-bridge.mp4"
+      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms] ease-in-out opacity-0 pointer-events-none"
+      playsinline
+      preload="auto"
+    ></video>
+
+    <!-- Initial Pearlescent Welcome Screen -->
+    <div
+      id="intro-welcome"
+      class="relative z-10 flex flex-col items-center justify-center w-full h-full px-6 text-center transition-opacity duration-700 ease-out"
+      style="background: radial-gradient(circle at 50% 42%, #ffffff 0%, #f8f6f2 55%, #eae3d5 100%);"
+    >
+      <p class="font-display text-foreground/75 text-sm md:text-base uppercase tracking-[0.28em] mb-8">
+        You Are Invited
+      </p>
+
+      <button
+        id="intro-open-btn"
+        type="button"
+        aria-label="Tap to open invitation"
+        class="group flex flex-col items-center cursor-pointer focus:outline-none"
+      >
+        <img
+          src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ded5dc3b-2809-4259-a52d-b90d16eebd6d/footer-seal.png"
+          alt="Cornelia & James Wax Seal"
+          draggable="false"
+          class="w-32 md:w-40 h-auto select-none drop-shadow-[0_8px_18px_rgba(60,75,93,0.22)] transition-transform duration-500 group-hover:scale-105 group-active:scale-95"
+        />
+        <span class="mt-8 font-body text-[11px] uppercase tracking-[0.32em] text-foreground/80 border-b border-foreground/30 pb-1 transition-colors duration-300 group-hover:text-foreground group-hover:border-foreground">
+          Tap to open
+        </span>
+      </button>
+
+      <p class="font-doulaise text-4xl md:text-5xl text-foreground/70 mt-10">
+        Cornelia &amp; James
+      </p>
+    </div>
+
+    <!-- Subtle Skip Button (visible while video plays) -->
+    <button
+      id="intro-skip-btn"
+      type="button"
+      class="hidden absolute top-5 right-5 z-20 rounded-full border border-white/40 bg-black/25 px-4 py-1.5 font-body text-[10px] uppercase tracking-[0.25em] text-white/90 backdrop-blur-sm transition-colors duration-300 hover:bg-black/45 cursor-pointer"
+    >
+      Skip
+    </button>
+  </div>
+
+  <main class="bg-background text-foreground overflow-x-clip">
+
+    <!-- ===================================================================== -->
+    <!-- 1. HERO SECTION                                                       -->
+    <!-- ===================================================================== -->
+    <section class="relative min-h-[100dvh] flex flex-col overflow-hidden bg-[#f8f6f2]">
+      <div class="absolute inset-0 bg-[#f8f6f2]"></div>
+      <img
+        src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png"
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        draggable="false"
+      />
+      <div
+        id="hero-content"
+        class="relative z-20 flex flex-col items-center justify-center flex-1 text-center px-6 py-16 transition-opacity duration-[1600ms] ease-out opacity-0"
+      >
+        <p class="font-display text-foreground text-[17px] md:text-[19px] tracking-wide leading-snug">
+          <span class="block">Together with</span>
+          <span class="block">their families</span>
+        </p>
+
+        <div class="mt-8 md:mt-10 flex flex-col items-center">
+          <h1 class="font-ballet text-foreground text-[50px] md:text-[64px] leading-[0.95]">Cornelia</h1>
+          <p class="font-display text-foreground text-lg md:text-xl leading-none my-2.5 md:my-3.5">&amp;</p>
+          <h1 class="font-ballet text-foreground text-[50px] md:text-[64px] leading-[0.95]">James</h1>
+        </div>
+
+        <p class="font-display text-foreground text-lg md:text-xl mt-6 md:mt-8 tracking-wide">20.05.2027</p>
+
+        <div class="mt-5 md:mt-6 flex flex-col items-center">
+          <p class="font-display text-foreground text-xl md:text-2xl tracking-wide leading-snug">Villa Aurelia</p>
+          <p class="font-display text-foreground text-[11px] md:text-xs uppercase tracking-[0.25em] mt-1">Rome, Italy</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 2. COUNTDOWN SECTION                                                  -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section id="countdown" class="relative w-full overflow-hidden">
+        <div class="relative w-full aspect-[1920/1126]">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/42200f78-409f-4ed1-ad40-e98c348d1091/countdown-frame.png"
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+            draggable="false"
+          />
+
+          <h2 class="absolute left-0 right-0 top-[9%] text-center font-display text-[7vw] md:text-6xl leading-none text-[#f5f0e8]">
+            Countdown
+          </h2>
+
+          <div class="absolute left-[17%] right-[17%] top-[33%] bottom-[34%] grid grid-cols-4 items-center">
+            <div class="flex min-w-0 flex-col items-center">
+              <span id="cd-days" class="font-display text-[6.5vw] md:text-6xl text-foreground leading-none tabular-nums">00</span>
+              <span class="mt-1 md:mt-3 text-[2vw] md:text-xs uppercase tracking-[0.15em] text-foreground font-body">Days</span>
+            </div>
+            <div class="flex min-w-0 flex-col items-center">
+              <span id="cd-hours" class="font-display text-[6.5vw] md:text-6xl text-foreground leading-none tabular-nums">00</span>
+              <span class="mt-1 md:mt-3 text-[2vw] md:text-xs uppercase tracking-[0.15em] text-foreground font-body">Hours</span>
+            </div>
+            <div class="flex min-w-0 flex-col items-center">
+              <span id="cd-minutes" class="font-display text-[6.5vw] md:text-6xl text-foreground leading-none tabular-nums">00</span>
+              <span class="mt-1 md:mt-3 text-[2vw] md:text-xs uppercase tracking-[0.15em] text-foreground font-body">Minutes</span>
+            </div>
+            <div class="flex min-w-0 flex-col items-center">
+              <span id="cd-seconds" class="font-display text-[6.5vw] md:text-6xl text-foreground leading-none tabular-nums">00</span>
+              <span class="mt-1 md:mt-3 text-[2vw] md:text-xs uppercase tracking-[0.15em] text-foreground font-body">Seconds</span>
+            </div>
+          </div>
+
+          <p class="absolute left-0 right-0 bottom-[7%] text-center font-doulaise text-[8vw] md:text-6xl leading-none text-[#f5f0e8]">
+            See you soon!
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 3. INTERACTIVE SCRATCH-OFF COUPLE PHOTO SECTION                       -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="relative w-full">
+        <img
+          src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ea706195-2fc3-4d23-8938-50abb38d7ae7/welcome-families.webp"
+          alt="Together with their families"
+          class="block w-full h-auto select-none"
+          loading="lazy"
+          draggable="false"
+        />
+
+        <!-- Oval scratch-off container -->
+        <div
+          id="scratch-container"
+          class="absolute overflow-hidden"
+          style="left: 33%; top: 25%; width: 34.1%; height: 50.2%; border-radius: 50%;"
+        >
+          <img
+            src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/b046e35e-445d-4ccc-a1fb-979e535f3261/couple-scratch.png"
+            alt="Cornelia & James"
+            class="absolute inset-0 w-full h-full object-cover select-none"
+            draggable="false"
+          />
+          <canvas
+            id="scratch-canvas"
+            class="absolute inset-0 w-full h-full cursor-pointer transition-opacity duration-700"
+            style="touch-action: none; opacity: 1;"
+          ></canvas>
+        </div>
+
+        <!-- Decorative pearl/gold double-ring frame -->
+        <div
+          aria-hidden="true"
+          class="absolute pointer-events-none"
+          style="
+            left: 33%;
+            top: 25%;
+            width: 34.1%;
+            height: 50.2%;
+            border-radius: 50%;
+            box-shadow:
+              rgb(216, 194, 151) 0px 0px 0px 3px,
+              rgb(241, 237, 228) 0px 0px 0px 5px,
+              rgb(197, 171, 119) 0px 0px 0px 6px,
+              rgba(248, 246, 242, 0.55) 0px 0px 0px 12px,
+              rgb(203, 180, 134) 0px 0px 0px 13px,
+              rgba(60, 75, 93, 0.25) 0px 6px 18px,
+              rgba(143, 116, 61, 0.35) 0px 0px 10px inset;
+          "
+        ></div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 4. LOCATION SECTION                                                   -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="pt-32 md:pt-44 pb-20 md:pb-28 px-6">
+        <div class="max-w-md mx-auto text-center mix-blend-multiply">
+          <h2 class="font-display text-5xl md:text-7xl text-foreground leading-none">Location</h2>
+          <p class="font-doulaise text-[38px] md:text-[50px] text-foreground mt-6 leading-none">Villa Aurelia</p>
+          <p class="font-display text-foreground/70 text-base md:text-lg mt-4 uppercase tracking-[0.15em]">Rome, Italy</p>
+
+          <p class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica leading-relaxed mt-8">
+            Set in one of Rome's most beautiful corners, Villa Aurelia will be the setting for our celebration, surrounded by historic gardens and overlooking the Eternal City.
+          </p>
+          <p class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica leading-relaxed mt-4">
+            We recommend arriving a little early to settle in and enjoy the surroundings before the celebration begins.
+          </p>
+
+          <div class="relative left-1/2 -translate-x-1/2 w-[70%] md:w-[60%] max-w-none mt-8">
+            <img
+              loading="lazy"
+              decoding="async"
+              src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ecfb6efe-f4df-4d4a-8b1b-8256d7086d6f/venue-illustration.png"
+              alt="Illustration of the Villa Aurelia terrace"
+              class="w-full h-auto select-none pointer-events-none"
+              draggable="false"
+            />
+          </div>
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Villa+Aurelia+Rome+Italy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex flex-col items-center mt-10 text-foreground"
+          >
+            <span class="relative block border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+              <span class="block border border-foreground/20 px-10 py-3 transition-colors duration-500 group-hover:bg-foreground group-hover:text-background">
+                <span class="block text-[10px] tracking-[0.32em] uppercase">Get Directions</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 5. THE DAY (TIMELINE) SECTION                                         -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="relative pt-20 md:pt-28 pb-[min(60vw,460px)] px-6">
+        <!-- Curtain border-image background -->
+        <div
+          aria-hidden="true"
+          class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-3xl pointer-events-none"
+          style="
+            border-style: solid;
+            border-color: transparent;
+            border-width: min(128vw, 985px) 0px min(70vw, 538px);
+            border-image-source: url('https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/d1983d34-838c-4add-9f18-5f584acd2588/timeline-curtain-tall.png');
+            border-image-slice: 55% 0 30% fill;
+            border-image-repeat: stretch;
+          "
+        ></div>
+
+        <div class="relative max-w-2xl mx-auto">
+          <div class="text-center mb-10 mt-24 md:mt-28 relative reveal">
+            <h2 class="relative z-10 -translate-x-4 font-doulaise text-6xl md:text-8xl text-foreground leading-[0.9]">
+              The<br />Day
+            </h2>
+            <p class="text-foreground/70 text-[13px] md:text-[15px] mt-4 font-helvetica leading-relaxed">
+              A day to celebrate,<br />from the first hello to the last dance.
+            </p>
+          </div>
+
+          <div class="relative max-w-[185px] md:max-w-[215px] mx-auto">
+            <div class="absolute left-[5.5px] top-3 bottom-3 w-px bg-foreground/50"></div>
+
+            <div class="space-y-10 md:space-y-12">
+              <!-- 4:30 PM -->
+              <div class="relative grid grid-cols-[12px_minmax(0,1fr)] gap-x-5 text-left reveal">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/c3264a8d-d3e8-40d6-9ea1-f7efe2144296/pearl-dot.png"
+                  alt=""
+                  class="mt-1.5 w-3 h-3 rounded-full shadow-[0_1px_2px_rgba(60,75,93,0.3)]"
+                />
+                <div class="leading-snug">
+                  <span class="block font-display text-2xl md:text-3xl text-foreground leading-none">
+                    4:30<span class="ml-1 text-[0.5em] tracking-[0.1em]">PM</span>
+                  </span>
+                  <span class="block mt-2 font-body text-sm tracking-[0.2em] uppercase text-foreground">Welcome</span>
+                  <span class="block mt-1 font-helvetica text-foreground/70 text-[12px] md:text-[13px] leading-relaxed">
+                    Drinks in the villa gardens.
+                  </span>
+                </div>
+              </div>
+
+              <!-- 5:00 PM -->
+              <div class="relative grid grid-cols-[12px_minmax(0,1fr)] gap-x-5 text-left reveal">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/c3264a8d-d3e8-40d6-9ea1-f7efe2144296/pearl-dot.png"
+                  alt=""
+                  class="mt-1.5 w-3 h-3 rounded-full shadow-[0_1px_2px_rgba(60,75,93,0.3)]"
+                />
+                <div class="leading-snug">
+                  <span class="block font-display text-2xl md:text-3xl text-foreground leading-none">
+                    5:00<span class="ml-1 text-[0.5em] tracking-[0.1em]">PM</span>
+                  </span>
+                  <span class="block mt-2 font-body text-sm tracking-[0.2em] uppercase text-foreground">Ceremony</span>
+                  <span class="block mt-1 font-helvetica text-foreground/70 text-[12px] md:text-[13px] leading-relaxed">
+                    We say “I do” at sunset.
+                  </span>
+                </div>
+              </div>
+
+              <!-- 6:00 PM -->
+              <div class="relative grid grid-cols-[12px_minmax(0,1fr)] gap-x-5 text-left reveal">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/c3264a8d-d3e8-40d6-9ea1-f7efe2144296/pearl-dot.png"
+                  alt=""
+                  class="mt-1.5 w-3 h-3 rounded-full shadow-[0_1px_2px_rgba(60,75,93,0.3)]"
+                />
+                <div class="leading-snug">
+                  <span class="block font-display text-2xl md:text-3xl text-foreground leading-none">
+                    6:00<span class="ml-1 text-[0.5em] tracking-[0.1em]">PM</span>
+                  </span>
+                  <span class="block mt-2 font-body text-sm tracking-[0.2em] uppercase text-foreground">Cocktail Hour</span>
+                  <span class="block mt-1 font-helvetica text-foreground/70 text-[12px] md:text-[13px] leading-relaxed">
+                    Aperitivo on the terrace.
+                  </span>
+                </div>
+              </div>
+
+              <!-- 8:00 PM -->
+              <div class="relative grid grid-cols-[12px_minmax(0,1fr)] gap-x-5 text-left reveal">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/c3264a8d-d3e8-40d6-9ea1-f7efe2144296/pearl-dot.png"
+                  alt=""
+                  class="mt-1.5 w-3 h-3 rounded-full shadow-[0_1px_2px_rgba(60,75,93,0.3)]"
+                />
+                <div class="leading-snug">
+                  <span class="block font-display text-2xl md:text-3xl text-foreground leading-none">
+                    8:00<span class="ml-1 text-[0.5em] tracking-[0.1em]">PM</span>
+                  </span>
+                  <span class="block mt-2 font-body text-sm tracking-[0.2em] uppercase text-foreground">Dinner</span>
+                  <span class="block mt-1 font-helvetica text-foreground/70 text-[12px] md:text-[13px] leading-relaxed">
+                    Dinner under the stars.
+                  </span>
+                </div>
+              </div>
+
+              <!-- 10:30 PM -->
+              <div class="relative grid grid-cols-[12px_minmax(0,1fr)] gap-x-5 text-left reveal">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/c3264a8d-d3e8-40d6-9ea1-f7efe2144296/pearl-dot.png"
+                  alt=""
+                  class="mt-1.5 w-3 h-3 rounded-full shadow-[0_1px_2px_rgba(60,75,93,0.3)]"
+                />
+                <div class="leading-snug">
+                  <span class="block font-display text-2xl md:text-3xl text-foreground leading-none">
+                    10:30<span class="ml-1 text-[0.5em] tracking-[0.1em]">PM</span>
+                  </span>
+                  <span class="block mt-2 font-body text-sm tracking-[0.2em] uppercase text-foreground">Dancing</span>
+                  <span class="block mt-1 font-helvetica text-foreground/70 text-[12px] md:text-[13px] leading-relaxed">
+                    Dancing until late.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 6. DRESS CODE SECTION                                                 -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="w-full py-16 md:py-24 px-6">
+        <div class="relative bg-background left-1/2 -translate-x-1/2 w-[calc(88%+4px)] md:w-full md:left-0 md:translate-x-0 md:max-w-[465px] md:mx-auto z-10">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/fdadd5b8-efba-4830-bd1c-a0ab2209de2a/dresscode-frame-narrow.png"
+            alt="Dress code on lace frame"
+            class="relative w-full h-auto select-none pointer-events-none"
+            draggable="false"
+          />
+          <img
+            src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ae1931cf-3334-46bf-8b2a-6a46b065648f/dresscode-seal.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none select-none absolute right-[2%] bottom-[4%] w-[26%] h-auto rotate-[24deg] drop-shadow-[0_2px_3px_rgba(60,75,93,0.15)] z-20"
+            draggable="false"
+          />
+
+          <div class="absolute inset-0 -translate-y-[5px] justify-center flex flex-col items-center text-center text-foreground px-[24%] pb-[7%] pointer-events-none select-none">
+            <p class="font-display text-[40px] md:text-[62px] text-foreground leading-none">Dress Code</p>
+            <p class="font-doulaise text-foreground text-3xl md:text-4xl leading-none whitespace-nowrap mt-2 md:mt-3">Formal Attire</p>
+
+            <div class="mt-[22px] md:mt-[30px] mb-[8px] md:mb-[24px] w-full">
+              <div class="mx-auto w-fit h-[140px] md:h-[240px] shrink-0">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/97476ad4-c3da-4edf-8db5-e0e4af770951/dresscode-attire-2.png"
+                  alt="Wedding suit and dress illustration"
+                  class="h-full w-auto select-none pointer-events-none drop-shadow-[0_6px_6px_rgba(60,75,93,0.12)]"
+                  draggable="false"
+                />
+              </div>
+            </div>
+
+            <p class="text-foreground/80 text-[11px] md:text-[13px] font-helvetica leading-snug mt-[18px] -mx-[10%]">
+              We'd love for our guests to embrace the occasion with elegant evening attire.<br />
+              Dress beautifully, feel comfortable,<br />
+              and come ready to celebrate with us.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 7. TRANSPORTATION SECTION                                             -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="relative w-full mt-[70px] md:mt-[110px] py-36 md:py-56 px-6 bg-background">
+        <img
+          src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/2ae5b269-e82c-46ce-b7fb-ba24e1b61068/transport-nacre-bg.png"
+          alt=""
+          aria-hidden="true"
+          class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
+        />
+
+        <div
+          class="relative z-[1] text-center max-w-[340px] md:max-w-md mx-auto px-8 py-14 md:px-12 md:py-16 shadow-[0_10px_30px_-12px_rgba(60,75,93,0.35)]"
+          style="
+            background-image: url('https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/52d29df6-7256-45ed-9a6c-da77faa33886/transport-paper-card.png');
+            background-size: cover;
+            background-position: center center;
+          "
+        >
+          <div aria-hidden="true" class="absolute inset-0 -z-10 bg-white/45 pointer-events-none"></div>
+
+          <img
+            src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/a45dbe68-60ee-4afd-a617-e11e579dd845/transport-stamps.png"
+            alt=""
+            aria-hidden="true"
+            class="block w-[160px] md:w-[200px] h-auto mx-auto -rotate-6 translate-x-[10px]"
+          />
+
+          <h2 class="font-doulaise text-6xl md:text-8xl text-foreground leading-none mt-10">Transportation</h2>
+
+          <p class="text-foreground/85 text-[13px] font-helvetica leading-relaxed mt-6 max-w-[280px] md:max-w-[300px] mx-auto">
+            We want getting to and from the celebration to be as easy as possible.
+          </p>
+          <p class="text-foreground/85 text-[13px] font-helvetica leading-relaxed mt-4 max-w-[280px] md:max-w-[300px] mx-auto">
+            A private bus will depart at 4:00 PM from Piazza della Repubblica, taking guests directly to Villa Aurelia with plenty of time to settle in before the ceremony.
+          </p>
+          <p class="text-foreground/85 text-[13px] font-helvetica leading-relaxed mt-4 max-w-[280px] md:max-w-[300px] mx-auto">
+            At the end of the evening, return transportation to central Rome will<br />also be provided.
+          </p>
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Piazza+della+Repubblica+Rome"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex flex-col items-center mt-8 text-foreground"
+          >
+            <span class="relative block border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+              <span class="block border border-foreground/20 px-10 py-3 transition-colors duration-500 group-hover:bg-foreground group-hover:text-background">
+                <span class="block text-[10px] tracking-[0.32em] uppercase">View Pick-Up Point</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 8. WHERE TO STAY SECTION                                              -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="relative py-20 md:py-28 px-6 overflow-hidden">
+        <div class="max-w-2xl mx-auto">
+          <div class="text-center reveal">
+            <h2 class="font-doulaise text-6xl md:text-8xl text-foreground mb-2 mt-10">Where to Stay</h2>
+            <p class="text-foreground/80 text-[13px] mt-6 max-w-md mx-auto leading-relaxed font-helvetica">
+              For those joining us from out of town, we've selected two beautiful places to stay close to Villa Aurelia.
+            </p>
+          </div>
+
+          <div class="mt-8 md:mt-12 space-y-8 md:space-y-10">
+            <!-- Hotel 1 -->
+            <div class="reveal">
+              <div class="relative max-w-md mx-auto">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/assets/hotel-pearl-frame-DwCN7mtx.png"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none"
+                />
+                <div class="relative z-10 px-[22%] pt-[110px] pb-[130px] md:pt-[145px] md:pb-[170px] text-center">
+                  <h3 class="font-display text-3xl md:text-4xl text-foreground leading-tight">
+                    Grand Hotel del Gianicolo
+                  </h3>
+                  <ul class="mt-5 space-y-1.5">
+                    <li class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica tracking-wide">
+                      <span class="block uppercase text-[11px] tracking-[0.14em] text-foreground/60">Recommended stay</span>
+                      19 – 21 May 2027
+                    </li>
+                    <li class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica tracking-wide">
+                      <span class="block uppercase text-[11px] tracking-[0.14em] text-foreground/60">Wedding Guest Rate</span>
+                      Code "CORNELIA &amp; JAMES"
+                    </li>
+                    <li class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica tracking-wide">
+                      <span class="block uppercase text-[11px] tracking-[0.14em] text-foreground/60">Parking</span>
+                      Parking available on site
+                    </li>
+                  </ul>
+                  <p class="text-foreground/80 text-[13px] mt-5 leading-relaxed font-helvetica">
+                    Just moments from the venue, offering an elegant and convenient stay surrounded by the greenery of the Gianicolo.
+                  </p>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Grand+Hotel+del+Gianicolo+Rome"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex flex-col items-center mt-7 text-foreground"
+                  >
+                    <span class="relative block border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+                      <span class="block border border-foreground/20 px-6 py-3 transition-colors duration-500 group-hover:bg-foreground group-hover:text-background">
+                        <span class="block text-[10px] tracking-[0.24em] uppercase leading-relaxed">Book</span>
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel 2 -->
+            <div class="reveal">
+              <div class="relative max-w-md mx-auto">
+                <img
+                  src="https://motherofpearl.thedigitalyes.com/assets/hotel-pearl-frame-DwCN7mtx.png"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none"
+                />
+                <div class="relative z-10 px-[22%] pt-[110px] pb-[130px] md:pt-[145px] md:pb-[170px] text-center">
+                  <h3 class="font-display text-3xl md:text-4xl text-foreground leading-tight">
+                    Donna<br />Camilla Savelli
+                  </h3>
+                  <ul class="mt-5 space-y-1.5">
+                    <li class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica tracking-wide">
+                      <span class="block uppercase text-[11px] tracking-[0.14em] text-foreground/60">Recommended stay</span>
+                      19 – 21 May 2027
+                    </li>
+                    <li class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica tracking-wide">
+                      <span class="block uppercase text-[11px] tracking-[0.14em] text-foreground/60">Wedding Guest Rate</span>
+                      Code "CORNELIA &amp; JAMES"
+                    </li>
+                    <li class="text-foreground/80 text-[12px] md:text-[13px] font-helvetica tracking-wide">
+                      <span class="block uppercase text-[11px] tracking-[0.14em] text-foreground/60">Parking</span>
+                      Parking available on site
+                    </li>
+                  </ul>
+                  <p class="text-foreground/80 text-[13px] mt-5 leading-relaxed font-helvetica">
+                    A charming historic hotel in Trastevere, combining Roman character with a peaceful and refined atmosphere.
+                  </p>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Donna+Camilla+Savelli+Rome"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex flex-col items-center mt-7 text-foreground"
+                  >
+                    <span class="relative block border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+                      <span class="block border border-foreground/20 px-6 py-3 transition-colors duration-500 group-hover:bg-foreground group-hover:text-background">
+                        <span class="block text-[10px] tracking-[0.24em] uppercase leading-relaxed">Book</span>
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 9. WEDDING GIFT SECTION                                               -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section class="relative z-10 pt-6 md:pt-10 pb-4 md:pb-[70px] overflow-x-clip">
+        <div class="relative w-full max-w-xl mx-auto aspect-[942/1164]">
+          <img
+            decoding="async"
+            src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/380bcd4a-1638-444c-aeed-57bdb7c0e415/gift-frame-3b.png"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full select-none pointer-events-none"
+          />
+
+          <div class="absolute left-[20%] right-[20%] top-[18%] bottom-[10%] flex flex-col items-center justify-center text-center">
+            <h2 class="font-doulaise text-5xl md:text-7xl leading-[0.9] text-foreground mb-5 md:mb-8">
+              <span class="block">Wedding</span>
+              <span class="block">Gift</span>
+            </h2>
+
+            <p class="font-display text-xl md:text-3xl leading-tight text-foreground mb-4 md:mb-6">
+              Your presence<br />is our greatest gift.
+            </p>
+
+            <p class="font-helvetica text-[11px] md:text-[14px] leading-relaxed text-foreground/80 mb-3 md:mb-4">
+              Should you wish to give a gift, you may do so in cash or by bank transfer.
+            </p>
+
+            <p class="font-helvetica text-[10px] md:text-[13px] leading-relaxed text-foreground break-words">
+              IBAN IT60 X054 2811 1010 0000 0123 456
+            </p>
+
+            <button
+              id="open-registry-btn"
+              type="button"
+              class="group inline-flex flex-col items-center mt-5 md:mt-7 mb-6 md:mb-8 text-foreground cursor-pointer"
+            >
+              <span class="relative block border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+                <span class="block border border-foreground/20 px-6 md:px-10 py-3 transition-colors duration-500 group-hover:bg-foreground group-hover:text-background">
+                  <span class="block text-[10px] tracking-[0.32em] uppercase whitespace-nowrap">View Registry</span>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 10. RSVP SECTION                                                      -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <section id="rsvp" class="relative z-10 -mt-[30px] pt-0 pb-20 md:pb-28 bg-[#2f3a47] text-[#f8f6f2]">
+        <img
+          src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/f0524b40-95c5-4ff9-a7e2-e65fd22cdb46/rsvp-top-border.png"
+          alt=""
+          draggable="false"
+          class="block w-full h-auto pointer-events-none select-none"
+        />
+
+        <div class="px-6 pt-10 md:pt-16">
+          <div class="max-w-2xl mx-auto pt-[40px] md:pt-[60px]">
+            <div class="text-center mb-10 flex flex-col items-center">
+              <h2 class="font-display text-5xl md:text-7xl text-[#f8f6f2]">RSVP</h2>
+              <p class="text-[#f8f6f2]/80 text-[15px] font-body leading-relaxed max-w-md mt-4">
+                Nothing would make us happier than celebrating this day surrounded by our favourite people. Please let us know whether you'll be able to join us by May&nbsp;1,&nbsp;2027.
+              </p>
+            </div>
+
+            <!-- Interactive RSVP Envelope -->
+            <button
+              id="rsvp-envelope-btn"
+              type="button"
+              aria-label="Open the RSVP envelope"
+              aria-expanded="false"
+              class="relative block mx-auto w-[260px] md:w-[340px] aspect-square mb-12 cursor-pointer disabled:cursor-default"
+            >
+              <img
+                id="rsvp-env-closed"
+                src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/92975728-5ff1-4e43-bd99-fd8116d4ab6d/rsvp-envelope-cerrado.png"
+                alt=""
+                draggable="false"
+                class="absolute inset-0 w-full h-full object-contain object-bottom transition-all duration-700 opacity-100 hover:scale-[1.03]"
+              />
+              <img
+                id="rsvp-env-open"
+                src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/66d85f68-15cb-430b-91c5-0bb336c4c7ea/rsvp-envelope-abierto.png"
+                alt=""
+                draggable="false"
+                class="absolute inset-0 w-full h-full object-contain object-bottom transition-opacity duration-700 opacity-0"
+              />
+              <span
+                id="rsvp-tap-label"
+                class="absolute -bottom-7 left-0 right-0 text-center text-[10px] tracking-[0.32em] uppercase text-[#f8f6f2]/80 transition-opacity duration-500"
+              >
+                Tap to open
+              </span>
+            </button>
+
+            <!-- Inline RSVP Form (Revealed on envelope click) -->
+            <div id="rsvp-form-wrapper" class="rsvp-form-collapse max-w-md mx-auto">
+              <div class="bg-[#f8f6f2] text-[#3c4b5d] rounded-lg p-7 md:p-9 shadow-2xl border border-[#f8f6f2]/20">
+                <form id="rsvp-form" class="space-y-5 text-left">
+                  <div class="text-center mb-4">
+                    <h3 class="font-display text-3xl text-foreground">Kindly Reply</h3>
+                    <p class="font-helvetica text-xs text-foreground/65 mt-1">Please respond by May 1, 2027</p>
+                  </div>
+
+                  <div>
+                    <label for="rsvp-name" class="block text-[11px] uppercase tracking-[0.2em] text-foreground/75 mb-1.5">
+                      Full Name
+                    </label>
+                    <input
+                      id="rsvp-name"
+                      type="text"
+                      required
+                      placeholder="Your full name"
+                      class="w-full rounded border border-foreground/25 bg-white px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-foreground transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <span class="block text-[11px] uppercase tracking-[0.2em] text-foreground/75 mb-2">
+                      Will you attend?
+                    </span>
+                    <div class="grid grid-cols-2 gap-3">
+                      <label class="flex items-center justify-center gap-2 rounded border border-foreground/25 bg-white py-2.5 px-3 text-sm cursor-pointer hover:border-foreground/60 transition-colors">
+                        <input type="radio" name="attending" value="yes" required class="accent-[#3c4b5d]" />
+                        <span>Joyfully accepts</span>
+                      </label>
+                      <label class="flex items-center justify-center gap-2 rounded border border-foreground/25 bg-white py-2.5 px-3 text-sm cursor-pointer hover:border-foreground/60 transition-colors">
+                        <input type="radio" name="attending" value="no" class="accent-[#3c4b5d]" />
+                        <span>Regretfully declines</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="rsvp-guests" class="block text-[11px] uppercase tracking-[0.2em] text-foreground/75 mb-1.5">
+                      Number of Guests
+                    </label>
+                    <select
+                      id="rsvp-guests"
+                      class="w-full rounded border border-foreground/25 bg-white px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-foreground transition-colors"
+                    >
+                      <option value="1">1 Guest</option>
+                      <option value="2">2 Guests</option>
+                      <option value="3">3 Guests</option>
+                      <option value="4">4 Guests</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label for="rsvp-dietary" class="block text-[11px] uppercase tracking-[0.2em] text-foreground/75 mb-1.5">
+                      Dietary Restrictions
+                    </label>
+                    <input
+                      id="rsvp-dietary"
+                      type="text"
+                      placeholder="Allergies, vegetarian, gluten-free..."
+                      class="w-full rounded border border-foreground/25 bg-white px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-foreground transition-colors"
+                    />
+                  </div>
+
+                  <div class="pt-2 text-center">
+                    <button
+                      type="submit"
+                      class="group inline-flex flex-col items-center w-full text-foreground cursor-pointer"
+                    >
+                      <span class="relative block w-full border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+                        <span class="block w-full bg-foreground text-background border border-foreground/20 px-8 py-3 transition-colors duration-500 group-hover:bg-foreground/90">
+                          <span class="block text-[11px] tracking-[0.32em] uppercase">Send RSVP</span>
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </form>
+
+                <!-- Confirmation Message -->
+                <div id="rsvp-confirmation" class="hidden text-center py-6 space-y-3">
+                  <p class="font-doulaise text-5xl text-foreground">Thank you!</p>
+                  <p class="font-display text-xl text-foreground">Your RSVP has been received.</p>
+                  <p class="font-helvetica text-xs text-foreground/75 leading-relaxed">
+                    We are so grateful for your response and cannot wait to celebrate with you in Rome.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 11. FOOTER                                                            -->
+    <!-- ===================================================================== -->
+    <div class="reveal">
+      <footer class="relative pt-32 md:pt-44 pb-20 text-center px-6">
+        <img
+          src="https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ded5dc3b-2809-4259-a52d-b90d16eebd6d/footer-seal.png"
+          alt="C & J"
+          draggable="false"
+          class="w-28 md:w-36 h-auto mx-auto mb-8 -mt-3 pointer-events-none select-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.15)]"
+        />
+        <p class="font-display text-xl md:text-3xl text-foreground/80 mb-10 leading-relaxed">
+          We can't wait to celebrate with you.
+        </p>
+        <p class="text-[13px] text-foreground/60 font-helvetica mb-3">With love,</p>
+        <p class="font-doulaise text-6xl md:text-7xl text-foreground mb-4 leading-tight">
+          Cornelia <span class="text-3xl md:text-4xl text-foreground/50">&amp;</span> James
+        </p>
+        <p class="text-[13px] text-foreground/50 font-helvetica tracking-wide">20 May 2027</p>
+      </footer>
+    </div>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- REGISTRY / IBAN MODAL                                                 -->
+  <!-- ===================================================================== -->
+  <div
+    id="registry-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="registry-modal-title"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-foreground/50 backdrop-blur-sm p-4"
+  >
+    <div class="relative w-full max-w-md rounded-lg bg-background p-8 text-center shadow-2xl border border-foreground/20">
+      <button
+        id="close-registry-btn"
+        type="button"
+        aria-label="Close registry modal"
+        class="absolute top-3 right-4 text-2xl text-foreground/60 hover:text-foreground cursor-pointer"
+      >
+        &times;
+      </button>
+
+      <h3 id="registry-modal-title" class="font-doulaise text-5xl text-foreground mb-2">Wedding Gift</h3>
+      <p class="font-display text-xl text-foreground mb-4">Cornelia &amp; James</p>
+      <p class="font-helvetica text-xs text-foreground/75 leading-relaxed mb-5">
+        Your presence in Rome is truly the greatest gift. If you wish to contribute toward our honeymoon and future home, you may use the bank details below:
+      </p>
+
+      <div class="rounded border border-foreground/20 bg-white/80 p-4 mb-5">
+        <p class="text-[10px] uppercase tracking-[0.2em] text-foreground/60 mb-1">Account Holders</p>
+        <p class="font-display text-lg text-foreground mb-3">Cornelia &amp; James</p>
+        <p class="text-[10px] uppercase tracking-[0.2em] text-foreground/60 mb-1">IBAN</p>
+        <p id="iban-value" class="font-mono text-xs md:text-sm text-foreground tracking-wider select-all">
+          IT60 X054 2811 1010 0000 0123 456
+        </p>
+      </div>
+
+      <button
+        id="copy-iban-btn"
+        type="button"
+        class="group inline-flex flex-col items-center text-foreground cursor-pointer"
+      >
+        <span class="relative block border border-foreground/40 p-[3px] transition-colors duration-500 group-hover:border-foreground/70">
+          <span class="block border border-foreground/20 px-8 py-2.5 transition-colors duration-500 group-hover:bg-foreground group-hover:text-background">
+            <span class="block text-[10px] tracking-[0.3em] uppercase">Copy IBAN</span>
+          </span>
+        </span>
+      </button>
+      <p id="copy-status" class="mt-3 text-xs font-helvetica text-foreground/75 min-h-[16px]"></p>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 12. FLOATING AUDIO BUTTON (Web Audio API Ambient Piano/Harp)          -->
+  <!-- ===================================================================== -->
+  <button
+    id="audio-toggle-btn"
+    type="button"
+    aria-label="Toggle ambient music"
+    class="group fixed bottom-5 right-5 z-40 rounded-full border border-foreground/30 p-[3px] bg-background/80 backdrop-blur-sm transition-colors duration-500 hover:border-foreground/60 shadow-md cursor-pointer"
+  >
+    <span class="flex h-10 w-10 items-center justify-center rounded-full text-foreground/85 border border-foreground/15">
+      <!-- Sound Off Icon (default before user clicks) -->
+      <svg
+        id="icon-muted"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.35"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+        <line x1="22" y1="9" x2="16" y2="15" />
+        <line x1="16" y1="9" x2="22" y2="15" />
+      </svg>
+
+      <!-- Sound On Icon -->
+      <svg
+        id="icon-playing"
+        class="hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.35"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+        <path d="M16 9a5 5 0 0 1 0 6" />
+        <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
+      </svg>
+    </span>
+  </button>
+
+  <script>
+    // =========================================================================
+    // 1. LIVE COUNTDOWN TIMER (May 20, 2027 16:30:00)
+    // =========================================================================
+    (function initCountdown() {
+      const targetDate = new Date(2027, 4, 20, 16, 30, 0).getTime(); // Month 4 = May
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minsEl = document.getElementById('cd-minutes');
+      const secsEl = document.getElementById('cd-seconds');
+
+      function tick() {
+        const now = Date.now();
+        const diff = Math.max(0, targetDate - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minsEl.textContent = String(mins).padStart(2, '0');
+        secsEl.textContent = String(secs).padStart(2, '0');
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // =========================================================================
+    // 2. INTERACTIVE SCRATCH-OFF COUPLE PHOTO CANVAS
+    // =========================================================================
+    (function initScratchOff() {
+      const container = document.getElementById('scratch-container');
+      const canvas = document.getElementById('scratch-canvas');
+      if (!container || !canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let isDrawing = false;
+      let isRevealed = false;
+      let strokeCount = 0;
+
+      function paintCover() {
+        const rect = container.getBoundingClientRect();
+        const w = Math.max(200, Math.round(rect.width));
+        const h = Math.max(260, Math.round(rect.height));
+
+        canvas.width = w;
+        canvas.height = h;
+
+        // Pearlescent champagne/gold radial gradient
+        const grad = ctx.createRadialGradient(w * 0.35, h * 0.28, w * 0.08, w * 0.5, h * 0.5, h * 0.72);
+        grad.addColorStop(0, '#f7f1e3');
+        grad.addColorStop(0.45, '#e2cfad');
+        grad.addColorStop(0.8, '#cbb486');
+        grad.addColorStop(1, '#b69b67');
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        // Subtle pearlescent shimmer speckles
+        for (let i = 0; i < 160; i++) {
+          ctx.fillStyle = i % 2 === 0 ? 'rgba(255,255,255,0.22)' : 'rgba(143,116,61,0.12)';
+          ctx.beginPath();
+          ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.8 + 0.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Subtle "Scratch to reveal" prompt
+        ctx.fillStyle = 'rgba(60, 75, 93, 0.78)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const fontSize = Math.max(12, Math.round(w * 0.085));
+        ctx.font = `500 ${fontSize}px "Cormorant Garamond", Georgia, serif`;
+        ctx.fillText('Scratch', w / 2, h / 2 - fontSize * 0.65);
+        ctx.fillText('to reveal', w / 2, h / 2 + fontSize * 0.55);
+      }
+
+      function getCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: ((clientX - rect.left) / rect.width) * canvas.width,
+          y: ((clientY - rect.top) / rect.height) * canvas.height,
+        };
+      }
+
+      function scratchAt(x, y) {
+        if (isRevealed) return;
+        ctx.globalCompositeOperation = 'destination-out';
+        const radius = Math.max(18, canvas.width * 0.11);
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        strokeCount++;
+        if (strokeCount % 12 === 0) {
+          checkRevealThreshold();
+        }
+      }
+
+      function checkRevealThreshold() {
+        try {
+          const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+          let cleared = 0;
+          const total = data.length / 4;
+          for (let i = 3; i < data.length; i += 16) {
+            if (data[i] === 0) cleared++;
+          }
+          if (cleared / (total / 4) > 0.45) {
+            isRevealed = true;
+            canvas.style.opacity = '0';
+            canvas.style.pointerEvents = 'none';
+          }
+        } catch (err) {
+          // Ignore any canvas readback errors
+        }
+      }
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        const pos = getCoords(e);
+        scratchAt(pos.x, pos.y);
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDrawing = false;
+      });
+
+      canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return;
+        const pos = getCoords(e);
+        scratchAt(pos.x, pos.y);
+      });
+
+      canvas.addEventListener('touchstart', (e) => {
+        isDrawing = true;
+        const pos = getCoords(e);
+        scratchAt(pos.x, pos.y);
+      }, { passive: true });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if (!isDrawing) return;
+        const pos = getCoords(e);
+        scratchAt(pos.x, pos.y);
+      }, { passive: true });
+
+      canvas.addEventListener('touchend', () => {
+        isDrawing = false;
+      });
+
+      window.addEventListener('load', paintCover);
+      paintCover();
+    })();
+
+    // =========================================================================
+    // 3. REGISTRY MODAL & COPY IBAN
+    // =========================================================================
+    (function initRegistryModal() {
+      const modal = document.getElementById('registry-modal');
+      const openBtn = document.getElementById('open-registry-btn');
+      const closeBtn = document.getElementById('close-registry-btn');
+      const copyBtn = document.getElementById('copy-iban-btn');
+      const ibanText = document.getElementById('iban-value');
+      const statusEl = document.getElementById('copy-status');
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        statusEl.textContent = '';
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      copyBtn.addEventListener('click', () => {
+        const text = ibanText.textContent.trim();
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        try {
+          document.execCommand('copy');
+          statusEl.textContent = 'IBAN copied to clipboard.';
+        } catch (err) {
+          statusEl.textContent = 'Please copy the IBAN manually.';
+        }
+        document.body.removeChild(input);
+        setTimeout(() => { statusEl.textContent = ''; }, 2800);
+      });
+    })();
+
+    // =========================================================================
+    // 4. INTERACTIVE RSVP ENVELOPE & INLINE FORM
+    // =========================================================================
+    (function initRsvpEnvelope() {
+      const envBtn = document.getElementById('rsvp-envelope-btn');
+      const closedImg = document.getElementById('rsvp-env-closed');
+      const openImg = document.getElementById('rsvp-env-open');
+      const tapLabel = document.getElementById('rsvp-tap-label');
+      const formWrapper = document.getElementById('rsvp-form-wrapper');
+      const rsvpForm = document.getElementById('rsvp-form');
+      const confirmation = document.getElementById('rsvp-confirmation');
+
+      let opened = false;
+
+      envBtn.addEventListener('click', () => {
+        if (opened) return;
+        opened = true;
+        envBtn.setAttribute('aria-expanded', 'true');
+        envBtn.disabled = true;
+
+        closedImg.classList.remove('opacity-100');
+        closedImg.classList.add('opacity-0');
+        openImg.classList.remove('opacity-0');
+        openImg.classList.add('opacity-100');
+        tapLabel.classList.add('opacity-0');
+
+        setTimeout(() => {
+          formWrapper.classList.add('is-open');
+          formWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 320);
+      });
+
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        rsvpForm.classList.add('hidden');
+        confirmation.classList.remove('hidden');
+      });
+    })();
+
+    // =========================================================================
+    // 5. FLOATING AUDIO BUTTON (Web Audio API Ambient Piano/Harp)
+    // =========================================================================
+    (function initAmbientAudio() {
+      const btn = document.getElementById('audio-toggle-btn');
+      const iconMuted = document.getElementById('icon-muted');
+      const iconPlaying = document.getElementById('icon-playing');
+
+      let audioCtx = null;
+      let isPlaying = false;
+      let timer = null;
+      let step = 0;
+
+      // Gentle romantic arpeggio in D Major / B minor
+      const melody = [
+        293.66, 369.99, 440.00, 587.33,
+        246.94, 293.66, 369.99, 440.00,
+        196.00, 293.66, 369.99, 493.88,
+        220.00, 329.63, 440.00, 554.37,
+      ];
+
+      function playTone(freq) {
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.04, now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 2.5);
+      }
+
+      function toggleAudio() {
+        if (!isPlaying) {
+          startAudio();
+        } else {
+          stopAudio();
+        }
+      }
+
+      function startAudio() {
+        if (isPlaying) return;
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        isPlaying = true;
+        iconMuted.classList.add('hidden');
+        iconPlaying.classList.remove('hidden');
+
+        playTone(melody[step % melody.length]);
+        step++;
+        timer = setInterval(() => {
+          playTone(melody[step % melody.length]);
+          step++;
+        }, 720);
+      }
+
+      function stopAudio() {
+        if (!isPlaying) return;
+        isPlaying = false;
+        clearInterval(timer);
+        iconPlaying.classList.add('hidden');
+        iconMuted.classList.remove('hidden');
+      }
+
+      btn.addEventListener('click', toggleAudio);
+      window.__startWeddingAudio = startAudio;
+    })();
+
+    // =========================================================================
+    // 6. INTRO VIDEO SEQUENCE (Tap to Open -> Video -> Smooth Hero Reveal)
+    // =========================================================================
+    (function initIntroSequence() {
+      const overlay = document.getElementById('intro-overlay');
+      const welcome = document.getElementById('intro-welcome');
+      const openBtn = document.getElementById('intro-open-btn');
+      const skipBtn = document.getElementById('intro-skip-btn');
+      const video = document.getElementById('intro-video');
+      const heroContent = document.getElementById('hero-content');
+
+      let finished = false;
+
+      function finishIntro() {
+        if (finished) return;
+        finished = true;
+
+        try {
+          video.pause();
+        } catch (e) {}
+
+        // Fade out video and overlay over 800ms
+        video.style.opacity = '0';
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        skipBtn.classList.add('hidden');
+
+        // Reveal hero text smoothly and unlock scroll
+        document.body.classList.remove('scroll-locked');
+        if (heroContent) {
+          heroContent.classList.remove('opacity-0');
+          heroContent.classList.add('opacity-100');
+        }
+
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 850);
+      }
+
+      openBtn.addEventListener('click', () => {
+        // Start ambient Web Audio music on user interaction
+        if (typeof window.__startWeddingAudio === 'function') {
+          window.__startWeddingAudio();
+        }
+
+        // Hide welcome screen and show video + skip button
+        welcome.style.opacity = '0';
+        welcome.style.pointerEvents = 'none';
+        video.style.opacity = '1';
+        skipBtn.classList.remove('hidden');
+
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => {
+            // If video fails to play or is blocked, gracefully reveal hero
+            finishIntro();
+          });
+        }
+      });
+
+      video.addEventListener('ended', finishIntro);
+      video.addEventListener('error', finishIntro);
+      skipBtn.addEventListener('click', finishIntro);
+    })();
+
+    // =========================================================================
+    // 7. SCROLL-REVEAL ANIMATIONS (IntersectionObserver)
+    // =========================================================================
+    // 6. SCROLL-REVEAL ANIMATIONS (IntersectionObserver)
+    // =========================================================================
+    (function initScrollReveal() {
+      const items = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      items.forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
