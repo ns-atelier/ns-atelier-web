@@ -714,7 +714,7 @@
       const demoHref = 'inv/?demo=' + encodeURIComponent(item.id);
       card.querySelector('.btn-primary').href = demoHref;
       // La portada completa es un enlace táctil, además del botón de la tarjeta.
-      if (cover && image.isConnected) {
+      if (cover && image.parentElement) {
         const coverLink = document.createElement('a');
         coverLink.className = 'design-media-link';
         coverLink.href = demoHref;
