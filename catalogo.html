@@ -625,7 +625,7 @@
         SITE_CONFIG.whatsapp = response.whatsapp;
         document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa));
       }
-      const cards = items.filter(belongsToCollection)
+      const cards = items.slice()
         .sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
         .map(item => createCard(item, layout));
       return cards;
