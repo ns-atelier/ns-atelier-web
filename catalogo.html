@@ -698,6 +698,7 @@
       ['noche-dorada', 'assets/catalogo/odette.webp'],
       ['odette', 'assets/catalogo/odette.webp'],
       ['dolce-vita', 'assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123'],
+      ['fresco', 'assets/catalogo/catalogo-fresco.webp'],
       ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png'],
       ['red-vibrante', 'https://static.tildacdn.net/tild3138-3862-4931-a264-313932393437/4ruby.png']
     ]);
@@ -708,7 +709,8 @@
       ['nacar','assets/catalogo/catalogo-nacar.webp'],
       ['eleganza','assets/catalogo/catalogo-eleganza.webp'],
       ['odette','assets/catalogo/catalogo-odette.webp'],
-      ['dolce-vita','assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123']
+      ['dolce-vita','assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123'],
+      ['fresco','assets/catalogo/catalogo-fresco.webp']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
     // Una imagen personalizada con otra ruta se muestra tal como la haya elegido el cliente.
@@ -724,7 +726,8 @@
       ['nacar', 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png'],
       ['eleganza', 'https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png'],
       ['odette', 'assets/catalogo/odette.webp'],
-      ['dolce-vita', 'assets/catalogo/catalogo-dolce-vita.webp']
+      ['dolce-vita', 'assets/catalogo/catalogo-dolce-vita.webp'],
+      ['fresco', 'assets/catalogo/catalogo-fresco.webp']
     ]);
     function isOriginalCover(id, url) {
       const source = originalCovers.get(id);
@@ -751,6 +754,10 @@
     const DEMO_ID_ALIASES = window.NS_DEMO_REGISTRY.aliases;
     function createCard(item, layout) {
       if (DEMO_ID_ALIASES[item.id]) item = { ...item, id: DEMO_ID_ALIASES[item.id] };
+      if (item.id === 'fresco') {
+        item = {...item,nombre:'Fresco',
+          descripcion:item.descripcion || 'Texturas mediterráneas pintadas, flores de olivo, sobre animado y RSVP bilingüe.'};
+      }
       if (item.id === 'dolce-vita') {
         item = { ...item, nombre:'Dolce Vita',
           descripcion: item.descripcion || 'Un romance mediterráneo con sobre animado, fecha raspable y cartas flotantes.' };
