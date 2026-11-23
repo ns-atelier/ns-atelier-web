@@ -508,7 +508,7 @@
       ['olivo-marfil', 'images/diseno-01.webp'],
       ['jardin-eterno', 'images/diseno-02.webp'],
       ['noche-dorada', 'images/diseno-03.webp'],
-      ['jardin-seda', 'inv/assets/sobre-portada.jpg']
+      ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
     // Una imagen personalizada con otra ruta se muestra tal como la haya elegido el cliente.
@@ -542,6 +542,14 @@
     }
 
     function createCard(item, layout) {
+      // Red Vibrante reemplaza a Jardín de Seda sin cambiar el ID que usa el panel.
+      // El nombre del panel se podrá actualizar después sin perder enlaces existentes.
+      if (item.id === 'jardin-seda') {
+        item = { ...item, nombre: 'Red Vibrante',
+          descripcion: /marfil|bot[aá]nic|seda/i.test(item.descripcion || '')
+            ? 'Borgoña profundo, flores rubí, sobre animado y una celebración llena de emoción.'
+            : item.descripcion };
+      }
       const card = layout.cloneNode(true);
       card.classList.remove('reveal');
       card.classList.toggle('featured', Boolean(item.destacado));

@@ -655,7 +655,9 @@
     </div>
   </div>
 
+  <link rel="stylesheet" href="red-vibrante.css" />
   <script src="../assets/panel-api.js"></script>
+  <script src="red-vibrante.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -858,6 +860,18 @@
 
       function start() {
         if (started) return; started = true;
+        if (media.__redVibrante) {
+          overlay.classList.add('opened');
+          overlay.style.pointerEvents = 'none';
+          tryPlayAudio();
+          // Esperar a que se abran las cuatro solapas, antes de mostrar el contenido.
+          setTimeout(() => {
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; }, 1050);
+            finish();
+          }, 1850);
+          return;
+        }
         overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
         setTimeout(() => { overlay.style.display = 'none'; }, 1100);
         tryPlayAudio();
@@ -916,6 +930,7 @@
       $('repeatBtn').addEventListener('click', (ev) => {
         ev.stopPropagation();
         started = false; ended = false;
+        overlay.classList.remove('opened');
         overlay.style.display = 'flex'; overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
         clearTimeout(controlsTimer);
         dock.classList.remove('visible', 'is-idle');
@@ -1649,7 +1664,7 @@
       document.body.classList.remove('locked');
     }
 
-    function renderAll(payload) {
+    async function renderAll(payload) {
       const d = payload.datos || {}, t = payload.plantilla || {};
       explicitMedia=d.medios||{};
       const m = Object.assign({}, t.media || {});
@@ -1686,7 +1701,16 @@
       document.querySelector('meta[name="theme-color"]').setAttribute('content', bg);
       document.title = (d.nombre1 || 'Invitación') + (d.nombre2 ? ' & ' + d.nombre2 : '') + ' · N&S ATELIER';
 
-      if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
+      // La demo pública cambia de aspecto, pero las plantillas privadas y las
+      // invitaciones de clientes existentes con el antiguo ID NO se modifican.
+      const demoId = new URLSearchParams(location.search).get('demo');
+      const redVibrantePublica = t.id === 'jardin-seda' &&
+        !editingView && payload.tipo === 'plantilla' && demoId === 'jardin-seda';
+      const redVibranteEditor = editingView && payload.tipo === 'plantilla' &&
+        t.id === 'jardin-seda' && /red\s+vibrante/i.test(t.nombre || '');
+      if (redVibrantePublica || redVibranteEditor || t.estilo === 'red-vibrante') {
+        await window.renderRedVibrante(d, t, m, payload);
+      } else if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
       else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m, payload.tipo === 'plantilla');
       else renderUniversal(d, t, m);
 
@@ -1720,6 +1744,21 @@
         if (query.tipo !== 'plantilla') throw error;
       }
       // Catálogo público descargado con el proyecto: seis demostraciones de boda.
+      if (query.id === 'jardin-seda') {
+        // Respaldo exclusivamente para la demo pública; nunca suplanta datos de clientes.
+        return {
+          ok: true, tipo: 'plantilla',
+          plantilla: { id: 'jardin-seda', nombre: 'Red Vibrante', categoria: 'Boda premium',
+            descripcion: 'Borgoña, flores rubí y ceremonia elegante.', estilo: 'red-vibrante',
+            fondo: '#66021f', texto: '#fffaf8', acento: '#fffaf8', media: {} },
+          datos: { nombre1: 'Viktor', nombre2: 'Paula', tipo: 'Wedding Day',
+            fecha: '2027-07-10T16:15:00-05:00', fechaCorta: '10.07.27',
+            lugar: 'Chateau de Paon', direccion: 'Petit Chemin de Saint-Gilles, 13200 Arles, France',
+            despedida: 'Hope to see you there!',
+            cronograma: [{hora:'16:00',nombre:'Wedding Ceremony'},{hora:'17:00',nombre:'Cocktail Hour'},
+              {hora:'19:00',nombre:'Dinner'},{hora:'20:00',nombre:'Party'}] }
+        };
+      }
       if (query.id === 'the-sacred-garden') {
         return {
           ...FALLBACK_SAMPLE,
@@ -1749,10 +1788,10 @@
 
     (async () => {
       if(editingView){
-        window.addEventListener('message',function init(e){
+        window.addEventListener('message',async function init(e){
           if(e.source!==parent || e.data?.type!=='atelier-init' || !e.data.payload)return;
           window.removeEventListener('message',init);panelOrigin=e.origin;
-          try {pruebaApertura=!!e.data.prueba;renderAll(e.data.payload);showEditorSection(!e.data.interior,false);if(pruebaApertura)sendPanel('atelier-view',{status:'Toca el sobre para reproducir la apertura',ready:true});} catch(error){sendPanel('atelier-view',{status:'Error al abrir la invitación: '+error.message,ready:false});}
+          try {pruebaApertura=!!e.data.prueba;await renderAll(e.data.payload);showEditorSection(!e.data.interior,false);if(pruebaApertura)sendPanel('atelier-view',{status:'Toca el sobre para reproducir la apertura',ready:true});} catch(error){sendPanel('atelier-view',{status:'Error al abrir la invitación: '+error.message,ready:false});}
         });
         return;
       }
@@ -1760,7 +1799,7 @@
       try {
         const data = await loadInvitation(q);
         if (!data || !data.ok) throw Error(data?.error || 'Invitación no encontrada');
-        renderAll(data);
+        await renderAll(data);
       } catch (err) {
         showError(err.message + (q?.tipo === 'evento' ? ' Verifica que la invitación esté en estado "Publicada".' : ''));
       }
