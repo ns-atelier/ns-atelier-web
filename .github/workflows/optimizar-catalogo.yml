@@ -2,8 +2,9 @@ name: Optimizar portadas del catalogo
 on:
   push:
     branches:
-      - fix/catalogo-carga-optimizada
+      - main
     paths:
+      - '.github/workflows/optimizar-catalogo.yml'
       - 'tools/build_catalog_thumbs.py'
 permissions:
   contents: write
