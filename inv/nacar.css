@@ -2025,3 +2025,5 @@
 body.ns-mobile-immersive .nacar-root{max-width:none;}
 @media(max-width:560px){.nacar-root{max-width:100%;}}
 @media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}
+/* Controles ambientales ocultos durante la inactividad, igual que el visor */
+.nacar-root #audio-toggle-btn.nacar-idle{opacity:0!important;pointer-events:none!important;}
