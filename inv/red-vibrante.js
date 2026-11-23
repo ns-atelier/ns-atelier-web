@@ -150,12 +150,14 @@
     const root = document.getElementById('root');
     root.replaceChildren(document.importNode(node, true));
     const rv = root.querySelector('.rv-root');
+    document.body.classList.add('rv-mode');
     const q = selector => rv.querySelector(selector);
     // Los datos editables del panel se reflejan sobre el diseño original.
     const tx = data.textos || {};
     const colors = data.colores || {};
     const customBg = colors.fondo || (template.fondo && template.fondo.toLowerCase() !== '#f7f0e5' ? template.fondo : '');
     if (customBg) rv.style.setProperty('--burgundy', customBg);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', customBg || '#66021f');
     if (colors.texto) rv.style.setProperty('--cream', colors.texto);
     if (data.fuente) rv.style.setProperty('--font-main', "'" + String(data.fuente).replace(/[^a-zA-Z ]/g, '') + "', Georgia, serif");
     const n1 = data.nombre1 || 'Viktor', n2 = data.nombre2 || 'Paula';
