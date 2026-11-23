@@ -587,6 +587,7 @@
 .visual-editor #fabDock{display:none}
 .sg-row{grid-template-columns:minmax(0,4.8em) 18px minmax(0,1fr);gap:6px}.sg-row-time,.sg-row-name{font-size:clamp(16px,4.7vw,21px);padding:0;line-height:1.3;overflow-wrap:anywhere}.sg-rose,.sg-timeline:before{left:calc(4.8em + 15px)}
 </style>
+  <script src="idioma-es.js?v=2"></script>
 </head>
 <body>
   <div id="loading" role="status">Preparando tu invitación…</div>
@@ -673,7 +674,7 @@
   <link rel="stylesheet" href="nacar.css" />
   <link rel="stylesheet" href="eleganza.css" />
   <link rel="stylesheet" href="odette.css" />
-  <link rel="stylesheet" href="dolce-vita.css" />
+  <link rel="stylesheet" href="dolce-vita.css?v=carta2" />
   <link rel="stylesheet" href="fresco.css" />
   <link rel="stylesheet" href="theatre.css" />
   <script src="../assets/demo-ids.js"></script>
@@ -684,8 +685,8 @@
   <script src="eleganza-original.js"></script>
   <script src="eleganza.js"></script>
   <script src="odette.js"></script>
-  <script src="dolce-vita-original.js"></script>
-  <script src="dolce-vita.js"></script>
+  <script src="dolce-vita-original.js?v=carta2"></script>
+  <script src="dolce-vita.js?v=carta2"></script>
   <script src="fresco-original.js"></script>
   <script src="fresco.js"></script>
   <script src="theatre-original.js"></script>
@@ -1186,7 +1187,7 @@
 
 
     function renderUniversal(d, t, m) {
-      const en = (t.idioma === 'en');
+      const en = false;
       const L = en ? {
         scroll: 'Scroll down', cd: 'The Celebration Begins In', days: 'Days', hrs: 'Hours', mins: 'Minutes', secs: 'Seconds',
         sched: 'Schedule of Events', gallery: 'Our Memories', loc: 'Location', map: 'Open in Google Maps ↗',
@@ -1822,6 +1823,7 @@
         }
       }
       setupIntro(m, d.textos || {});
+      mostrarInvitacionES();
       connectVisual(t,d);
       startCountdown(d.fecha);
       wireRsvpModal();

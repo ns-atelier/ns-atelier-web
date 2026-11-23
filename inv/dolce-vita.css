@@ -1608,7 +1608,7 @@ body.ns-mobile-immersive .dv-root{max-width:none;}
   text-align: center;
   background: #fff;
   box-shadow: 0 -6px 22px rgba(42, 38, 38, .12);
-  transform: translateY(calc((1 - var(--dv-letter-progress, 1)) * clamp(72px, 24vw, 135px)));
+  transform: none;
 }
 .dv-root .dv-letter-paper p {
   font-size: clamp(15px, 4.7vw, 18px);
@@ -1616,4 +1616,18 @@ body.ns-mobile-immersive .dv-root{max-width:none;}
 }
 @media (prefers-reduced-motion: reduce) {
   .dv-root .dv-letter-paper { transform: none; }
+}
+
+.dv-root .dv-letter-envelope.dv-letter-ready .dv-letter-paper {
+  transform: translateY(clamp(135px, 44vw, 212px));
+  transition: transform 1.15s cubic-bezier(.19, 1, .26, 1);
+}
+.dv-root .dv-letter-envelope.dv-letter-open .dv-letter-paper {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dv-root .dv-letter-envelope.dv-letter-ready .dv-letter-paper {
+    transform: none;
+    transition: none;
+  }
 }

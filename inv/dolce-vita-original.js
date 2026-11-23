@@ -271,8 +271,6 @@ window.startDolceVitaOriginal=function(){
     // 3. SCROLL-DRIVEN LETTER SLIDE & PARTING CLOUDS IN SCHEDULE
     // =========================================================================
     (function initScrollEffects() {
-      const letterSection = document.getElementById('letter-section');
-      const letterCard = document.getElementById('letter-card');
       const scheduleSection = document.getElementById('schedule-section');
       const cloudTop = document.getElementById('cloud-top');
       const cloudBottom = document.getElementById('cloud-bottom');
@@ -282,13 +280,6 @@ window.startDolceVitaOriginal=function(){
       function onScroll() {
         frame = 0;
         const vh = window.innerHeight;
-
-        // Subtle upward letter rise inside the envelope as user scrolls
-        if (letterSection && letterCard) {
-          const rect = letterSection.getBoundingClientRect();
-          const progress = movimientoReducido.matches ? 1 : Math.min(1, Math.max(0, (vh * 0.98 - rect.top) / (vh * 0.53)));
-          letterCard.style.setProperty('--dv-letter-progress', progress.toFixed(3));
-        }
 
         // Parting clouds horizontally as Schedule section enters viewport
         if (scheduleSection && cloudTop && cloudBottom) {

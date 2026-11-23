@@ -106,6 +106,19 @@
       document.getElementById('weiOverlay')?.addEventListener('click',()=>video.play().catch(()=>{}),{once:true});
     }
   }
+  function revealLetter(root) {
+    const envelope = root.querySelector('.dv-letter-envelope');
+    if (!envelope || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        new URLSearchParams(location.search).get('editor') === '1') return;
+
+    envelope.classList.add('dv-letter-ready');
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      envelope.classList.add('dv-letter-open');
+      observer.disconnect();
+    }, {rootMargin:'0px 0px -16% 0px', threshold:0.18});
+    observer.observe(envelope);
+  }
   function fontStyles(){
     if(document.getElementById('dv-fonts'))return;
     const link=document.createElement('link');
@@ -115,7 +128,7 @@
     document.head.appendChild(link);
   }
   window.renderDolceVita=async function renderDolceVita(data,template,media,payload){
-    const response=await fetch(window.nsSiteUrl('inv/dolce-vita-template.html'),{cache:'force-cache'});
+    const response=await fetch(window.nsSiteUrl('inv/dolce-vita-template.html')+'?v=carta2',{cache:'no-cache'});
     if(!response.ok)throw Error('No se pudo cargar el diseño Dolce Vita.');
     const documentHTML=new DOMParser().parseFromString(await response.text(),'text/html');
     const source=documentHTML.querySelector('.dv-root');
@@ -151,6 +164,7 @@
     if(typeof window.startDolceVitaOriginal!=='function')throw Error('No se pudo iniciar el motor de Dolce Vita.');
     if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches && new URLSearchParams(location.search).get('editor')!=='1')
       root.classList.add('dv-motion-ready');
+    revealLetter(root);
     window.startDolceVitaOriginal();
     document.title='Dolce Vita · N&S ATELIER';
     return root;
