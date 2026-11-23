@@ -775,3 +775,5 @@
 /* Mantener las solapas visibles durante la apertura; desvanecer sólo al final. */
 #weiOverlay.rv-envelope-mode { transition: opacity .65s ease; }
 #weiOverlay.rv-envelope-mode.opened { opacity: 1; visibility: visible; }
+
+body.rv-mode { background:#66021f; }
