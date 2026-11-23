@@ -9,7 +9,8 @@
     {id:'eleganza',name:'Eleganza',aliases:['jardin-eterno']},
     {id:'odette',name:'Odette',aliases:['noche-dorada']},
     {id:'dolce-vita',name:'Dolce Vita',aliases:[]},
-    {id:'fresco',name:'Fresco',aliases:[]}
+    {id:'fresco',name:'Fresco',aliases:[]},
+    {id:'theatre',name:'Theatre',aliases:[]}
   ];
   const aliases=Object.create(null);
   const names=Object.create(null);
