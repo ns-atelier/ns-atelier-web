@@ -1,0 +1,40 @@
+name: Construir demo Nacar
+on:
+  push:
+    branches:
+      - feature/nacar-desde-olivo-marfil
+      - main
+    paths:
+      - 'inv/nacar-source.html'
+      - 'tools/build_nacar.mjs'
+      - '.github/workflows/crear-nacar.yml'
+permissions:
+  contents: write
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar compilador de estilos
+        run: npm install --no-save --package-lock=false tailwindcss@4.1.10 postcss@8
+      - name: Generar plantilla, CSS y animaciones
+        run: node tools/build_nacar.mjs
+      - name: Validar JavaScript generado
+        run: node --check inv/nacar-original.js
+      - name: Guardar recursos generados
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add inv/nacar-template.html inv/nacar.css inv/nacar-original.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Generar recursos estaticos de Nacar"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
