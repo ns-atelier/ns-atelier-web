@@ -537,7 +537,39 @@
       #catalogGrid .design-body { min-height:214px; }
     }
     @media (max-width:360px) { #catalogGrid .design-body { min-height:209px; } }
-</style>
+
+    .catalog-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      max-width: 100%;
+      color: var(--burgundy);
+      font-size: .875rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .catalog-home-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--burgundy);
+      border-radius: 50%;
+      background: var(--burgundy);
+      color: #fffaf3;
+      font: 1.3rem/1 system-ui, sans-serif;
+      transition: background-color .18s ease, color .18s ease, transform .18s ease;
+    }
+    .catalog-home-label { text-decoration: underline; text-decoration-color: #a67d2b; text-underline-offset: 5px; }
+    .catalog-home-link:hover .catalog-home-icon { background: transparent; color: var(--burgundy); transform: translateX(-3px); }
+    .catalog-home-link:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 5px; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      .catalog-home-icon { transition: none; }
+      .catalog-home-link:hover .catalog-home-icon { transform: none; }
+    }
+  </style>
 <link rel="preload" as="image" href="assets/catalogo/perla-nacar.webp" type="image/webp" fetchpriority="high">
 <link rel="icon" type="image/webp" href="assets/logo-ns.webp">
 </head>
@@ -569,7 +601,10 @@
     <section class="section section-soft catalog-page" style="padding-top:52px">
       <div class="container">
         <div style="margin-bottom:20px">
-          <a class="btn btn-outline btn-sm" href="index.html">← Volver a la página principal</a>
+          <a class="catalog-home-link" href="index.html">
+            <span class="catalog-home-icon" aria-hidden="true">←</span>
+            <span class="catalog-home-label">Volver a la página principal</span>
+          </a>
         </div>
         <div class="section-head">
           <div class="eyebrow">Colección de invitaciones</div>
@@ -699,7 +734,7 @@
       ['odette', 'assets/catalogo/odette.webp'],
       ['dolce-vita', 'assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123'],
       ['fresco', 'assets/catalogo/catalogo-fresco.webp'],
-      ['theatre', 'assets/catalogo/catalogo-theatre.webp'],
+      ['theatre', 'assets/catalogo/catalogo-theatre.webp?v=telon-4x5'],
       ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png'],
       ['red-vibrante', 'https://static.tildacdn.net/tild3138-3862-4931-a264-313932393437/4ruby.png']
     ]);
@@ -712,7 +747,7 @@
       ['odette','assets/catalogo/catalogo-odette.webp'],
       ['dolce-vita','assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123'],
       ['fresco','assets/catalogo/catalogo-fresco.webp'],
-      ['theatre','assets/catalogo/catalogo-theatre.webp'],
+      ['theatre','assets/catalogo/catalogo-theatre.webp?v=telon-4x5'],
       ['blossom-oud','assets/catalogo/catalogo-blossom-oud.webp?v=dos-vistas']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
