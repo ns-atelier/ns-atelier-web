@@ -674,6 +674,7 @@
   <link rel="stylesheet" href="eleganza.css" />
   <link rel="stylesheet" href="odette.css" />
   <link rel="stylesheet" href="dolce-vita.css" />
+  <link rel="stylesheet" href="fresco.css" />
   <script src="../assets/demo-ids.js"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
@@ -684,6 +685,8 @@
   <script src="odette.js"></script>
   <script src="dolce-vita-original.js"></script>
   <script src="dolce-vita.js"></script>
+  <script src="fresco-original.js"></script>
+  <script src="fresco.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -961,7 +964,7 @@
           videoWrap.classList.add('wei-video-in');
           video.currentTime = 0;
           video.play().catch(() => setTimeout(finish, 900));
-          if (!ended) timer = setTimeout(finish, (media.__nacar || media.__eleganza || media.__odette) ? 10500 : 15000);
+          if (!ended) timer = setTimeout(finish, (media.__nacar || media.__eleganza || media.__odette || media.__fresco) ? 10500 : 15000);
         } else {
           setTimeout(finish, 450);
         }
@@ -978,7 +981,7 @@
       video.addEventListener('timeupdate', () => {
         if (video.duration && video.currentTime >= video.duration - 0.8) finish();
       });
-      video.addEventListener('playing', () => { if (!media.__nacar && !media.__eleganza && !media.__odette) clearTimeout(timer); });
+      video.addEventListener('playing', () => { if (!media.__nacar && !media.__eleganza && !media.__odette && !media.__fresco) clearTimeout(timer); });
       video.addEventListener('waiting', () => { clearTimeout(timer); timer = setTimeout(finish,15000); });
       video.addEventListener('ended', finish);
       video.addEventListener('error', () => { if (started) finish(); });
@@ -1790,7 +1793,10 @@
         (isPreview && id === 'odette') || style === 'odette';
       const dolceVita = (isPublicDemo && publicId === 'dolce-vita' && id === 'dolce-vita') ||
         (isPreview && id === 'dolce-vita') || style === 'dolce-vita';
-      if (dolceVita) await window.renderDolceVita(d,t,m,payload);
+      const fresco = (isPublicDemo && publicId === 'fresco' && id === 'fresco') ||
+        (isPreview && id === 'fresco') || style === 'fresco';
+      if (fresco) await window.renderFresco(d,t,m,payload);
+      else if (dolceVita) await window.renderDolceVita(d,t,m,payload);
       else if (odette) await window.renderOdette(d,t,m,payload);
       else if (eleganza) await window.renderEleganza(d,t,m,payload);
       else if (nacar) await window.renderNacar(d,t,m,payload);
@@ -1862,6 +1868,31 @@
             despedida: 'Hope to see you there!',
             cronograma: [{hora:'16:00',nombre:'Wedding Ceremony'},{hora:'17:00',nombre:'Cocktail Hour'},
               {hora:'19:00',nombre:'Dinner'},{hora:'20:00',nombre:'Party'}] }
+        };
+      }
+      if (query.id === 'fresco') {
+        return {
+          ok:true,tipo:'plantilla',
+          plantilla:{id:'fresco',nombre:'Fresco',categoria:'Boda premium',
+            descripcion:'Mediterráneo pintado a mano, sobre en video, cenefas y RSVP bilingüe.',
+            estilo:'fresco',fondo:'#faf8f4',texto:'#2c3327',acento:'#566544',media:{}},
+          datos:{nombre1:'Diana',nombre2:'Richard',tipo:'Wedding Day',
+            fecha:'2027-07-27T17:30:00+02:00',fechaCorta:'Tuesday, 27 July 2027',
+            lugar:'Son Bunyola',direccion:'Mallorca, España',
+            mapaUrl:'https://www.google.com/maps/search/?api=1&query=Son+Bunyola+Mallorca',
+            vestimenta:'Black Tie',
+            rsvpLimite:'The favour of a reply is kindly requested by May 15, 2027.',
+            despedida:'With Love, Diana & Richard',
+            cronograma:[
+              {hora:'17:00',nombre:'Guests Arrival & Welcome Drinks'},
+              {hora:'17:30',nombre:'Ceremony'},
+              {hora:'19:15',nombre:'Cocktail Hour'},
+              {hora:'20:30',nombre:'Dinner'},
+              {hora:'22:30',nombre:'Cake & Toasts'},
+              {hora:'23:00',nombre:'First Dance'},
+              {hora:'23:15',nombre:'Dancing under the Stars'},
+              {hora:'02:00',nombre:'Goodnight'}
+            ]}
         };
       }
       if (query.id === 'dolce-vita') {
