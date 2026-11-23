@@ -257,14 +257,28 @@
     .video3d-copy .btn:hover { background: #f8e3c3; }
     .video3d-copy .btn:focus-visible, .video3d-figure video:focus-visible { outline: 2px solid #fff5da; outline-offset: 4px; }
     .video3d-figure {
-      position: relative; width: min(100%, 360px); justify-self: center; min-width: 0;
-      padding: 8px 8px 0; border-radius: 15px; border: 1px solid #d2ad7b69;
+      /* La ventana sigue el formato vertical real del vídeo, no el tamaño horizontal codificado. */
+      --cine-video-ratio: 540 / 661;
+      position: relative;
+      width: min(100%, 360px, calc(74dvh * 540 / 661));
+      justify-self: center;
+      min-width: 0; padding: 6px 6px 0;
+      border-radius: 17px;
+      border: 1px solid #d2ad7b69;
       background: linear-gradient(155deg, #6a4b39, #2c201d 45%, #241a17);
       box-shadow: 0 22px 74px #0b060566, 0 0 64px #ca894e24;
     }
     .video3d-figure video {
-      display: block; width: 100%; height: auto; aspect-ratio: 1080 / 720;
-      border-radius: 9px; background: #110e0d;
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: var(--cine-video-ratio);
+      object-fit: contain;
+      border-radius: 11px;
+      background: #110e0d;
+    }
+    @supports not (height: 100dvh) {
+      .video3d-figure { width: min(100%, 360px, calc(74vh * 540 / 661)); }
     }
     #reproducirConSonido { margin: 8px 0 0; width: 100%; min-height: 44px; justify-content: center; cursor: pointer; }
     #reproducirConSonido[hidden] { display: none; }
@@ -589,7 +603,7 @@
           </div>
 
           <figure class="video3d-figure reveal">
-            <video id="videoHistorias" controls loop playsinline preload="none" width="1080" height="720"
+            <video id="videoHistorias" controls loop playsinline preload="none" width="540" height="661"
               poster="assets/videohistorias/videohistorias-actual.webp" aria-label="Muestra de una videohistoria 3D">
               <source src="assets/videohistorias/videohistorias-actual.webm" type="video/webm">
               <source src="assets/videohistorias/videohistorias-actual.mp4" type="video/mp4">
@@ -952,6 +966,20 @@
     }
 
     const videoHistorias = document.getElementById('videoHistorias');
+    const videoFrame = videoHistorias?.closest('.video3d-figure');
+    // El MP4 actual es anamórfico: el archivo declara 1080×720,
+    // pero su display aspect ratio es 540:661 (vertical). No confiar en los
+    // píxeles almacenados para reservar el espacio del reproductor.
+    videoHistorias?.addEventListener('loadedmetadata', () => {
+      const url = videoHistorias.currentSrc || '';
+      if (/videohistorias-actual\.(?:webm|mp4)(?:[?#]|$)/i.test(url)) return;
+      if (!videoFrame || !videoHistorias.videoWidth || !videoHistorias.videoHeight) return;
+      const ratio = videoHistorias.videoWidth / videoHistorias.videoHeight;
+      if (ratio > 0.3 && ratio < 3) {
+        videoFrame.style.setProperty('--cine-video-ratio',
+          videoHistorias.videoWidth + ' / ' + videoHistorias.videoHeight);
+      }
+    }, { passive: true });
     const reproducirConSonido = document.getElementById('reproducirConSonido');
 
     const tieneObservador = 'IntersectionObserver' in window;
