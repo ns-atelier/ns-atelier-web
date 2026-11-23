@@ -672,6 +672,7 @@
   <link rel="stylesheet" href="red-vibrante.css" />
   <link rel="stylesheet" href="nacar.css" />
   <link rel="stylesheet" href="eleganza.css" />
+  <script src="../assets/demo-ids.js"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
   <script src="nacar-original.js"></script>
@@ -755,11 +756,7 @@
 
     // Nombre público actual => slug canónico. Los antiguos solo son alias de URL.
     // Las plantillas privadas y los tokens de clientes se consultan sin cambios.
-    const DEMO_ALIASES = Object.freeze({
-      'jardin-seda': 'red-vibrante',
-      'olivo-marfil': 'nacar',
-      'jardin-eterno': 'eleganza'
-    });
+    const DEMO_ALIASES = window.NS_DEMO_REGISTRY.aliases;
     function getQuery() {
       const sp = new URLSearchParams(location.search);
       const t = sp.get('t') || sp.get('token');
