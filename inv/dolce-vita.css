@@ -1618,16 +1618,37 @@ body.ns-mobile-immersive .dv-root{max-width:none;}
   .dv-root .dv-letter-paper { transform: none; }
 }
 
-.dv-root .dv-letter-envelope.dv-letter-ready .dv-letter-paper {
-  transform: translateY(clamp(135px, 44vw, 212px));
-  transition: transform 1.15s cubic-bezier(.19, 1, .26, 1);
+
+/* Mientras cambia la posición del papel con el scroll, ambas caras del sobre
+   mantienen la misma posición hasta completar su recorrido. */
+.dv-root .dv-letter-envelope {
+  margin-top: 0;
+  padding-top: 18px;
+  padding-bottom: clamp(190px, 55vw, 265px);
 }
-.dv-root .dv-letter-envelope.dv-letter-open .dv-letter-paper {
-  transform: translateY(0);
+.dv-root .dv-letter-envelope .dv-envelope-back,
+.dv-root .dv-letter-envelope .dv-envelope-pocket {
+  top: clamp(-58px, -10vw, -33px);
+  bottom: auto;
+  width: clamp(400px, 124%, 520px);
+  transform: translate(-50%, var(--dv-envelope-hold, 0px));
 }
+.dv-root .dv-letter-paper {
+  width: min(88%, 306px);
+  min-height: 290px;
+  padding-bottom: 30px;
+}
+.dv-root #cloud-top,
+.dv-root #cloud-bottom {
+  left: 50%;
+  width: clamp(650px, 243%, 960px);
+  max-width: none;
+}
+.dv-root #cloud-top { top: 69px; }
+.dv-root #cloud-bottom { top: 169px; }
 @media (prefers-reduced-motion: reduce) {
-  .dv-root .dv-letter-envelope.dv-letter-ready .dv-letter-paper {
-    transform: none;
-    transition: none;
+  .dv-root .dv-letter-envelope .dv-envelope-back,
+  .dv-root .dv-letter-envelope .dv-envelope-pocket {
+    transform: translate(-50%, 90px);
   }
 }

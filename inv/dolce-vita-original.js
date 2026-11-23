@@ -271,6 +271,7 @@ window.startDolceVitaOriginal=function(){
     // 3. SCROLL-DRIVEN LETTER SLIDE & PARTING CLOUDS IN SCHEDULE
     // =========================================================================
     (function initScrollEffects() {
+      const envelope = document.querySelector('.dv-letter-envelope');
       const scheduleSection = document.getElementById('schedule-section');
       const cloudTop = document.getElementById('cloud-top');
       const cloudBottom = document.getElementById('cloud-bottom');
@@ -281,15 +282,21 @@ window.startDolceVitaOriginal=function(){
         frame = 0;
         const vh = window.innerHeight;
 
+        if (envelope) {
+          const start = vh * 0.58;
+          const distance = Math.max(0, Math.min(170, start - envelope.getBoundingClientRect().top));
+          envelope.style.setProperty('--dv-envelope-hold', `${movimientoReducido.matches ? 0 : distance}px`);
+        }
+
         // Parting clouds horizontally as Schedule section enters viewport
         if (scheduleSection && cloudTop && cloudBottom) {
           const rect = scheduleSection.getBoundingClientRect();
           // Starts parting as section enters from bottom, fully parted near upper middle
-          const raw = (vh * 0.76 - rect.top) / (vh * 0.60);
+          const raw = (vh * 0.56 - rect.top) / 300;
           const progress = movimientoReducido.matches ? 1 : Math.min(1, Math.max(0, raw));
-          const shiftRight = progress * 460;
-          const shiftLeft = -progress * 460;
-          const cloudOpacity = Math.max(0, 1 - progress * 0.85);
+          const shiftRight = progress * Math.max(460, scheduleSection.clientWidth * 1.76);
+          const shiftLeft = -progress * Math.max(460, scheduleSection.clientWidth * 1.75);
+          const cloudOpacity = Math.max(0, 1 - Math.max(0, (progress - 0.65) / 0.35));
 
           cloudTop.style.transform = `translate(calc(-50% + ${shiftRight.toFixed(1)}px), 0)`;
           cloudBottom.style.transform = `translate(calc(-50% + ${shiftLeft.toFixed(1)}px), 0)`;
