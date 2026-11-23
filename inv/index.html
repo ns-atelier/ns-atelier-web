@@ -673,6 +673,7 @@
   <link rel="stylesheet" href="nacar.css" />
   <link rel="stylesheet" href="eleganza.css" />
   <link rel="stylesheet" href="odette.css" />
+  <link rel="stylesheet" href="dolce-vita.css" />
   <script src="../assets/demo-ids.js"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
@@ -681,6 +682,8 @@
   <script src="eleganza-original.js"></script>
   <script src="eleganza.js"></script>
   <script src="odette.js"></script>
+  <script src="dolce-vita-original.js"></script>
+  <script src="dolce-vita.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -937,7 +940,7 @@
 
       function start() {
         if (started) return; started = true;
-        if (media.__redVibrante) {
+        if (media.__redVibrante || media.__dolceVita) {
           overlay.classList.add('opened');
           overlay.style.pointerEvents = 'none';
           tryPlayAudio();
@@ -1785,7 +1788,10 @@
       const odette = (isPublicDemo && publicId === 'odette' &&
         (id === 'odette' || id === 'noche-dorada')) ||
         (isPreview && id === 'odette') || style === 'odette';
-      if (odette) await window.renderOdette(d,t,m,payload);
+      const dolceVita = (isPublicDemo && publicId === 'dolce-vita' && id === 'dolce-vita') ||
+        (isPreview && id === 'dolce-vita') || style === 'dolce-vita';
+      if (dolceVita) await window.renderDolceVita(d,t,m,payload);
+      else if (odette) await window.renderOdette(d,t,m,payload);
       else if (eleganza) await window.renderEleganza(d,t,m,payload);
       else if (nacar) await window.renderNacar(d,t,m,payload);
       else if (red) await window.renderRedVibrante(d,t,m,payload);
@@ -1856,6 +1862,28 @@
             despedida: 'Hope to see you there!',
             cronograma: [{hora:'16:00',nombre:'Wedding Ceremony'},{hora:'17:00',nombre:'Cocktail Hour'},
               {hora:'19:00',nombre:'Dinner'},{hora:'20:00',nombre:'Party'}] }
+        };
+      }
+      if (query.id === 'dolce-vita') {
+        return {
+          ok:true,tipo:'plantilla',
+          plantilla:{id:'dolce-vita',nombre:'Dolce Vita',categoria:'Boda premium',
+            descripcion:'Romance mediterráneo, sobre animado, fecha para raspar y nubes flotantes.',
+            estilo:'dolce-vita',fondo:'#fffdfb',texto:'#3a3a3a',acento:'#64a0bd',media:{}},
+          datos:{nombre1:'Alexa',nombre2:'Richard',tipo:'Wedding Day',
+            fecha:'2027-09-14T17:00:00-05:00',fechaCorta:'14 September 2027',
+            subtitulo:'are getting married!',lugar:'Casa del Mar',
+            direccion:'Cancún, México',vestimenta:'Elegant summer dress code · pastel tones',
+            rsvpLimite:'Please RSVP before August 30, 2027.',
+            despedida:'Hope to see you there!',
+            cronograma:[
+              {hora:'16:30',nombre:'Opening of the doors'},
+              {hora:'17:00',nombre:'Ceremony'},
+              {hora:'18:00',nombre:'Cocktail and dancing time'},
+              {hora:'20:00',nombre:'Dinner'},
+              {hora:'21:00',nombre:'Party and Open Bar'},
+              {hora:'23:00',nombre:'End of the celebration'}
+            ]}
         };
       }
       if (query.id === 'odette') {
