@@ -263,7 +263,7 @@
       box-shadow: 0 22px 74px #0b060566, 0 0 64px #ca894e24;
     }
     .video3d-figure video {
-      display: block; width: 100%; height: auto; aspect-ratio: 3 / 4;
+      display: block; width: 100%; height: auto; aspect-ratio: 1080 / 720;
       border-radius: 9px; background: #110e0d;
     }
     #reproducirConSonido { margin: 8px 0 0; width: 100%; min-height: 44px; justify-content: center; cursor: pointer; }
@@ -589,12 +589,13 @@
           </div>
 
           <figure class="video3d-figure reveal">
-            <video id="videoHistorias" controls loop playsinline preload="none" width="720" height="960"
-              poster="assets/videohistorias/portada-34s.webp" aria-label="Muestra del proceso de creación de una videohistoria 3D">
-              <source src="assets/videohistorias/videohistorias-34s.mp4" type="video/mp4">
+            <video id="videoHistorias" controls loop playsinline preload="none" width="1080" height="720"
+              poster="assets/videohistorias/videohistorias-actual.webp" aria-label="Muestra de una videohistoria 3D">
+              <source src="assets/videohistorias/videohistorias-actual.webm" type="video/webm">
+              <source src="assets/videohistorias/videohistorias-actual.mp4" type="video/mp4">
             </video>
             <button id="reproducirConSonido" class="btn btn-light btn-sm" type="button" hidden>Activar sonido</button>
-            <figcaption><span>Del personaje a la escena animada</span><time datetime="PT34.806S">0:34</time></figcaption>
+            <figcaption><span>Del personaje a la escena animada</span><time datetime="PT34S">0:34</time></figcaption>
           </figure>
         </div>
 
