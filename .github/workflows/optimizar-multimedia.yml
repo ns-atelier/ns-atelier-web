@@ -34,8 +34,11 @@ jobs:
           python-version: '3.12'
       - name: Instalar procesador de imágenes
         run: python -m pip install Pillow==11.3.0
-      - name: Comprobar FFmpeg
-        run: ffmpeg -version
+      - name: Instalar FFmpeg (video y audio)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
       - name: Preparar recursos optimizados
         run: python tools/optimizar_multimedia.py
       - name: Publicar cambios, si existen
