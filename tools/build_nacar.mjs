@@ -18,19 +18,20 @@ const originalStyle=(source.match(/<style>([\s\S]*?)<\/style>/)||[])[1];
 if(!originalStyle)throw Error('CSS missing');
 const theme=fs.readFileSync(require.resolve('tailwindcss/theme.css'),'utf8');
 const custom='@theme {\n--color-background:#f8f6f2;\n--color-foreground:#3c4b5d;\n--font-display:"Cormorant Garamond",Georgia,serif;\n--font-ballet:"Ballet",cursive;\n--font-doulaise:"Monsieur La Doulaise",cursive;\n--font-body:"Jost",sans-serif;\n--font-helvetica:"Helvetica Neue",Helvetica,Arial,sans-serif;\n}\n@tailwind utilities;';
-const compiler=await tw.compile(theme+'\n'+custom);
+const preflight=fs.readFileSync(require.resolve('tailwindcss/preflight.css'),'utf8');
+const compiler=await tw.compile(theme+'\n'+custom+'\n'+preflight);
 const classes=[...source.matchAll(/\bclass\s*=\s*"([^"]+)"/g)].flatMap(x=>x[1].trim().split(/\s+/));
 const generated=compiler.build([...new Set(classes)]);
 if(!generated.includes('.min-h-')||!generated.includes('.text-'))throw Error('CSS compilation empty');
-const preflight=fs.readFileSync(require.resolve('tailwindcss/preflight.css'),'utf8');
 const sourceStyle=originalStyle.replace(/body\.scroll-locked/g,'.nacar-root.scroll-locked').replace(/\bbody\b/g,'.nacar-root').replace(/\bhtml\b/g,'.nacar-root');
-const root=postcss.parse(preflight+'\n'+generated+'\n'+sourceStyle);
+const root=postcss.parse(generated+'\n'+sourceStyle);
 root.walkRules(rule=>{
   if(rule.parent?.type==='atrule'&&/keyframes/i.test(rule.parent.name))return;
   const sel=rule.selector.trim();
-  if(sel===':root, :host'||sel===':host, :root'){rule.selector='.nacar-root';return;}
-  if(sel.includes(':root')||sel.includes(':host')){rule.selector=sel.replaceAll(':root','.nacar-root').replaceAll(':host','.nacar-root');return;}
-  rule.selector='.nacar-root :where('+sel+')';
+  if(/^\.nacar-root(?:\b|\.|\s|$)/.test(sel)){rule.selector=sel;return;}
+  const bits=sel.split(/,(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
+  rule.selector=bits.map(part=>(part===':root'||part===':host'||part==='html'||part==='body')?
+    '.nacar-root':'.nacar-root :where('+part+')').join(', ');
 });
 const extras=[
 '/* Component scope and shared N&S Atelier viewer integration */',
