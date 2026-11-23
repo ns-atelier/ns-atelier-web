@@ -63,7 +63,7 @@
   }
   function setSchedule(rv,items) {
     if(!Array.isArray(items)||!items.length)return;
-    const sec=[...rv.querySelectorAll('section')].find(s=>/the\s*day/i.test(s.textContent));
+    const sec=[...rv.querySelectorAll('section')].find(s=>/the\s*day|theday/i.test(s.textContent));
     const list=sec?.querySelector('.space-y-10');
     if(!list)return;
     const rows=[...list.children];
@@ -105,9 +105,18 @@
       const dress=sections.find(s=>s.textContent.includes('Formal Attire'));
       if(dress)put('p.font-doulaise',data.vestimenta,dress);
     }
-    if(data.regalos){
+    {
       const gifts=sections.find(s=>/wedding\s*gift/i.test(s.textContent));
-      if(gifts){const ps=gifts.querySelectorAll('p.font-display');if(ps.length)ps[0].textContent=data.regalos;}
+      if(gifts) {
+        if(data.regalos) {
+          const ps=gifts.querySelectorAll('p.font-display');
+          if(ps.length)ps[0].textContent=data.regalos;
+        }
+        const ibanLine=[...gifts.querySelectorAll('p')].find(p=>/\bIBAN\b/.test(p.textContent));
+        if(ibanLine)ibanLine.textContent=data.iban
+          ? 'IBAN: '+data.iban
+          : 'Datos bancarios disponibles con los anfitriones.';
+      }
     }
     if(data.rsvpLimite){
       const rsvp=rv.querySelector('#rsvp');
