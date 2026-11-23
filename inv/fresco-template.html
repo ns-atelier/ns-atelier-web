@@ -1,0 +1,1596 @@
+<div class="fresco-root" data-template="fresco">
+<div class="pointer-events-none fixed inset-y-0 left-1/2 -translate-x-1/2 z-40 w-full max-w-[440px]">
+    <!-- Top-Right Language Switcher (EN / DE) -->
+    <div
+      class="pointer-events-auto absolute top-4 right-4 flex gap-1 rounded-full border border-foreground/20 bg-background/95 backdrop-blur-sm px-1 py-1 shadow-soft"
+      role="group"
+      aria-label="Language switcher"
+    >
+      <button
+        id="lang-en-btn"
+        type="button"
+        data-lang="en"
+        class="lang-btn px-3 py-1 rounded-full text-xs font-body tracking-widest uppercase transition-colors bg-olive text-background cursor-pointer"
+      >
+        EN
+      </button>
+      <button
+        id="lang-de-btn"
+        type="button"
+        data-lang="de"
+        class="lang-btn px-3 py-1 rounded-full text-xs font-body tracking-widest uppercase transition-colors text-foreground/60 hover:text-foreground cursor-pointer"
+      >
+        DE
+      </button>
+    </div>
+
+    <!-- Bottom-Right Circular Ambient Audio Control -->
+    <button
+      id="audio-toggle-btn"
+      type="button"
+      aria-label="Toggle Mediterranean ambient music"
+      class="pointer-events-auto hidden absolute bottom-5 right-4 rounded-full border border-olive/35 bg-background/90 backdrop-blur-sm p-2.5 text-olive shadow-soft transition-all duration-300 hover:scale-105 hover:border-olive cursor-pointer"
+    >
+      <!-- Sound On Icon -->
+      <svg
+        id="audio-icon-on"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+        <path d="M16 9a5 5 0 0 1 0 6" />
+        <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
+      </svg>
+
+      <!-- Sound Off Icon -->
+      <svg
+        id="audio-icon-off"
+        class="hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+        <line x1="22" y1="9" x2="16" y2="15" />
+        <line x1="16" y1="9" x2="22" y2="15" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- CENTERED MOBILE-FIRST CONTAINER (MAX-WIDTH: 440PX)                    -->
+  <!-- ===================================================================== -->
+  <div class="w-full max-w-[440px] min-h-[100dvh] mx-auto bg-background text-foreground shadow-[0_0_45px_rgba(44,51,39,0.14)] relative overflow-x-hidden">
+    <main class="w-full bg-background text-foreground overflow-x-hidden">
+
+      <!-- =================================================================== -->
+      <!-- 3. HERO SECTION                                                     -->
+      <!-- =================================================================== -->
+      <section id="hero-section" class="relative min-h-[100dvh] flex flex-col overflow-hidden bg-white">
+        <div class="absolute inset-0 overflow-hidden bg-background">
+          <video
+            id="hero-video"
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/247a73e0-2b7c-40c3-9a13-bb13a0df66d8/hero-video.mp4"
+            poster="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/89172c20-f8b3-49b8-92c4-6587b23564cc/fresco-hero-original.jpg"
+            autoplay
+            loop
+            muted
+            playsinline
+            class="absolute inset-0 w-full h-full object-cover"
+          ></video>
+        </div>
+
+        <!-- Staggered Editorial Overlay: restored missing hero heading from pasted source -->
+        <div class="relative z-10 flex w-full min-h-[100dvh] flex-col items-center justify-center px-6 pt-24 pb-24 text-center">
+          <h1 class="hero-stagger font-display text-[48px] sm:text-[58px] leading-[1.06] text-foreground mb-5" style="text-shadow:0 1px 12px rgba(255,255,255,.8)">
+            <span id="fresco-name-one">Diana</span> <span class="font-script text-primary">&amp;</span> <span id="fresco-name-two">Richard</span>
+          </h1>
+
+        <p
+          data-i18n="hero_invite"
+          class="hero-stagger font-body text-[10px] sm:text-xs tracking-[0.22em] uppercase text-foreground max-w-[260px] sm:max-w-xs leading-relaxed"
+          style="transition-delay: 450ms;"
+        >
+          WE INVITE YOU TO <br />CELEBRATE OUR WEDDING
+        </p>
+
+        <!-- Date Block Flanked by Mirrored Bud Branches -->
+        <div
+          class="hero-stagger relative mt-6 mb-4 text-foreground flex flex-col items-center"
+          style="transition-delay: 800ms;"
+        >
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/10d9e059-a13e-4455-99a3-e07dceb16339/ramita-capullos.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none select-none absolute top-1/2 -translate-y-1/2 -rotate-[105deg] -left-[62px] w-[36px] max-w-none sm:-left-[82px] sm:w-[48px]"
+          />
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/10d9e059-a13e-4455-99a3-e07dceb16339/ramita-capullos.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none select-none absolute top-1/2 -translate-y-1/2 -scale-x-100 rotate-[105deg] -right-[62px] w-[36px] max-w-none sm:-right-[82px] sm:w-[48px]"
+          />
+
+          <span
+            data-i18n="hero_month"
+            class="font-body text-[10px] sm:text-xs tracking-[0.34em] uppercase opacity-85 pl-[0.34em]"
+          >
+            July
+          </span>
+          <span class="font-display leading-none text-5xl sm:text-6xl mt-0.5">27</span>
+          <span
+            data-i18n="hero_day"
+            class="font-body text-[9px] sm:text-[10px] tracking-[0.32em] uppercase mt-1 opacity-80 pl-[0.32em]"
+          >
+            Tuesday
+          </span>
+          <span class="font-body text-[10px] sm:text-xs tracking-[0.3em] uppercase mt-0.5 opacity-85 pl-[0.3em]">
+            2027
+          </span>
+        </div>
+
+        <div class="hero-stagger flex flex-col items-center" style="transition-delay: 1150ms;">
+          <p
+            data-i18n="hero_held_at"
+            class="font-body text-[10px] sm:text-xs tracking-[0.25em] uppercase text-foreground mt-2"
+          >
+            To be held at
+          </p>
+          <p class="font-display text-2xl sm:text-3xl text-foreground mt-1.5">
+            Son Bunyola, Mallorca
+          </p>
+        </div>
+      </div>
+
+      <!-- Bouncing Scroll Down Button -->
+      <div class="hero-stagger absolute inset-x-0 bottom-7 sm:bottom-9 z-20 flex justify-center pointer-events-none" style="transition-delay: 1450ms;">
+        <button
+          id="hero-scroll-btn"
+          type="button"
+          aria-label="Scroll down"
+          class="flex items-center justify-center cursor-pointer pointer-events-auto"
+        >
+          <span class="flex items-center justify-center w-11 h-11 rounded-full bg-background/90 border border-foreground/15 text-foreground/80 hover:text-foreground transition-colors shadow-soft">
+            <span class="animate-chevron-float block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 4. COUNTDOWN SECTION (#countdown)                                   -->
+    <!-- =================================================================== -->
+    <section id="countdown" class="relative overflow-hidden px-4 pb-8 pt-20 sm:pt-24 md:pt-28">
+      <div class="mx-auto max-w-2xl px-4 text-center reveal">
+        <h2
+          data-i18n="countdown_title"
+          class="font-display text-[36px] leading-[1.05] text-foreground sm:text-[44px] md:text-[52px]"
+        >
+          Countdown
+        </h2>
+        <p
+          data-i18n="countdown_until"
+          class="mt-2 font-body text-[15px] text-foreground/80 sm:text-[17px]"
+        >
+          Until 27 July 2027
+        </p>
+      </div>
+
+      <!-- Responsive Aspect-Ratio Frame with Container Query Typography -->
+      <div class="cq-inline relative mx-auto mt-8 sm:mt-10 aspect-[1038/1515] w-full max-w-[440px]">
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/6b69c57c-57b6-484c-8db9-c783be8b0493/marco-azul-impasto.png"
+          alt="Mediterranean blue impasto frame"
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 z-0 h-full w-full select-none object-contain"
+        />
+
+        <!-- Large Script Days -->
+        <div
+          class="absolute left-0 right-0 top-[16%] z-10 flex flex-col items-center px-[22%] text-center reveal"
+        >
+          <span
+            id="cd-days"
+            class="font-script leading-none text-primary tabular-nums"
+            style="font-size: 24cqw;"
+          >
+            00
+          </span>
+          <span
+            data-i18n="cd_days"
+            class="font-body text-foreground"
+            style="font-size: 4.2cqw; margin-top: -5cqw;"
+          >
+            Days
+          </span>
+        </div>
+
+        <!-- Stacked Hours, Minutes, Seconds -->
+        <div
+          class="absolute left-0 right-0 top-[41%] z-10 flex flex-col items-center px-[22%] reveal"
+          style="gap: 2.2cqw;"
+        >
+          <div class="flex flex-col items-center">
+            <span
+              id="cd-hours"
+              class="font-script leading-none text-foreground tabular-nums"
+              style="font-size: 11cqw;"
+            >
+              00
+            </span>
+            <span
+              data-i18n="cd_hours"
+              class="font-body text-foreground"
+              style="font-size: 3.6cqw; margin-top: -2.2cqw;"
+            >
+              Hours
+            </span>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <span
+              id="cd-minutes"
+              class="font-script leading-none text-foreground tabular-nums"
+              style="font-size: 11cqw;"
+            >
+              00
+            </span>
+            <span
+              data-i18n="cd_minutes"
+              class="font-body text-foreground"
+              style="font-size: 3.6cqw; margin-top: -2.2cqw;"
+            >
+              Minutes
+            </span>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <span
+              id="cd-seconds"
+              class="font-script leading-none text-foreground tabular-nums"
+              style="font-size: 11cqw;"
+            >
+              00
+            </span>
+            <span
+              data-i18n="cd_seconds"
+              class="font-body text-foreground"
+              style="font-size: 3.6cqw; margin-top: -2.2cqw;"
+            >
+              Seconds
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 5. OUR STORY SECTION (#our-story)                                   -->
+    <!-- =================================================================== -->
+    <section id="our-story" class="relative isolate pt-16 pb-48 px-6 overflow-hidden">
+      <!-- Drifting Impasto Clouds Background -->
+      <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-6 -z-20 flex justify-center">
+        <div id="our-story-clouds" class="reveal-fade w-full flex justify-center will-change-transform">
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/8df08ac6-36bb-4467-8f71-589d2a644e65/nubes-impasto.png"
+            alt=""
+            class="cloud-drift w-[138%] max-w-none select-none"
+            draggable="false"
+          />
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto text-center">
+        <div class="mb-12 reveal">
+          <h2
+            data-i18n="story_title"
+            class="font-display text-5xl text-foreground"
+          >
+            Our Story
+          </h2>
+        </div>
+
+        <div class="space-y-8">
+          <p
+            data-i18n="story_p1"
+            class="font-body text-[16px] leading-relaxed text-olive mx-auto max-w-[310px] reveal"
+          >
+            Some of the best love stories begin unexpectedly, and ours was no different.
+          </p>
+          <p
+            data-i18n="story_p2"
+            class="font-body text-[16px] leading-relaxed text-olive mx-auto max-w-[325px] reveal"
+          >
+            What started as a chance encounter soon became endless conversations, spontaneous adventures, and countless memories together.
+          </p>
+          <p
+            data-i18n="story_p3"
+            class="font-body text-[16px] leading-relaxed text-olive mx-auto max-w-[310px] reveal"
+          >
+            Somewhere along the way, we found our favorite place: by each other’s side.
+          </p>
+          <p
+            data-i18n="story_p4"
+            class="font-body text-[16px] leading-relaxed text-olive mx-auto max-w-[310px] reveal"
+          >
+            And now, we're ready for our greatest adventure yet — a lifetime together.
+          </p>
+        </div>
+
+        <div class="mt-14 flex justify-center reveal">
+          <span class="font-hand inline-flex items-baseline justify-center text-[28px] leading-none text-olive">
+            Diana<span data-i18n="and_word" class="mx-4">and</span>Richard
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 6. THE CELEBRATION (OLIVE TEXTURE SECTION)                          -->
+    <!-- =================================================================== -->
+    <section class="relative isolate overflow-x-clip pt-px pb-36">
+      <!-- Olive Top Edge & Textured Background -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-x-0 bottom-full -z-10 h-4 bg-olive"
+        style="background-image: url('https://fresco-template.thedigitalyes.com/__l5e/assets-v1/7736de9b-ec54-4d61-ae90-f6fd85a994b6/marco-oliva-nuevo-cap.webp'); background-repeat: no-repeat; background-size: cover; background-position: center bottom;"
+      ></div>
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 -z-10 bg-olive"
+        style="background-image: url('https://fresco-template.thedigitalyes.com/__l5e/assets-v1/130510f4-9621-4ac2-8978-1c7b4b824730/marco-oliva-nuevo-alto.webp'); background-repeat: no-repeat; background-size: cover; background-position: center bottom;"
+      ></div>
+
+      <!-- Overlapping Top Mediterranean Garden Fountain -->
+      <div class="relative px-4 flex justify-center overflow-x-clip">
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/c47adbd2-11e7-4b79-a83b-97274290e563/fuente-jardin-mediterraneo.png"
+          alt="Mediterranean garden fountain illustration"
+          aria-hidden="true"
+          loading="lazy"
+          class="pointer-events-none -mt-[145px] block w-[112%] max-w-none h-auto select-none"
+        />
+      </div>
+
+      <!-- Celebration Text & Button -->
+      <div class="relative pt-6 sm:pt-10 md:pt-12 pb-6 px-6">
+        <div class="max-w-2xl mx-auto text-center">
+          <div class="mb-10 sm:mb-14 reveal">
+            <h2
+              data-i18n="celebration_title"
+              class="font-display text-5xl sm:text-6xl md:text-7xl text-background"
+            >
+              The Celebration
+            </h2>
+            <p
+              data-i18n="celebration_subtitle"
+              class="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-background/80 mt-3 md:mt-4 max-w-md mx-auto leading-relaxed whitespace-pre-line"
+            >
+              Ceremony &amp; Dinner
+            </p>
+          </div>
+
+          <div class="reveal">
+            <div class="flex flex-col items-center text-center px-3">
+              <h3 class="font-display text-3xl sm:text-4xl md:text-5xl text-background leading-tight">
+                Sa Tafona
+              </h3>
+              <p class="font-body text-xs sm:text-base md:text-lg text-background/85 tracking-[0.25em] uppercase mt-2 mb-4">
+                Son Bunyola
+              </p>
+              <p
+                data-i18n="celebration_desc"
+                class="font-body text-[15px] sm:text-[18px] md:text-[21px] text-background/80 leading-relaxed max-w-[290px] sm:max-w-md mx-auto"
+              >
+                A ceremony in the gardens at sunset behind the Tramuntana, followed by dinner and dancing.
+              </p>
+              <div class="space-y-1.5 mt-6 sm:mt-8">
+                <p
+                  data-i18n="celebration_date"
+                  class="font-body text-xs sm:text-sm md:text-base text-background/80 italic tracking-wide"
+                >
+                  Tuesday, 27 July 2027
+                </p>
+                <p class="font-display text-xl sm:text-2xl md:text-[28px] text-background">5:30 PM</p>
+              </div>
+            </div>
+
+            <div class="flex justify-center mt-7 sm:mt-9 relative z-10">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Son+Bunyola+Bunyola+Mallorca"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="view_on_map"
+                class="inline-block border border-background/75 bg-transparent px-7 py-3 font-body text-[11px] uppercase tracking-[0.24em] text-background transition-colors duration-300 hover:border-background hover:bg-background hover:text-olive md:px-9"
+              >
+                View on Map
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overlapping Bottom Mediterranean Villa Illustration -->
+    <div class="relative -mt-[110px] flex justify-center overflow-x-clip px-2">
+      <img
+        src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/c8a7942e-4b02-41e3-97b7-f864651a3326/villa-mediterranea.png"
+        alt="Son Bunyola Mediterranean villa illustration"
+        aria-hidden="true"
+        loading="lazy"
+        class="pointer-events-none block w-[108%] max-w-none h-auto select-none"
+      />
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 7. THE DAY (PROGRAM TIMELINE)                                       -->
+    <!-- =================================================================== -->
+    <section id="program-section" class="relative pt-14 pb-12 sm:pt-20 md:pt-24 md:pb-16 px-6 overflow-hidden">
+      <div class="relative z-20 max-w-[350px] sm:max-w-[430px] mx-auto">
+        <div class="text-center mb-10 reveal">
+          <h2
+            data-i18n="day_title"
+            class="font-display text-5xl md:text-7xl text-foreground mb-2"
+          >
+            The Day
+          </h2>
+          <p
+            data-i18n="day_subtitle"
+            class="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-foreground/55 mb-1"
+          >
+            Program · Tuesday 27 July
+          </p>
+          <p
+            data-i18n="day_intro"
+            class="font-body text-[15px] md:text-base leading-relaxed tracking-wide text-foreground/65 italic max-w-[310px] mx-auto mt-4"
+          >
+            Our wedding day, from sunset drinks to the last dance.
+          </p>
+        </div>
+
+        <div class="space-y-12 reveal">
+          <!-- Date Selector Row: 25 26 [Beating Heart 27] 28 29 -->
+          <div class="flex items-center justify-center gap-4 sm:gap-6 mb-6 select-none">
+            <span class="font-display text-xl sm:text-2xl text-foreground/65">25</span>
+            <span class="font-display text-xl sm:text-2xl text-foreground/65">26</span>
+            <div class="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 -mx-1">
+              <div class="heart-beat absolute inset-0">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="absolute inset-0 translate-y-[2px] w-full h-full" aria-hidden="true">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </div>
+              <span class="relative font-display text-xl sm:text-2xl text-primary-foreground pt-1 font-medium">27</span>
+            </div>
+            <span class="font-display text-xl sm:text-2xl text-foreground/65">28</span>
+            <span class="font-display text-xl sm:text-2xl text-foreground/65">29</span>
+          </div>
+
+          <!-- Vertical Timeline with Scroll-Animated Progress Line -->
+          <div id="timeline-track" class="relative max-w-[340px] sm:max-w-[410px] mx-auto">
+            <!-- Base track line -->
+            <div class="absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-foreground/20"></div>
+            <!-- Scroll-drawn active olive progress line -->
+            <div
+              id="timeline-progress-line"
+              class="absolute left-1/2 top-2 bottom-2 w-[1.5px] -translate-x-1/2 bg-olive origin-top will-change-transform"
+              style="transform: translateX(-50%) scaleY(0);"
+            ></div>
+
+            <div class="space-y-9 sm:space-y-11">
+              <!-- 1. 17:00 Guests Arrival & Welcome Drinks -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] text-right">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">17:00</p>
+                  <p data-i18n="sched_1" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Guests Arrival &amp; Welcome Drinks
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center right-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/1d594a71-ed02-48b7-b27d-84521ec2d351/icono-cavas.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[54px] w-auto sm:h-[68px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 2. 17:30 Ceremony -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] ml-auto text-left">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">17:30</p>
+                  <p data-i18n="sched_2" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Ceremony
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center left-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/83f59c73-f655-4c34-920b-045811b3679f/icono-arco.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[58px] w-auto sm:h-[72px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 3. 19:15 Cocktail Hour -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] text-right">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">19:15</p>
+                  <p data-i18n="sched_3" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Cocktail Hour
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center right-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/324ecd24-fdca-47fe-be7c-edc21103b289/icono-coctel.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[58px] w-auto sm:h-[72px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 4. 20:30 Dinner -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] ml-auto text-left">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">20:30</p>
+                  <p data-i18n="sched_4" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Dinner
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center left-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/d45e9e1b-edfb-463e-82c2-1f357dff2c6b/icono-cena.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[54px] w-auto sm:h-[68px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 5. 22:30 Cake & Toasts -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] text-right">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">22:30</p>
+                  <p data-i18n="sched_5" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Cake &amp; Toasts
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center right-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/c670113f-aa4f-451c-a254-7aee37b32b7b/tarta-boda.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[54px] w-auto sm:h-[68px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 6. 23:00 First Dance -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] ml-auto text-left">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">23:00</p>
+                  <p data-i18n="sched_6" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    First Dance
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center left-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/aa7948fa-cef0-46da-ad7c-cb4df37ec3c6/baile-nupcial.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[58px] w-auto sm:h-[72px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 7. 23:15 Dancing under the Stars -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] text-right">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">23:15</p>
+                  <p data-i18n="sched_7" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Dancing under
+the Stars
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center right-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/13c274ab-24d6-4b87-861f-83d0a7954b5f/icono-discoteca.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[58px] w-auto sm:h-[72px]"
+                  />
+                </div>
+              </div>
+
+              <!-- 8. 02:00 Goodnight -->
+              <div class="relative reveal">
+                <div class="absolute left-1/2 top-1.5 w-3.5 h-3.5 -translate-x-1/2">
+                  <div class="heart-pop w-full h-full">
+                    <div class="heart-beat w-full h-full">
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-[calc(50%-1.25rem)] ml-auto text-left">
+                  <p class="font-body text-[10px] sm:text-xs tracking-[0.2em] text-foreground/55 mb-0.5">02:00</p>
+                  <p data-i18n="sched_8" class="font-body text-base sm:text-lg leading-snug text-foreground whitespace-pre-line">
+                    Goodnight
+                  </p>
+                </div>
+                <div aria-hidden="true" class="absolute top-1/2 -translate-y-1/2 w-[calc(50%-1.25rem)] flex justify-center left-0">
+                  <img
+                    src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/9159be1e-cfde-4bf3-b1c8-a7ad71e4e404/luna-estrellas.png"
+                    alt=""
+                    loading="lazy"
+                    class="pointer-events-none object-contain h-[42px] w-auto sm:h-[54px]"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 8. ANIMATED 5-LAYER BOTANICAL GARLAND BORDER                        -->
+    <!-- =================================================================== -->
+    <div class="relative w-full flex justify-center overflow-hidden px-6 pb-0 pt-6 md:pb-2 md:pt-10">
+      <div class="relative w-full max-w-[340px] sm:max-w-[540px] md:max-w-[720px] reveal-fade">
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/66be06fa-1c98-4ce7-98e0-bafdad1eeb15/cenefa-base.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable="false"
+          class="block h-auto w-full select-none"
+        />
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/17a7b6e9-3dd9-4956-a263-8aae3e229fb4/cenefa-hojas-1.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable="false"
+          class="leaf-breathe pointer-events-none absolute inset-0 block h-full w-full select-none"
+          style="animation-delay: 0s;"
+        />
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/12dfc133-5139-4101-8c7e-d7ddd3189920/cenefa-hojas-2.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable="false"
+          class="leaf-breathe pointer-events-none absolute inset-0 block h-full w-full select-none"
+          style="animation-delay: 1.7s;"
+        />
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/9e7de5ab-dd8c-4a88-90ed-91866f859438/cenefa-hojas-3.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable="false"
+          class="leaf-breathe pointer-events-none absolute inset-0 block h-full w-full select-none"
+          style="animation-delay: 3.4s;"
+        />
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/996b62da-269f-46b8-a0d5-f7bf20353d80/cenefa-hojas-4.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable="false"
+          class="leaf-breathe pointer-events-none absolute inset-0 block h-full w-full select-none"
+          style="animation-delay: 5.1s;"
+        />
+        <img
+          src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/35bf30a7-09e1-461a-bb22-65d00ccca76f/cenefa-hojas-5.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable="false"
+          class="leaf-breathe pointer-events-none absolute inset-0 block h-full w-full select-none"
+          style="animation-delay: 6.8s;"
+        />
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 9. DRESS CODE & WELCOME SOIRÉE ARCH WITH FALLING PETALS             -->
+    <!-- =================================================================== -->
+    <section class="pt-16 pb-28 sm:pt-24 sm:pb-36 px-6 overflow-hidden">
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="reveal">
+          <h2
+            data-i18n="dress_title"
+            class="title-in-olive font-display text-5xl md:text-7xl mb-3"
+          >
+            Dress Code
+          </h2>
+          <p
+            data-i18n="dress_subtitle"
+            class="relative z-10 font-body text-sm tracking-[0.25em] uppercase text-olive mb-2 md:mb-3"
+          >
+            Black Tie
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="mx-auto -mt-3 mb-6 w-full max-w-[440px] sm:max-w-[540px]">
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/c430255e-7bdf-4923-bf15-5c956154390d/boda-floral-arco.png"
+              alt="Mediterranean floral arch"
+              aria-hidden="true"
+              loading="lazy"
+              draggable="false"
+              class="block w-full h-auto select-none"
+            />
+          </div>
+
+          <p
+            data-i18n="dress_desc"
+            class="font-body text-[15px] md:text-[17px] text-olive max-w-sm mx-auto mb-32 sm:mb-40 leading-relaxed"
+          >
+            Under a Mediterranean sky, with the sea as our witness — wear the dress you have dreamed of, and dance until the last star fades.
+          </p>
+        </div>
+
+        <!-- Olive Arch Composite with Container-Query Typography & 7 Falling Petals -->
+        <div class="cq-inline relative mx-auto w-full max-w-[480px] reveal">
+          <!-- Masked Top Olive Extension Texture -->
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute left-1/2 -top-[9%] -z-10 aspect-[3/1] w-[104%] -translate-x-1/2 -translate-y-[45%] overflow-hidden"
+            style="
+              -webkit-mask-image: url('https://fresco-template.thedigitalyes.com/__l5e/assets-v1/336a38f3-b0b9-4efe-a3b7-91d98b8b7042/arco-oliva-mask.png');
+              mask-image: url('https://fresco-template.thedigitalyes.com/__l5e/assets-v1/336a38f3-b0b9-4efe-a3b7-91d98b8b7042/arco-oliva-mask.png');
+              -webkit-mask-size: 100% 100%;
+              mask-size: 100% 100%;
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+            "
+          >
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/6d4c1a61-2c50-46a9-a400-47dd6f229381/textura-oliva-ext.png"
+              alt=""
+              aria-hidden="true"
+              class="absolute left-[1.7%] top-[-173%] w-[96.6%] select-none"
+            />
+          </div>
+
+          <!-- Main Olive Arch Base -->
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/abf9f09d-08b9-4fb0-bfaa-12bbc54e3bcb/marco-arco-oliva-base.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            class="pointer-events-none block aspect-[520/700] w-full object-cover object-top"
+          />
+
+          <!-- Top Rose Arch Garland -->
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/a4cb9cc6-b0b7-4d3b-bed6-9ba52b5053ea/guirnalda-arco-rosa.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            class="pointer-events-none absolute left-1/2 -top-[9%] z-10 w-[104%] max-w-none -translate-x-1/2 -translate-y-[45%]"
+          />
+
+          <!-- 7 Falling & Swaying Rose Petals -->
+          <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-[2] overflow-hidden">
+            <div class="petal-fall absolute top-0" style="left: 12%; animation-duration: 14s; animation-delay: 0s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/6466ade9-8edf-4a2b-913a-dd7e87572cbf/petalo-1.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 24px; animation-duration: 3.2s; animation-delay: 0s;"
+              />
+            </div>
+            <div class="petal-fall absolute top-0" style="left: 26%; animation-duration: 17s; animation-delay: -4.5s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/f30fc0a0-8fe8-4ea2-859a-91dfd78077a2/petalo-2.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 19px; animation-duration: 2.6s; animation-delay: -1.1s;"
+              />
+            </div>
+            <div class="petal-fall absolute top-0" style="left: 38%; animation-duration: 15s; animation-delay: -8s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/48226a6e-75b1-43a7-b429-92a7b7b4f06a/petalo-3.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 28px; animation-duration: 3.8s; animation-delay: -2.2s;"
+              />
+            </div>
+            <div class="petal-fall absolute top-0" style="left: 50%; animation-duration: 18s; animation-delay: -2s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/6466ade9-8edf-4a2b-913a-dd7e87572cbf/petalo-1.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 21px; animation-duration: 3s; animation-delay: -1.4s;"
+              />
+            </div>
+            <div class="petal-fall absolute top-0" style="left: 62%; animation-duration: 14.5s; animation-delay: -10.5s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/f30fc0a0-8fe8-4ea2-859a-91dfd78077a2/petalo-2.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 25px; animation-duration: 3.4s; animation-delay: -0.8s;"
+              />
+            </div>
+            <div class="petal-fall absolute top-0" style="left: 74%; animation-duration: 17.5s; animation-delay: -6.5s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/48226a6e-75b1-43a7-b429-92a7b7b4f06a/petalo-3.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 18px; animation-duration: 2.8s; animation-delay: -1.9s;"
+              />
+            </div>
+            <div class="petal-fall absolute top-0" style="left: 86%; animation-duration: 15.5s; animation-delay: -12.5s;">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/6466ade9-8edf-4a2b-913a-dd7e87572cbf/petalo-1.png"
+                alt=""
+                class="petal-sway block select-none"
+                style="width: 22px; animation-duration: 3.6s; animation-delay: -2.6s;"
+              />
+            </div>
+          </div>
+
+          <!-- Bottom Union Petals Garland -->
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/200f6074-0dd5-424f-8902-fadb7c213c3a/guirnalda-petalos-union.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            class="pointer-events-none absolute bottom-0 left-1/2 z-[5] w-[108%] max-w-none -translate-x-1/2 translate-y-[60%] select-none"
+          />
+
+          <!-- Welcome Soirée Copy Inside Olive Arch (Proportional cqw scaling) -->
+          <div class="absolute inset-x-[18%] top-[15%] bottom-[21%] z-10 flex flex-col items-center justify-center text-center">
+            <p
+              data-i18n="soiree_date"
+              class="font-body text-background/85 tracking-[0.25em] uppercase"
+              style="font-size: 3cqw;"
+            >
+              26th July
+            </p>
+            <h3
+              class="title-on-olive font-display text-background leading-[1.02]"
+              style="font-size: 11.5cqw; margin-top: 2cqw;"
+            >
+              <span data-i18n="soiree_line1" class="block">Welcome</span>
+              <span data-i18n="soiree_line2" class="block">Soirée</span>
+            </h3>
+            <h4
+              class="title-on-olive font-display text-background leading-none"
+              style="font-size: 6.5cqw; margin-top: 4cqw;"
+            >
+              Sa Terrassa
+            </h4>
+            <p
+              class="font-body text-background/85 tracking-[0.25em] uppercase"
+              style="font-size: 2.8cqw; margin-top: 1.8cqw;"
+            >
+              Son Bunyola
+            </p>
+            <p
+              data-i18n="soiree_desc"
+              class="font-body text-background/80 leading-snug mx-auto"
+              style="font-size: 3.4cqw; margin-top: 4cqw; max-width: 56cqw;"
+            >
+              Join us for an intimate evening of cocktails and Mediterranean views as we begin our celebrations at Son Bunyola.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 10. WHERE TO STAY (#accommodations)                                 -->
+    <!-- =================================================================== -->
+    <section id="accommodations" class="px-6 pb-14 pt-12 overflow-hidden md:pb-20 md:pt-16">
+      <div class="mx-auto max-w-xl">
+        <div class="relative text-center reveal">
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/a416b06c-ce8e-49cc-8154-5ec0ef098b53/petalo-crema.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            class="pointer-events-none absolute left-2 -top-5 z-0 w-[60px] select-none md:left-6 md:-top-4 md:w-[92px]"
+          />
+          <h2
+            data-i18n="stay_title"
+            class="relative font-display text-5xl md:text-7xl text-foreground mb-3"
+          >
+            Where to Stay
+          </h2>
+          <p
+            data-i18n="stay_subtitle"
+            class="font-body text-sm tracking-[0.25em] uppercase text-foreground/70"
+          >
+            Recommended hotels<br />near the venue
+          </p>
+        </div>
+
+        <div class="mt-14 flex flex-col gap-16 md:mt-16 md:gap-20">
+          <!-- Hotel Card 1: Son Bunyola Hotel & Villas -->
+          <div class="relative border px-6 pt-11 text-center sm:px-10 sm:pt-12 pb-9 sm:pb-10 border-olive/60 bg-secondary/70 reveal">
+            <span
+              data-i18n="hotel1_badge"
+              class="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap border border-olive/60 bg-background px-3.5 py-1.5 font-body text-[9px] uppercase tracking-[0.22em] text-olive sm:px-5 sm:py-2 sm:text-[11px] sm:tracking-[0.26em]"
+            >
+              Exclusive wedding guest rate
+            </span>
+
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/be466532-b573-4d0d-8767-38a4c5a638b0/rama-floral.png"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              class="pointer-events-none absolute right-[-28px] top-[3.5%] z-0 w-[135px] sm:w-[190px] select-none"
+            />
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/175541f8-19ec-43b6-b49f-56b2b16c95f1/flor-son-bunyola.png"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              class="pointer-events-none absolute -left-8 top-16 z-0 w-[110px] sm:-left-6 sm:top-20 sm:w-[140px] select-none"
+            />
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/d743a59d-ed4e-43c8-add2-47a764e39c5a/petalo-azul.png"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              class="pointer-events-none absolute -right-5 bottom-12 z-0 w-[52px] sm:-right-8 sm:w-[82px] select-none"
+            />
+
+            <h3 class="relative z-10 font-display text-[19px] uppercase leading-snug tracking-[0.14em] text-primary sm:text-[23px] sm:tracking-[0.16em]">
+              <span class="block">Son Bunyola</span>
+              <span class="block">Hotel &amp; Villas</span>
+            </h3>
+
+            <p class="relative z-10 mt-5 font-script text-[60px] leading-none tabular-nums text-primary sm:text-[72px]">
+              €650
+            </p>
+            <p
+              data-i18n="hotel_rate_sub"
+              class="relative z-10 mt-4 font-body text-[12px] leading-relaxed tracking-[0.02em] text-foreground/85 sm:text-sm sm:tracking-[0.06em]"
+            >
+              per night&nbsp;· double room&nbsp;· breakfast included
+            </p>
+
+            <div class="mx-auto mt-6 h-px w-16 bg-olive/40"></div>
+
+            <p
+              data-i18n="hotel1_desc"
+              class="relative z-10 mt-6 font-body text-[12px] leading-relaxed text-foreground/85 sm:text-sm max-w-md mx-auto"
+            >
+              A special fixed rate of €650 per night has been reserved exclusively for our wedding guests.
+            </p>
+
+            <div class="relative z-10 mt-7 border-t border-olive/30 pt-1.5 text-left">
+              <div class="flex items-baseline justify-between gap-4 border-b border-olive/20 py-3">
+                <span data-i18n="label_address" class="shrink-0 font-body text-[9px] uppercase tracking-[0.2em] text-foreground/55 sm:text-[10px] sm:tracking-[0.24em]">
+                  Address
+                </span>
+                <span class="text-right font-body text-[12px] leading-snug text-foreground/85 sm:text-[13px]">
+                  Finca Son Bunyola, Ctra.&nbsp;C-710, 07191 Banyalbufar
+                </span>
+              </div>
+              <div class="flex items-baseline justify-between gap-4 py-3">
+                <span data-i18n="label_parking" class="shrink-0 font-body text-[9px] uppercase tracking-[0.2em] text-foreground/55 sm:text-[10px] sm:tracking-[0.24em]">
+                  Parking
+                </span>
+                <span data-i18n="val_parking" class="text-right font-body text-[12px] leading-snug text-foreground/85 sm:text-[13px]">
+                  Free on-site parking
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <a
+                href="https://www.virginlimitededition.com/son-bunyola/reservations/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="book_stay"
+                class="relative z-10 inline-block border border-olive/60 bg-background px-6 py-3 font-body text-[11px] uppercase tracking-[0.24em] text-olive transition-colors duration-300 hover:bg-olive hover:text-background sm:px-8"
+              >
+                Book your stay
+              </a>
+            </div>
+          </div>
+
+          <!-- Hotel Card 2: Son Borguny -->
+          <div class="relative border px-6 pt-12 text-center sm:px-10 sm:pt-14 pb-12 sm:pb-16 border-olive/45 bg-secondary/45 reveal">
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/53ed49d0-3ba6-492d-84a1-0c4508e13ac9/flor-blanca.png"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              class="pointer-events-none absolute bottom-1 -left-8 z-0 w-[135px] sm:-left-8 sm:w-[180px] select-none"
+            />
+            <div class="pointer-events-none absolute -top-14 left-1/2 z-20 w-[112px] -translate-x-1/2 select-none sm:-top-20 sm:w-[156px]">
+              <img
+                src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/4c697e62-1c67-4c8d-8feb-998bda911008/flor-almendro.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                class="aspect-[371/298] w-full object-contain"
+              />
+            </div>
+            <img
+              src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/ff7e25f6-c6d1-409a-98fe-4d27ec02f403/flor-almendro-grande.png"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              class="pointer-events-none absolute -bottom-5 -right-4 z-0 w-[96px] sm:-bottom-8 sm:-right-7 sm:w-[155px] select-none"
+            />
+
+            <h3 class="relative z-10 font-display text-[19px] uppercase leading-snug tracking-[0.14em] text-primary sm:text-[23px] sm:tracking-[0.16em]">
+              Son Borguny
+            </h3>
+
+            <p class="relative z-10 mt-5 font-script text-[60px] leading-none tabular-nums text-primary sm:text-[72px]">
+              €180
+            </p>
+            <p
+              data-i18n="hotel_rate_sub"
+              class="relative z-10 mt-4 font-body text-[12px] leading-relaxed tracking-[0.02em] text-foreground/85 sm:text-sm sm:tracking-[0.06em]"
+            >
+              per night&nbsp;· double room&nbsp;· breakfast included
+            </p>
+
+            <div class="relative z-10 mt-7 border-t border-olive/30 pt-1.5 text-left">
+              <div class="flex items-baseline justify-between gap-4 border-b border-olive/20 py-3">
+                <span data-i18n="label_address" class="shrink-0 font-body text-[9px] uppercase tracking-[0.2em] text-foreground/55 sm:text-[10px] sm:tracking-[0.24em]">
+                  Address
+                </span>
+                <span class="text-right font-body text-[12px] leading-snug text-foreground/85 sm:text-[13px]">
+                  Carrer Borguny 1, 07191 Banyalbufar
+                </span>
+              </div>
+              <div class="flex items-baseline justify-between gap-4 border-b border-olive/20 py-3">
+                <span data-i18n="label_parking" class="shrink-0 font-body text-[9px] uppercase tracking-[0.2em] text-foreground/55 sm:text-[10px] sm:tracking-[0.24em]">
+                  Parking
+                </span>
+                <span data-i18n="val_parking" class="text-right font-body text-[12px] leading-snug text-foreground/85 sm:text-[13px]">
+                  Free on-site parking
+                </span>
+              </div>
+              <div class="flex items-baseline justify-between gap-4 py-3">
+                <span data-i18n="label_distance" class="shrink-0 font-body text-[9px] uppercase tracking-[0.2em] text-foreground/55 sm:text-[10px] sm:tracking-[0.24em]">
+                  To the venue
+                </span>
+                <span data-i18n="val_distance" class="text-right font-body text-[12px] leading-snug text-foreground/85 sm:text-[13px]">
+                  9 km&nbsp;· about 25 min by car
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <a
+                href="https://hotelsonborguny.com/en/home/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="book_stay"
+                class="relative z-10 inline-block border border-olive/60 bg-background px-6 py-3 font-body text-[11px] uppercase tracking-[0.24em] text-olive transition-colors duration-300 hover:bg-olive hover:text-background sm:px-8"
+              >
+                Book your stay
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 11. WEDDING GIFT SECTION                                            -->
+    <!-- =================================================================== -->
+    <section class="overflow-hidden px-4 pb-6 pt-12 sm:pt-16">
+      <div class="mx-auto w-full max-w-[440px]">
+        <h2
+          data-i18n="gift_title"
+          class="text-center font-display text-5xl leading-[1.05] md:text-7xl reveal"
+        >
+          Wedding Gift
+        </h2>
+        <p
+          data-i18n="gift_subtitle"
+          class="mx-auto mt-4 max-w-[270px] text-center font-body text-[15px] italic leading-relaxed text-foreground/80 sm:text-base reveal"
+        >
+          Your presence is our greatest gift.
+        </p>
+
+        <!-- Container-Query Animated Floral Gift Frame -->
+        <div class="cq-inline relative mx-auto mt-6 aspect-square w-full max-w-[390px]">
+          <img
+            src="https://fresco-template.thedigitalyes.com/marco-gifts-anim-alpha.webp"
+            alt="Animated botanical gift frame"
+            class="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
+          />
+          <div class="absolute inset-0" style="transform: translate(1.5%, -0.8%);">
+            <div class="flex h-full w-full items-center justify-center px-[23%] text-center reveal">
+              <p
+                data-i18n="gift_desc"
+                class="font-body leading-relaxed text-foreground/70"
+                style="font-size: 3.7cqw;"
+              >
+                If you wish to honour us with a gift, we kindly prefer monetary contributions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          id="open-bank-modal-btn"
+          type="button"
+          data-i18n="gift_btn"
+          class="mx-auto mt-5 block rounded-none border border-olive/70 px-7 py-3 font-body text-[11px] uppercase tracking-[0.24em] text-olive transition-colors duration-300 hover:bg-olive hover:text-background sm:px-8 cursor-pointer reveal"
+        >
+          View bank details
+        </button>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 12. INTERACTIVE RSVP SECTION (#rsvp)                                -->
+    <!-- =================================================================== -->
+    <section id="rsvp" class="px-4 pb-8 pt-16 sm:px-6 md:pt-20">
+      <div class="relative mx-auto w-full max-w-2xl reveal">
+        <div class="relative px-4 pb-12 pt-4 sm:px-10 md:px-14 md:pb-16">
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/efc6081e-f3d0-465f-9b7a-a296356f1bd1/ventana-mediterranea-flores-v2.png"
+            alt="Mediterranean arched window with olive and rose blossoms"
+            class="pointer-events-none mx-auto mb-8 block h-auto w-full max-w-[185px] select-none md:mb-10 md:max-w-[245px] reveal"
+          />
+
+          <div class="mb-10 text-center md:mb-12">
+            <h2 class="font-display mb-3 text-5xl md:text-7xl">RSVP</h2>
+            <div aria-hidden="true" class="mb-4 flex items-center justify-center gap-3">
+              <span class="h-px w-10 bg-border"></span>
+              <span class="h-1.5 w-1.5 rotate-45 border border-foreground/40"></span>
+              <span class="h-px w-10 bg-border"></span>
+            </div>
+            <p
+              data-i18n="rsvp_deadline"
+              class="mx-auto max-w-md font-body text-xs uppercase tracking-[0.25em] text-foreground/75 md:text-sm"
+            >
+              The favour of a reply is kindly requested by the fifteenth of May, 2027
+            </p>
+          </div>
+
+          <form id="rsvp-form" class="space-y-11 md:space-y-14">
+            <!-- 01. Attendance Radio Cards -->
+            <div>
+              <div class="mb-4 flex items-baseline gap-3">
+                <span class="font-body text-xs tabular-nums tracking-[0.28em] text-foreground/70 md:text-sm">01</span>
+                <span data-i18n="rsvp_q1" class="font-body text-sm tracking-wide text-foreground md:text-base">
+                  Will you be joining us? *
+                </span>
+              </div>
+
+              <div class="flex flex-col gap-3" role="radiogroup">
+                <label
+                  data-attend-card="yes"
+                  class="flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3.5 transition-colors duration-300 md:px-5 md:py-4 border-olive bg-olive/10"
+                >
+                  <input type="radio" name="attending" value="yes" checked class="sr-only" />
+                  <span class="radio-dot flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-olive bg-olive text-background">
+                    <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+                  </span>
+                  <span data-i18n="rsvp_yes" class="font-body text-sm leading-snug text-olive md:text-base">
+                    Delighted to accept
+                  </span>
+                </label>
+
+                <label
+                  data-attend-card="no"
+                  class="flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3.5 transition-colors duration-300 md:px-5 md:py-4 border-olive/70 bg-transparent hover:border-olive hover:bg-olive/5"
+                >
+                  <input type="radio" name="attending" value="no" class="sr-only" />
+                  <span class="radio-dot flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-olive/75 text-olive">
+                    <span class="h-1.5 w-1.5 rounded-full bg-current opacity-0"></span>
+                  </span>
+                  <span data-i18n="rsvp_no" class="font-body text-sm leading-snug text-olive md:text-base">
+                    Regretfully unable to attend
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 02. Events Checkboxes -->
+            <div id="rsvp-events-block">
+              <div class="mb-4 flex items-baseline gap-3">
+                <span class="font-body text-xs tabular-nums tracking-[0.28em] text-foreground/70 md:text-sm">02</span>
+                <span data-i18n="rsvp_q2" class="font-body text-sm tracking-wide text-foreground md:text-base">
+                  Which events will you be attending? *
+                </span>
+              </div>
+
+              <div class="flex flex-col gap-3">
+                <label class="event-check-card flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3.5 transition-colors duration-300 md:px-5 md:py-4 border-olive/70 bg-transparent hover:border-olive hover:bg-olive/5">
+                  <input type="checkbox" name="events" value="Welcome Soirée" class="sr-only" />
+                  <span class="check-circle flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-olive/75 text-background transition-colors">
+                    <svg class="h-2.5 w-2.5 opacity-0 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <span data-i18n="rsvp_ev1" class="font-body text-sm leading-snug text-olive md:text-base">
+                    Welcome Soirée – 26th July
+                  </span>
+                </label>
+
+                <label class="event-check-card flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3.5 transition-colors duration-300 md:px-5 md:py-4 border-olive/70 bg-transparent hover:border-olive hover:bg-olive/5">
+                  <input type="checkbox" name="events" value="Wedding Ceremony & Reception" class="sr-only" />
+                  <span class="check-circle flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-olive/75 text-background transition-colors">
+                    <svg class="h-2.5 w-2.5 opacity-0 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <span data-i18n="rsvp_ev2" class="font-body text-sm leading-snug text-olive md:text-base">
+                    Wedding Ceremony &amp; Reception – 27th July
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 03. Number of Guests Counter -->
+            <div id="rsvp-guests-block">
+              <div class="mb-4 flex items-baseline gap-3">
+                <span class="font-body text-xs tabular-nums tracking-[0.28em] text-foreground/70 md:text-sm">03</span>
+                <span data-i18n="rsvp_q3" class="font-body text-sm tracking-wide text-foreground md:text-base">
+                  Number of guests in your party
+                </span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="inline-flex items-stretch overflow-hidden rounded-none border border-olive/70 bg-background/70">
+                  <button
+                    id="guest-dec-btn"
+                    type="button"
+                    aria-label="Decrease guests"
+                    disabled
+                    class="flex h-11 w-11 items-center justify-center text-olive transition-colors hover:bg-olive/10 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14"></path>
+                    </svg>
+                  </button>
+                  <span id="guest-count-val" class="flex w-12 items-center justify-center border-x border-olive/45 text-lg tabular-nums text-olive">
+                    1
+                  </span>
+                  <button
+                    id="guest-inc-btn"
+                    type="button"
+                    aria-label="Increase guests"
+                    class="flex h-11 w-11 items-center justify-center text-olive transition-colors hover:bg-olive/10 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14"></path>
+                      <path d="M12 5v14"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Guest Cards Container -->
+            <div id="guest-cards-container" class="space-y-4"></div>
+
+            <!-- 04. Children Accompanying -->
+            <div id="rsvp-children-block" class="space-y-4">
+              <div>
+                <div class="mb-4 flex items-baseline gap-3">
+                  <span class="font-body text-xs tabular-nums tracking-[0.28em] text-foreground/70 md:text-sm">04</span>
+                  <span data-i18n="rsvp_q4" class="font-body text-sm tracking-wide text-foreground md:text-base">
+                    Will any children be accompanying you?
+                  </span>
+                </div>
+
+                <div class="flex flex-col gap-3" role="radiogroup">
+                  <label
+                    data-child-card="yes"
+                    class="flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3.5 transition-colors duration-300 md:px-5 md:py-4 border-olive/70 bg-transparent hover:border-olive hover:bg-olive/5"
+                  >
+                    <input type="radio" name="children" value="yes" class="sr-only" />
+                    <span class="radio-dot flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-olive/75 text-olive">
+                      <span class="h-1.5 w-1.5 rounded-full bg-current opacity-0"></span>
+                    </span>
+                    <span data-i18n="yes_word" class="font-body text-sm leading-snug text-olive md:text-base">Yes</span>
+                  </label>
+
+                  <label
+                    data-child-card="no"
+                    class="flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3.5 transition-colors duration-300 md:px-5 md:py-4 border-olive bg-olive/10"
+                  >
+                    <input type="radio" name="children" value="no" checked class="sr-only" />
+                    <span class="radio-dot flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-olive bg-olive text-background">
+                      <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+                    </span>
+                    <span data-i18n="no_word" class="font-body text-sm leading-snug text-olive md:text-base">No</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Conditional Children Details Input -->
+              <div id="children-details-box" class="hidden rounded-none border border-olive/35 bg-background/70 p-4 md:p-5">
+                <label
+                  for="children-info"
+                  data-i18n="children_label"
+                  class="block font-body text-[11px] tracking-[0.22em] uppercase text-foreground/75 md:text-xs mb-2.5"
+                >
+                  Number of children &amp; ages
+                </label>
+                <input
+                  id="children-info"
+                  type="text"
+                  data-i18n-placeholder="children_ph"
+                  placeholder="e.g. 2 children (ages 4 and 7)"
+                  class="flex w-full h-12 rounded-none border border-olive/70 bg-background px-4 font-body text-sm placeholder:text-olive/50 focus-visible:outline-none focus-visible:border-olive md:text-base"
+                />
+              </div>
+            </div>
+
+            <!-- 05. Message for the Couple -->
+            <div>
+              <div class="mb-4 flex items-baseline gap-3">
+                <span class="font-body text-xs tabular-nums tracking-[0.28em] text-foreground/70 md:text-sm">05</span>
+                <span data-i18n="rsvp_q5" class="font-body text-sm tracking-wide text-foreground md:text-base">
+                  A message for the couple
+                </span>
+              </div>
+              <div class="space-y-3 rounded-none border border-olive/35 bg-background/70 p-4 md:p-5">
+                <textarea
+                  id="rsvp-message"
+                  data-i18n-placeholder="message_ph"
+                  placeholder="We should be delighted to hear from you."
+                  class="flex w-full min-h-[110px] rounded-none border border-olive/70 bg-background px-4 py-3 font-body text-sm placeholder:text-olive/50 focus-visible:outline-none focus-visible:border-olive md:text-base"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Inline Error Message (no alert) -->
+            <p id="rsvp-error-msg" class="hidden font-body text-xs text-red-700 tracking-wide"></p>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium border border-gold/30 h-auto w-full rounded-none bg-olive px-6 py-5 font-body text-xs uppercase tracking-[0.2em] text-background transition-colors hover:bg-olive/90 md:py-6 md:text-sm cursor-pointer"
+            >
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+                  <path d="m21.854 2.147-10.94 10.939" />
+                </svg>
+                <span data-i18n="submit_btn">Submit Response</span>
+              </span>
+            </button>
+          </form>
+
+          <!-- RSVP Confirmation State -->
+          <div id="rsvp-confirmation" class="hidden border border-olive/45 bg-secondary/45 p-8 md:p-12 text-center space-y-4">
+            <div class="w-12 h-12 rounded-full border border-olive/50 text-olive flex items-center justify-center mx-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </div>
+            <h3 data-i18n="confirm_title" class="font-display text-4xl md:text-5xl text-foreground">
+              Thank You
+            </h3>
+            <p id="rsvp-confirm-summary" class="font-body text-sm md:text-base text-olive leading-relaxed max-w-md mx-auto"></p>
+            <button
+              id="rsvp-edit-btn"
+              type="button"
+              data-i18n="edit_response"
+              class="mt-3 inline-block border border-olive/60 bg-background px-6 py-2.5 font-body text-[11px] uppercase tracking-[0.22em] text-olive transition-colors hover:bg-olive hover:text-background cursor-pointer"
+            >
+              Edit response
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 13. FOOTER WITH MEDITERRANEAN ARCH FRAME                            -->
+    <!-- =================================================================== -->
+    <footer class="pb-20 pt-6 text-center md:pt-10 overflow-hidden px-4">
+      <div class="reveal">
+        <div class="cq-inline relative mx-auto w-full max-w-[740px]">
+          <img
+            src="https://fresco-template.thedigitalyes.com/__l5e/assets-v1/9386a79a-020e-4ccd-b3e7-f3bd67541767/arco-mediterraneo.png"
+            alt="Mediterranean arch illustration"
+            aria-hidden="true"
+            class="w-full h-auto pointer-events-none select-none"
+          />
+          <div class="absolute left-[26%] right-[26%] top-[46%] -translate-y-1/2 flex flex-col items-center text-center">
+            <p class="font-display text-foreground leading-none whitespace-nowrap" style="font-size: 6.2cqw;">Diana</p>
+            <p class="font-display text-foreground/50 italic leading-none" style="font-size: 3.1cqw; margin: 1cqw 0;">&amp;</p>
+            <p class="font-display text-foreground leading-none whitespace-nowrap" style="font-size: 6.2cqw;">Richard</p>
+            <p
+              data-i18n="footer_date"
+              class="text-foreground/70 font-body tracking-wide whitespace-nowrap"
+              style="font-size: 2.3cqw; margin-top: 2.8cqw;"
+            >
+              27 July 2027
+            </p>
+          </div>
+        </div>
+
+        <p class="text-sm text-foreground/45 mt-12 font-body px-6">
+          <span data-i18n="footer_made">Made with love by</span>
+          <a
+            href="https://www.thedigitalyes.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-foreground transition-colors underline underline-offset-2"
+          >
+            The Digital Yes
+          </a>
+        </p>
+      </div>
+    </footer>
+
+    </main>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- BANK DETAILS MODAL                                                    -->
+  <!-- ===================================================================== -->
+  <div
+    id="bank-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bank-modal-title"
+    class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-foreground/45 backdrop-blur-sm p-4"
+  >
+    <div class="modal-card relative w-full max-w-md border border-olive/50 bg-background p-8 md:p-10 text-center shadow-2xl">
+      <button
+        id="close-bank-modal-btn"
+        type="button"
+        aria-label="Close bank details modal"
+        class="absolute top-3.5 right-4 text-2xl leading-none text-foreground/60 hover:text-foreground cursor-pointer"
+      >
+        &times;
+      </button>
+
+      <h3
+        id="bank-modal-title"
+        data-i18n="bank_modal_title"
+        class="font-display text-4xl text-foreground mb-2"
+      >
+        Wedding Gift
+      </h3>
+      <p
+        data-i18n="bank_modal_sub"
+        class="font-body text-xs uppercase tracking-[0.24em] text-olive mb-5"
+      >
+        Diana &amp; Richard
+      </p>
+
+      <p
+        data-i18n="bank_modal_desc"
+        class="font-body text-sm text-foreground/80 leading-relaxed mb-6"
+      >
+        Your presence in Mallorca is truly the greatest gift. Should you wish to contribute to our honeymoon and future home, please find our bank details below:
+      </p>
+
+      <div class="border border-olive/35 bg-secondary/45 p-5 text-left space-y-3 mb-6">
+        <div>
+          <p data-i18n="bank_holder_label" class="font-body text-[10px] uppercase tracking-[0.2em] text-foreground/55">
+            Account Holders
+          </p>
+          <p class="font-display text-lg text-foreground">Diana &amp; Richard</p>
+        </div>
+        <div>
+          <p class="font-body text-[10px] uppercase tracking-[0.2em] text-foreground/55">IBAN</p>
+          <p id="bank-iban" class="font-mono text-xs md:text-sm text-foreground tracking-wider select-all">
+            ES91 2100 0418 4502 0005 1332
+          </p>
+        </div>
+        <div>
+          <p class="font-body text-[10px] uppercase tracking-[0.2em] text-foreground/55">BIC / SWIFT</p>
+          <p id="bank-bic" class="font-mono text-xs md:text-sm text-foreground tracking-wider select-all">
+            CAIXESBBXXX
+          </p>
+        </div>
+      </div>
+
+      <button
+        id="copy-bank-btn"
+        type="button"
+        class="inline-flex items-center justify-center gap-2 w-full rounded-none bg-olive hover:bg-olive/90 text-background font-body text-xs uppercase tracking-[0.22em] py-3.5 px-6 transition-colors cursor-pointer"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+        </svg>
+        <span data-i18n="copy_iban_btn">Copy IBAN</span>
+      </button>
+      <p id="copy-bank-status" class="mt-3 font-body text-xs text-olive min-h-[18px]"></p>
+    </div>
+  </div>
+</div>
