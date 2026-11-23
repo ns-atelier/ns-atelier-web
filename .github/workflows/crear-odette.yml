@@ -1,0 +1,42 @@
+name: Construir demo Odette
+on:
+  push:
+    branches:
+      - feature/odette-y-portada-premium
+      - main
+    paths:
+      - 'inv/odette-source.html'
+      - 'tools/build_odette.mjs'
+      - '.github/workflows/crear-odette.yml'
+permissions:
+  contents: write
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar compilador Tailwind
+        run: npm install --no-save --package-lock=false tailwindcss@4.1.10 postcss@8
+      - name: Construir Odette
+        run: node tools/build_odette.mjs
+      - name: Comprobar recursos
+        run: |
+          test -s inv/odette-template.html
+          test -s inv/odette.css
+      - name: Publicar HTML y CSS generados
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add inv/odette-template.html inv/odette.css
+          if ! git diff --cached --quiet; then
+            git commit -m "Generar recursos estaticos de Odette"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
