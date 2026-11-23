@@ -53,7 +53,9 @@
     #skipVideoBtn { position: absolute; bottom: 26px; right: 20px; border: 1px solid rgba(140, 100, 60, .4); background: rgba(255, 250, 242, .85); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: 12px system-ui, sans-serif; }
 
     .fab-dock { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 90000; visibility: hidden; opacity: 0; transition: opacity .35s ease; }
-    .fab-dock.visible { visibility: visible; opacity: 1; }
+    .fab-dock.visible { visibility: visible; opacity: 1; pointer-events: auto; }
+    /* Se ocultan solos y se muestran nuevamente con un toque. */
+    .fab-dock.visible.is-idle { opacity: 0; visibility: hidden; pointer-events: none; }
     .fab-btn { width: 50px; height: 50px; background: var(--btn-bg); color: #fff; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 14px rgba(40, 12, 18, .28); transition: transform .2s ease, opacity .2s ease; }
     .fab-btn:hover { transform: scale(1.07); }
     .fab-btn svg { width: 22px; height: 22px; fill: #fff; }
@@ -62,6 +64,14 @@
     /* =====================================================================
        ENGINE A: THE SACRED GARDEN (100% EDITABLE FROM PANEL)
     ===================================================================== */
+    /* Modo inmersivo móvil: no invoca la pantalla completa nativa y evita su aviso. */
+    body.ns-mobile-immersive { overflow: hidden; }
+    body.ns-mobile-immersive #root {
+      position: fixed; inset: 0; width: 100%; height: 100vh; height: 100dvh;
+      overflow-y: auto; overflow-x: hidden; z-index: 80000;
+      overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+    }
     .sg-page { width: 100%; min-height: 100vh; background: var(--bg); overflow-x: hidden; }
     .sg-artboard { position: relative; width: 100%; max-width: 450px; margin: 0 auto; background: var(--bg); }
 
@@ -168,10 +178,28 @@
 
     /* Footer */
     .sg-footer { height: 673px; overflow: hidden; }
-    .sg-footer-photo { position: absolute; top: 0; left: 0; width: 100%; height: 675px; object-fit: cover; z-index: 1; }
-    .sg-footer-grad { position: absolute; top: 0; left: 0; width: 100%; height: 237px; background-image: linear-gradient(0turn, rgba(232, 221, 207, 0) 0%, var(--bg) 100%); z-index: 2; pointer-events: none; }
+    .sg-footer-photo {
+      position: absolute; top: 0; left: 0; width: 100%; height: 675px;
+      object-fit: cover; object-position: center 48%; z-index: 1;
+      transform-origin: center center;
+      animation: sgPhotoDrift 20s ease-in-out infinite alternate;
+    }
+    @keyframes sgPhotoDrift {
+      from { transform: scale(1.01) translateY(0); }
+      to { transform: scale(1.075) translateY(-6px); }
+    }
+    .sg-footer-grad {
+      position: absolute; top: 0; left: 0; width: 100%; height: 300px;
+      background: linear-gradient(to bottom, var(--bg) 0%,
+        rgba(249,240,224,.90) 25%, rgba(249,240,224,.6) 58%, rgba(249,240,224,0) 100%);
+      pointer-events: none; z-index: 2;
+    }
     .sg-footer-title { position: absolute; top: 14px; left: 0; width: 100%; z-index: 4; }
     .sg-footer-names { position: absolute; top: 72px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 28px; }
+    .sg-footer .sg-footer-title, .sg-footer .sg-footer-names {
+      color: color-mix(in srgb, var(--accent) 66%, #3a271b 34%);
+      text-shadow: 0 0 8px rgba(249,240,224,.95), 0 0 19px rgba(249,240,224,.85), 0 1px 2px #fff9ef;
+    }
     .sg-footer-wreath { position: absolute; bottom: 0; left: 50%; width: 100%; height: 40%; transform: translateX(-50%); object-fit: contain; object-position: center bottom; margin: 0; z-index: 3; pointer-events: none; animation: none; }
 
     /* RSVP Modal */
@@ -491,69 +519,52 @@
       pointer-events: none; z-index: 4; border-radius: 14px;
     }
 
-    /* Cierre de The Sacred Garden: ramos amplios, anclados a los bordes y flotando suavemente. */
+    /* Ramos grandes que alcanzan los dos extremos de la foto en móviles. */
     .sg-footer .sg-final-side {
-      position: absolute;
-      z-index: 3;
-      bottom: -12px;
-      width: 70%;
-      height: 55%;
-      max-width: none;
-      object-fit: contain;
-      pointer-events: none;
-      transform-origin: center bottom;
-      will-change: transform;
-      animation: sgBouquetFloat 6.2s ease-in-out infinite;
+      position: absolute; z-index: 3; bottom: -14px;
+      width: 130%; height: 60%; max-width: none; max-height: none;
+      object-fit: cover; pointer-events: none; will-change: transform;
+      animation: sgBouquetFloat 7s ease-in-out infinite;
     }
     .sg-footer .sg-final-side.side-0 {
-      left: -15%;
-      right: auto;
-      object-position: left bottom;
+      left: -48%; right: auto; object-position: left bottom;
       transform-origin: left bottom;
     }
     .sg-footer .sg-final-side.side-1 {
-      right: -15%;
-      left: auto;
-      object-position: right bottom;
-      transform-origin: right bottom;
-      animation-delay: -3.1s;
+      right: -48%; left: auto; object-position: right bottom;
+      transform-origin: right bottom; animation-delay: -3.5s;
     }
     @keyframes sgBouquetFloat {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(1.1deg); }
+      50% { transform: translateY(-12px) rotate(0.8deg); }
     }
-    /* Si la demo tiene una corona completa en lugar de dos ramos, centrarla y animarla. */
+    /* Corona única: conservarla centrada, ampliada y flotando. */
     .sg-footer .sg-footer-wreath {
-      top: auto;
-      right: auto;
-      bottom: -10px;
-      left: 50%;
-      width: 118%;
-      max-width: none;
-      height: 52%;
-      max-height: none;
-      margin: 0;
-      object-fit: contain;
-      object-position: center bottom;
-      transform: translateX(-50%);
-      animation: sgWreathFloat 6.2s ease-in-out infinite;
+      top: auto; right: auto; bottom: -18px; left: 50%;
+      width: 140%; height: 57%; max-width: none; max-height: none;
+      margin: 0; object-fit: cover; object-position: center bottom;
+      transform: translateX(-50%); animation: sgWreathFloat 7s ease-in-out infinite;
     }
     @keyframes sgWreathFloat {
       0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -11px); }
+      50% { transform: translate(-50%, -12px); }
     }
-    @media (max-width: 480px) {
-      .sg-footer .sg-final-side { width: 76%; height: 59%; bottom: -14px; }
-      .sg-footer .sg-final-side.side-0 { left: -18%; }
-      .sg-footer .sg-final-side.side-1 { right: -18%; }
-      .sg-footer .sg-footer-wreath { width: 125%; height: 56%; }
+    @media (max-width: 540px) {
+      /* El cierre ocupa todo el ancho físico de la pantalla. */
+      .sg-page .sg-footer { width: 100vw; max-width: none; margin-left: calc(50% - 50vw); }
+      .sg-footer .sg-final-side { width: 142%; height: 65%; bottom: -18px; }
+      .sg-footer .sg-final-side.side-0 { left: -56%; }
+      .sg-footer .sg-final-side.side-1 { right: -56%; }
+      .sg-footer .sg-footer-wreath { width: 145%; height: 61%; }
     }
-    /* En el editor visual, no interferir con la colocación manual desde el panel. */
+    .visual-editor .sg-footer-photo,
     .visual-editor .sg-footer .sg-final-side,
     .visual-editor .sg-footer .sg-footer-wreath { animation: none !important; }
     @media (prefers-reduced-motion: reduce) {
+      .sg-footer-photo,
       .sg-footer .sg-final-side,
-      .sg-footer .sg-footer-wreath { animation: none; }
+      .sg-footer .sg-footer-wreath { animation: none !important; }
+      .sg-footer .sg-footer-wreath { transform: translateX(-50%); }
     }
     .sg-petal-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:3}
     .sg-location:has(.sg-petal-film.playing) .sg-petal{display:none}
