@@ -634,9 +634,12 @@
       ['gala-terciopelo', 'assets/catalogo/gala-terciopelo.webp'],
       ['the-sacred-garden', 'assets/catalogo/the-sacred-garden.webp'],
       ['olivo-marfil', 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png'],
-      ['jardin-eterno', 'images/diseno-02.webp'],
+      ['nacar', 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png'],
+      ['jardin-eterno', 'https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png'],
+      ['eleganza', 'https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png'],
       ['noche-dorada', 'images/diseno-03.webp'],
-      ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png']
+      ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png'],
+      ['red-vibrante', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
     // Una imagen personalizada con otra ruta se muestra tal como la haya elegido el cliente.
@@ -669,9 +672,23 @@
       return '';
     }
 
+    // Los identificadores nuevos coinciden con el nombre público.
+    // Compatibilidad temporal con los registros anteriores de DEMOS_WEB.
+    const DEMO_ID_ALIASES = Object.freeze({
+      'olivo-marfil':'nacar',
+      'jardin-seda':'red-vibrante',
+      'jardin-eterno':'eleganza'
+    });
     function createCard(item, layout) {
-      // Nácar sustituye a Olivo & Marfil únicamente en el catálogo público.
-      if (item.id === 'olivo-marfil') {
+      if (DEMO_ID_ALIASES[item.id]) item = { ...item, id: DEMO_ID_ALIASES[item.id] };
+      if (item.id === 'eleganza') {
+        item = { ...item, nombre:'Eleganza',
+          descripcion:/jard[ií]n eterno|rosa empolvado|romance floral/i.test(item.descripcion||'')
+            ? 'Marcos botánicos, ceremonia italiana frente al lago y celebración elegante.'
+            : item.descripcion };
+      }
+      // Nácar, nombre público canónico de la demo anterior Olivo & Marfil.
+      if (item.id === 'nacar') {
         item = { ...item, nombre: 'Nácar',
           descripcion: /olivo|marfil|vegetal|serena|natural/i.test(item.descripcion || '')
             ? 'Perlas, encaje, detalles nacarados, fotografía que se descubre al raspar y una elegante ceremonia.'
@@ -679,7 +696,7 @@
       }
       // Red Vibrante reemplaza a Jardín de Seda sin cambiar el ID que usa el panel.
       // El nombre del panel se podrá actualizar después sin perder enlaces existentes.
-      if (item.id === 'jardin-seda') {
+      if (item.id === 'red-vibrante') {
         item = { ...item, nombre: 'Red Vibrante',
           descripcion: /marfil|bot[aá]nic|seda/i.test(item.descripcion || '')
             ? 'Borgoña profundo, flores rubí, sobre animado y una celebración llena de emoción.'
