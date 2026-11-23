@@ -1701,8 +1701,14 @@
       document.querySelector('meta[name="theme-color"]').setAttribute('content', bg);
       document.title = (d.nombre1 || 'Invitación') + (d.nombre2 ? ' & ' + d.nombre2 : '') + ' · N&S ATELIER';
 
-      if (t.id === 'jardin-seda' || t.estilo === 'red-vibrante') {
-        // Conserva el ID para que Demos Web y las invitaciones existentes sigan funcionando.
+      // La demo pública cambia de aspecto, pero las plantillas privadas y las
+      // invitaciones de clientes existentes con el antiguo ID NO se modifican.
+      const demoId = new URLSearchParams(location.search).get('demo');
+      const redVibrantePublica = t.id === 'jardin-seda' &&
+        !editingView && payload.tipo === 'plantilla' && demoId === 'jardin-seda';
+      const redVibranteEditor = editingView && payload.tipo === 'plantilla' &&
+        t.id === 'jardin-seda' && /red\s+vibrante/i.test(t.nombre || '');
+      if (redVibrantePublica || redVibranteEditor || t.estilo === 'red-vibrante') {
         await window.renderRedVibrante(d, t, m, payload);
       } else if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
       else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m, payload.tipo === 'plantilla');
