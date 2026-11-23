@@ -132,6 +132,15 @@
     if(colors.acento)root.style.setProperty('--color-skymain',colors.acento);
     setupEnvelope(data,media);
     applyData(root,data,media);
+    // El HTML original mostraba el subtítulo desde su propio controlador
+    // de apertura. En el visor compartido lo revelamos tras el toque.
+    const subtitle = root.querySelector('#hero-sub');
+    document.getElementById('weiOverlay')?.addEventListener('click', () => {
+      setTimeout(() => {
+        subtitle?.classList.remove('opacity-0');
+        subtitle?.classList.add('opacity-100');
+      }, 900);
+    }, {once:true});
     window.__DV_DEMO=payload.tipo!=='evento';
     window.__DV_RSVP_FORM=data.googleFormUrl||'';
     window.__DV_WHATSAPP=data.whatsapp||'';
