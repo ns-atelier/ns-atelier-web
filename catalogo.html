@@ -215,7 +215,7 @@
     #catalogGrid[hidden] { display: none; }
     #catalogStatus { text-align: center; margin: 0 0 24px; }
     /* Los modelos publicados llegan exclusivamente desde Demos Web. */
-    .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
     .catalog-retry { display: inline-flex; margin: 0 0 20px; }
     .catalog-retry[hidden] { display: none; }
     .catalog-placeholder { pointer-events: none; box-shadow: none; }
@@ -234,6 +234,7 @@
       .catalog-placeholder .skeleton-line { animation: none; }
     }
     .design-card {
+      min-width: 0; align-self: start;
       background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
       overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
       transition: transform .28s ease, box-shadow .28s ease;
@@ -242,11 +243,40 @@
     .design-card.featured { border: 1.5px solid var(--gold); }
     .nav-links .btn-primary { color: #faf6f0; }
     .nav-links .btn-primary:hover { color: #fff; }
-    .design-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #ede3d5; }
-    .design-media-link { position: relative; display: block; width: 100%; height: 100%; }
+    /* Altura real de la portada: nunca recortar obras verticales para llenar 4:3. */
+    .design-media { position: relative; overflow: hidden; background: #f4eee8; }
+    .design-media-link { position: relative; display: block; width: 100%; height: auto; line-height: 0; }
     .design-media-link:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
-    .design-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-    .design-card:hover .design-media img { transform: scale(1.06); }
+    .design-media img {
+      display: block; width: 100%; height: auto; max-height: none;
+      object-fit: contain; object-position: center;
+      transition: transform .7s cubic-bezier(.2,.72,.26,1);
+    }
+    .design-card:hover .design-media img { transform: scale(1.025); }
+    .design-media[data-art="red-vibrante"] { background: linear-gradient(150deg,#520d25,#7b163a 65%,#300c1a); }
+    .design-media[data-art="red-vibrante"] img { padding: 7% 5% 28%; filter: drop-shadow(0 14px 18px #200b1b55); }
+    .design-media[data-art="nacar"] { background: #ede9e1; }
+    .design-media[data-art="eleganza"] { background: #ede2d1; }
+    .catalog-cover-label {
+      position: absolute; z-index: 2; top: 47%; left: 11%; width: 78%;
+      transform: translateY(-50%); pointer-events: none; text-align: center;
+      display: grid; gap: 5px; line-height: 1.2; color: #574d45;
+      text-shadow: 0 1px 7px #fff9f0e0;
+    }
+    .catalog-cover-label strong {
+      display: block; font: 400 clamp(24px, 2.9vw, 39px)/1.08 var(--serif, Georgia,serif);
+      letter-spacing: .015em;
+    }
+    .catalog-cover-label small { font-size: clamp(8px, .95vw, 12px); letter-spacing: .12em; text-transform: uppercase; }
+    .design-media[data-art="nacar"] .catalog-cover-label { top: 49%; color: #536273; }
+    .design-media[data-art="eleganza"] .catalog-cover-label { top: 50%; color: #736047; }
+    .design-media[data-art="red-vibrante"] .catalog-cover-label {
+      top: auto; bottom: 9%; transform: none; color: #fff4e8;
+      text-shadow: 0 2px 9px #260515;
+    }
+    .design-media[data-art="red-vibrante"] .catalog-cover-label strong { font-style: italic; }
+    .catalog-placeholder .design-media { aspect-ratio: 4 / 5; }
+    .catalog-placeholder .design-media img { display: none; }
     .design-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
     .design-body h3 { font-size: 25px; margin-bottom: 8px; }
     .design-body p { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; flex: 1; }
@@ -373,10 +403,10 @@
       .catalog-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         column-gap: 12px; row-gap: 16px;
-        align-items: stretch;
+        align-items: start;
       }
       .catalog-grid .design-card {
-        min-width: 0; border-radius: 17px;
+        min-width: 0; align-self: start; border-radius: 17px;
         background: linear-gradient(165deg,#fffefd 0%,#fffaf4 100%);
         border: 1px solid rgba(176, 146, 119, .27);
         box-shadow: 0 9px 24px rgba(67, 45, 39, .065), 0 2px 4px rgba(67, 45, 39, .035);
@@ -389,7 +419,8 @@
       }
       .catalog-grid .design-card:hover { transform: none; box-shadow: 0 9px 24px rgba(67, 45, 39, .065); }
       .catalog-grid .design-card:active { transform: scale(.985); }
-      .catalog-grid .design-media { aspect-ratio: 4 / 4.65; background: #ebe3d9; }
+      .catalog-grid .design-media { aspect-ratio: auto; }
+      .catalog-grid .catalog-placeholder .design-media { aspect-ratio: 4 / 5; }
       .catalog-grid .design-media::after {
         content: ""; position: absolute; inset: auto 0 0; height: 28%; z-index: 1;
         background: linear-gradient(transparent, rgba(53, 34, 30, .095)); pointer-events: none;
@@ -414,9 +445,13 @@
         box-shadow: 0 2px 8px rgba(30,20,12,.05);
       }
       .catalog-grid .design-media img {
-        object-position: center 24%; transform: scale(1.01);
+        object-position: center; transform: none; height: auto; object-fit: contain;
         transition: transform .8s cubic-bezier(.22, 1, .36, 1);
       }
+      .catalog-grid .catalog-cover-label { gap: 3px; }
+      .catalog-grid .catalog-cover-label strong { font-size: clamp(17px, 5vw, 28px); }
+      .catalog-grid .catalog-cover-label small { font-size: 7px; letter-spacing: .04em; }
+      .catalog-grid .design-media[data-art="red-vibrante"] img { padding-bottom: 29%; }
       .catalog-grid .design-body { padding: 12px 11px 13px; min-width: 0; }
       .catalog-grid .design-body h3 {
         font-size: clamp(16.5px, 4.25vw, 20px); line-height: 1.08;
@@ -641,7 +676,7 @@
       ['noche-dorada', 'assets/catalogo/odette.webp'],
       ['odette', 'assets/catalogo/odette.webp'],
       ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png'],
-      ['red-vibrante', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png']
+      ['red-vibrante', 'https://static.tildacdn.net/tild3138-3862-4931-a264-313932393437/4ruby.png']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
     // Una imagen personalizada con otra ruta se muestra tal como la haya elegido el cliente.
@@ -652,7 +687,10 @@
       ['villa-toscana', 'inv/assets/coleccion/villa-toscana.jpg'],
       ['costa-azul', 'inv/assets/coleccion/costa-azul.jpg'],
       ['gala-terciopelo', 'inv/assets/coleccion/gala-terciopelo.jpg'],
-      ['the-sacred-garden', 'inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.png']
+      ['the-sacred-garden', 'inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.png'],
+      ['red-vibrante', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png'],
+      ['nacar', 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png'],
+      ['eleganza', 'https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png']
     ]);
     function isOriginalCover(id, url) {
       const source = originalCovers.get(id);
@@ -738,6 +776,26 @@
       card.querySelector('.btn-primary').href = demoHref;
       // La portada completa es un enlace táctil, además del botón de la tarjeta.
       if (cover && image.parentElement) {
+        const mediaBox = card.querySelector('.design-media');
+        const originalCover = isOriginalCover(item.id, sheetCover);
+        const curatedArtwork = !sheetCover || sharedEnvelope || originalCover;
+        const artwork = curatedArtwork ? ({
+          'red-vibrante': ['Red Vibrante', 'Viktor & Paula'],
+          'nacar': ['Nácar', 'Cornelia & James'],
+          'eleganza': ['Eleganza', 'Alessia & Matteo']
+        })[item.id] : null;
+        if (artwork) {
+          mediaBox.dataset.art = item.id;
+          const label = document.createElement('span');
+          label.className = 'catalog-cover-label';
+          label.setAttribute('aria-hidden', 'true');
+          const title = document.createElement('strong');
+          title.textContent = artwork[0];
+          const subtitle = document.createElement('small');
+          subtitle.textContent = artwork[1];
+          label.append(title, subtitle);
+          mediaBox.appendChild(label);
+        }
         const coverLink = document.createElement('a');
         coverLink.className = 'design-media-link';
         coverLink.href = demoHref;
