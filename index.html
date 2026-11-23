@@ -81,23 +81,92 @@
     .btn-light:hover { background: #fff; }
     .btn-sm { padding: 9px 16px; font-size: 12.5px; }
 
-    /* Header */
+    /* Cabecera */
     .site-header {
-      position: sticky; top: 0; z-index: 900;
-      background: rgba(250, 246, 240, .88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(166, 125, 43, .14);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(253, 249, 243, .97);
+      border-bottom: 1px solid #dccdb8;
     }
-    .nav-bar { display: flex; align-items: center; justify-content: space-between; min-height: 74px; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand-logo { width: 46px; height: 46px; border-radius: 12px; object-fit: contain; padding: 2px; background: #fff9ef; border: 1px solid var(--line); }
-    .brand-text strong { display: block; font-family: var(--cinzel); font-size: 15px; letter-spacing: .16em; }
-    .brand-text span { display: block; font-size: 11px; color: var(--ink-soft); }
-    .nav-links { display: flex; align-items: center; gap: 22px; }
-    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--ink-soft); transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active-link { color: var(--burgundy); font-weight: 600; }
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: clamp(12px, 2vw, 30px);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; flex: 0 1 auto; min-width: 0; }
+    .brand-logo {
+      width: 45px;
+      height: 45px;
+      flex: 0 0 45px;
+      border-radius: 50%;
+      object-fit: contain;
+      padding: 4px;
+      background: #fff9ef;
+      border: 1px solid #d7c19d;
+    }
+    .brand-text strong {
+      display: block;
+      font-family: var(--cinzel);
+      font-size: clamp(.84rem, 1.4vw, 1.05rem);
+      letter-spacing: .12em;
+    }
+    .brand-text span { display: block; font-size: .65rem; margin-top: 3px; color: #645548; }
+    .nav-links { display: flex; gap: clamp(6px, 1.2vw, 16px); align-items: center; }
+    .nav-links a:not(.header-quote) {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding-inline: 7px;
+      border-radius: 4px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: #51443c;
+      white-space: nowrap;
+      transition: background-color .18s ease, color .18s ease;
+    }
+    .nav-links a:not(.header-quote):hover,
+    .nav-links a:not(.header-quote):focus-visible { color: var(--burgundy); background: #eee2d6; }
+    .nav-links .header-quote {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      min-height: 44px;
+      margin-inline-start: 5px;
+      padding: 9px 15px;
+      border: 1px solid var(--burgundy);
+      border-radius: 6px;
+      background: var(--burgundy);
+      color: #fff9ef;
+      font-size: .8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background-color .18s ease;
+    }
+    .header-quote:hover { background: var(--burgundy-dark); }
+    .header-quote span { color: #edcca4; font-size: 1.05rem; }
+    .site-header a:focus-visible,
+    .site-header button:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 4px; }
     .menu-toggle {
-      display: none; background: #fff; border: 1px solid var(--line); border-radius: 10px;
-      width: 44px; height: 44px; font-size: 20px; cursor: pointer; color: var(--ink);
+      display: none;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid #d7c19d;
+      border-radius: 6px;
+      background: #fffaf3;
+      color: var(--burgundy);
+      cursor: pointer;
+    }
+    .menu-toggle svg { width: 21px; height: 21px; }
+    .menu-toggle .menu-close-icon,
+    .menu-toggle[aria-expanded="true"] .menu-open-icon { display: none; }
+    .menu-toggle[aria-expanded="true"] .menu-close-icon { display: block; }
+    @media (prefers-reduced-motion: reduce) {
+      .site-header .nav-links a { transition: none; }
     }
 
     /* Portada */
@@ -472,11 +541,25 @@
       .hero h1 { font-size: clamp(30px, 6.5vw, 52px); text-wrap: initial; }
       .section { padding: 62px 0; }
       .nav-links {
-        display: none; position: absolute; top: 74px; left: 0; right: 0;
-        background: var(--bg); border-bottom: 1px solid var(--line);
-        flex-direction: column; padding: 18px 20px 24px; gap: 14px; align-items: stretch;
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        right: max(12px, calc((100vw - 1180px) / 2));
+        width: min(350px, calc(100vw - 24px));
+        max-height: calc(100dvh - 88px);
+        overflow-y: auto;
+        background: #fdf9f3;
+        border: 1px solid #dccdb8;
+        border-radius: 10px;
+        box-shadow: 0 16px 40px #39192322;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 9px 12px 13px;
       }
       .nav-links.open { display: flex; }
+      .nav-links a:not(.header-quote) { min-height: 46px; padding-inline: 10px; border-bottom: 1px solid #eaddcd; }
+      .nav-links .header-quote { margin: 10px 0 0; }
       .menu-toggle { display: inline-grid; place-items: center; }
       .features-grid, .catalog-grid, .packages-grid, .steps-grid, .builder-controls { grid-template-columns: 1fr; }
       .wa-float span { display: none; }
@@ -512,15 +595,18 @@
           <span>Invitaciones · Videohistorias 3D</span>
         </div>
       </a>
-      <nav class="nav-links" id="mainNav">
+      <nav class="nav-links" id="mainNav" aria-label="Navegación principal">
         <a href="#video3d">Videohistorias 3D</a>
         <a href="#funciones">¿Qué incluyen?</a>
-        <a href="catalogo.html">Catálogo de modelos</a>
+        <a href="catalogo.html">Catálogo</a>
         <a href="#paquetes">Paquetes</a>
         <a href="#preguntas">Preguntas</a>
-        <a class="btn btn-primary btn-sm" data-wa="Hola, quiero cotizar una invitación digital o videohistoria 3D con N&S ATELIER." href="#contacto">Cotizar ahora</a>
+        <a class="header-quote" data-wa="Hola, quiero cotizar una invitación digital o videohistoria 3D con N&S ATELIER." href="#contacto">Cotizar ahora <span aria-hidden="true">↗</span></a>
       </nav>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+        <svg class="menu-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        <svg class="menu-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
     </div>
   </header>
 
@@ -897,11 +983,24 @@
     // Menú móvil
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
-    menuToggle.addEventListener('click', () => {
-      const open = mainNav.classList.toggle('open');
+    function setMobileMenu(open) {
+      mainNav.classList.toggle('open', open);
       menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    }
+    menuToggle.addEventListener('click', () => setMobileMenu(!mainNav.classList.contains('open')));
+    mainNav.addEventListener('click', event => {
+      if (event.target.closest('a')) setMobileMenu(false);
     });
-    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.site-header') && mainNav.classList.contains('open')) setMobileMenu(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mainNav.classList.contains('open')) {
+        setMobileMenu(false);
+        menuToggle.focus();
+      }
+    });
 
     // Barra de progreso de scroll
     window.addEventListener('scroll', () => {
