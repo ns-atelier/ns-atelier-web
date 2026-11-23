@@ -1,0 +1,40 @@
+name: Construir demo Eleganza
+on:
+  push:
+    branches:
+      - feature/eleganza-canonical-demos
+      - main
+    paths:
+      - 'inv/eleganza-source.html'
+      - 'tools/build_eleganza.mjs'
+      - '.github/workflows/crear-eleganza.yml'
+permissions:
+  contents: write
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar compilador local
+        run: npm install --no-save --package-lock=false tailwindcss@4.1.10 postcss@8
+      - name: Compilar maqueta y código adaptado
+        run: node tools/build_eleganza.mjs
+      - name: Validar JavaScript
+        run: node --check inv/eleganza-original.js
+      - name: Publicar archivos generados
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add inv/eleganza-template.html inv/eleganza.css inv/eleganza-original.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Generar assets locales de Eleganza"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
