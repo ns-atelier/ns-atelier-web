@@ -39,9 +39,10 @@
   function makeEnvelope(media) {
     const overlay = document.getElementById('weiOverlay');
     overlay.classList.add('envelope-overlay', 'rv-envelope-mode');
-    const seal = validMedia(media.sello) ||
-      (isGenericMedia(media.sobre, ['sobre-portada.jpg', 'sobre-portada.webp']) ? DEFAULTS.seal : validMedia(media.sobre)) ||
-      DEFAULTS.seal;
+    // El sello que se edita en la tarjeta «Sobre / portada» del panel
+    // controla de verdad el sello del sobre animado de Red Vibrante.
+    const seal = (isGenericMedia(media.sobre, ['sobre-portada.jpg', 'sobre-portada.webp'])
+      ? '' : validMedia(media.sobre)) || validMedia(media.sello) || DEFAULTS.seal;
     // Mantener los IDs que usa el visor para la apertura y la edición visual.
     overlay.innerHTML = [
       '<div class="envelope-stage">',
