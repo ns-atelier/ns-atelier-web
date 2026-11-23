@@ -1,0 +1,715 @@
+<div class="dv-root" data-template="dolce-vita">
+<canvas id="tdr-confetti" class="fixed inset-0 pointer-events-none z-[9999]"></canvas>
+<div id="tdr-flash" class="fixed inset-0 pointer-events-none z-[9998] opacity-0"></div>
+<div class="w-full max-w-[440px] mx-auto bg-ivory text-charcoal shadow-2xl relative overflow-hidden">
+    <main>
+
+      <!-- =================================================================== -->
+      <!-- 3. HERO SECTION (height 782px)                                      -->
+      <!-- =================================================================== -->
+      <section class="relative w-full h-[782px] overflow-hidden bg-ivory flex flex-col items-center">
+        <!-- Background Looping Muted Video -->
+        <video
+          id="hero-video"
+          muted
+          playsinline
+          loop
+          autoplay
+          preload="auto"
+          class="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source
+            src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Italian_villa_terrace_202604231419%20(1).MP4"
+            type="video/mp4"
+          />
+        </video>
+
+        <!-- Subtle 10% Ivory Veil -->
+        <div class="absolute inset-0 bg-[#fffdfb]/10 z-[1] pointer-events-none"></div>
+
+        <!-- Bottom 300px Linear Gradient Fade into #fffdfb -->
+        <div
+          class="absolute bottom-0 left-0 right-0 h-[300px] z-[2] pointer-events-none"
+          style="background: linear-gradient(0deg, #fffdfb 0%, rgba(255, 253, 251, 0) 100%);"
+        ></div>
+
+        <!-- Centered Editorial Text -->
+        <div class="relative z-10 w-full text-center px-6 pt-[248px]">
+          <h1
+            class="font-display font-light text-[45px] leading-[1.2] text-charcoalsoft"
+            style="text-shadow: 0px 0px 9px #ffffff;"
+          >
+            Alexa &amp; Richard
+          </h1>
+          <p
+            id="hero-sub"
+            class="font-display font-semibold text-[22px] leading-[1.2] text-charcoalsoft mt-2 opacity-0 transition-opacity duration-1000 delay-200"
+            style="text-shadow: 0px 0px 9px #ffffff;"
+          >
+            are getting married!
+          </p>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 4. THE DATE — INTERACTIVE SCRATCH-OFF REVEAL                        -->
+      <!-- =================================================================== -->
+      <section class="bg-ivory pt-2 pb-10 px-4 text-center">
+        <h2 class="font-display font-light text-[41px] leading-[1.3] text-charcoal">
+          The Date
+        </h2>
+        <p class="font-display font-semibold text-[18px] text-skymuted mt-1 mb-5">
+          ✦ Scratch to reveal the date ✦
+        </p>
+
+        <!-- 3 Scratch-Off Tiles -->
+        <div class="w-full max-w-[396px] mx-auto">
+          <div class="grid grid-cols-3 gap-2.5 pb-4">
+            <!-- DAY -->
+            <div class="flex flex-col items-center gap-2.5">
+              <div
+                id="tdr-tile-day"
+                class="relative w-full aspect-[1/1.15] rounded-xl overflow-hidden bg-white shadow-[0_2px_16px_rgba(180,145,85,0.14),0_1px_3px_rgba(0,0,0,0.05)] cursor-pointer select-none"
+              >
+                <div class="absolute inset-0 flex items-center justify-center bg-white">
+                  <span class="font-rufina text-[34px] text-charcoal leading-none select-none pointer-events-none">14</span>
+                </div>
+                <canvas
+                  id="tdr-cvs-day"
+                  class="absolute inset-0 w-full h-full block rounded-xl cursor-pointer"
+                  style="touch-action: none;"
+                ></canvas>
+              </div>
+              <span class="font-rufina text-[10px] tracking-[4px] uppercase text-skymuted">Day</span>
+            </div>
+
+            <!-- MONTH -->
+            <div class="flex flex-col items-center gap-2.5">
+              <div
+                id="tdr-tile-month"
+                class="relative w-full aspect-[1/1.15] rounded-xl overflow-hidden bg-white shadow-[0_2px_16px_rgba(180,145,85,0.14),0_1px_3px_rgba(0,0,0,0.05)] cursor-pointer select-none"
+              >
+                <div class="absolute inset-0 flex items-center justify-center bg-white px-1">
+                  <span class="font-rufina text-[20px] sm:text-[22px] text-charcoal leading-none select-none pointer-events-none">September</span>
+                </div>
+                <canvas
+                  id="tdr-cvs-month"
+                  class="absolute inset-0 w-full h-full block rounded-xl cursor-pointer"
+                  style="touch-action: none;"
+                ></canvas>
+              </div>
+              <span class="font-rufina text-[10px] tracking-[4px] uppercase text-skymuted">Month</span>
+            </div>
+
+            <!-- YEAR -->
+            <div class="flex flex-col items-center gap-2.5">
+              <div
+                id="tdr-tile-year"
+                class="relative w-full aspect-[1/1.15] rounded-xl overflow-hidden bg-white shadow-[0_2px_16px_rgba(180,145,85,0.14),0_1px_3px_rgba(0,0,0,0.05)] cursor-pointer select-none"
+              >
+                <div class="absolute inset-0 flex items-center justify-center bg-white">
+                  <span class="font-rufina text-[32px] text-charcoal leading-none select-none pointer-events-none">2025</span>
+                </div>
+                <canvas
+                  id="tdr-cvs-year"
+                  class="absolute inset-0 w-full h-full block rounded-xl cursor-pointer"
+                  style="touch-action: none;"
+                ></canvas>
+              </div>
+              <span class="font-rufina text-[10px] tracking-[4px] uppercase text-skymuted">Year</span>
+            </div>
+          </div>
+
+          <!-- Revealed Invitation Script -->
+          <div
+            id="tdr-married"
+            class="font-script text-[38px] text-charcoal leading-tight min-h-[46px] opacity-0 translate-y-2.5 transition-all duration-1000 ease-out"
+          >
+            You're invited!
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 5. DEAR FRIENDS AND FAMILY — LAYERED ENVELOPE & FLOATING LETTER     -->
+      <!-- =================================================================== -->
+      <section id="letter-section" class="relative bg-ivory pt-6 pb-16 overflow-hidden">
+        <!-- Floating Bobbing Decorative Icons -->
+        <div class="relative h-[92px] w-full flex items-center justify-center pointer-events-none select-none z-20">
+          <img
+            src="https://static.tildacdn.net/tild6435-3530-4464-b966-383935316136/Untitled_Project_9_3.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            class="animate-bob w-[108px] h-auto -mr-6 relative z-10"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3538-6563-4264-b363-393261666238/noroot.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            class="animate-bob-delayed w-[69px] h-auto mt-6 relative z-10"
+          />
+        </div>
+
+        <!-- Layered Envelope + Sliding Letter Card -->
+        <div class="relative w-full max-w-[440px] mx-auto h-[510px] -mt-12 flex justify-center">
+          <!-- Envelope Back Layer -->
+          <img
+            src="https://static.tildacdn.net/tild3935-3461-4137-b866-623466636431/Untitled_Project_9_2.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[480px] max-w-none h-auto z-[1] pointer-events-none select-none"
+          />
+
+          <!-- White Letter Card Tucked Inside (Scroll Parallax Slide-Up) -->
+          <div
+            id="letter-card"
+            class="relative z-[2] w-[306px] h-[338px] mt-[135px] bg-white px-6 pt-9 pb-8 text-center shadow-[-7px_-7px_19px_rgba(42,38,38,0.09)] will-change-transform transition-transform duration-150 ease-out"
+          >
+            <h2 class="font-display font-light text-[31px] leading-[1.2] text-charcoal mb-4">
+              Dear friends and family,
+            </h2>
+            <p class="font-display font-semibold text-[18px] leading-[1.3] text-charcoal">
+              As we get ready to say “I do,” we feel grateful for the wonderful people in our lives.
+              <br /><br />
+              Your support means the world to us, and we would be honored to have you with us as we begin our life together.
+            </p>
+          </div>
+
+          <!-- Envelope Front Pocket Overlay -->
+          <img
+            src="https://static.tildacdn.net/tild6439-3462-4163-b432-363239323565/Group_63_2.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[480px] max-w-none h-auto z-[3] pointer-events-none select-none"
+          />
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 6. SCHEDULE OF EVENTS WITH SCROLL-DRIVEN PARTING CLOUDS             -->
+      <!-- =================================================================== -->
+      <section id="schedule-section" class="relative bg-ivory pt-8 pb-16 px-4 overflow-hidden">
+        <h2 class="font-display font-light text-[41px] leading-[1.3] text-charcoal text-center mb-10 relative z-10">
+          Schedule of Events
+        </h2>
+
+        <!-- Alternating Timeline -->
+        <div class="relative max-w-[380px] mx-auto py-2 z-10">
+          <!-- Center Vertical Sky-Blue Line -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-[22px] bottom-[22px] w-[2px] bg-skymain/75 rounded-full pointer-events-none"
+          ></div>
+
+          <div class="space-y-8">
+            <!-- 16:30 Right -->
+            <div class="grid grid-cols-[1fr_28px_1fr] items-center">
+              <div></div>
+              <div class="flex justify-center">
+                <span class="block w-[10px] h-[10px] bg-skymain rotate-45"></span>
+              </div>
+              <div class="pl-4 text-center">
+                <div class="font-display font-semibold text-[30px] leading-[1.1] text-charcoal">16:30</div>
+                <div class="font-display font-semibold text-[19px] leading-[1.15] text-charcoal mt-1">Opening of the doors</div>
+              </div>
+            </div>
+
+            <!-- 17:00 Left -->
+            <div class="grid grid-cols-[1fr_28px_1fr] items-center">
+              <div class="pr-4 text-center">
+                <div class="font-display font-semibold text-[30px] leading-[1.1] text-charcoal">17:00</div>
+                <div class="font-display font-semibold text-[19px] leading-[1.15] text-charcoal mt-1">Ceremony</div>
+              </div>
+              <div class="flex justify-center">
+                <span class="block w-[10px] h-[10px] bg-skymain rotate-45"></span>
+              </div>
+              <div></div>
+            </div>
+
+            <!-- 18:00 Right -->
+            <div class="grid grid-cols-[1fr_28px_1fr] items-center">
+              <div></div>
+              <div class="flex justify-center">
+                <span class="block w-[10px] h-[10px] bg-skymain rotate-45"></span>
+              </div>
+              <div class="pl-4 text-center">
+                <div class="font-display font-semibold text-[30px] leading-[1.1] text-charcoal">18:00</div>
+                <div class="font-display font-semibold text-[19px] leading-[1.15] text-charcoal mt-1">Cocktail and dancing time</div>
+              </div>
+            </div>
+
+            <!-- 20:00 Left -->
+            <div class="grid grid-cols-[1fr_28px_1fr] items-center">
+              <div class="pr-4 text-center">
+                <div class="font-display font-semibold text-[30px] leading-[1.1] text-charcoal">20:00</div>
+                <div class="font-display font-semibold text-[19px] leading-[1.15] text-charcoal mt-1">Dinner</div>
+              </div>
+              <div class="flex justify-center">
+                <span class="block w-[10px] h-[10px] bg-skymain rotate-45"></span>
+              </div>
+              <div></div>
+            </div>
+
+            <!-- 21:00 Right -->
+            <div class="grid grid-cols-[1fr_28px_1fr] items-center">
+              <div></div>
+              <div class="flex justify-center">
+                <span class="block w-[10px] h-[10px] bg-skymain rotate-45"></span>
+              </div>
+              <div class="pl-4 text-center">
+                <div class="font-display font-semibold text-[30px] leading-[1.1] text-charcoal">21:00</div>
+                <div class="font-display font-semibold text-[19px] leading-[1.15] text-charcoal mt-1">Party and Open Bar</div>
+              </div>
+            </div>
+
+            <!-- 23:00 Left -->
+            <div class="grid grid-cols-[1fr_28px_1fr] items-center">
+              <div class="pr-4 text-center">
+                <div class="font-display font-semibold text-[30px] leading-[1.1] text-charcoal">23:00</div>
+                <div class="font-display font-semibold text-[19px] leading-[1.15] text-charcoal mt-1">End of the celebration</div>
+              </div>
+              <div class="flex justify-center">
+                <span class="block w-[10px] h-[10px] bg-skymain rotate-45"></span>
+              </div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll-Driven Parting Cloud Overlays -->
+        <img
+          id="cloud-top"
+          src="https://static.tildacdn.net/tild6439-6164-4833-a235-313361383662/noroot.png"
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+          class="absolute top-[75px] left-1/2 -translate-x-1/2 w-[780px] max-w-none h-auto z-20 pointer-events-none select-none will-change-transform"
+        />
+        <img
+          id="cloud-bottom"
+          src="https://static.tildacdn.net/tild3763-3632-4530-b736-383739313133/noroot.png"
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+          class="absolute top-[195px] left-1/2 -translate-x-1/2 w-[780px] max-w-none h-auto z-20 pointer-events-none select-none will-change-transform"
+        />
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 7. WEDDING VENUE SECTION                                            -->
+      <!-- =================================================================== -->
+      <section class="bg-ivory pt-8 pb-6">
+        <h2 class="font-display font-light text-[41px] leading-[1.25] text-charcoalsoft text-center mb-5 px-4">
+          Wedding Venue
+        </h2>
+
+        <div class="relative w-full overflow-hidden rounded-[30px]">
+          <img
+            src="https://static.tildacdn.net/tild3361-3537-4334-b532-323531306235/8cdb6addd9fcedfeb54b.jpg"
+            alt="Casa del Mar Wedding Venue in Cancún"
+            loading="lazy"
+            draggable="false"
+            class="w-full h-auto block rounded-[30px]"
+          />
+
+          <!-- Top Ivory-to-Transparent Gradient Overlay -->
+          <div
+            class="absolute top-0 left-0 right-0 h-[240px] pointer-events-none"
+            style="background: linear-gradient(180deg, #fffdfb 0%, rgba(255, 253, 251, 0) 100%);"
+          ></div>
+
+          <!-- Top-Left Pin & Venue Details -->
+          <div class="fade-only absolute top-3 left-5 z-10 flex items-start gap-2.5">
+            <img
+              src="https://static.tildacdn.net/tild3634-3330-4631-b336-373334613834/noroot.png"
+              alt="Location pin"
+              draggable="false"
+              class="w-[48px] h-[48px] object-contain shrink-0 select-none"
+            />
+            <div class="text-left pt-0.5">
+              <div class="font-display font-semibold text-[22px] leading-[1.15] text-charcoalsoft">
+                Casa del Mar
+              </div>
+              <div class="font-display font-semibold text-[19px] leading-[1.2] text-charcoalsoft mt-0.5">
+                Address: Cancún, MX
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 8. DRESS CODE, SWIPEABLE GALLERY & COLOR PALETTE                    -->
+      <!-- =================================================================== -->
+      <section class="bg-ivory pt-10 pb-8">
+        <!-- Header & Bouncing Swipe Arrow -->
+        <div class="text-center px-6">
+          <h2 class="font-display font-light text-[41px] leading-[1.25] text-charcoalsoft">
+            Dress Code
+          </h2>
+          <p class="font-display font-semibold text-[19px] leading-[1.3] text-charcoalsoft max-w-[340px] mx-auto mt-3">
+            We would be very happy if your outfit is in the colours of the wedding theme.
+          </p>
+          <div class="flex justify-center mt-5 mb-4">
+            <img
+              src="https://static.tildacdn.net/tild3164-6534-4234-b037-396637343432/Group_23_6.png"
+              alt="Swipe gallery"
+              draggable="false"
+              class="animate-swipe-arrow w-[88px] h-auto select-none pointer-events-none"
+            />
+          </div>
+        </div>
+
+        <!-- Horizontal Swipeable / Draggable Gallery (All 10 Original Images) -->
+        <div
+          id="dress-gallery"
+          class="no-scrollbar flex gap-4 overflow-x-auto px-5 py-2 cursor-grab active:cursor-grabbing select-none snap-x snap-mandatory"
+        >
+          <img
+            src="https://static.tildacdn.net/tild3636-6361-4930-b032-303334643635/fe849b681b9cfddb0d3b.png"
+            alt="Dress code inspiration 1"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild6534-6461-4737-a535-383131303433/929df5d91510928224dc.png"
+            alt="Dress code inspiration 2"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild6336-3439-4466-b332-383265633833/0b221d34a7bea5af08ac.jpg"
+            alt="Dress code inspiration 3"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3164-3730-4539-b833-356663306534/fe9b100e056d201daaa0.jpg"
+            alt="Dress code inspiration 4"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3765-6165-4631-a432-383936306336/1be83ec7c312b2e66a71.jpg"
+            alt="Dress code inspiration 5"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3739-3133-4436-b536-313739653132/cbd7efbf41ddb54271af.jpg"
+            alt="Dress code inspiration 6"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild6562-3130-4965-b235-376232326561/61a01dd884f0c3b00bd5.jpg"
+            alt="Dress code inspiration 7"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3336-6363-4363-b462-306330343939/fd70c331309855caacec.jpg"
+            alt="Dress code inspiration 8"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3238-3063-4861-a134-626434323464/3f985b99d3bfbb52bbf7.jpg"
+            alt="Dress code inspiration 9"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+          <img
+            src="https://static.tildacdn.net/tild3436-3931-4635-a665-333365626134/feb970b653de72df570f.jpg"
+            alt="Dress code inspiration 10"
+            loading="lazy"
+            draggable="false"
+            class="gallery-img h-[350px] w-auto rounded-2xl object-cover shrink-0 snap-center shadow-sm cursor-zoom-in transition-transform duration-300 hover:scale-[1.015]"
+          />
+        </div>
+
+        <!-- Colours Palette Row -->
+        <div class="px-6 pt-8">
+          <div class="flex items-center justify-between gap-3">
+            <span class="font-display font-semibold text-[19px] text-charcoalsoft shrink-0">Colours:</span>
+            <div class="flex items-center">
+              <span
+                class="fade-only block w-[58px] h-[58px] rounded-full border border-[#f2e9df] z-[5]"
+                style="background-color: #faf1db; transition-delay: 0ms;"
+              ></span>
+              <span
+                class="fade-only block w-[58px] h-[58px] rounded-full border border-[#f2e9df] -ml-2.5 z-[4]"
+                style="background-color: #f5d9b1; transition-delay: 120ms;"
+              ></span>
+              <span
+                class="fade-only block w-[58px] h-[58px] rounded-full border border-[#f2e9df] -ml-2.5 z-[3]"
+                style="background-color: #f2cac9; transition-delay: 240ms;"
+              ></span>
+              <span
+                class="fade-only block w-[58px] h-[58px] rounded-full border border-[#f2e9df] -ml-2.5 z-[2]"
+                style="background-color: #afcff1; transition-delay: 360ms;"
+              ></span>
+              <span
+                class="fade-only block w-[58px] h-[58px] rounded-full border border-[#f2e9df] -ml-2.5 z-[1]"
+                style="background-color: #7ebbfa; transition-delay: 480ms;"
+              ></span>
+            </div>
+          </div>
+
+          <!-- Ladies & Gentlemen Notes -->
+          <div class="mt-8 space-y-4 font-display font-semibold text-[19px] leading-[1.3] text-charcoalsoft text-left">
+            <p>
+              Ladies: Elegant summer dresses in pastel tones. We recommend bringing a hat and sunglasses for comfort.
+            </p>
+            <p>
+              Gentlemen: Suits or shirts in classic shades. Grey, blue, brown, beige are great choices!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 9. CONFIRM YOUR ATTENDANCE (RSVP CTA)                               -->
+      <!-- =================================================================== -->
+      <section class="bg-ivory pt-10 pb-10 px-6 text-center">
+        <h2 class="font-display font-light text-[40px] leading-[1.2] text-charcoal">
+          Confirm Your Attendance
+        </h2>
+        <p class="reveal font-display font-semibold text-[18px] leading-[1.3] text-charcoalsoft max-w-[340px] mx-auto mt-4">
+          To help us prepare for a joyful celebration, kindly confirm your attendance.
+        </p>
+
+        <div class="mt-7">
+          <button
+            id="open-rsvp-btn"
+            type="button"
+            class="btn-shimmer inline-flex items-center justify-center w-[156px] h-[44px] rounded-[30px] bg-skylight text-white font-display font-semibold text-[22px] tracking-wide shadow-sm transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+          >
+            RSVP
+          </button>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- 10. FOOTER                                                          -->
+      <!-- =================================================================== -->
+      <footer class="bg-ivory pt-8 text-center">
+        <div class="px-6">
+          <h2 class="fade-only font-display font-light text-[33px] leading-[1.3] text-charcoalsoft">
+            Hope to see you there!
+          </h2>
+          <p class="fade-only font-display font-semibold text-[30px] leading-[1.3] text-charcoalsoft mt-1" style="transition-delay: 200ms;">
+            Alexa &amp; Richard
+          </p>
+        </div>
+
+        <!-- Bottom Couple Photo with Soft Top Ivory Blend & Small Icon -->
+        <div class="relative w-full mt-5 overflow-hidden rounded-b-[30px]">
+          <img
+            src="https://static.tildacdn.net/tild3965-6266-4165-b837-303236623330/elegant-couple-love-.jpg"
+            alt="Alexa & Richard"
+            loading="lazy"
+            draggable="false"
+            class="w-full h-[515px] object-cover object-top block"
+          />
+
+          <!-- Top Ivory Gradient Blend -->
+          <div
+            class="absolute top-0 left-0 right-0 h-[145px] pointer-events-none"
+            style="background: linear-gradient(180deg, #fffdfb 0%, rgba(255, 253, 251, 0.8) 51%, rgba(255, 255, 255, 0) 100%);"
+          ></div>
+
+          <!-- Small Decorative Icon Centered Over Top Blend -->
+          <img
+            src="https://static.tildacdn.net/tild6539-6164-4935-a236-653733393933/d9723fe4-b0e2-4d4e-a.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            class="fade-only absolute top-2 left-1/2 -translate-x-1/2 w-[30px] h-[30px] object-contain z-10 select-none pointer-events-none"
+            style="transition-delay: 350ms;"
+          />
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- RSVP MODAL POPUP                                                      -->
+  <!-- ===================================================================== -->
+  <div
+    id="rsvp-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="rsvp-modal-title"
+    class="modal-overlay fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-[2px] p-4"
+  >
+    <div class="modal-panel relative w-full max-w-[420px] max-h-[92dvh] overflow-y-auto bg-white rounded-2xl shadow-2xl">
+      <!-- Close Button -->
+      <button
+        id="close-rsvp-btn"
+        type="button"
+        aria-label="Close RSVP modal"
+        class="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-black/35 hover:bg-black/55 text-white flex items-center justify-center transition-colors cursor-pointer"
+      >
+        <svg width="16" height="16" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2L21 21M21 2L2 21" stroke="white" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- Top Banner Image -->
+      <img
+        src="https://static.tildacdn.net/tild3862-3630-4035-b331-383335383439/romantic-moments-bea.jpg"
+        alt="Romantic beach moments"
+        class="w-full h-[185px] object-cover block"
+      />
+
+      <div class="p-6 sm:p-7">
+        <div class="text-center mb-6">
+          <h3 id="rsvp-modal-title" class="font-rufina text-[23px] text-charcoalsoft">
+            Confirm Your Attendance!
+          </h3>
+          <p class="font-rufina text-[15px] text-charcoalsoft/75 mt-1">
+            Please RSVP before September 30
+          </p>
+        </div>
+
+        <!-- RSVP Form -->
+        <form id="rsvp-form" class="space-y-5 text-left font-rufina">
+          <div>
+            <label for="rsvp-name" class="block text-[15px] text-charcoalsoft mb-1.5">
+              Your name <span class="text-skydeep">*</span>
+            </label>
+            <input
+              id="rsvp-name"
+              type="text"
+              required
+              placeholder="Enter your full name"
+              class="w-full rounded-[5px] border border-[#c9c9c9] px-3.5 py-2.5 text-[15px] text-charcoalsoft outline-none focus:border-skymain transition-colors"
+            />
+          </div>
+
+          <div>
+            <span class="block text-[15px] text-charcoalsoft mb-2">
+              Will you come? <span class="text-skydeep">*</span>
+            </span>
+            <div class="space-y-2.5">
+              <label class="flex items-center gap-2.5 cursor-pointer text-[14px] text-charcoalsoft">
+                <input type="radio" name="attendance" value="Yes, I will" required class="w-4 h-4 accent-[#64a0bd] cursor-pointer" />
+                <span>Yes, I will</span>
+              </label>
+              <label class="flex items-center gap-2.5 cursor-pointer text-[14px] text-charcoalsoft">
+                <input type="radio" name="attendance" value="Unfortunately, I cant :(" class="w-4 h-4 accent-[#64a0bd] cursor-pointer" />
+                <span>Unfortunately, I cant :(</span>
+              </label>
+              <label class="flex items-center gap-2.5 cursor-pointer text-[14px] text-charcoalsoft">
+                <input type="radio" name="attendance" value="Ill tell you a bit later" class="w-4 h-4 accent-[#64a0bd] cursor-pointer" />
+                <span>Ill tell you a bit later</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label for="rsvp-food" class="block text-[15px] text-charcoalsoft mb-1.5">
+              Do you have any food intolerances?
+            </label>
+            <input
+              id="rsvp-food"
+              type="text"
+              placeholder="Optional (allergies, vegetarian, etc.)"
+              class="w-full rounded-[5px] border border-[#c9c9c9] px-3.5 py-2.5 text-[15px] text-charcoalsoft outline-none focus:border-skymain transition-colors"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn-shimmer w-full h-[46px] rounded-[20px] bg-skylight hover:bg-skymain text-white font-rufina text-[17px] transition-colors cursor-pointer mt-2"
+          >
+            Submit
+          </button>
+        </form>
+
+        <!-- Confirmation State -->
+        <div id="rsvp-success" class="hidden text-center py-6 space-y-3">
+          <div class="w-12 h-12 rounded-full bg-skylight/25 text-skydeep flex items-center justify-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          </div>
+          <p class="font-script text-[42px] text-charcoal leading-none">Thank you!</p>
+          <p id="rsvp-success-msg" class="font-display font-semibold text-[19px] text-charcoalsoft leading-snug"></p>
+          <button
+            id="rsvp-done-btn"
+            type="button"
+            class="mt-2 inline-block rounded-full border border-skymain/40 px-6 py-2 font-rufina text-sm text-skydeep hover:bg-skylight/15 transition-colors cursor-pointer"
+          >
+            Back to invitation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- GALLERY LIGHTBOX ZOOM MODAL                                           -->
+  <!-- ===================================================================== -->
+  <div
+    id="lightbox-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image zoom viewer"
+    class="modal-overlay fixed inset-0 z-[1050] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
+  >
+    <button
+      id="lightbox-close"
+      type="button"
+      aria-label="Close image viewer"
+      class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+    >
+      <svg width="18" height="18" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2L21 21M21 2L2 21" stroke="white" stroke-width="2.2" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <button
+      id="lightbox-prev"
+      type="button"
+      aria-label="Previous photo"
+      class="absolute left-3 sm:left-6 w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+    </button>
+
+    <img
+      id="lightbox-img"
+      src=""
+      alt="Dress code zoomed photo"
+      class="modal-panel max-h-[85dvh] max-w-[90vw] rounded-2xl object-contain shadow-2xl select-none"
+    />
+
+    <button
+      id="lightbox-next"
+      type="button"
+      aria-label="Next photo"
+      class="absolute right-3 sm:right-6 w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6"></path>
+      </svg>
+    </button>
+  </div>
+</div>
