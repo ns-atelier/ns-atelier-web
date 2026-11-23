@@ -58,6 +58,10 @@
     .fab-dock.visible.is-idle { opacity: 0; visibility: hidden; pointer-events: none; }
     .fab-btn { width: 50px; height: 50px; background: var(--btn-bg); color: #fff; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 14px rgba(40, 12, 18, .28); transition: transform .2s ease, opacity .2s ease; }
     .fab-btn:hover { transform: scale(1.07); }
+    .fab-btn.is-active { background: var(--btn-bg); border-color: rgba(255,255,255,.75); }
+    .fab-btn [data-fs-shrink] { display: none; }
+    .fab-btn.is-active [data-fs-expand] { display: none; }
+    .fab-btn.is-active [data-fs-shrink] { display: block; }
     .fab-btn svg { width: 22px; height: 22px; fill: #fff; }
     .fab-btn.secondary { width: 44px; height: 44px; background: rgba(52, 42, 38, .88); }
 
@@ -67,11 +71,20 @@
     /* Modo inmersivo móvil: no invoca la pantalla completa nativa y evita su aviso. */
     body.ns-mobile-immersive { overflow: hidden; }
     body.ns-mobile-immersive #root {
-      position: fixed; inset: 0; width: 100%; height: 100vh; height: 100dvh;
-      overflow-y: auto; overflow-x: hidden; z-index: 80000;
+      position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+      max-width: none; overflow-y: auto; overflow-x: hidden; z-index: 80000;
       overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
       background: var(--bg);
     }
+    /* Respaldo en Safari iPhone: ocupa todo el viewport disponible. */
+    body.ns-mobile-immersive .rv-root .invitation-wrapper {
+      width: 100%; max-width: none; box-shadow: none;
+    }
+    @media (max-width: 540px) {
+      body.ns-mobile-immersive .sg-artboard { width: 100%; max-width: 100%; }
+    }
+    :fullscreen body, :fullscreen #root { min-height: 100%; }
+    :-webkit-full-screen body, :-webkit-full-screen #root { min-height: 100%; }
     .sg-page { width: 100%; min-height: 100vh; background: var(--bg); overflow-x: hidden; }
     .sg-artboard { position: relative; width: 100%; max-width: 450px; margin: 0 auto; background: var(--bg); }
 
@@ -596,7 +609,8 @@
 
   <div class="fab-dock" id="fabDock">
     <button id="fullBtn" class="fab-btn secondary" type="button" title="Pantalla completa" aria-label="Pantalla completa">
-      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+      <svg data-fs-expand viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+      <svg data-fs-shrink viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h4V5h2v6H5V9zm14 6h-4v4h-2v-6h6v2zM5 15h6v6H9v-4H5v-2zm10-10h-2V3h6v6h-2V7h-2V5z"/></svg>
     </button>
     <button id="repeatBtn" class="fab-btn secondary" type="button" title="Repetir sobre" aria-label="Repetir sobre">
       <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
@@ -788,42 +802,85 @@
         if (ev.key === 'Tab' || ev.key === 'Enter' || ev.key === ' ') showCinemaControls();
       }, { capture: true });
 
-      // En teléfonos el Fullscreen API muestra un aviso obligatorio del navegador.
-      // En vez de invocarlo, ampliar el visor mediante CSS sin ese aviso.
+
+      // Priorizar pantalla completa REAL cuando el navegador lo permita.
+      // En Safari iPhone y visores incrustados, usar el modo inmersivo CSS.
       const rootView = $('root');
       const fullButton = $('fullBtn');
-      function isMobileTouch() {
-        return window.matchMedia('(pointer: coarse)').matches ||
-          /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const nativeFullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+      const cssFullscreenActive = () => document.body.classList.contains('ns-mobile-immersive');
+
+      function updateFullscreenButton() {
+        const active = !!nativeFullscreenElement() || cssFullscreenActive();
+        fullButton.classList.toggle('is-active', active);
+        fullButton.setAttribute('aria-pressed', String(active));
+        const label = active ? 'Salir de pantalla completa' : 'Pantalla completa';
+        fullButton.setAttribute('aria-label', label);
+        fullButton.title = label;
       }
+
+      function enterMobileImmersive() {
+        if (cssFullscreenActive()) return;
+        const position = Math.max(0, window.scrollY);
+        document.body.classList.add('ns-mobile-immersive');
+        rootView.scrollTop = position;
+        updateFullscreenButton();
+      }
+
       function exitMobileImmersive() {
-        if (!document.body.classList.contains('ns-mobile-immersive')) return;
-        const scrollTop = rootView.scrollTop;
+        if (!cssFullscreenActive()) return;
+        const position = rootView.scrollTop;
         document.body.classList.remove('ns-mobile-immersive');
-        fullButton.setAttribute('aria-label', 'Ampliar visualización');
-        fullButton.title = 'Ampliar visualización';
-        requestAnimationFrame(() => window.scrollTo({ top: scrollTop, behavior: 'instant' }));
+        window.scrollTo({ top: position, behavior: 'instant' });
+        updateFullscreenButton();
       }
-      function toggleMobileImmersive() {
-        if (document.body.classList.contains('ns-mobile-immersive')) {
+
+      async function toggleFullscreen() {
+        const current = nativeFullscreenElement();
+        if (current) {
+          try {
+            if (document.exitFullscreen) await document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          } catch (error) {
+            // Mantener la interfaz sincronizada incluso si se bloquea la salida.
+          }
+          updateFullscreenButton();
+          return;
+        }
+        if (cssFullscreenActive()) {
           exitMobileImmersive();
-        } else {
-          const scrollTop = window.scrollY;
-          document.body.classList.add('ns-mobile-immersive');
-          rootView.scrollTop = scrollTop;
-          fullButton.setAttribute('aria-label', 'Volver a la vista normal');
-          fullButton.title = 'Volver a la vista normal';
+          return;
         }
-        showCinemaControls();
+
+        // El navegador puede mostrar un mensaje de seguridad que la web no puede ocultar.
+        // La solicitud se hace directamente desde el clic real del usuario.
+        const el = document.documentElement;
+        try {
+          if (typeof el.requestFullscreen === 'function') {
+            await el.requestFullscreen({ navigationUI: 'hide' });
+          } else if (typeof el.webkitRequestFullscreen === 'function') {
+            await Promise.resolve(el.webkitRequestFullscreen());
+          } else {
+            throw new Error('Fullscreen API no disponible');
+          }
+          if (!nativeFullscreenElement()) throw new Error('El navegador no entró en pantalla completa');
+        } catch (error) {
+          // iPhone Safari y navegadores que bloquean fullscreen del documento.
+          enterMobileImmersive();
+        }
+        updateFullscreenButton();
       }
+
+      document.addEventListener('fullscreenchange', updateFullscreenButton);
+      document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+      window.addEventListener('pageshow', updateFullscreenButton);
       rootView.addEventListener('scroll', () => {
-        if (document.body.classList.contains('ns-mobile-immersive')) {
-          window.dispatchEvent(new Event('scroll'));
-        }
+        if (cssFullscreenActive()) window.dispatchEvent(new Event('scroll'));
       }, { passive: true });
       document.addEventListener('keydown', ev => {
         if (ev.key === 'Escape') exitMobileImmersive();
       });
+      updateFullscreenButton();
       function syncIcons() {
         iPlay.style.display = audio.paused ? 'block' : 'none';
         iPause.style.display = audio.paused ? 'none' : 'block';
@@ -911,20 +968,7 @@
 
       fullButton.addEventListener('click', (ev) => {
         ev.stopPropagation();
-        if (isMobileTouch()) {
-          toggleMobileImmersive();
-          return;
-        }
-        // En computadora se conserva la pantalla completa nativa.
-        const docEl = document.documentElement;
-        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-          if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => {});
-          else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
-        } else {
-          if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
-          else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-        }
-        showCinemaControls();
+        toggleFullscreen().finally(showCinemaControls);
       });
 
       $('repeatBtn').addEventListener('click', (ev) => {
