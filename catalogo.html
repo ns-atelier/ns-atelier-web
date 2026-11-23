@@ -638,7 +638,8 @@
       ['nacar', 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png'],
       ['jardin-eterno', 'https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png'],
       ['eleganza', 'https://template-eleganza.thedigitalyes.com/__l5e/assets-v1/8fb78d79-0490-4642-b16b-185377d48444/hero-frame-oval.png'],
-      ['noche-dorada', 'images/diseno-03.webp'],
+      ['noche-dorada', 'assets/catalogo/odette.webp'],
+      ['odette', 'assets/catalogo/odette.webp'],
       ['jardin-seda', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png'],
       ['red-vibrante', 'https://static.tildacdn.net/tild3132-6432-4634-b430-363237393231/300592484d1f31590325.png']
     ]);
@@ -678,6 +679,12 @@
     const DEMO_ID_ALIASES = window.NS_DEMO_REGISTRY.aliases;
     function createCard(item, layout) {
       if (DEMO_ID_ALIASES[item.id]) item = { ...item, id: DEMO_ID_ALIASES[item.id] };
+      if (item.id === 'odette') {
+        item = { ...item, nombre: 'Odette',
+          descripcion: /oscura|refinada|luminosa|noche dorada/i.test(item.descripcion || '')
+            ? 'Bordados azul empolvado, cisnes, flores marfil y una celebración de ensueño.'
+            : item.descripcion };
+      }
       if (item.id === 'eleganza') {
         item = { ...item, nombre:'Eleganza',
           descripcion:/jard[ií]n eterno|rosa empolvado|romance floral/i.test(item.descripcion||'')
