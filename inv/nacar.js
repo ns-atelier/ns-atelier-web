@@ -63,7 +63,7 @@
   }
   function setSchedule(rv,items) {
     if(!Array.isArray(items)||!items.length)return;
-    const sec=[...rv.querySelectorAll('section')].find(s=>s.textContent.includes('The Day'));
+    const sec=[...rv.querySelectorAll('section')].find(s=>/the\s*day/i.test(s.textContent));
     const list=sec?.querySelector('.space-y-10');
     if(!list)return;
     const rows=[...list.children];
@@ -106,7 +106,7 @@
       if(dress)put('p.font-doulaise',data.vestimenta,dress);
     }
     if(data.regalos){
-      const gifts=sections.find(s=>s.textContent.includes('Wedding Gift'));
+      const gifts=sections.find(s=>/wedding\s*gift/i.test(s.textContent));
       if(gifts){const ps=gifts.querySelectorAll('p.font-display');if(ps.length)ps[0].textContent=data.regalos;}
     }
     if(data.rsvpLimite){
@@ -156,6 +156,15 @@
     if(!markup||!markup.querySelector('#scratch-container')||!markup.querySelector('#rsvp-form'))
       throw Error('La estructura interactiva de Nácar está incompleta.');
     const root=document.getElementById('root');
+    if(!document.getElementById('nacar-fonts')) {
+      const font=document.createElement('link');
+      font.id='nacar-fonts';
+      font.rel='stylesheet';
+      font.href='https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Jost:wght@300;400;500&family=Monsieur+La+Doulaise&display=swap';
+      font.media='print';
+      font.onload=()=>{font.media='all';};
+      document.head.append(font);
+    }
     root.replaceChildren(document.importNode(markup,true));
     const rv=root.querySelector('.nacar-root');
     const colors=data.colores||{};
@@ -177,6 +186,13 @@
     if(typeof window.startNacarOriginal!=='function')
       throw Error('El motor de interacciones de Nácar no está disponible.');
     window.startNacarOriginal();
+    const originalAudio=rv.querySelector('#audio-toggle-btn');
+    const dock=document.getElementById('fabDock');
+    if(originalAudio && dock) {
+      const sync=()=>originalAudio.classList.toggle('nacar-idle',dock.classList.contains('is-idle'));
+      new MutationObserver(sync).observe(dock,{attributes:true,attributeFilter:['class']});
+      sync();
+    }
     document.title='Nácar · N&S ATELIER';
     return rv;
   };
