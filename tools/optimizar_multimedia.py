@@ -91,6 +91,68 @@ def activate_video():
     incoming.unlink()
     print(f"Video nuevo activo: {duration:.2f}s {width}x{height}; WebM ligero: {has_webm}")
 
+def optimize_new_uploads():
+    """Optimiza video y música nuevos sin cambiar su nombre o URL pública.
+
+    No recodifica otra vez un archivo que acaba de procesar GitHub Actions.
+    Los originales anteriores siguen recuperables desde el historial de Git.
+    """
+    try:
+        subject = subprocess.check_output(
+            ["git", "log", "-1", "--format=%s"], text=True).strip()
+        if subject.startswith("Optimizar multimedia"):
+            return
+        changed = subprocess.check_output(
+            ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD",
+             "--", "inv/assets/uploads/"], text=True).splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        return
+
+    optimized = 0
+    for relative in changed:
+        path = (ROOT / relative).resolve()
+        if not path.is_relative_to(ROOT / "inv" / "assets" / "uploads"):
+            continue
+        if not path.is_file() or path.stat().st_size < 1_000_000:
+            continue
+        suffix = path.suffix.lower()
+        # WebM puede tener canal alfa (pétalos y adornos); no lo re-codificamos.
+        if suffix not in (".mp4", ".mp3", ".m4a"):
+            continue
+        temp = path.with_name(path.stem + ".compressing" + suffix)
+        try:
+            if suffix == ".mp4":
+                original_duration, width, height = video_info(path)
+                # H.264/AAC compatible con móviles, CRF 21 = calidad alta.
+                command("ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-y",
+                    "-i", str(path), "-map", "0:v:0", "-map", "0:a:0?",
+                    "-c:v", "libx264", "-preset", "medium", "-crf", "21",
+                    "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
+                    "-movflags", "+faststart", str(temp))
+                new_duration, new_width, new_height = video_info(temp)
+                valid = (abs(new_duration - original_duration) < 1.0
+                         and width == new_width and height == new_height)
+            elif suffix == ".mp3":
+                command("ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-y",
+                    "-i", str(path), "-vn", "-c:a", "libmp3lame", "-q:a", "3", str(temp))
+                valid = True
+            else:
+                command("ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-y",
+                    "-i", str(path), "-vn", "-c:a", "aac", "-b:a", "160k", str(temp))
+                valid = True
+            # Solo sustituir si hay una mejora importante. La URL no cambia.
+            if valid and temp.stat().st_size < path.stat().st_size * .82:
+                saved = path.stat().st_size - temp.stat().st_size
+                temp.replace(path)
+                optimized += 1
+                print("Medio comprimido:", relative, "ahorro bytes:", saved)
+        except (OSError, subprocess.CalledProcessError, ValueError) as exc:
+            print("No fue posible comprimir", relative, str(exc))
+        finally:
+            temp.unlink(missing_ok=True)
+    print("Videos/audios recién subidos y optimizados:", optimized)
+
+
 def images_to_webp():
     created = 0
     for directory in FOLDERS:
@@ -169,6 +231,7 @@ def switch_static_images():
 
 if __name__ == "__main__":
     activate_video()
+    optimize_new_uploads()
     images_to_webp()
     audio_to_opus()
     switch_static_images()
