@@ -771,3 +771,7 @@
 @media (prefers-reduced-motion:reduce){
   .rv-root *, .rv-root *::before,.rv-root *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
+
+/* Mantener las solapas visibles durante la apertura; desvanecer sólo al final. */
+#weiOverlay.rv-envelope-mode { transition: opacity .65s ease; }
+#weiOverlay.rv-envelope-mode.opened { opacity: 1; visibility: visible; }
