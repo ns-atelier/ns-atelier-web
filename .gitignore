@@ -1,3 +1,11 @@
 .DS_Store
 Thumbs.db
 .vscode/
+
+# No publicar secretos, archivos temporales o dependencias pesadas
+.env
+.env.*
+!.env.example
+node_modules/
+*.pem
+*.key

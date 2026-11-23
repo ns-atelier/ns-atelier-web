@@ -6,14 +6,25 @@
   <title>Redirigiendo · N&amp;S ATELIER</title>
   <script>
     (function () {
-      var seg = location.pathname.split('/').filter(Boolean);
-      var idx = seg.indexOf('inv');
-      if (idx >= 0 && seg[idx + 1]) {
-        var base = '/' + seg.slice(0, idx + 1).join('/') + '/';
-        location.replace(base + '?t=' + encodeURIComponent(seg[idx + 1]));
-      } else {
-        location.replace('./');
+      const p = location.pathname;
+      const parts = p.split('/').filter(Boolean);
+      const i = parts.indexOf('inv');
+      // /ns-atelier-web/inv/TOKEN -> /ns-atelier-web/inv/?t=TOKEN
+      if (i >= 0 && parts[i+1] && parts[i+1] !== 'index.html') {
+        const base = '/' + parts.slice(0, i + 1).join('/') + '/';
+        location.replace(base + '?t=' + encodeURIComponent(parts[i+1]));
+        return;
       }
+      // /ns-atelier-web/catalogo -> /ns-atelier-web/catalogo.html
+      const known = { catalogo: 'catalogo.html', condiciones: 'condiciones.html' };
+      const last = parts[parts.length - 1] || '';
+      if (known[last]) {
+        location.replace('./' + known[last] + location.search + location.hash);
+        return;
+      }
+      // Return to this project's root; do not jump to ns-atelier.github.io/.
+      const root = p.startsWith('/ns-atelier-web/') ? '/ns-atelier-web/' : '/';
+      location.replace(root);
     })();
   </script>
 </head>

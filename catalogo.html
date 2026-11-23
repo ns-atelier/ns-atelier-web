@@ -333,7 +333,7 @@
       .catalog-callout { padding: 24px 20px; }
     }
 </style>
-<link rel="icon" type="image/webp" href="/assets/logo-ns.webp">
+<link rel="icon" type="image/webp" href="assets/logo-ns.webp">
 </head>
 <body>
   <div id="scrollProgress"></div>
@@ -342,7 +342,7 @@
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="index.html">
-        <img class="brand-logo" src="/assets/logo-ns.webp" alt="Logo N&amp;S ATELIER" />
+        <img class="brand-logo" src="assets/logo-ns.webp" alt="Logo N&amp;S ATELIER" />
         <div class="brand-text">
           <strong>N&amp;S ATELIER</strong>
           <span>Catálogo de Modelos</span>
@@ -447,7 +447,7 @@
 
           <article class="design-card featured reveal">
             <div class="design-media">
-              <img src="https://assets.webgencyinvitations.com/ChatGPT_Image_Jun_23_2026_04_40_29_PM_4_piptqn%20(2).png" alt="The Sacred Garden" loading="lazy" />
+              <img src="inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.png" alt="The Sacred Garden" loading="lazy" />
               
             </div>
             <div class="design-body">
@@ -466,7 +466,7 @@
               <h3>Olivo &amp; Marfil</h3>
               <p>Ramas botánicas serenas, tipografía editorial y paleta marfil con verde olivo para bodas al aire libre.</p>
               <div class="design-actions">
-                <a class="btn btn-primary" href="inv/?demo=olivo-marfil" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-primary" href="demos/olivo/" data-demo-id="olivo-marfil" target="_blank" rel="noopener">Ver demo ↗</a>
                 <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Olivo & Marfil." href="#contacto">Cotizar</a>
               </div>
             </div>
@@ -478,7 +478,7 @@
               <h3>Jardín Eterno</h3>
               <p>Romance floral en tonos rosa empolvado y crema, ideal para celebraciones íntimas y clásicas.</p>
               <div class="design-actions">
-                <a class="btn btn-primary" href="inv/?demo=jardin-eterno" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-primary" href="demos/jardin/" data-demo-id="jardin-eterno" target="_blank" rel="noopener">Ver demo ↗</a>
                 <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Jardín Eterno." href="#contacto">Cotizar</a>
               </div>
             </div>
@@ -490,7 +490,7 @@
               <h3>Noche Dorada</h3>
               <p>Estética nocturna refinada en carbón profundo y destellos dorados para eventos de etiqueta.</p>
               <div class="design-actions">
-                <a class="btn btn-primary" href="inv/?demo=noche-dorada" target="_blank" rel="noopener">Ver demo ↗</a>
+                <a class="btn btn-primary" href="demos/dorada/" data-demo-id="noche-dorada" target="_blank" rel="noopener">Ver demo ↗</a>
                 <a class="btn btn-outline" data-wa="Hola, quiero cotizar el modelo Noche Dorada." href="#contacto">Cotizar</a>
               </div>
             </div>
@@ -518,7 +518,7 @@
         <span><a href="index.html" style="color:var(--gold-light)">Volver a la página principal</a></span>
       </div>
     </div>
-  <p style="text-align:center;padding:1rem"><a href="/condiciones.html">Condiciones del servicio y privacidad</a></p></footer>
+  <p style="text-align:center;padding:1rem"><a href="condiciones.html">Condiciones del servicio y privacidad</a></p></footer>
 
   <a class="wa-float" data-wa="Hola, estoy viendo el catálogo de modelos y quiero cotizar." href="#contacto" aria-label="Escribir por WhatsApp">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.03 2C6.51 2 2.04 6.48 2.04 12c0 1.76.46 3.48 1.33 4.99L2 22l5.15-1.35A9.95 9.95 0 0 0 12.03 22c5.52 0 9.99-4.48 9.99-10S17.55 2 12.03 2zm5.82 14.12c-.25.7-1.45 1.34-2 1.42-.52.08-1.18.11-1.91-.12-.44-.14-1-.33-1.72-.64-3.03-1.31-5-4.38-5.15-4.58-.15-.2-1.23-1.64-1.23-3.13 0-1.49.78-2.22 1.06-2.52.28-.3.61-.38.81-.38h.59c.19 0 .44-.07.69.52.25.6.86 2.1.94 2.25.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.32.4-.45.54-.15.15-.31.31-.13.61.18.3.79 1.3 1.7 2.11 1.17 1.04 2.16 1.37 2.46 1.52.3.15.48.13.66-.08.18-.2.76-.88.96-1.18.2-.3.4-.25.68-.15.28.1 1.77.83 2.07.98.3.15.5.23.58.35.08.13.08.73-.17 1.43z"/></svg>
@@ -558,12 +558,12 @@
     const catalogStatus = document.getElementById('catalogStatus');
 
     const localCards = new Map(Array.from(catalogGrid.children, card => [
-      new URL(card.querySelector('.btn-primary').href).searchParams.get('demo'), card
+      new URL(card.querySelector('.btn-primary').href).searchParams.get('demo') || card.querySelector('.btn-primary').dataset.demoId, card
     ]));
     const localCovers = new Map(Array.from(localCards, ([id, card]) => [
       id, card.querySelector('img').getAttribute('src')
     ]));
-    localCovers.set('jardin-seda', '/inv/assets/sobre-portada.jpg');
+    localCovers.set('jardin-seda', 'inv/assets/sobre-portada.jpg');
 
     const excludedModels = new Set(['aurora', 'aurora-xv', 'brisa-fiesta', 'pequenas-estrellas']);
 
@@ -577,12 +577,12 @@
     function catalogImage(value) {
       if (typeof value !== 'string' || !value.trim()) return '';
       value = value.trim();
-      if (/^https:\/\//i.test(value)) return value;
-      if (/^\/(?:inv\/assets|images)\/[\w.%/-]+$/i.test(value)) return value;
-      if (/^(?:\.\/)?assets\/[\w.%/-]+$/i.test(value)) {
-        return '/inv/' + value.replace(/^\.\//, '');
-      }
-      if (/^images\/[\w.%/-]+$/i.test(value)) return value;
+      if (/^https:\/\//i.test(value)) return window.nsSiteUrl(value);
+      // Las rutas guardadas por el panel pueden comenzar en /inv/ o assets/.
+      // La base del repositorio se resuelve sin depender de Netlify o de un dominio propio.
+      if (/^\/(?:ns-atelier-web\/)?(?:inv\/assets|images|assets)\/[\w.%/-]+$/i.test(value)) return window.nsSiteUrl(value);
+      if (/^(?:\.\/)?assets\/[\w.%/-]+$/i.test(value)) return window.nsSiteUrl('inv/' + value.replace(/^\.\//, ''));
+      if (/^(?:\.\/)?images\/[\w.%/-]+$/i.test(value)) return window.nsSiteUrl(value.replace(/^\.\//, ''));
       return '';
     }
 
@@ -631,6 +631,8 @@
       return cards;
     }
 
+    const staticCards = Array.from(catalogGrid.children, card => card.cloneNode(true));
+
     async function loadCatalog() {
       const layout = catalogGrid.querySelector('.design-card');
       catalogStatus.textContent = 'Cargando invitaciones…';
@@ -644,9 +646,11 @@
         catalogStatus.hidden = cards.length > 0;
         catalogStatus.textContent = 'Por ahora no hay modelos disponibles.';
       } catch {
-        catalogGrid.replaceChildren();
-        catalogStatus.textContent = 'No se pudo cargar el catálogo. ';
-        const repetir = document.createElement('button'); repetir.textContent = 'Reintentar'; repetir.onclick = () => location.reload(); catalogStatus.append(repetir);
+        // Si falla Google Apps Script, conservar el catálogo que viene con el sitio.
+        // Antes un fallo borraba TODAS las imágenes y tarjetas de demostración.
+        catalogGrid.replaceChildren(...staticCards.map(card => card.cloneNode(true)));
+        catalogStatus.textContent = 'Mostrando modelos de muestra. Algunas novedades pueden tardar en actualizarse.';
+        catalogStatus.hidden = false;
       } finally {
         catalogGrid.querySelectorAll('.reveal').forEach(card => card.classList.remove('reveal'));
         catalogGrid.removeAttribute('aria-busy');

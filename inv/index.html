@@ -172,7 +172,7 @@
     .sg-footer-grad { position: absolute; top: 0; left: 0; width: 100%; height: 237px; background-image: linear-gradient(0turn, rgba(232, 221, 207, 0) 0%, var(--bg) 100%); z-index: 2; pointer-events: none; }
     .sg-footer-title { position: absolute; top: 14px; left: 0; width: 100%; z-index: 4; }
     .sg-footer-names { position: absolute; top: 72px; left: 0; width: 100%; text-align: center; z-index: 4; color: var(--accent); font-size: 28px; }
-    .sg-footer-wreath { position: absolute; top: 173px; left: 0; right: 0; width: 100%; margin: 0; z-index: 3; pointer-events: none; animation: swayR 4.5s ease-in-out infinite; }
+    .sg-footer-wreath { position: absolute; bottom: 0; left: 50%; width: 100%; height: 40%; transform: translateX(-50%); object-fit: contain; object-position: center bottom; margin: 0; z-index: 3; pointer-events: none; animation: none; }
 
     /* RSVP Modal */
     .rsvp-backdrop { position: fixed; inset: 0; z-index: 100001; background: rgba(0, 0, 0, .62); display: flex; align-items: center; justify-content: center; padding: 18px; opacity: 0; visibility: hidden; transition: .3s; }
@@ -491,7 +491,7 @@
       pointer-events: none; z-index: 4; border-radius: 14px;
     }
 
-  .sg-footer .sg-footer-wreath{inset:auto auto 0 0;width:100%;height:50%;margin:0;object-fit:contain;object-position:center bottom;animation:none}
+  .sg-footer .sg-footer-wreath{top:auto;right:auto;bottom:0;left:50%;width:100%;height:40%;max-height:40%;transform:translateX(-50%);margin:0;object-fit:contain;object-position:center bottom;animation:none}
     .sg-final-side{position:absolute;z-index:3;bottom:0;width:43%;height:38%;object-fit:contain;pointer-events:none}
     .sg-final-side.side-0{left:0;object-position:left bottom}.sg-final-side.side-1{right:0;object-position:right bottom}
     .sg-petal-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:3}
@@ -500,7 +500,7 @@
 .visual-editor [data-visual-key]{pointer-events:auto}
 .visual-editor .hero-delay,.visual-editor [class*="anim-"]{opacity:1!important}
 .visual-editor #fabDock{display:none}
-.sg-row{grid-template-columns:minmax(0,4.8em) 18px minmax(0,1fr);gap:6px}.sg-row-time,.sg-row-name{font-size:clamp(16px,4.7vw,21px);padding:0;line-height:1.3;overflow-wrap:anywhere}.sg-rose,.sg-timeline:before{left:calc(4.8em + 15px)}.sg-footer .sg-footer-wreath{bottom:0;max-height:40%;width:100%;object-fit:contain;object-position:center bottom}
+.sg-row{grid-template-columns:minmax(0,4.8em) 18px minmax(0,1fr);gap:6px}.sg-row-time,.sg-row-name{font-size:clamp(16px,4.7vw,21px);padding:0;line-height:1.3;overflow-wrap:anywhere}.sg-rose,.sg-timeline:before{left:calc(4.8em + 15px)}.sg-footer .sg-footer-wreath{bottom:0;left:50%;right:auto;max-height:40%;width:100%;object-fit:contain;object-position:center bottom;transform:translateX(-50%)}
 </style>
 </head>
 <body>
@@ -583,7 +583,7 @@
     </div>
   </div>
 
-  <script src="/assets/panel-api.js"></script>
+  <script src="../assets/panel-api.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -648,8 +648,14 @@
     const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     function safeUrl(v) {
       const u = String(v || '').trim();
-      if (!u) return '';
-      if (/^https:\/\//i.test(u) || /^\.?\/(?!\/)/.test(u)) return u;
+      if (!u || u === '__oculto__') return '';
+      if (/^https:\/\//i.test(u)) return window.nsSiteUrl(u);
+      // Los valores del panel usan /inv/assets/... y assets/uploads/...;
+      // los dos deben resolver al subdirectorio correcto de GitHub Pages.
+      if (/^\/(?:ns-atelier-web\/)?(?:assets|images|inv|demos|i)\//i.test(u)) return window.nsSiteUrl(u);
+      if (/^(?:\.\/)?assets\//i.test(u)) return window.nsSiteUrl('inv/' + u.replace(/^\.\//, ''));
+      if (/^(?:\.\/)?images\//i.test(u)) return window.nsSiteUrl(u.replace(/^\.\//, ''));
+      if (/^\.\.\/assets\//i.test(u)) return window.nsSiteUrl('assets/' + u.slice('../assets/'.length));
       return '';
     }
 
@@ -666,7 +672,7 @@
     }
 
     function showError(msg) {
-      $('loading').innerHTML = `<div class="errBox"><h2>Invitación no disponible</h2><p>${esc(msg)}</p><a href="/">Volver a N&amp;S ATELIER</a></div>`;
+      $('loading').innerHTML = `<div class="errBox"><h2>Invitación no disponible</h2><p>${esc(msg)}</p><a href="../">Volver a N&amp;S ATELIER</a></div>`;
     }
 
     function setupIntro(media, textos) {
@@ -1394,7 +1400,7 @@
         const patch = {...base[key], ...custom[key]};
         const slot=el.matches('.sg-calig')?'caligrafia':el.matches('.sg-venue-art')?'lugar':'';
         if(slot && explicitMedia[slot] && !custom[key]?.src)delete patch.src;
-        if (media && patch.src && /^(https:\/\/|\/(?!\/))/.test(patch.src)) el.src = patch.src;
+        if (media && patch.src && safeUrl(patch.src)) el.src = safeUrl(patch.src);
         if (!media && patch.text !== undefined && words.length === 1) words[0].textContent = patch.text;
         applyGeometry(el,patch);
         if (!editingView) continue;
@@ -1489,7 +1495,7 @@
         if(v?.type==='atelier-center'){
           showEditorSection(false,true);
           const corona=document.querySelector('.sg-footer-wreath');
-          if(corona && visualSelected?.el===corona){const photo=corona.closest('section').getBoundingClientRect();corona.style.translate='0px 0px';corona.style.scale='1';const rect=corona.getBoundingClientRect();commit({x:Math.round((photo.left+photo.right-rect.left-rect.right)/2),y:0,size:100});sendPanel('atelier-view',{status:'Corona centrada · guarda para aplicar',ready:true});}
+          if(corona){visualSelected?.el.removeAttribute('data-picked');visualSelected=visualNodes.get(corona.dataset.visualKey)||null;if(visualSelected){corona.dataset.picked='';commit({x:0,y:0,size:100});sendPanel('atelier-view',{status:'Corona centrada · guarda para aplicar',ready:true});}else sendPanel('atelier-view',{status:'Corona centrada en el diseño; no hay edición activa.',ready:true});}
           else sendPanel('atelier-view',{status:'Este cierre usa ramos separados o tiene la corona oculta.',ready:true});
           return;
         }
@@ -1499,7 +1505,7 @@
         }
         if(v?.type!=='atelier-change'||!visualSelected)return;
         if(v.patch.text!==undefined && visualSelected.words.length===1) visualSelected.words[0].textContent=v.patch.text;
-        if(v.patch.src && /^(https:\/\/|\/(?!\/))/.test(v.patch.src)) visualSelected.el.src=v.patch.src;
+        if(v.patch.src && safeUrl(v.patch.src)) visualSelected.el.src=safeUrl(v.patch.src);
         commit(v.patch);
       });
       document.body.classList.remove('locked');
@@ -1510,6 +1516,12 @@
       explicitMedia=d.medios||{};
       const m = Object.assign({}, t.media || {});
       Object.entries(d.medios || {}).forEach(([k, v]) => { if (v) m[k] = v; });
+      Object.entries(m).forEach(([key, value]) => {
+        if (typeof value === 'string' && value !== '__oculto__' && !key.startsWith('_')) {
+          const normalized = safeUrl(value);
+          if (normalized) m[key] = normalized;
+        }
+      });
       const c = d.colores || {};
       const bg = c.fondo || t.fondo || '#f9f0e0';
       let ink = c.texto || t.texto || '#6c513f';
@@ -1559,7 +1571,42 @@
     }
 
     async function loadInvitation(query) {
-      return query ? window.consultarPanel(query) : FALLBACK_SAMPLE;
+      if (!query) return FALLBACK_SAMPLE;
+      try {
+        const response = await window.consultarPanel(query);
+        if (response && response.ok) return response;
+        // Sólo mostramos demos locales cuando el servicio no tiene esa plantilla;
+        // nunca sustituimos un evento de cliente por datos de prueba.
+        if (query.tipo !== 'plantilla') return response;
+      } catch (error) {
+        if (query.tipo !== 'plantilla') throw error;
+      }
+      // Catálogo público descargado con el proyecto: seis demostraciones de boda.
+      if (query.id === 'the-sacred-garden') {
+        return {
+          ...FALLBACK_SAMPLE,
+          plantilla: {
+            ...FALLBACK_SAMPLE.plantilla,
+            media: {
+              ...SG_ASSETS,
+              sobre: window.nsSiteUrl('inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.png'),
+              video: window.nsSiteUrl('inv/assets/uploads/multimedia/20261122-233206-2193ef39-20261122-224925-envelope_flaps_unfold_revealing_-_0f191339.mp4'),
+              videoHero: window.nsSiteUrl('inv/assets/uploads/eventos/20261123-003755-698f8ba0-fondo-.mp4'),
+              caligrafia: window.nsSiteUrl('inv/assets/uploads/the-sacred-garden/20261122-235527-00eee4e2-con_la_bendicion_de_jehova_transparente.webp'),
+              lugar: window.nsSiteUrl('inv/assets/uploads/eventos/20261123-003710-135f1b38-salon_del_reino.webp')
+            }
+          }
+        };
+      }
+      const publicIds = new Set(['perla-nacar', 'encaje-marfil', 'vitral-floral', 'villa-toscana', 'costa-azul', 'gala-terciopelo']);
+      if (publicIds.has(query.id)) {
+        const response = await fetch(window.nsSiteUrl('assets/demos-coleccion-lujo.json'), {cache: 'no-cache'});
+        if (response.ok) {
+          const demos = await response.json();
+          if (Object.prototype.hasOwnProperty.call(demos, query.id)) return demos[query.id];
+        }
+      }
+      throw Error('Esta demostración no está disponible.');
     }
 
     (async () => {
