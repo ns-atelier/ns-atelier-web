@@ -136,6 +136,64 @@
     link.media='print';link.onload=()=>link.media='all';
     document.head.appendChild(link);
   }
+  // Revelado editorial: únicamente imágenes, nunca ocultar secciones ni formularios.
+  // El estado inicial es totalmente visible si JavaScript o IntersectionObserver fallan.
+  function initEleganzaImageReveals(rv) {
+    if (!rv || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // El editor debe mostrar siempre todas las imágenes para poder seleccionarlas.
+    if (new URLSearchParams(location.search).get('editor') === '1') return;
+
+    // La portada permanece visible al salir del video. Los marcos aparecen al deslizar.
+    const images = [...rv.querySelectorAll('section img, footer img')]
+      .filter(img => !img.closest('#hero-section'));
+    if (!images.length) return;
+
+    const perSection = new Map();
+    const reveal = (img) => {
+      if (!img.isConnected || img.classList.contains('ele-image-visible')) return;
+      img.classList.add('ele-image-visible');
+    };
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const img = entry.target;
+        observer.unobserve(img);
+        // Una imagen lenta se revela después de cargar, no de golpe a mitad del efecto.
+        if (img.complete) {
+          reveal(img);
+        } else {
+          img.addEventListener('load', () => reveal(img), {once:true});
+          img.addEventListener('error', () => reveal(img), {once:true});
+          // Respaldo: jamás dejar un marco invisible por un recurso externo lento.
+          setTimeout(() => reveal(img), 3500);
+        }
+      }
+    }, {threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+
+    for (const img of images) {
+      const section = img.closest('section, footer') || rv;
+      const order = perSection.get(section) || 0;
+      perSection.set(section, order + 1);
+      img.style.setProperty('--ele-image-delay', Math.min(order * 135, 270) + 'ms');
+      img.classList.add('ele-image-reveal');
+    }
+    rv.classList.add('ele-motion-ready');
+    requestAnimationFrame(() => images.forEach(img => observer.observe(img)));
+
+    // Soporte para volver desde otra pestaña, restauración y visores móviles.
+    const revealOnScreen = () => {
+      if (!rv.isConnected) {observer.disconnect();return;}
+      for (const img of images) {
+        const rect = img.getBoundingClientRect();
+        if (rect.bottom >= 0 && rect.top < window.innerHeight * .9 && img.complete)
+          reveal(img);
+      }
+    };
+    setTimeout(revealOnScreen, 1800);
+    window.addEventListener('pageshow', revealOnScreen, {passive:true});
+  }
+
   window.renderEleganza=async function(data,template,media,payload){
     const reply=await fetch(window.nsSiteUrl('inv/eleganza-template.html'),{cache:'force-cache'});
     if(!reply.ok)throw Error('No se encontró la maqueta completa de Eleganza.');
@@ -165,6 +223,7 @@
     if(typeof window.startEleganzaOriginal!=='function')
       throw Error('Las interacciones originales de Eleganza no están disponibles.');
     window.startEleganzaOriginal();
+    initEleganzaImageReveals(rv);
     // La música ambiental del HTML original se activa solo con la primera interacción.
     if(!media.musica){
       intro.addEventListener('click',()=>{try{window.__startEleganzaAudio?.();}catch(_){}},{once:true});

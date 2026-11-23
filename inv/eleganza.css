@@ -1353,3 +1353,8 @@ body.ns-mobile-immersive .eleganza-root{max-width:none;}
 #weiOverlay.eleganza-opening .wei-chevron{display:none;}
 @media(max-width:620px){.eleganza-root{max-width:100%;}}
 @media(prefers-reduced-motion:reduce){.eleganza-root .hero-stagger,.eleganza-root .reveal{opacity:1!important;transform:none!important;transition:none!important;}}
+/* Aparición suave al deslizar: animación aplicada sólo con observador operativo. */
+.eleganza-root.ele-motion-ready img.ele-image-reveal{opacity:0;transform:translate3d(0,20px,0) scale(.982);transition:opacity 1100ms cubic-bezier(.22,1,.36,1),transform 1350ms cubic-bezier(.22,1,.36,1);transition-delay:var(--ele-image-delay,0ms);will-change:opacity,transform;}
+.eleganza-root.ele-motion-ready img.ele-image-reveal.ele-image-visible{opacity:1;transform:translate3d(0,0,0) scale(1);}
+@media(max-width:620px){.eleganza-root.ele-motion-ready img.ele-image-reveal{transform:translate3d(0,13px,0) scale(.99);transition-duration:950ms,1100ms;}.eleganza-root.ele-motion-ready img.ele-image-reveal.ele-image-visible{transform:translate3d(0,0,0) scale(1);}}
+@media(prefers-reduced-motion:reduce){.eleganza-root.ele-motion-ready img.ele-image-reveal{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important;}}

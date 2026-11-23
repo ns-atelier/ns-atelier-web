@@ -60,7 +60,12 @@ const extra=[
 '#weiOverlay.eleganza-opening #weiTapLabel{font:500 12px/1.4 "Jost",sans-serif;letter-spacing:.28em;text-transform:uppercase;color:white;text-shadow:0 1px 8px #000;animation:none;}',
 '#weiOverlay.eleganza-opening .wei-chevron{display:none;}',
 '@media(max-width:620px){.eleganza-root{max-width:100%;}}',
-'@media(prefers-reduced-motion:reduce){.eleganza-root .hero-stagger,.eleganza-root .reveal{opacity:1!important;transform:none!important;transition:none!important;}}'
+'@media(prefers-reduced-motion:reduce){.eleganza-root .hero-stagger,.eleganza-root .reveal{opacity:1!important;transform:none!important;transition:none!important;}}',
+"/* Aparición suave al deslizar: animación aplicada sólo con observador operativo. */",
+".eleganza-root.ele-motion-ready img.ele-image-reveal{opacity:0;transform:translate3d(0,20px,0) scale(.982);transition:opacity 1100ms cubic-bezier(.22,1,.36,1),transform 1350ms cubic-bezier(.22,1,.36,1);transition-delay:var(--ele-image-delay,0ms);will-change:opacity,transform;}",
+".eleganza-root.ele-motion-ready img.ele-image-reveal.ele-image-visible{opacity:1;transform:translate3d(0,0,0) scale(1);}",
+"@media(max-width:620px){.eleganza-root.ele-motion-ready img.ele-image-reveal{transform:translate3d(0,13px,0) scale(.99);transition-duration:950ms,1100ms;}.eleganza-root.ele-motion-ready img.ele-image-reveal.ele-image-visible{transform:translate3d(0,0,0) scale(1);}}",
+"@media(prefers-reduced-motion:reduce){.eleganza-root.ele-motion-ready img.ele-image-reveal{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important;}}"
 ].join('\n');
 fs.writeFileSync(dir+'eleganza.css',root.toString()+'\n'+extra);
 const scripts=[...source.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
