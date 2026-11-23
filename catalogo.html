@@ -240,7 +240,6 @@
       transition: transform .28s ease, box-shadow .28s ease;
     }
     .design-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .design-card.featured { border: 1.5px solid var(--gold); }
     .nav-links .btn-primary { color: #faf6f0; }
     .nav-links .btn-primary:hover { color: #fff; }
     /* Altura real de la portada: nunca recortar obras verticales para llenar 4:3. */
@@ -413,10 +412,6 @@
         -webkit-tap-highlight-color: transparent;
         isolation: isolate;
       }
-      .catalog-grid .design-card.featured {
-        border-color: rgba(166, 125, 43, .65);
-        box-shadow: 0 9px 25px rgba(116, 76, 43, .09);
-      }
       .catalog-grid .design-card:hover { transform: none; box-shadow: 0 9px 24px rgba(67, 45, 39, .065); }
       .catalog-grid .design-card:active { transform: scale(.985); }
       .catalog-grid .design-media { aspect-ratio: auto; }
@@ -436,13 +431,6 @@
         border: 1px solid rgba(255,255,255,.8);
         font: 18px/1 Georgia,serif; box-shadow: 0 2px 10px rgba(35,22,20,.09);
         transition: transform .35s ease, background .35s ease;
-      }
-      .catalog-grid .design-card.featured .design-media::before {
-        content: "DESTACADO"; position: absolute; top: 10px; left: 9px; z-index: 3;
-        padding: 5px 7px 4px; border-radius: 5px;
-        background: rgba(255, 252, 246, .92); color: #866b40;
-        font: 700 8px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: .11em;
-        box-shadow: 0 2px 8px rgba(30,20,12,.05);
       }
       .catalog-grid .design-media img {
         object-position: center; transform: none; height: auto; object-fit: contain;
@@ -619,7 +607,7 @@
         </div>
         <!-- Plantilla técnica invisible: no representa modelos publicados y no descarga sus imágenes. -->
         <template id="catalogCardTemplate">
-          <article class="design-card featured reveal">
+          <article class="design-card reveal">
             <div class="design-media"><img src="assets/catalogo/perla-nacar.webp" alt="Perla &amp; Nácar" loading="eager" fetchpriority="high" decoding="async" /></div>
             <div class="design-body">
               <h3>Perla &amp; Nácar</h3>
@@ -789,7 +777,6 @@
       }
       const card = layout.cloneNode(true);
       card.classList.remove('reveal');
-      card.classList.toggle('featured', Boolean(item.destacado));
       const image = card.querySelector('img');
       // El template no debe heredar loading=eager de la primera portada.
       image.loading = 'lazy';
@@ -798,13 +785,24 @@
       const localCover = premiumCovers.get(item.id) || localCovers.get(item.id);
       const sheetCover = catalogImage(item.portadaWeb);
       const sharedEnvelope = /(?:^|\/)sobre-portada\.jpg(?:[?#]|$)/i.test(sheetCover);
-      const cover = (!sharedEnvelope && !isOriginalCover(item.id, sheetCover) && sheetCover) || localCover;
+      // La portada premium local de Sacred Garden siempre prevalece sobre
+      // la imagen externa antigua (que podía desaparecer del catálogo).
+      const cover = item.id === 'the-sacred-garden'
+        ? premiumCovers.get('the-sacred-garden')
+        : ((!sharedEnvelope && !isOriginalCover(item.id, sheetCover) && sheetCover) || localCover);
       image.alt = cover ? 'Portada de ' + item.nombre : '';
       if (cover) {
         image.src = cover;
         image.addEventListener('error', () => {
-          if (localCover && image.getAttribute('src') !== localCover) image.src = localCover;
-          else image.remove();
+          // Conservar siempre una imagen utilizable, incluso si falla la portada nueva.
+          const backup = item.id === 'the-sacred-garden'
+            ? window.nsSiteUrl('inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.webp')
+            : localCover;
+          if (backup && image.src !== new URL(backup, location.href).href) {
+            image.src = backup;
+          } else {
+            image.remove();
+          }
         });
       } else image.remove();
       card.querySelector('h3').textContent = item.nombre;
@@ -841,9 +839,7 @@
         SITE_CONFIG.whatsapp = response.whatsapp;
         document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa));
       }
-      const cards = items.slice()
-        .sort((a, b) => Number(Boolean(b.destacado)) - Number(Boolean(a.destacado)))
-        .map(item => createCard(item, layout));
+      const cards = items.map(item => createCard(item, layout));
       return cards;
     }
 
