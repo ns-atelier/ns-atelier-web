@@ -590,6 +590,7 @@
     <span>Cotizar por WhatsApp</span>
   </a>
 
+  <script src="assets/demo-ids.js"></script>
   <script src="assets/panel-api.js"></script>
   <script>
     const SITE_CONFIG = {
@@ -674,11 +675,7 @@
 
     // Los identificadores nuevos coinciden con el nombre público.
     // Compatibilidad temporal con los registros anteriores de DEMOS_WEB.
-    const DEMO_ID_ALIASES = Object.freeze({
-      'olivo-marfil':'nacar',
-      'jardin-seda':'red-vibrante',
-      'jardin-eterno':'eleganza'
-    });
+    const DEMO_ID_ALIASES = window.NS_DEMO_REGISTRY.aliases;
     function createCard(item, layout) {
       if (DEMO_ID_ALIASES[item.id]) item = { ...item, id: DEMO_ID_ALIASES[item.id] };
       if (item.id === 'eleganza') {
