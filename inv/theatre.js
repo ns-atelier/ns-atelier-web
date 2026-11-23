@@ -40,9 +40,9 @@
    const parts=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
    const d=parts?new Date(Date.UTC(+parts[1],+parts[2]-1,+parts[3])):new Date(raw);
    if(Number.isFinite(d.getTime())){
-     const month=d.toLocaleDateString('en-GB',{month:'short',timeZone:'UTC'});
-     const monthLong=d.toLocaleDateString('en-GB',{month:'long',timeZone:'UTC'});
-     const dateText=data.fechaCorta||`${monthLong} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+     const month=d.toLocaleDateString('es-PE',{month:'short',timeZone:'UTC'});
+     const monthLong=d.toLocaleDateString('es-PE',{month:'long',timeZone:'UTC'});
+     const dateText=data.fechaCorta||`${d.getUTCDate()} de ${monthLong} de ${d.getUTCFullYear()}`;
      const coins=[...root.querySelectorAll('.scratch-circle .font-display')];
      text(coins[0],String(d.getUTCDate()));
      textKey(root,'coin_month',month);
@@ -57,15 +57,15 @@
        if(name)text(name,data.lugar);
      }
    }
-   textKey(root,'venue_city',data.direccion||'Artimino, Florence');
+   textKey(root,'venue_city',data.direccion||'Artimino, Florencia');
    const map=root.querySelector('[data-i18n="view_map"]');
    const mapURL=safe(data.mapaUrl);if(map&&mapURL)map.href=mapURL;
    if(data.vestimenta)textKey(root,'dress_attire',data.vestimenta);
    if(data.mensaje)textKey(root,'hero_message',data.mensaje);
    if(data.despedida)textKey(root,'thanks_desc',data.despedida);
    const iban=root.querySelector('#iban-value'),copy=root.querySelector('#copy-iban-btn');
-   if(data.iban){text(iban,data.iban);if(copy){copy.disabled=false;copy.title='Copy IBAN';}}
-   else{ text(iban,'Not configured');if(copy){copy.disabled=true;copy.title='No bank details configured';}}
+   if(data.iban){text(iban,data.iban);if(copy){copy.disabled=false;copy.title='Copiar IBAN';}}
+   else{ text(iban,'Sin configurar');if(copy){copy.disabled=true;copy.title='Aún no hay datos bancarios';}}
    const pics=['foto1','foto2','foto3'].map(k=>safe((data.medios||{})[k])).filter(Boolean);
    if(pics.length){
      const target=root.querySelector('#reveal-section');
@@ -83,7 +83,7 @@
    link.media='print';link.onload=()=>{link.media='all';};document.head.appendChild(link);
  }
  window.renderTheatre=async function(data,template,media,payload){
-   const req=await fetch(window.nsSiteUrl('inv/theatre-template.html'),{cache:'force-cache'});
+   const req=await fetch(window.nsSiteUrl('inv/theatre-template.html')+'?v=es',{cache:'no-cache'});
    if(!req.ok)throw Error('No se pudo obtener la plantilla Theatre.');
    const dom=new DOMParser().parseFromString(await req.text(),'text/html');
    const item=dom.querySelector('.theatre-root');
@@ -105,8 +105,7 @@
    window.__THEATRE_DEMO=payload.tipo!=='evento';
    window.__THEATRE_FORM=data.googleFormUrl||'';
    window.__THEATRE_WHATSAPP=data.whatsapp||'';
-   window.__THEATRE_REAPPLY=()=>applyData(root,data);
-   window.__THEATRE_REAPPLY();
+   applyData(root,data);
    if(typeof window.startTheatreOriginal!=='function')throw Error('No se encontró la lógica de Theatre.');
    if('IntersectionObserver' in window && !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) && !new URLSearchParams(location.search).has('editor'))
      root.classList.add('theatre-motion-ready');

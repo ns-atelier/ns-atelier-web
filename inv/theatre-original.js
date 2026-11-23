@@ -1,164 +1,6 @@
 /* Theatre original interactive code adapted to the N&S shared viewer. */
 window.startTheatreOriginal=function(){
 
-    // =========================================================================
-    // 1. BILINGUAL DICTIONARY (EN / IT) & LIVE SWITCHER
-    // =========================================================================
-    const I18N = {
-      en: {
-        tap_to_open: 'Tap to open',
-        skip: 'Skip',
-        hero_cordially: 'You are cordially invited to celebrate the wedding of',
-        hero_message: 'We would like to invite you to celebrate with us the most special day of our lives. It would be an honor to have you present at this important moment.',
-        scroll_label: 'Scroll',
-        reveal_title: 'Reveal',
-        reveal_sub: 'Scratch to discover the date',
-        coin_month: 'Sept',
-        reveal_done: 'Save the date!',
-        countdown_title: 'Countdown',
-        cd_days: 'Days',
-        cd_hours: 'Hours',
-        cd_min: 'Min',
-        cd_sec: 'Sec',
-        countdown_sub: 'until the big day',
-        venue_intro: 'The celebration will take place at',
-        venue_city: 'Artimino, Florence',
-        venue_date: 'September 10, 2027',
-        venue_reception: 'Reception to Follow',
-        view_map: 'View on Map',
-        dress_title: 'Dress Code',
-        dress_desc: 'We invite you to dress elegantly and formally to celebrate this special day with us.',
-        dress_attire: 'Formal Attire',
-        dress_note: 'Please avoid wearing white',
-        gifts_eyebrow: 'Wedding registry',
-        gifts_title: 'Gifts',
-        gifts_desc: 'Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, you can do so via bank transfer.',
-        gifts_love: 'With all our love',
-        bank_title: 'Bank details',
-        bank_holder_label: 'ACCOUNT HOLDER:',
-        bank_ref_label: 'REFERENCE:',
-        copy_iban: 'Copy IBAN',
-        iban_copied: 'IBAN copied to clipboard',
-        transport_eyebrow: 'How to get there',
-        transport_title: 'Transport',
-        transport_desc: 'We have organized buses from the center of Florence to the villa so you can enjoy the celebration without worries.',
-        bus_dep_label: 'Bus departure',
-        bus_ret_label: 'Return to Florence',
-        transport_note: 'Please indicate in your RSVP if you need transport',
-        rsvp_badge: 'This form is fully customizable to your needs',
-        rsvp_title: 'Confirm your attendance',
-        rsvp_name_label: 'Full Name *',
-        rsvp_name_ph: 'Your name',
-        rsvp_email_label: 'Email (optional)',
-        rsvp_attend_label: 'Will you attend? *',
-        rsvp_yes: "Yes, I'll be there!",
-        rsvp_no: "No, I can't make it",
-        rsvp_bus_label: 'I need bus transport from Florence (16:00h)',
-        rsvp_diet_label: 'Allergies / Dietary needs (optional)',
-        rsvp_diet_ph: 'Vegetarian, gluten-free, allergies...',
-        rsvp_msg_label: 'Message for the couple (optional)',
-        rsvp_msg_ph: 'Write us a few words...',
-        rsvp_confirm: 'Confirm',
-        confirm_thanks: 'Thank You!',
-        edit_rsvp: 'Edit response',
-        thanks_title: 'Thank You',
-        thanks_desc: 'For joining us on this special day. Your presence is the best gift we could receive.',
-      },
-      it: {
-        tap_to_open: 'Tocca per aprire',
-        skip: 'Salta',
-        hero_cordially: 'Siete cordialmente invitati a celebrare il matrimonio di',
-        hero_message: 'Desideriamo invitarvi a celebrare con noi il giorno più speciale della nostra vita. Sarebbe un onore avervi presenti in questo momento così importante.',
-        scroll_label: 'Scorri',
-        reveal_title: 'Scopri',
-        reveal_sub: 'Gratta per scoprire la data',
-        coin_month: 'Sett',
-        reveal_done: 'Segna la data!',
-        countdown_title: 'Conto alla rovescia',
-        cd_days: 'Giorni',
-        cd_hours: 'Ore',
-        cd_min: 'Min',
-        cd_sec: 'Sec',
-        countdown_sub: 'al grande giorno',
-        venue_intro: 'La celebrazione si terrà presso',
-        venue_city: 'Artimino, Firenze',
-        venue_date: '10 Settembre 2027',
-        venue_reception: 'Seguirà Ricevimento',
-        view_map: 'Vedi sulla mappa',
-        dress_title: 'Dress Code',
-        dress_desc: 'Vi invitiamo a vestire in modo elegante e formale per festeggiare con noi questo giorno speciale.',
-        dress_attire: 'Abito Formale',
-        dress_note: 'Si prega di evitare il bianco',
-        gifts_eyebrow: 'Lista nozze',
-        gifts_title: 'Regali',
-        gifts_desc: 'La vostra presenza è il regalo più bello che potessimo ricevere. Tuttavia, se desiderate contribuire alla nostra nuova vita insieme, potete farlo tramite bonifico bancario.',
-        gifts_love: 'Con tutto il nostro amore',
-        bank_title: 'Coordinate bancarie',
-        bank_holder_label: 'INTESTATARIO:',
-        bank_ref_label: 'CAUSALE:',
-        copy_iban: 'Copia IBAN',
-        iban_copied: 'IBAN copiato negli appunti',
-        transport_eyebrow: 'Come arrivare',
-        transport_title: 'Trasporto',
-        transport_desc: 'Abbiamo organizzato degli autobus dal centro di Firenze fino alla villa per permettervi di godervi la festa senza pensieri.',
-        bus_dep_label: 'Partenza autobus',
-        bus_ret_label: 'Ritorno a Firenze',
-        transport_note: 'Indicate nel vostro RSVP se avete bisogno del trasporto',
-        rsvp_badge: 'Questo modulo è completamente personalizzabile',
-        rsvp_title: 'Conferma la tua presenza',
-        rsvp_name_label: 'Nome e Cognome *',
-        rsvp_name_ph: 'Il tuo nome',
-        rsvp_email_label: 'Email (opzionale)',
-        rsvp_attend_label: 'Parteciperai? *',
-        rsvp_yes: 'Sì, ci sarò!',
-        rsvp_no: 'No, non potrò partecipare',
-        rsvp_bus_label: 'Ho bisogno del trasporto in bus da Firenze (16:00)',
-        rsvp_diet_label: 'Allergie / Esigenze alimentari (opzionale)',
-        rsvp_diet_ph: 'Vegetariano, senza glutine, allergie...',
-        rsvp_msg_label: 'Messaggio per gli sposi (opzionale)',
-        rsvp_msg_ph: 'Scrivici qualche parola...',
-        rsvp_confirm: 'Conferma',
-        confirm_thanks: 'Grazie!',
-        edit_rsvp: 'Modifica risposta',
-        thanks_title: 'Grazie',
-        thanks_desc: 'Per aver condiviso con noi questo giorno speciale. La vostra presenza è il regalo più bello.',
-      },
-    };
-
-    let currentLang = 'en';
-
-    (function initLanguageSwitcher() {
-      const langBtns = document.querySelectorAll('.theatre-root .lang-btn');
-
-      function applyLanguage(lang) {
-        currentLang = I18N[lang] ? lang : 'en';
-        const dict = I18N[currentLang];
-        document.documentElement.lang = currentLang;
-
-        langBtns.forEach((btn) => {
-          const active = btn.dataset.lang === currentLang;
-          btn.style.backgroundColor = active ? 'rgb(92, 32, 24)' : 'transparent';
-          btn.style.color = active ? 'white' : 'rgb(92, 32, 24)';
-        });
-
-        document.querySelectorAll('.theatre-root [data-i18n]').forEach((el) => {
-          const key = el.dataset.i18n;
-          if (dict[key]) el.textContent = dict[key];
-        });
-
-        document.querySelectorAll('.theatre-root [data-i18n-placeholder]').forEach((el) => {
-          const key = el.dataset.i18nPlaceholder;
-          if (dict[key]) el.placeholder = dict[key];
-        });
-        window.__THEATRE_REAPPLY?.();
-      }
-
-      langBtns.forEach((btn) => {
-        btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
-      });
-    })();
-
-    // =========================================================================
     // 2. The central viewer provides the curtain opening and music controls.
     document.getElementById('hero-scroll-btn')?.addEventListener('click',()=>document.getElementById('reveal-section')?.scrollIntoView({behavior:'smooth'}));
 
@@ -458,11 +300,11 @@ window.startTheatreOriginal=function(){
         const phone = String(window.__THEATRE_WHATSAPP||'').replace(/\D/g,'');
         if(!isDemo && /^https:\/\//i.test(formURL)){window.open(formURL,'_blank','noopener');return;}
         if(!isDemo && phone.length>=10 && phone.length<=15){
-          window.open('https://wa.me/'+phone+'?text='+encodeURIComponent('RSVP · '+guestName+' · '+(attendance==='yes'?'Yes':'No')),'_blank','noopener');return;
+          window.open('https://wa.me/'+phone+'?text='+encodeURIComponent('RSVP · '+guestName+' · '+(attendance==='yes'?'Sí':'No')),'_blank','noopener');return;
         }
         summaryEl.textContent = isDemo
-          ? (currentLang==='it' ? 'Questa è una demo. Nessuna risposta è stata inviata o salvata.' : 'This is a demo. No response has been sent or saved.')
-          : (currentLang==='it' ? 'La destinazione RSVP non è ancora configurata.' : 'The RSVP destination is not configured.');
+          ? 'Esta es una demo. Tu respuesta no se ha enviado ni guardado.'
+          : 'Aún no se ha configurado el destino de las confirmaciones.';
 
         form.classList.add('hidden');
         confirmation.classList.remove('hidden');
