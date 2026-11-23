@@ -941,7 +941,7 @@
           videoWrap.classList.add('wei-video-in');
           video.currentTime = 0;
           video.play().catch(() => setTimeout(finish, 900));
-          if (!ended) timer = setTimeout(finish, 15000);
+          if (!ended) timer = setTimeout(finish, media.__nacar ? 10500 : 15000);
         } else {
           setTimeout(finish, 450);
         }
@@ -958,7 +958,7 @@
       video.addEventListener('timeupdate', () => {
         if (video.duration && video.currentTime >= video.duration - 0.8) finish();
       });
-      video.addEventListener('playing', () => clearTimeout(timer));
+      video.addEventListener('playing', () => { if (!media.__nacar) clearTimeout(timer); });
       video.addEventListener('waiting', () => { clearTimeout(timer); timer = setTimeout(finish,15000); });
       video.addEventListener('ended', finish);
       video.addEventListener('error', () => { if (started) finish(); });

@@ -10,7 +10,11 @@ const dir='inv/';
 const source=fs.readFileSync(dir+'nacar-source.html','utf8');
 const mainStart=source.indexOf('<main '),codeStart=source.indexOf('<script>',mainStart);
 if(mainStart<0||codeStart<0)throw Error('Main / code missing');
-const body=source.slice(mainStart,codeStart).trim();
+// Las medidas responsive deben respetar el ancho real de la invitación,
+// no el ancho global del monitor (que rompía las vistas de escritorio).
+const body=source.slice(mainStart,codeStart).trim()
+  .replace(/\[([0-9.]+)vw\]/g, '[$1cqw]')
+  .replace(/(font-size:\s*)([0-9.]+)vw/g, '$1$2cqw');
 if(!body.includes('id="scratch-canvas"')||!body.includes('id="rsvp-form"')||!body.includes('id="audio-toggle-btn"'))throw Error('Some sections are missing');
 const template='<div class="nacar-root" data-template="olivo-marfil">\n'+body+'\n</div>\n';
 fs.writeFileSync(dir+'nacar-template.html',template);
@@ -20,23 +24,27 @@ const theme=fs.readFileSync(require.resolve('tailwindcss/theme.css'),'utf8');
 const custom='@theme {\n--color-background:#f8f6f2;\n--color-foreground:#3c4b5d;\n--font-display:"Cormorant Garamond",Georgia,serif;\n--font-ballet:"Ballet",cursive;\n--font-doulaise:"Monsieur La Doulaise",cursive;\n--font-body:"Jost",sans-serif;\n--font-helvetica:"Helvetica Neue",Helvetica,Arial,sans-serif;\n}\n@tailwind utilities;';
 const preflight=fs.readFileSync(require.resolve('tailwindcss/preflight.css'),'utf8');
 const compiler=await tw.compile(theme+'\n'+custom+'\n'+preflight);
-const classes=[...source.matchAll(/\bclass\s*=\s*"([^"]+)"/g)].flatMap(x=>x[1].trim().split(/\s+/));
+const classes=[...body.matchAll(/\bclass\s*=\s*"([^"]+)"/g)].flatMap(x=>x[1].trim().split(/\s+/));
 const generated=compiler.build([...new Set(classes)]);
 if(!generated.includes('.min-h-')||!generated.includes('.text-'))throw Error('CSS compilation empty');
 const sourceStyle=originalStyle.replace(/body\.scroll-locked/g,'.nacar-root.scroll-locked').replace(/\bbody\b/g,'.nacar-root').replace(/\bhtml\b/g,'.nacar-root');
 const root=postcss.parse(generated+'\n'+sourceStyle);
+// Tailwind md:* solo debe activarse si la tarjeta alcanza el ancho suficiente.
+root.walkAtRules('media', rule => {
+  if(rule.params.trim()==='(width >= 48rem)') { rule.name='container'; rule.params='(min-width: 600px)'; }
+});
 root.walkRules(rule=>{
   if(rule.parent?.type==='atrule'&&/keyframes/i.test(rule.parent.name))return;
   const sel=rule.selector.trim();
   if(/^\.nacar-root(?:\b|\.|\s|$)/.test(sel)){rule.selector=sel;return;}
   const bits=sel.split(/,(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
   rule.selector=bits.map(part=>(part===':root'||part===':host'||part==='html'||part==='body')?
-    '.nacar-root':'.nacar-root :where('+part+')').join(', ');
+    '.nacar-root':'.nacar-root '+part).join(', ');
 });
 const extras=[
 '/* Component scope and shared N&S Atelier viewer integration */',
-'.nacar-root{--color-background:#f8f6f2;--color-foreground:#3c4b5d;position:relative;width:100%;min-height:100vh;max-width:560px;margin:0 auto;background:#f8f6f2;color:#3c4b5d;font-family:"Jost",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;}',
-'.nacar-root .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease;}',
+'.nacar-root{--color-background:#f8f6f2;--color-foreground:#3c4b5d;container-type:inline-size;width:100%;min-height:100vh;max-width:760px;margin:0 auto;background:#f8f6f2;color:#3c4b5d;font-family:"Jost",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;}',
+'.nacar-root .reveal{opacity:1;transform:none;transition:opacity .9s ease,transform .9s ease;}',
 '.nacar-root .reveal.is-visible{opacity:1;transform:translateY(0);}',
 '.nacar-root .rsvp-form-collapse{max-height:0;opacity:0;overflow:hidden;transition:max-height .85s ease,opacity .65s ease;}',
 '.nacar-root .rsvp-form-collapse.is-open{max-height:1100px;opacity:1;}',
@@ -50,6 +58,10 @@ const extras=[
 '#weiOverlay.nacar-opening #weiTapWrap{position:static;transform:none;}',
 '#weiOverlay.nacar-opening .wei-chevron{display:none;}',
 'body.ns-mobile-immersive .nacar-root{max-width:none;}',
+'.nacar-root main{width:100%;min-width:0;}',
+'.nacar-root img,.nacar-root video{max-width:100%;}',
+'.nacar-root .reveal.is-visible{opacity:1;transform:none;}',
+'body.nacar-mode{background:radial-gradient(ellipse at 48% 12%,#f3eddf,#e6ddcf 62%,#ddd0c0);}',
 '@media(max-width:560px){.nacar-root{max-width:100%;}}',
 '@media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}'
 ].join('\n');

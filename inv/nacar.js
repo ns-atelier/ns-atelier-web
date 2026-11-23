@@ -176,11 +176,13 @@
     }
     root.replaceChildren(document.importNode(markup,true));
     const rv=root.querySelector('.nacar-root');
+    document.body.classList.add('nacar-mode');
     const colors=data.colores||{};
     if(colors.fondo)rv.style.setProperty('--color-background',colors.fondo);
     if(colors.texto)rv.style.setProperty('--color-foreground',colors.texto);
     // Portada y video del diseño original si no hay un archivo personalizado.
     configureIntro(data,media);
+    media.__nacar = true;
     applyTexts(rv,data,template);
     applyMedia(rv,media);
     const date=data.fecha||'2027-05-20T16:30:00+02:00';
