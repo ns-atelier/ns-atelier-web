@@ -7,7 +7,9 @@
   <meta name="description" content="Explora el catálogo completo de invitaciones digitales interactivas de N&amp;S ATELIER y prueba cada demo en vivo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Las fuentes no deben bloquear el primer dibujo del catalogo. -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     :root {
       --bg: #faf6f0;
@@ -212,6 +214,8 @@
     /* Catalog Page Grid */
     #catalogGrid[hidden] { display: none; }
     #catalogStatus { text-align: center; margin: 0 0 24px; }
+    /* Las tarjetas no dependen del JavaScript para hacerse visibles. */
+    #catalogGrid .design-card.reveal { opacity: 1; transform: none; }
     .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     .design-card {
       background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
@@ -591,6 +595,10 @@
       card.classList.remove('reveal');
       card.classList.toggle('featured', Boolean(item.destacado));
       const image = card.querySelector('img');
+      // El template no debe heredar loading=eager de la primera portada.
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.removeAttribute('fetchpriority');
       const localCover = localCovers.get(item.id);
       const sheetCover = catalogImage(item.portadaWeb);
       const sharedEnvelope = /(?:^|\/)sobre-portada\.jpg(?:[?#]|$)/i.test(sheetCover);
@@ -638,9 +646,22 @@
     const CATALOG_CACHE_KEY = 'ns-atelier-catalogo-v2';
     const CATALOG_CACHE_TTL = 5 * 60 * 1000;
     const cardTemplate = staticCards[0].cloneNode(true);
+    let lastPanelPayload = '';
     function displayCatalog(response) {
+      // Evitar reconstruir tarjetas y descargar otra vez las mismas imágenes.
+      const signature = JSON.stringify([response.items, response.whatsapp]);
+      if (signature === lastPanelPayload) return;
+      lastPanelPayload = signature;
       const cards = assembleCatalog(response, cardTemplate);
-      cards.forEach(card => card.classList.add('visible'));
+      cards.forEach((card, index) => {
+        card.classList.add('visible');
+        const picture = card.querySelector('img');
+        if (picture) {
+          picture.loading = index === 0 ? 'eager' : 'lazy';
+          picture.decoding = 'async';
+          picture.setAttribute('fetchpriority', index === 0 ? 'high' : 'low');
+        }
+      });
       cards.forEach(card => {
         const link = card.querySelector('.btn-primary');
         if (link) { link.removeAttribute('target'); link.removeAttribute('rel'); }
