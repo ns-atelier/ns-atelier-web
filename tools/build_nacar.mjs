@@ -13,9 +13,8 @@ if(mainStart<0||codeStart<0)throw Error('Main / code missing');
 // Las medidas responsive deben respetar el ancho real de la invitación,
 // no el ancho global del monitor (que rompía las vistas de escritorio).
 const body=source.slice(mainStart,codeStart).trim()
-  .replace(/(text-\\\[)([0-9.]+)vw(\\\])/g, '$1$2cqw$3')
-  .replace(/(text-\\[)([0-9.]+)vw(\\])/g, '$1$2cqw$3')
-  .replace(/(font-size:\\s*)([0-9.]+)vw/g, '$1$2cqw');
+  .replace(/\[([0-9.]+)vw\]/g, '[$1cqw]')
+  .replace(/(font-size:\s*)([0-9.]+)vw/g, '$1$2cqw');
 if(!body.includes('id="scratch-canvas"')||!body.includes('id="rsvp-form"')||!body.includes('id="audio-toggle-btn"'))throw Error('Some sections are missing');
 const template='<div class="nacar-root" data-template="olivo-marfil">\n'+body+'\n</div>\n';
 fs.writeFileSync(dir+'nacar-template.html',template);
