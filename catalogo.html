@@ -712,7 +712,8 @@
       ['odette','assets/catalogo/catalogo-odette.webp'],
       ['dolce-vita','assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123'],
       ['fresco','assets/catalogo/catalogo-fresco.webp'],
-      ['theatre','assets/catalogo/catalogo-theatre.webp']
+      ['theatre','assets/catalogo/catalogo-theatre.webp'],
+      ['blossom-oud','assets/catalogo/catalogo-blossom-oud.webp']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
     // Una imagen personalizada con otra ruta se muestra tal como la haya elegido el cliente.
@@ -865,7 +866,7 @@
       if (!hasBlossom && !panelKnowsBlossom) {
         items.push({id:'blossom-oud', nombre:'Blossom & Oud', categoria:'Boda premium',
           descripcion:'Una boda en Marrakech entre tonos oliva y la luz de un jardín marroquí.',
-          portadaWeb:'/inv/assets/blossom-oud/beldi.webp'});
+          portadaWeb:'/assets/catalogo/catalogo-blossom-oud.webp'});
       }
       const cards = items.map(item => createCard(item, layout));
       return cards;
