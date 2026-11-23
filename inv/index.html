@@ -671,10 +671,13 @@
 
   <link rel="stylesheet" href="red-vibrante.css" />
   <link rel="stylesheet" href="nacar.css" />
+  <link rel="stylesheet" href="eleganza.css" />
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
   <script src="nacar-original.js"></script>
   <script src="nacar.js"></script>
+  <script src="eleganza-original.js"></script>
+  <script src="eleganza.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -750,12 +753,27 @@
       return '';
     }
 
+    // Nombre público actual => slug canónico. Los antiguos solo son alias de URL.
+    // Las plantillas privadas y los tokens de clientes se consultan sin cambios.
+    const DEMO_ALIASES = Object.freeze({
+      'jardin-seda': 'red-vibrante',
+      'olivo-marfil': 'nacar',
+      'jardin-eterno': 'eleganza'
+    });
     function getQuery() {
       const sp = new URLSearchParams(location.search);
       const t = sp.get('t') || sp.get('token');
       if (t) return { tipo: 'evento', token: t, nocache: sp.get('v') ? '1' : '' };
       const demo = sp.get('demo');
-      if (demo) return { tipo: 'plantilla', id: demo, preview: sp.get('preview') || '' };
+      if (demo) {
+        const current = DEMO_ALIASES[demo] || demo;
+        // Canonizar la barra de direcciones sin recargar ni perder enlaces antiguos.
+        if (current !== demo) {
+          sp.set('demo', current);
+          history.replaceState(history.state, '', location.pathname + '?' + sp.toString() + location.hash);
+        }
+        return { tipo: 'plantilla', id: current, preview: sp.get('preview') || '' };
+      }
       const seg = location.pathname.split('/').filter(Boolean);
       const i = seg.indexOf('inv');
       if (i >= 0 && seg[i + 1] && seg[i + 1] !== 'index.html') return { tipo: 'evento', token: seg[i + 1] };
@@ -941,7 +959,7 @@
           videoWrap.classList.add('wei-video-in');
           video.currentTime = 0;
           video.play().catch(() => setTimeout(finish, 900));
-          if (!ended) timer = setTimeout(finish, media.__nacar ? 10500 : 15000);
+          if (!ended) timer = setTimeout(finish, (media.__nacar || media.__eleganza) ? 10500 : 15000);
         } else {
           setTimeout(finish, 450);
         }
@@ -958,7 +976,7 @@
       video.addEventListener('timeupdate', () => {
         if (video.duration && video.currentTime >= video.duration - 0.8) finish();
       });
-      video.addEventListener('playing', () => { if (!media.__nacar) clearTimeout(timer); });
+      video.addEventListener('playing', () => { if (!media.__nacar && !media.__eleganza) clearTimeout(timer); });
       video.addEventListener('waiting', () => { clearTimeout(timer); timer = setTimeout(finish,15000); });
       video.addEventListener('ended', finish);
       video.addEventListener('error', () => { if (started) finish(); });
@@ -1748,26 +1766,29 @@
       document.querySelector('meta[name="theme-color"]').setAttribute('content', bg);
       document.title = (d.nombre1 || 'Invitación') + (d.nombre2 ? ' & ' + d.nombre2 : '') + ' · N&S ATELIER';
 
-      // La demo pública cambia de aspecto, pero las plantillas privadas y las
-      // invitaciones de clientes existentes con el antiguo ID NO se modifican.
+      // Los IDs privados de PLANTILLAS no son los identificadores públicos.
+      // Cada demo pública utiliza su slug único, las antiguas URLs son alias.
       const demoId = new URLSearchParams(location.search).get('demo');
-      const redVibrantePublica = t.id === 'jardin-seda' &&
-        !editingView && payload.tipo === 'plantilla' && demoId === 'jardin-seda';
-      const redVibranteEditor = editingView && payload.tipo === 'plantilla' &&
-        t.id === 'jardin-seda' && /red\s+vibrante/i.test(t.nombre || '');
-      // Olivo & Marfil se convierte SOLO en la demo pública Nácar.
-      // No tocar las invitaciones de clientes ni la plantilla privada con este ID.
-      const nacarPublico = t.id === 'olivo-marfil' &&
-        !editingView && payload.tipo === 'plantilla' && demoId === 'olivo-marfil';
-      const nacarEditor = editingView && payload.tipo === 'plantilla' &&
-        t.id === 'olivo-marfil' && /^n[aá]car$/i.test((t.nombre || '').trim());
-      if (nacarPublico || nacarEditor || t.estilo === 'nacar') {
-        await window.renderNacar(d, t, m, payload);
-      } else if (redVibrantePublica || redVibranteEditor || t.estilo === 'red-vibrante') {
-        await window.renderRedVibrante(d, t, m, payload);
-      } else if (t.estilo === 'sacred-garden' || t.id === 'the-sacred-garden') renderSacredGarden(d, t, m);
-      else if (t.estilo === 'perla-nacar' || t.id === 'perla-nacar') renderPerlaNacar(d, t, m, payload.tipo === 'plantilla');
-      else renderUniversal(d, t, m);
+      const isPublicDemo = !editingView && payload.tipo === 'plantilla';
+      const isPreview = editingView && payload.tipo === 'plantilla';
+      const publicId = DEMO_ALIASES[demoId] || demoId;
+      const id = String(t.id || '');
+      const style = String(t.estilo || '');
+      const red = (isPublicDemo && publicId === 'red-vibrante' &&
+        (id === 'red-vibrante' || id === 'jardin-seda')) ||
+        (isPreview && id === 'red-vibrante') || style === 'red-vibrante';
+      const nacar = (isPublicDemo && publicId === 'nacar' &&
+        (id === 'nacar' || id === 'olivo-marfil')) ||
+        (isPreview && id === 'nacar') || style === 'nacar';
+      const eleganza = (isPublicDemo && publicId === 'eleganza' &&
+        (id === 'eleganza' || id === 'jardin-eterno')) ||
+        (isPreview && id === 'eleganza') || style === 'eleganza';
+      if (eleganza) await window.renderEleganza(d,t,m,payload);
+      else if (nacar) await window.renderNacar(d,t,m,payload);
+      else if (red) await window.renderRedVibrante(d,t,m,payload);
+      else if (style === 'sacred-garden' || id === 'the-sacred-garden') renderSacredGarden(d,t,m);
+      else if (style === 'perla-nacar' || id === 'perla-nacar') renderPerlaNacar(d,t,m,payload.tipo === 'plantilla');
+      else renderUniversal(d,t,m);
 
       const suppressed={sobre:'#weiImg',ramaIzq:'.sg-branch-l',ramaDer:'.sg-branch-r',rosaLinea:'#sgRose',lugar:'.sg-venue-art',sello:'#openSealBtn img',fotoCierre:'.sg-footer-photo',coronaFinal:'.sg-footer-wreath',flores:'.sg-welcome-bg',caligrafia:'.sg-calig',petalo:'.sg-petal'};
       for(const [key,sel] of Object.entries(suppressed))if(m[key]==='__oculto__')document.querySelectorAll(sel).forEach(el=>el.style.display='none');
@@ -1799,10 +1820,10 @@
         if (query.tipo !== 'plantilla') throw error;
       }
       // Respaldo local exclusivo de la demo: la plantilla privada no se modifica.
-      if (query.id === 'olivo-marfil') {
+      if (query.id === 'nacar') {
         return {
           ok:true, tipo:'plantilla',
-          plantilla:{id:'olivo-marfil',nombre:'Nácar',categoria:'Boda',
+          plantilla:{id:'nacar',nombre:'Nácar',categoria:'Boda',
             descripcion:'Perlas, encaje, sobre animado y fotografía interactiva.',
             estilo:'editorial',fondo:'#f8f6f2',texto:'#3c4b5d',acento:'#cbb486',media:{}},
           datos:{nombre1:'Cornelia',nombre2:'James',tipo:'Wedding Day',
@@ -1819,11 +1840,11 @@
         };
       }
       // Catálogo público descargado con el proyecto: seis demostraciones de boda.
-      if (query.id === 'jardin-seda') {
+      if (query.id === 'red-vibrante') {
         // Respaldo exclusivamente para la demo pública; nunca suplanta datos de clientes.
         return {
           ok: true, tipo: 'plantilla',
-          plantilla: { id: 'jardin-seda', nombre: 'Red Vibrante', categoria: 'Boda premium',
+          plantilla: { id: 'red-vibrante', nombre: 'Red Vibrante', categoria: 'Boda premium',
             descripcion: 'Borgoña, flores rubí y ceremonia elegante.', estilo: 'red-vibrante',
             fondo: '#66021f', texto: '#fffaf8', acento: '#fffaf8', media: {} },
           datos: { nombre1: 'Viktor', nombre2: 'Paula', tipo: 'Wedding Day',
@@ -1832,6 +1853,28 @@
             despedida: 'Hope to see you there!',
             cronograma: [{hora:'16:00',nombre:'Wedding Ceremony'},{hora:'17:00',nombre:'Cocktail Hour'},
               {hora:'19:00',nombre:'Dinner'},{hora:'20:00',nombre:'Party'}] }
+        };
+      }
+      if (query.id === 'eleganza') {
+        return {
+          ok:true, tipo:'plantilla',
+          plantilla:{id:'eleganza',nombre:'Eleganza',categoria:'Boda premium',
+            descripcion:'Elegancia italiana, marcos botánicos y celebración en Lake Como.',
+            estilo:'eleganza',fondo:'#faf7f2',texto:'#3a3430',acento:'#4a3f3a',media:{}},
+          datos:{nombre1:'Alessia',nombre2:'Matteo',tipo:'Wedding Day',
+            fecha:'2027-09-12T17:00:00+02:00',fechaCorta:'12 September 2027',
+            lugar:'Villa Cipressi',direccion:'Lake Como, Italy',
+            mapaUrl:'https://maps.google.com/?q=Villa+Cipressi+Lake+Como+Italy',
+            vestimenta:'Italian Garden Formal',regalos:'Your presence is the greatest gift.',
+            rsvpLimite:'Kindly reply before the 1st of April, 2027.',
+            despedida:'We cannot wait to celebrate with you.',
+            cronograma:[
+              {hora:'5:30 PM',nombre:'Welcome'},
+              {hora:'6:00 PM',nombre:'Ceremony'},
+              {hora:'7:00 PM',nombre:'Cocktail'},
+              {hora:'9:00 PM',nombre:'Dinner'},
+              {hora:'11:30 PM',nombre:'Dancing'}
+            ]}
         };
       }
       if (query.id === 'the-sacred-garden') {
