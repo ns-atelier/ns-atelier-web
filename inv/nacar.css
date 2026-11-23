@@ -5,7 +5,6 @@
     'Noto Color Emoji';
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
-  --color-black: #000;
   --color-white: #fff;
   --spacing: 0.25rem;
   --container-md: 28rem;
@@ -43,7 +42,6 @@
   --leading-relaxed: 1.625;
   --radius-lg: 0.5rem;
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --blur-sm: 8px;
   --default-transition-duration: 150ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -57,1017 +55,933 @@
   --font-body: "Jost",sans-serif;
   --font-helvetica: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.nacar-root :where(.pointer-events-none) {
+.nacar-root .pointer-events-none {
   pointer-events: none;
 }
-.nacar-root :where(.absolute) {
+.nacar-root .absolute {
   position: absolute;
 }
-.nacar-root :where(.fixed) {
+.nacar-root .fixed {
   position: fixed;
 }
-.nacar-root :where(.relative) {
+.nacar-root .relative {
   position: relative;
 }
-.nacar-root :where(.inset-0) {
+.nacar-root .inset-0 {
   inset: calc(var(--spacing) * 0);
 }
-.nacar-root :where(.inset-y-0) {
+.nacar-root .inset-y-0 {
   inset-block: calc(var(--spacing) * 0);
 }
-.nacar-root :where(.top-3) {
+.nacar-root .top-3 {
   top: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.top-5) {
-  top: calc(var(--spacing) * 5);
-}
-.nacar-root :where(.top-\[9\%\]) {
+.nacar-root .top-\[9\%\] {
   top: 9%;
 }
-.nacar-root :where(.top-\[18\%\]) {
+.nacar-root .top-\[18\%\] {
   top: 18%;
 }
-.nacar-root :where(.top-\[33\%\]) {
+.nacar-root .top-\[33\%\] {
   top: 33%;
 }
-.nacar-root :where(.right-0) {
+.nacar-root .right-0 {
   right: calc(var(--spacing) * 0);
 }
-.nacar-root :where(.right-4) {
+.nacar-root .right-4 {
   right: calc(var(--spacing) * 4);
 }
-.nacar-root :where(.right-5) {
+.nacar-root .right-5 {
   right: calc(var(--spacing) * 5);
 }
-.nacar-root :where(.right-\[2\%\]) {
+.nacar-root .right-\[2\%\] {
   right: 2%;
 }
-.nacar-root :where(.right-\[17\%\]) {
+.nacar-root .right-\[17\%\] {
   right: 17%;
 }
-.nacar-root :where(.right-\[20\%\]) {
+.nacar-root .right-\[20\%\] {
   right: 20%;
 }
-.nacar-root :where(.-bottom-7) {
+.nacar-root .-bottom-7 {
   bottom: calc(var(--spacing) * -7);
 }
-.nacar-root :where(.bottom-3) {
+.nacar-root .bottom-3 {
   bottom: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.bottom-5) {
+.nacar-root .bottom-5 {
   bottom: calc(var(--spacing) * 5);
 }
-.nacar-root :where(.bottom-\[4\%\]) {
+.nacar-root .bottom-\[4\%\] {
   bottom: 4%;
 }
-.nacar-root :where(.bottom-\[7\%\]) {
+.nacar-root .bottom-\[7\%\] {
   bottom: 7%;
 }
-.nacar-root :where(.bottom-\[10\%\]) {
+.nacar-root .bottom-\[10\%\] {
   bottom: 10%;
 }
-.nacar-root :where(.bottom-\[34\%\]) {
+.nacar-root .bottom-\[34\%\] {
   bottom: 34%;
 }
-.nacar-root :where(.left-0) {
+.nacar-root .left-0 {
   left: calc(var(--spacing) * 0);
 }
-.nacar-root :where(.left-1\/2) {
+.nacar-root .left-1\/2 {
   left: calc(1/2 * 100%);
 }
-.nacar-root :where(.left-\[5\.5px\]) {
+.nacar-root .left-\[5\.5px\] {
   left: 5.5px;
 }
-.nacar-root :where(.left-\[17\%\]) {
+.nacar-root .left-\[17\%\] {
   left: 17%;
 }
-.nacar-root :where(.left-\[20\%\]) {
+.nacar-root .left-\[20\%\] {
   left: 20%;
 }
-.nacar-root :where(.-z-10) {
+.nacar-root .-z-10 {
   z-index: calc(10 * -1);
 }
-.nacar-root :where(.z-0) {
+.nacar-root .z-0 {
   z-index: 0;
 }
-.nacar-root :where(.z-10) {
+.nacar-root .z-10 {
   z-index: 10;
 }
-.nacar-root :where(.z-20) {
+.nacar-root .z-20 {
   z-index: 20;
 }
-.nacar-root :where(.z-40) {
+.nacar-root .z-40 {
   z-index: 40;
 }
-.nacar-root :where(.z-50) {
+.nacar-root .z-50 {
   z-index: 50;
 }
-.nacar-root :where(.z-\[1\]) {
+.nacar-root .z-\[1\] {
   z-index: 1;
 }
-.nacar-root :where(.-mx-\[10\%\]) {
+.nacar-root .-mx-\[10\%\] {
   margin-inline: calc(10% * -1);
 }
-.nacar-root :where(.mx-auto) {
+.nacar-root .mx-auto {
   margin-inline: auto;
 }
-.nacar-root :where(.my-2\.5) {
+.nacar-root .my-2\.5 {
   margin-block: calc(var(--spacing) * 2.5);
 }
-.nacar-root :where(.-mt-3) {
+.nacar-root .-mt-3 {
   margin-top: calc(var(--spacing) * -3);
 }
-.nacar-root :where(.-mt-\[30px\]) {
+.nacar-root .-mt-\[30px\] {
   margin-top: calc(30px * -1);
 }
-.nacar-root :where(.mt-1) {
+.nacar-root .mt-1 {
   margin-top: calc(var(--spacing) * 1);
 }
-.nacar-root :where(.mt-1\.5) {
+.nacar-root .mt-1\.5 {
   margin-top: calc(var(--spacing) * 1.5);
 }
-.nacar-root :where(.mt-2) {
+.nacar-root .mt-2 {
   margin-top: calc(var(--spacing) * 2);
 }
-.nacar-root :where(.mt-3) {
+.nacar-root .mt-3 {
   margin-top: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.mt-4) {
+.nacar-root .mt-4 {
   margin-top: calc(var(--spacing) * 4);
 }
-.nacar-root :where(.mt-5) {
+.nacar-root .mt-5 {
   margin-top: calc(var(--spacing) * 5);
 }
-.nacar-root :where(.mt-6) {
+.nacar-root .mt-6 {
   margin-top: calc(var(--spacing) * 6);
 }
-.nacar-root :where(.mt-7) {
+.nacar-root .mt-7 {
   margin-top: calc(var(--spacing) * 7);
 }
-.nacar-root :where(.mt-8) {
+.nacar-root .mt-8 {
   margin-top: calc(var(--spacing) * 8);
 }
-.nacar-root :where(.mt-10) {
+.nacar-root .mt-10 {
   margin-top: calc(var(--spacing) * 10);
 }
-.nacar-root :where(.mt-24) {
+.nacar-root .mt-24 {
   margin-top: calc(var(--spacing) * 24);
 }
-.nacar-root :where(.mt-\[18px\]) {
+.nacar-root .mt-\[18px\] {
   margin-top: 18px;
 }
-.nacar-root :where(.mt-\[22px\]) {
+.nacar-root .mt-\[22px\] {
   margin-top: 22px;
 }
-.nacar-root :where(.mt-\[70px\]) {
+.nacar-root .mt-\[70px\] {
   margin-top: 70px;
 }
-.nacar-root :where(.mb-1) {
+.nacar-root .mb-1 {
   margin-bottom: calc(var(--spacing) * 1);
 }
-.nacar-root :where(.mb-1\.5) {
+.nacar-root .mb-1\.5 {
   margin-bottom: calc(var(--spacing) * 1.5);
 }
-.nacar-root :where(.mb-2) {
+.nacar-root .mb-2 {
   margin-bottom: calc(var(--spacing) * 2);
 }
-.nacar-root :where(.mb-3) {
+.nacar-root .mb-3 {
   margin-bottom: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.mb-4) {
+.nacar-root .mb-4 {
   margin-bottom: calc(var(--spacing) * 4);
 }
-.nacar-root :where(.mb-5) {
+.nacar-root .mb-5 {
   margin-bottom: calc(var(--spacing) * 5);
 }
-.nacar-root :where(.mb-6) {
+.nacar-root .mb-6 {
   margin-bottom: calc(var(--spacing) * 6);
 }
-.nacar-root :where(.mb-8) {
+.nacar-root .mb-8 {
   margin-bottom: calc(var(--spacing) * 8);
 }
-.nacar-root :where(.mb-10) {
+.nacar-root .mb-10 {
   margin-bottom: calc(var(--spacing) * 10);
 }
-.nacar-root :where(.mb-12) {
+.nacar-root .mb-12 {
   margin-bottom: calc(var(--spacing) * 12);
 }
-.nacar-root :where(.mb-\[8px\]) {
+.nacar-root .mb-\[8px\] {
   margin-bottom: 8px;
 }
-.nacar-root :where(.ml-1) {
+.nacar-root .ml-1 {
   margin-left: calc(var(--spacing) * 1);
 }
-.nacar-root :where(.block) {
+.nacar-root .block {
   display: block;
 }
-.nacar-root :where(.flex) {
+.nacar-root .flex {
   display: flex;
 }
-.nacar-root :where(.grid) {
+.nacar-root .grid {
   display: grid;
 }
-.nacar-root :where(.hidden) {
+.nacar-root .hidden {
   display: none;
 }
-.nacar-root :where(.inline-flex) {
+.nacar-root .inline-flex {
   display: inline-flex;
 }
-.nacar-root :where(.aspect-\[942\/1164\]) {
+.nacar-root .aspect-\[942\/1164\] {
   aspect-ratio: 942/1164;
 }
-.nacar-root :where(.aspect-\[1920\/1126\]) {
+.nacar-root .aspect-\[1920\/1126\] {
   aspect-ratio: 1920/1126;
 }
-.nacar-root :where(.aspect-square) {
+.nacar-root .aspect-square {
   aspect-ratio: 1 / 1;
 }
-.nacar-root :where(.h-3) {
+.nacar-root .h-3 {
   height: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.h-10) {
+.nacar-root .h-10 {
   height: calc(var(--spacing) * 10);
 }
-.nacar-root :where(.h-\[140px\]) {
+.nacar-root .h-\[140px\] {
   height: 140px;
 }
-.nacar-root :where(.h-auto) {
+.nacar-root .h-auto {
   height: auto;
 }
-.nacar-root :where(.h-full) {
+.nacar-root .h-full {
   height: 100%;
 }
-.nacar-root :where(.min-h-\[16px\]) {
+.nacar-root .min-h-\[16px\] {
   min-height: 16px;
 }
-.nacar-root :where(.min-h-\[100dvh\]) {
+.nacar-root .min-h-\[100dvh\] {
   min-height: 100dvh;
 }
-.nacar-root :where(.w-3) {
+.nacar-root .w-3 {
   width: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.w-10) {
+.nacar-root .w-10 {
   width: calc(var(--spacing) * 10);
 }
-.nacar-root :where(.w-28) {
+.nacar-root .w-28 {
   width: calc(var(--spacing) * 28);
 }
-.nacar-root :where(.w-32) {
-  width: calc(var(--spacing) * 32);
-}
-.nacar-root :where(.w-\[26\%\]) {
+.nacar-root .w-\[26\%\] {
   width: 26%;
 }
-.nacar-root :where(.w-\[70\%\]) {
+.nacar-root .w-\[70\%\] {
   width: 70%;
 }
-.nacar-root :where(.w-\[160px\]) {
+.nacar-root .w-\[160px\] {
   width: 160px;
 }
-.nacar-root :where(.w-\[260px\]) {
+.nacar-root .w-\[260px\] {
   width: 260px;
 }
-.nacar-root :where(.w-\[calc\(88\%\+4px\)\]) {
+.nacar-root .w-\[calc\(88\%\+4px\)\] {
   width: calc(88% + 4px);
 }
-.nacar-root :where(.w-auto) {
+.nacar-root .w-auto {
   width: auto;
 }
-.nacar-root :where(.w-fit) {
+.nacar-root .w-fit {
   width: fit-content;
 }
-.nacar-root :where(.w-full) {
+.nacar-root .w-full {
   width: 100%;
 }
-.nacar-root :where(.w-px) {
+.nacar-root .w-px {
   width: 1px;
 }
-.nacar-root :where(.max-w-2xl) {
+.nacar-root .max-w-2xl {
   max-width: var(--container-2xl);
 }
-.nacar-root :where(.max-w-3xl) {
+.nacar-root .max-w-3xl {
   max-width: var(--container-3xl);
 }
-.nacar-root :where(.max-w-\[185px\]) {
+.nacar-root .max-w-\[185px\] {
   max-width: 185px;
 }
-.nacar-root :where(.max-w-\[280px\]) {
+.nacar-root .max-w-\[280px\] {
   max-width: 280px;
 }
-.nacar-root :where(.max-w-\[340px\]) {
+.nacar-root .max-w-\[340px\] {
   max-width: 340px;
 }
-.nacar-root :where(.max-w-md) {
+.nacar-root .max-w-md {
   max-width: var(--container-md);
 }
-.nacar-root :where(.max-w-none) {
+.nacar-root .max-w-none {
   max-width: none;
 }
-.nacar-root :where(.max-w-xl) {
+.nacar-root .max-w-xl {
   max-width: var(--container-xl);
 }
-.nacar-root :where(.min-w-0) {
+.nacar-root .min-w-0 {
   min-width: calc(var(--spacing) * 0);
 }
-.nacar-root :where(.flex-1) {
+.nacar-root .flex-1 {
   flex: 1;
 }
-.nacar-root :where(.shrink-0) {
+.nacar-root .shrink-0 {
   flex-shrink: 0;
 }
-.nacar-root :where(.-translate-x-1\/2) {
+.nacar-root .-translate-x-1\/2 {
   --tw-translate-x: calc(calc(1/2 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
-.nacar-root :where(.-translate-x-4) {
+.nacar-root .-translate-x-4 {
   --tw-translate-x: calc(var(--spacing) * -4);
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
-.nacar-root :where(.translate-x-\[10px\]) {
+.nacar-root .translate-x-\[10px\] {
   --tw-translate-x: 10px;
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
-.nacar-root :where(.-translate-y-\[5px\]) {
+.nacar-root .-translate-y-\[5px\] {
   --tw-translate-y: calc(5px * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
-.nacar-root :where(.-rotate-6) {
+.nacar-root .-rotate-6 {
   rotate: calc(6deg * -1);
 }
-.nacar-root :where(.rotate-\[24deg\]) {
+.nacar-root .rotate-\[24deg\] {
   rotate: 24deg;
 }
-.nacar-root :where(.cursor-pointer) {
+.nacar-root .cursor-pointer {
   cursor: pointer;
 }
-.nacar-root :where(.grid-cols-2) {
+.nacar-root .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.nacar-root :where(.grid-cols-4) {
+.nacar-root .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-.nacar-root :where(.grid-cols-\[12px_minmax\(0\,1fr\)\]) {
+.nacar-root .grid-cols-\[12px_minmax\(0\,1fr\)\] {
   grid-template-columns: 12px minmax(0,1fr);
 }
-.nacar-root :where(.flex-col) {
+.nacar-root .flex-col {
   flex-direction: column;
 }
-.nacar-root :where(.items-center) {
+.nacar-root .items-center {
   align-items: center;
 }
-.nacar-root :where(.justify-center) {
+.nacar-root .justify-center {
   justify-content: center;
 }
-.nacar-root :where(.gap-2) {
+.nacar-root .gap-2 {
   gap: calc(var(--spacing) * 2);
 }
-.nacar-root :where(.gap-3) {
+.nacar-root .gap-3 {
   gap: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.space-y-1\.5) {
-  .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .space-y-1\.5 {
+  .nacar-root :where(& > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 1.5) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 1.5) * calc(1 - var(--tw-space-y-reverse)));
   }
 }
-.nacar-root :where(.space-y-3) {
-  .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .space-y-3 {
+  .nacar-root :where(& > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
   }
 }
-.nacar-root :where(.space-y-5) {
-  .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .space-y-5 {
+  .nacar-root :where(& > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 5) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 5) * calc(1 - var(--tw-space-y-reverse)));
   }
 }
-.nacar-root :where(.space-y-8) {
-  .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .space-y-8 {
+  .nacar-root :where(& > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
   }
 }
-.nacar-root :where(.space-y-10) {
-  .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .space-y-10 {
+  .nacar-root :where(& > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
   }
 }
-.nacar-root :where(.gap-x-5) {
+.nacar-root .gap-x-5 {
   column-gap: calc(var(--spacing) * 5);
 }
-.nacar-root :where(.overflow-hidden) {
+.nacar-root .overflow-hidden {
   overflow: hidden;
 }
-.nacar-root :where(.overflow-x-clip) {
+.nacar-root .overflow-x-clip {
   overflow-x: clip;
 }
-.nacar-root :where(.rounded) {
+.nacar-root .rounded {
   border-radius: 0.25rem;
 }
-.nacar-root :where(.rounded-full) {
+.nacar-root .rounded-full {
   border-radius: calc(infinity * 1px);
 }
-.nacar-root :where(.rounded-lg) {
+.nacar-root .rounded-lg {
   border-radius: var(--radius-lg);
 }
-.nacar-root :where(.border) {
+.nacar-root .border {
   border-style: var(--tw-border-style);
   border-width: 1px;
 }
-.nacar-root :where(.border-b) {
-  border-bottom-style: var(--tw-border-style);
-  border-bottom-width: 1px;
-}
-.nacar-root :where(.border-\[\#f8f6f2\]\/20) {
+.nacar-root .border-\[\#f8f6f2\]\/20 {
   border-color: color-mix(in oklab, #f8f6f2 20%, transparent);
 }
-.nacar-root :where(.border-foreground\/15) {
+.nacar-root .border-foreground\/15 {
   border-color: color-mix(in srgb, #3c4b5d 15%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
   }
 }
-.nacar-root :where(.border-foreground\/20) {
+.nacar-root .border-foreground\/20 {
   border-color: color-mix(in srgb, #3c4b5d 20%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab, var(--color-foreground) 20%, transparent);
   }
 }
-.nacar-root :where(.border-foreground\/25) {
+.nacar-root .border-foreground\/25 {
   border-color: color-mix(in srgb, #3c4b5d 25%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab, var(--color-foreground) 25%, transparent);
   }
 }
-.nacar-root :where(.border-foreground\/30) {
+.nacar-root .border-foreground\/30 {
   border-color: color-mix(in srgb, #3c4b5d 30%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab, var(--color-foreground) 30%, transparent);
   }
 }
-.nacar-root :where(.border-foreground\/40) {
+.nacar-root .border-foreground\/40 {
   border-color: color-mix(in srgb, #3c4b5d 40%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     border-color: color-mix(in oklab, var(--color-foreground) 40%, transparent);
   }
 }
-.nacar-root :where(.border-white\/40) {
-  border-color: color-mix(in srgb, #fff 40%, transparent);
-  @supports (color: color-mix(in lab, red, red)) {
-    border-color: color-mix(in oklab, var(--color-white) 40%, transparent);
-  }
-}
-.nacar-root :where(.bg-\[\#2f3a47\]) {
+.nacar-root .bg-\[\#2f3a47\] {
   background-color: #2f3a47;
 }
-.nacar-root :where(.bg-\[\#f8f6f2\]) {
+.nacar-root .bg-\[\#f8f6f2\] {
   background-color: #f8f6f2;
 }
-.nacar-root :where(.bg-background) {
+.nacar-root .bg-background {
   background-color: var(--color-background);
 }
-.nacar-root :where(.bg-background\/80) {
+.nacar-root .bg-background\/80 {
   background-color: color-mix(in srgb, #f8f6f2 80%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     background-color: color-mix(in oklab, var(--color-background) 80%, transparent);
   }
 }
-.nacar-root :where(.bg-black\/25) {
-  background-color: color-mix(in srgb, #000 25%, transparent);
-  @supports (color: color-mix(in lab, red, red)) {
-    background-color: color-mix(in oklab, var(--color-black) 25%, transparent);
-  }
-}
-.nacar-root :where(.bg-foreground) {
+.nacar-root .bg-foreground {
   background-color: var(--color-foreground);
 }
-.nacar-root :where(.bg-foreground\/50) {
+.nacar-root .bg-foreground\/50 {
   background-color: color-mix(in srgb, #3c4b5d 50%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     background-color: color-mix(in oklab, var(--color-foreground) 50%, transparent);
   }
 }
-.nacar-root :where(.bg-white) {
+.nacar-root .bg-white {
   background-color: var(--color-white);
 }
-.nacar-root :where(.bg-white\/45) {
+.nacar-root .bg-white\/45 {
   background-color: color-mix(in srgb, #fff 45%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     background-color: color-mix(in oklab, var(--color-white) 45%, transparent);
   }
 }
-.nacar-root :where(.bg-white\/80) {
+.nacar-root .bg-white\/80 {
   background-color: color-mix(in srgb, #fff 80%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     background-color: color-mix(in oklab, var(--color-white) 80%, transparent);
   }
 }
-.nacar-root :where(.object-contain) {
+.nacar-root .object-contain {
   object-fit: contain;
 }
-.nacar-root :where(.object-cover) {
+.nacar-root .object-cover {
   object-fit: cover;
 }
-.nacar-root :where(.object-fill) {
+.nacar-root .object-fill {
   object-fit: fill;
 }
-.nacar-root :where(.object-bottom) {
+.nacar-root .object-bottom {
   object-position: bottom;
 }
-.nacar-root :where(.p-4) {
+.nacar-root .p-4 {
   padding: calc(var(--spacing) * 4);
 }
-.nacar-root :where(.p-7) {
+.nacar-root .p-7 {
   padding: calc(var(--spacing) * 7);
 }
-.nacar-root :where(.p-8) {
+.nacar-root .p-8 {
   padding: calc(var(--spacing) * 8);
 }
-.nacar-root :where(.p-\[3px\]) {
+.nacar-root .p-\[3px\] {
   padding: 3px;
 }
-.nacar-root :where(.px-3) {
+.nacar-root .px-3 {
   padding-inline: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.px-3\.5) {
+.nacar-root .px-3\.5 {
   padding-inline: calc(var(--spacing) * 3.5);
 }
-.nacar-root :where(.px-4) {
-  padding-inline: calc(var(--spacing) * 4);
-}
-.nacar-root :where(.px-6) {
+.nacar-root .px-6 {
   padding-inline: calc(var(--spacing) * 6);
 }
-.nacar-root :where(.px-8) {
+.nacar-root .px-8 {
   padding-inline: calc(var(--spacing) * 8);
 }
-.nacar-root :where(.px-10) {
+.nacar-root .px-10 {
   padding-inline: calc(var(--spacing) * 10);
 }
-.nacar-root :where(.px-\[22\%\]) {
+.nacar-root .px-\[22\%\] {
   padding-inline: 22%;
 }
-.nacar-root :where(.px-\[24\%\]) {
+.nacar-root .px-\[24\%\] {
   padding-inline: 24%;
 }
-.nacar-root :where(.py-1\.5) {
-  padding-block: calc(var(--spacing) * 1.5);
-}
-.nacar-root :where(.py-2\.5) {
+.nacar-root .py-2\.5 {
   padding-block: calc(var(--spacing) * 2.5);
 }
-.nacar-root :where(.py-3) {
+.nacar-root .py-3 {
   padding-block: calc(var(--spacing) * 3);
 }
-.nacar-root :where(.py-6) {
+.nacar-root .py-6 {
   padding-block: calc(var(--spacing) * 6);
 }
-.nacar-root :where(.py-14) {
+.nacar-root .py-14 {
   padding-block: calc(var(--spacing) * 14);
 }
-.nacar-root :where(.py-16) {
+.nacar-root .py-16 {
   padding-block: calc(var(--spacing) * 16);
 }
-.nacar-root :where(.py-20) {
+.nacar-root .py-20 {
   padding-block: calc(var(--spacing) * 20);
 }
-.nacar-root :where(.py-36) {
+.nacar-root .py-36 {
   padding-block: calc(var(--spacing) * 36);
 }
-.nacar-root :where(.pt-0) {
+.nacar-root .pt-0 {
   padding-top: calc(var(--spacing) * 0);
 }
-.nacar-root :where(.pt-2) {
+.nacar-root .pt-2 {
   padding-top: calc(var(--spacing) * 2);
 }
-.nacar-root :where(.pt-6) {
+.nacar-root .pt-6 {
   padding-top: calc(var(--spacing) * 6);
 }
-.nacar-root :where(.pt-10) {
+.nacar-root .pt-10 {
   padding-top: calc(var(--spacing) * 10);
 }
-.nacar-root :where(.pt-20) {
+.nacar-root .pt-20 {
   padding-top: calc(var(--spacing) * 20);
 }
-.nacar-root :where(.pt-32) {
+.nacar-root .pt-32 {
   padding-top: calc(var(--spacing) * 32);
 }
-.nacar-root :where(.pt-\[40px\]) {
+.nacar-root .pt-\[40px\] {
   padding-top: 40px;
 }
-.nacar-root :where(.pt-\[110px\]) {
+.nacar-root .pt-\[110px\] {
   padding-top: 110px;
 }
-.nacar-root :where(.pb-1) {
-  padding-bottom: calc(var(--spacing) * 1);
-}
-.nacar-root :where(.pb-4) {
+.nacar-root .pb-4 {
   padding-bottom: calc(var(--spacing) * 4);
 }
-.nacar-root :where(.pb-20) {
+.nacar-root .pb-20 {
   padding-bottom: calc(var(--spacing) * 20);
 }
-.nacar-root :where(.pb-\[7\%\]) {
+.nacar-root .pb-\[7\%\] {
   padding-bottom: 7%;
 }
-.nacar-root :where(.pb-\[130px\]) {
+.nacar-root .pb-\[130px\] {
   padding-bottom: 130px;
 }
-.nacar-root :where(.pb-\[min\(60vw\,460px\)\]) {
+.nacar-root .pb-\[min\(60vw\,460px\)\] {
   padding-bottom: min(60vw, 460px);
 }
-.nacar-root :where(.text-center) {
+.nacar-root .text-center {
   text-align: center;
 }
-.nacar-root :where(.text-left) {
+.nacar-root .text-left {
   text-align: left;
 }
-.nacar-root :where(.font-ballet) {
+.nacar-root .font-ballet {
   font-family: var(--font-ballet);
 }
-.nacar-root :where(.font-body) {
+.nacar-root .font-body {
   font-family: var(--font-body);
 }
-.nacar-root :where(.font-display) {
+.nacar-root .font-display {
   font-family: var(--font-display);
 }
-.nacar-root :where(.font-doulaise) {
+.nacar-root .font-doulaise {
   font-family: var(--font-doulaise);
 }
-.nacar-root :where(.font-helvetica) {
+.nacar-root .font-helvetica {
   font-family: var(--font-helvetica);
 }
-.nacar-root :where(.font-mono) {
+.nacar-root .font-mono {
   font-family: var(--font-mono);
 }
-.nacar-root :where(.text-2xl) {
+.nacar-root .text-2xl {
   font-size: var(--text-2xl);
   line-height: var(--tw-leading, var(--text-2xl--line-height));
 }
-.nacar-root :where(.text-3xl) {
+.nacar-root .text-3xl {
   font-size: var(--text-3xl);
   line-height: var(--tw-leading, var(--text-3xl--line-height));
 }
-.nacar-root :where(.text-4xl) {
-  font-size: var(--text-4xl);
-  line-height: var(--tw-leading, var(--text-4xl--line-height));
-}
-.nacar-root :where(.text-5xl) {
+.nacar-root .text-5xl {
   font-size: var(--text-5xl);
   line-height: var(--tw-leading, var(--text-5xl--line-height));
 }
-.nacar-root :where(.text-6xl) {
+.nacar-root .text-6xl {
   font-size: var(--text-6xl);
   line-height: var(--tw-leading, var(--text-6xl--line-height));
 }
-.nacar-root :where(.text-base) {
+.nacar-root .text-base {
   font-size: var(--text-base);
   line-height: var(--tw-leading, var(--text-base--line-height));
 }
-.nacar-root :where(.text-lg) {
+.nacar-root .text-lg {
   font-size: var(--text-lg);
   line-height: var(--tw-leading, var(--text-lg--line-height));
 }
-.nacar-root :where(.text-sm) {
+.nacar-root .text-sm {
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
 }
-.nacar-root :where(.text-xl) {
+.nacar-root .text-xl {
   font-size: var(--text-xl);
   line-height: var(--tw-leading, var(--text-xl--line-height));
 }
-.nacar-root :where(.text-xs) {
+.nacar-root .text-xs {
   font-size: var(--text-xs);
   line-height: var(--tw-leading, var(--text-xs--line-height));
 }
-.nacar-root :where(.text-\[0\.5em\]) {
+.nacar-root .text-\[0\.5em\] {
   font-size: 0.5em;
 }
-.nacar-root :where(.text-\[2vw\]) {
-  font-size: 2vw;
+.nacar-root .text-\[2cqw\] {
+  font-size: 2cqw;
 }
-.nacar-root :where(.text-\[6\.5vw\]) {
-  font-size: 6.5vw;
+.nacar-root .text-\[6\.5cqw\] {
+  font-size: 6.5cqw;
 }
-.nacar-root :where(.text-\[7vw\]) {
-  font-size: 7vw;
+.nacar-root .text-\[7cqw\] {
+  font-size: 7cqw;
 }
-.nacar-root :where(.text-\[8vw\]) {
-  font-size: 8vw;
+.nacar-root .text-\[8cqw\] {
+  font-size: 8cqw;
 }
-.nacar-root :where(.text-\[10px\]) {
+.nacar-root .text-\[10px\] {
   font-size: 10px;
 }
-.nacar-root :where(.text-\[11px\]) {
+.nacar-root .text-\[11px\] {
   font-size: 11px;
 }
-.nacar-root :where(.text-\[12px\]) {
+.nacar-root .text-\[12px\] {
   font-size: 12px;
 }
-.nacar-root :where(.text-\[13px\]) {
+.nacar-root .text-\[13px\] {
   font-size: 13px;
 }
-.nacar-root :where(.text-\[15px\]) {
+.nacar-root .text-\[15px\] {
   font-size: 15px;
 }
-.nacar-root :where(.text-\[17px\]) {
+.nacar-root .text-\[17px\] {
   font-size: 17px;
 }
-.nacar-root :where(.text-\[38px\]) {
+.nacar-root .text-\[38px\] {
   font-size: 38px;
 }
-.nacar-root :where(.text-\[40px\]) {
+.nacar-root .text-\[40px\] {
   font-size: 40px;
 }
-.nacar-root :where(.text-\[50px\]) {
+.nacar-root .text-\[50px\] {
   font-size: 50px;
 }
-.nacar-root :where(.leading-\[0\.9\]) {
+.nacar-root .leading-\[0\.9\] {
   --tw-leading: 0.9;
   line-height: 0.9;
 }
-.nacar-root :where(.leading-\[0\.95\]) {
+.nacar-root .leading-\[0\.95\] {
   --tw-leading: 0.95;
   line-height: 0.95;
 }
-.nacar-root :where(.leading-none) {
+.nacar-root .leading-none {
   --tw-leading: 1;
   line-height: 1;
 }
-.nacar-root :where(.leading-relaxed) {
+.nacar-root .leading-relaxed {
   --tw-leading: var(--leading-relaxed);
   line-height: var(--leading-relaxed);
 }
-.nacar-root :where(.leading-snug) {
+.nacar-root .leading-snug {
   --tw-leading: var(--leading-snug);
   line-height: var(--leading-snug);
 }
-.nacar-root :where(.leading-tight) {
+.nacar-root .leading-tight {
   --tw-leading: var(--leading-tight);
   line-height: var(--leading-tight);
 }
-.nacar-root :where(.tracking-\[0\.1em\]) {
+.nacar-root .tracking-\[0\.1em\] {
   --tw-tracking: 0.1em;
   letter-spacing: 0.1em;
 }
-.nacar-root :where(.tracking-\[0\.2em\]) {
+.nacar-root .tracking-\[0\.2em\] {
   --tw-tracking: 0.2em;
   letter-spacing: 0.2em;
 }
-.nacar-root :where(.tracking-\[0\.3em\]) {
+.nacar-root .tracking-\[0\.3em\] {
   --tw-tracking: 0.3em;
   letter-spacing: 0.3em;
 }
-.nacar-root :where(.tracking-\[0\.14em\]) {
+.nacar-root .tracking-\[0\.14em\] {
   --tw-tracking: 0.14em;
   letter-spacing: 0.14em;
 }
-.nacar-root :where(.tracking-\[0\.15em\]) {
+.nacar-root .tracking-\[0\.15em\] {
   --tw-tracking: 0.15em;
   letter-spacing: 0.15em;
 }
-.nacar-root :where(.tracking-\[0\.24em\]) {
+.nacar-root .tracking-\[0\.24em\] {
   --tw-tracking: 0.24em;
   letter-spacing: 0.24em;
 }
-.nacar-root :where(.tracking-\[0\.25em\]) {
+.nacar-root .tracking-\[0\.25em\] {
   --tw-tracking: 0.25em;
   letter-spacing: 0.25em;
 }
-.nacar-root :where(.tracking-\[0\.28em\]) {
-  --tw-tracking: 0.28em;
-  letter-spacing: 0.28em;
-}
-.nacar-root :where(.tracking-\[0\.32em\]) {
+.nacar-root .tracking-\[0\.32em\] {
   --tw-tracking: 0.32em;
   letter-spacing: 0.32em;
 }
-.nacar-root :where(.tracking-wide) {
+.nacar-root .tracking-wide {
   --tw-tracking: var(--tracking-wide);
   letter-spacing: var(--tracking-wide);
 }
-.nacar-root :where(.tracking-wider) {
+.nacar-root .tracking-wider {
   --tw-tracking: var(--tracking-wider);
   letter-spacing: var(--tracking-wider);
 }
-.nacar-root :where(.break-words) {
+.nacar-root .break-words {
   overflow-wrap: break-word;
 }
-.nacar-root :where(.whitespace-nowrap) {
+.nacar-root .whitespace-nowrap {
   white-space: nowrap;
 }
-.nacar-root :where(.text-\[\#3c4b5d\]) {
+.nacar-root .text-\[\#3c4b5d\] {
   color: #3c4b5d;
 }
-.nacar-root :where(.text-\[\#f5f0e8\]) {
+.nacar-root .text-\[\#f5f0e8\] {
   color: #f5f0e8;
 }
-.nacar-root :where(.text-\[\#f8f6f2\]) {
+.nacar-root .text-\[\#f8f6f2\] {
   color: #f8f6f2;
 }
-.nacar-root :where(.text-\[\#f8f6f2\]\/80) {
+.nacar-root .text-\[\#f8f6f2\]\/80 {
   color: color-mix(in oklab, #f8f6f2 80%, transparent);
 }
-.nacar-root :where(.text-background) {
+.nacar-root .text-background {
   color: var(--color-background);
 }
-.nacar-root :where(.text-foreground) {
+.nacar-root .text-foreground {
   color: var(--color-foreground);
 }
-.nacar-root :where(.text-foreground\/50) {
+.nacar-root .text-foreground\/50 {
   color: color-mix(in srgb, #3c4b5d 50%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 50%, transparent);
   }
 }
-.nacar-root :where(.text-foreground\/60) {
+.nacar-root .text-foreground\/60 {
   color: color-mix(in srgb, #3c4b5d 60%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 60%, transparent);
   }
 }
-.nacar-root :where(.text-foreground\/65) {
+.nacar-root .text-foreground\/65 {
   color: color-mix(in srgb, #3c4b5d 65%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 65%, transparent);
   }
 }
-.nacar-root :where(.text-foreground\/70) {
+.nacar-root .text-foreground\/70 {
   color: color-mix(in srgb, #3c4b5d 70%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 70%, transparent);
   }
 }
-.nacar-root :where(.text-foreground\/75) {
+.nacar-root .text-foreground\/75 {
   color: color-mix(in srgb, #3c4b5d 75%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 75%, transparent);
   }
 }
-.nacar-root :where(.text-foreground\/80) {
+.nacar-root .text-foreground\/80 {
   color: color-mix(in srgb, #3c4b5d 80%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 80%, transparent);
   }
 }
-.nacar-root :where(.text-foreground\/85) {
+.nacar-root .text-foreground\/85 {
   color: color-mix(in srgb, #3c4b5d 85%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-foreground) 85%, transparent);
   }
 }
-.nacar-root :where(.text-white\/90) {
-  color: color-mix(in srgb, #fff 90%, transparent);
-  @supports (color: color-mix(in lab, red, red)) {
-    color: color-mix(in oklab, var(--color-white) 90%, transparent);
-  }
-}
-.nacar-root :where(.uppercase) {
+.nacar-root .uppercase {
   text-transform: uppercase;
 }
-.nacar-root :where(.tabular-nums) {
+.nacar-root .tabular-nums {
   --tw-numeric-spacing: tabular-nums;
   font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);
 }
-.nacar-root :where(.accent-\[\#3c4b5d\]) {
+.nacar-root .accent-\[\#3c4b5d\] {
   accent-color: #3c4b5d;
 }
-.nacar-root :where(.opacity-0) {
+.nacar-root .opacity-0 {
   opacity: 0%;
 }
-.nacar-root :where(.opacity-100) {
+.nacar-root .opacity-100 {
   opacity: 100%;
 }
-.nacar-root :where(.mix-blend-multiply) {
+.nacar-root .mix-blend-multiply {
   mix-blend-mode: multiply;
 }
-.nacar-root :where(.shadow-2xl) {
+.nacar-root .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
-.nacar-root :where(.shadow-\[0_1px_2px_rgba\(60\,75\,93\,0\.3\)\]) {
+.nacar-root .shadow-\[0_1px_2px_rgba\(60\,75\,93\,0\.3\)\] {
   --tw-shadow: 0 1px 2px var(--tw-shadow-color, rgba(60,75,93,0.3));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
-.nacar-root :where(.shadow-\[0_10px_30px_-12px_rgba\(60\,75\,93\,0\.35\)\]) {
+.nacar-root .shadow-\[0_10px_30px_-12px_rgba\(60\,75\,93\,0\.35\)\] {
   --tw-shadow: 0 10px 30px -12px var(--tw-shadow-color, rgba(60,75,93,0.35));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
-.nacar-root :where(.shadow-md) {
+.nacar-root .shadow-md {
   --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
-.nacar-root :where(.drop-shadow-\[0_2px_3px_rgba\(60\,75\,93\,0\.15\)\]) {
+.nacar-root .drop-shadow-\[0_2px_3px_rgba\(60\,75\,93\,0\.15\)\] {
   --tw-drop-shadow-size: drop-shadow(0 2px 3px var(--tw-drop-shadow-color, rgba(60,75,93,0.15)));
   --tw-drop-shadow: var(--tw-drop-shadow-size);
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
 }
-.nacar-root :where(.drop-shadow-\[0_2px_6px_rgba\(0\,0\,0\,0\.15\)\]) {
+.nacar-root .drop-shadow-\[0_2px_6px_rgba\(0\,0\,0\,0\.15\)\] {
   --tw-drop-shadow-size: drop-shadow(0 2px 6px var(--tw-drop-shadow-color, rgba(0,0,0,0.15)));
   --tw-drop-shadow: var(--tw-drop-shadow-size);
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
 }
-.nacar-root :where(.drop-shadow-\[0_6px_6px_rgba\(60\,75\,93\,0\.12\)\]) {
+.nacar-root .drop-shadow-\[0_6px_6px_rgba\(60\,75\,93\,0\.12\)\] {
   --tw-drop-shadow-size: drop-shadow(0 6px 6px var(--tw-drop-shadow-color, rgba(60,75,93,0.12)));
   --tw-drop-shadow: var(--tw-drop-shadow-size);
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
 }
-.nacar-root :where(.drop-shadow-\[0_8px_18px_rgba\(60\,75\,93\,0\.22\)\]) {
-  --tw-drop-shadow-size: drop-shadow(0 8px 18px var(--tw-drop-shadow-color, rgba(60,75,93,0.22)));
-  --tw-drop-shadow: var(--tw-drop-shadow-size);
-  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-}
-.nacar-root :where(.backdrop-blur-sm) {
+.nacar-root .backdrop-blur-sm {
   --tw-backdrop-blur: blur(var(--blur-sm));
   -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
 }
-.nacar-root :where(.transition-all) {
+.nacar-root .transition-all {
   transition-property: all;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
   transition-duration: var(--tw-duration, var(--default-transition-duration));
 }
-.nacar-root :where(.transition-colors) {
+.nacar-root .transition-colors {
   transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
   transition-duration: var(--tw-duration, var(--default-transition-duration));
 }
-.nacar-root :where(.transition-opacity) {
+.nacar-root .transition-opacity {
   transition-property: opacity;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
   transition-duration: var(--tw-duration, var(--default-transition-duration));
 }
-.nacar-root :where(.transition-transform) {
-  transition-property: transform, translate, scale, rotate;
-  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-  transition-duration: var(--tw-duration, var(--default-transition-duration));
-}
-.nacar-root :where(.duration-300) {
-  --tw-duration: 300ms;
-  transition-duration: 300ms;
-}
-.nacar-root :where(.duration-500) {
+.nacar-root .duration-500 {
   --tw-duration: 500ms;
   transition-duration: 500ms;
 }
-.nacar-root :where(.duration-700) {
+.nacar-root .duration-700 {
   --tw-duration: 700ms;
   transition-duration: 700ms;
 }
-.nacar-root :where(.duration-\[800ms\]) {
-  --tw-duration: 800ms;
-  transition-duration: 800ms;
-}
-.nacar-root :where(.duration-\[1600ms\]) {
+.nacar-root .duration-\[1600ms\] {
   --tw-duration: 1600ms;
   transition-duration: 1600ms;
 }
-.nacar-root :where(.ease-in-out) {
-  --tw-ease: var(--ease-in-out);
-  transition-timing-function: var(--ease-in-out);
-}
-.nacar-root :where(.ease-out) {
+.nacar-root .ease-out {
   --tw-ease: var(--ease-out);
   transition-timing-function: var(--ease-out);
 }
-.nacar-root :where(.outline-none) {
+.nacar-root .outline-none {
   --tw-outline-style: none;
   outline-style: none;
 }
-.nacar-root :where(.select-all) {
+.nacar-root .select-all {
   -webkit-user-select: all;
   user-select: all;
 }
-.nacar-root :where(.select-none) {
+.nacar-root .select-none {
   -webkit-user-select: none;
   user-select: none;
 }
-.nacar-root :where(.group-hover\:scale-105) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
-    @media (hover: hover) {
-      --tw-scale-x: 105%;
-      --tw-scale-y: 105%;
-      --tw-scale-z: 105%;
-      scale: var(--tw-scale-x) var(--tw-scale-y);
-    }
-  }
-}
-.nacar-root :where(.group-hover\:border-foreground) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
-    @media (hover: hover) {
-      border-color: var(--color-foreground);
-    }
-  }
-}
-.nacar-root :where(.group-hover\:border-foreground\/70) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
+.nacar-root .group-hover\:border-foreground\/70 {
+  .nacar-root &:is(:where(.group):hover *) {
     @media (hover: hover) {
       border-color: color-mix(in srgb, #3c4b5d 70%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
@@ -1076,15 +990,15 @@
     }
   }
 }
-.nacar-root :where(.group-hover\:bg-foreground) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
+.nacar-root .group-hover\:bg-foreground {
+  .nacar-root &:is(:where(.group):hover *) {
     @media (hover: hover) {
       background-color: var(--color-foreground);
     }
   }
 }
-.nacar-root :where(.group-hover\:bg-foreground\/90) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
+.nacar-root .group-hover\:bg-foreground\/90 {
+  .nacar-root &:is(:where(.group):hover *) {
     @media (hover: hover) {
       background-color: color-mix(in srgb, #3c4b5d 90%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
@@ -1093,51 +1007,22 @@
     }
   }
 }
-.nacar-root :where(.group-hover\:text-background) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
+.nacar-root .group-hover\:text-background {
+  .nacar-root &:is(:where(.group):hover *) {
     @media (hover: hover) {
       color: var(--color-background);
     }
   }
 }
-.nacar-root :where(.group-hover\:text-foreground) {
-  .nacar-root :where(&:is(:where(.group):hover *)) {
-    @media (hover: hover) {
-      color: var(--color-foreground);
-    }
-  }
-}
-.nacar-root :where(.group-active\:scale-95) {
-  .nacar-root :where(&:is(:where(.group):active *)) {
-    --tw-scale-x: 95%;
-    --tw-scale-y: 95%;
-    --tw-scale-z: 95%;
-    scale: var(--tw-scale-x) var(--tw-scale-y);
-  }
-}
-.nacar-root :where(.selection\:bg-foreground\/15) {
-  .nacar-root :where(& *::selection) {
-    background-color: color-mix(in srgb, #3c4b5d 15%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
-    }
-  }
-  .nacar-root :where(&::selection) {
-    background-color: color-mix(in srgb, #3c4b5d 15%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
-    }
-  }
-}
-.nacar-root :where(.hover\:scale-\[1\.03\]) {
-  .nacar-root :where(&:hover) {
+.nacar-root .hover\:scale-\[1\.03\] {
+  .nacar-root &:hover {
     @media (hover: hover) {
       scale: 1.03;
     }
   }
 }
-.nacar-root :where(.hover\:border-foreground\/60) {
-  .nacar-root :where(&:hover) {
+.nacar-root .hover\:border-foreground\/60 {
+  .nacar-root &:hover {
     @media (hover: hover) {
       border-color: color-mix(in srgb, #3c4b5d 60%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
@@ -1146,386 +1031,353 @@
     }
   }
 }
-.nacar-root :where(.hover\:bg-black\/45) {
-  .nacar-root :where(&:hover) {
-    @media (hover: hover) {
-      background-color: color-mix(in srgb, #000 45%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-black) 45%, transparent);
-      }
-    }
-  }
-}
-.nacar-root :where(.hover\:text-foreground) {
-  .nacar-root :where(&:hover) {
+.nacar-root .hover\:text-foreground {
+  .nacar-root &:hover {
     @media (hover: hover) {
       color: var(--color-foreground);
     }
   }
 }
-.nacar-root :where(.focus\:border-foreground) {
-  .nacar-root :where(&:focus) {
+.nacar-root .focus\:border-foreground {
+  .nacar-root &:focus {
     border-color: var(--color-foreground);
   }
 }
-.nacar-root :where(.focus\:outline-none) {
-  .nacar-root :where(&:focus) {
-    --tw-outline-style: none;
-    outline-style: none;
-  }
-}
-.nacar-root :where(.disabled\:cursor-default) {
-  .nacar-root :where(&:disabled) {
+.nacar-root .disabled\:cursor-default {
+  .nacar-root &:disabled {
     cursor: default;
   }
 }
-.nacar-root :where(.md\:left-0) {
-  @media (width >= 48rem) {
+.nacar-root .md\:left-0 {
+  @container (min-width: 600px) {
     left: calc(var(--spacing) * 0);
   }
 }
-.nacar-root :where(.md\:mx-auto) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mx-auto {
+  @container (min-width: 600px) {
     margin-inline: auto;
   }
 }
-.nacar-root :where(.md\:my-3\.5) {
-  @media (width >= 48rem) {
+.nacar-root .md\:my-3\.5 {
+  @container (min-width: 600px) {
     margin-block: calc(var(--spacing) * 3.5);
   }
 }
-.nacar-root :where(.md\:mt-3) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-3 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 3);
   }
 }
-.nacar-root :where(.md\:mt-6) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-6 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 6);
   }
 }
-.nacar-root :where(.md\:mt-7) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-7 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 7);
   }
 }
-.nacar-root :where(.md\:mt-8) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-8 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 8);
   }
 }
-.nacar-root :where(.md\:mt-10) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-10 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 10);
   }
 }
-.nacar-root :where(.md\:mt-12) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-12 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 12);
   }
 }
-.nacar-root :where(.md\:mt-28) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-28 {
+  @container (min-width: 600px) {
     margin-top: calc(var(--spacing) * 28);
   }
 }
-.nacar-root :where(.md\:mt-\[30px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-\[30px\] {
+  @container (min-width: 600px) {
     margin-top: 30px;
   }
 }
-.nacar-root :where(.md\:mt-\[110px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mt-\[110px\] {
+  @container (min-width: 600px) {
     margin-top: 110px;
   }
 }
-.nacar-root :where(.md\:mb-4) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mb-4 {
+  @container (min-width: 600px) {
     margin-bottom: calc(var(--spacing) * 4);
   }
 }
-.nacar-root :where(.md\:mb-6) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mb-6 {
+  @container (min-width: 600px) {
     margin-bottom: calc(var(--spacing) * 6);
   }
 }
-.nacar-root :where(.md\:mb-8) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mb-8 {
+  @container (min-width: 600px) {
     margin-bottom: calc(var(--spacing) * 8);
   }
 }
-.nacar-root :where(.md\:mb-\[24px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:mb-\[24px\] {
+  @container (min-width: 600px) {
     margin-bottom: 24px;
   }
 }
-.nacar-root :where(.md\:h-\[240px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:h-\[240px\] {
+  @container (min-width: 600px) {
     height: 240px;
   }
 }
-.nacar-root :where(.md\:w-36) {
-  @media (width >= 48rem) {
+.nacar-root .md\:w-36 {
+  @container (min-width: 600px) {
     width: calc(var(--spacing) * 36);
   }
 }
-.nacar-root :where(.md\:w-40) {
-  @media (width >= 48rem) {
-    width: calc(var(--spacing) * 40);
-  }
-}
-.nacar-root :where(.md\:w-\[60\%\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:w-\[60\%\] {
+  @container (min-width: 600px) {
     width: 60%;
   }
 }
-.nacar-root :where(.md\:w-\[200px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:w-\[200px\] {
+  @container (min-width: 600px) {
     width: 200px;
   }
 }
-.nacar-root :where(.md\:w-\[340px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:w-\[340px\] {
+  @container (min-width: 600px) {
     width: 340px;
   }
 }
-.nacar-root :where(.md\:w-full) {
-  @media (width >= 48rem) {
+.nacar-root .md\:w-full {
+  @container (min-width: 600px) {
     width: 100%;
   }
 }
-.nacar-root :where(.md\:max-w-\[215px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:max-w-\[215px\] {
+  @container (min-width: 600px) {
     max-width: 215px;
   }
 }
-.nacar-root :where(.md\:max-w-\[300px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:max-w-\[300px\] {
+  @container (min-width: 600px) {
     max-width: 300px;
   }
 }
-.nacar-root :where(.md\:max-w-\[465px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:max-w-\[465px\] {
+  @container (min-width: 600px) {
     max-width: 465px;
   }
 }
-.nacar-root :where(.md\:max-w-md) {
-  @media (width >= 48rem) {
+.nacar-root .md\:max-w-md {
+  @container (min-width: 600px) {
     max-width: var(--container-md);
   }
 }
-.nacar-root :where(.md\:translate-x-0) {
-  @media (width >= 48rem) {
+.nacar-root .md\:translate-x-0 {
+  @container (min-width: 600px) {
     --tw-translate-x: calc(var(--spacing) * 0);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
 }
-.nacar-root :where(.md\:space-y-10) {
-  @media (width >= 48rem) {
-    .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .md\:space-y-10 {
+  @container (min-width: 600px) {
+    .nacar-root :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
       margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
 }
-.nacar-root :where(.md\:space-y-12) {
-  @media (width >= 48rem) {
-    .nacar-root :where(:where(& > :not(:last-child))) {
+.nacar-root .md\:space-y-12 {
+  @container (min-width: 600px) {
+    .nacar-root :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
       margin-block-start: calc(calc(var(--spacing) * 12) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
 }
-.nacar-root :where(.md\:p-9) {
-  @media (width >= 48rem) {
+.nacar-root .md\:p-9 {
+  @container (min-width: 600px) {
     padding: calc(var(--spacing) * 9);
   }
 }
-.nacar-root :where(.md\:px-10) {
-  @media (width >= 48rem) {
+.nacar-root .md\:px-10 {
+  @container (min-width: 600px) {
     padding-inline: calc(var(--spacing) * 10);
   }
 }
-.nacar-root :where(.md\:px-12) {
-  @media (width >= 48rem) {
+.nacar-root .md\:px-12 {
+  @container (min-width: 600px) {
     padding-inline: calc(var(--spacing) * 12);
   }
 }
-.nacar-root :where(.md\:py-16) {
-  @media (width >= 48rem) {
+.nacar-root .md\:py-16 {
+  @container (min-width: 600px) {
     padding-block: calc(var(--spacing) * 16);
   }
 }
-.nacar-root :where(.md\:py-24) {
-  @media (width >= 48rem) {
+.nacar-root .md\:py-24 {
+  @container (min-width: 600px) {
     padding-block: calc(var(--spacing) * 24);
   }
 }
-.nacar-root :where(.md\:py-28) {
-  @media (width >= 48rem) {
+.nacar-root .md\:py-28 {
+  @container (min-width: 600px) {
     padding-block: calc(var(--spacing) * 28);
   }
 }
-.nacar-root :where(.md\:py-56) {
-  @media (width >= 48rem) {
+.nacar-root .md\:py-56 {
+  @container (min-width: 600px) {
     padding-block: calc(var(--spacing) * 56);
   }
 }
-.nacar-root :where(.md\:pt-10) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pt-10 {
+  @container (min-width: 600px) {
     padding-top: calc(var(--spacing) * 10);
   }
 }
-.nacar-root :where(.md\:pt-16) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pt-16 {
+  @container (min-width: 600px) {
     padding-top: calc(var(--spacing) * 16);
   }
 }
-.nacar-root :where(.md\:pt-28) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pt-28 {
+  @container (min-width: 600px) {
     padding-top: calc(var(--spacing) * 28);
   }
 }
-.nacar-root :where(.md\:pt-44) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pt-44 {
+  @container (min-width: 600px) {
     padding-top: calc(var(--spacing) * 44);
   }
 }
-.nacar-root :where(.md\:pt-\[60px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pt-\[60px\] {
+  @container (min-width: 600px) {
     padding-top: 60px;
   }
 }
-.nacar-root :where(.md\:pt-\[145px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pt-\[145px\] {
+  @container (min-width: 600px) {
     padding-top: 145px;
   }
 }
-.nacar-root :where(.md\:pb-28) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pb-28 {
+  @container (min-width: 600px) {
     padding-bottom: calc(var(--spacing) * 28);
   }
 }
-.nacar-root :where(.md\:pb-\[70px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pb-\[70px\] {
+  @container (min-width: 600px) {
     padding-bottom: 70px;
   }
 }
-.nacar-root :where(.md\:pb-\[170px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:pb-\[170px\] {
+  @container (min-width: 600px) {
     padding-bottom: 170px;
   }
 }
-.nacar-root :where(.md\:text-2xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-2xl {
+  @container (min-width: 600px) {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-3xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-3xl {
+  @container (min-width: 600px) {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-4xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-4xl {
+  @container (min-width: 600px) {
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-5xl) {
-  @media (width >= 48rem) {
-    font-size: var(--text-5xl);
-    line-height: var(--tw-leading, var(--text-5xl--line-height));
-  }
-}
-.nacar-root :where(.md\:text-6xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-6xl {
+  @container (min-width: 600px) {
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-7xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-7xl {
+  @container (min-width: 600px) {
     font-size: var(--text-7xl);
     line-height: var(--tw-leading, var(--text-7xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-8xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-8xl {
+  @container (min-width: 600px) {
     font-size: var(--text-8xl);
     line-height: var(--tw-leading, var(--text-8xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-base) {
-  @media (width >= 48rem) {
-    font-size: var(--text-base);
-    line-height: var(--tw-leading, var(--text-base--line-height));
-  }
-}
-.nacar-root :where(.md\:text-lg) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-lg {
+  @container (min-width: 600px) {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
 }
-.nacar-root :where(.md\:text-sm) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-sm {
+  @container (min-width: 600px) {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
 }
-.nacar-root :where(.md\:text-xl) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-xl {
+  @container (min-width: 600px) {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
 }
-.nacar-root :where(.md\:text-xs) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-xs {
+  @container (min-width: 600px) {
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
 }
-.nacar-root :where(.md\:text-\[13px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[13px\] {
+  @container (min-width: 600px) {
     font-size: 13px;
   }
 }
-.nacar-root :where(.md\:text-\[14px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[14px\] {
+  @container (min-width: 600px) {
     font-size: 14px;
   }
 }
-.nacar-root :where(.md\:text-\[15px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[15px\] {
+  @container (min-width: 600px) {
     font-size: 15px;
   }
 }
-.nacar-root :where(.md\:text-\[19px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[19px\] {
+  @container (min-width: 600px) {
     font-size: 19px;
   }
 }
-.nacar-root :where(.md\:text-\[50px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[50px\] {
+  @container (min-width: 600px) {
     font-size: 50px;
   }
 }
-.nacar-root :where(.md\:text-\[62px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[62px\] {
+  @container (min-width: 600px) {
     font-size: 62px;
   }
 }
-.nacar-root :where(.md\:text-\[64px\]) {
-  @media (width >= 48rem) {
+.nacar-root .md\:text-\[64px\] {
+  @container (min-width: 600px) {
     font-size: 64px;
   }
 }
-.nacar-root :where(*), .nacar-root :where(::after), .nacar-root :where(::before), .nacar-root :where(::backdrop), .nacar-root :where(::file-selector-button) {
+.nacar-root *, .nacar-root ::after, .nacar-root ::before, .nacar-root ::backdrop, .nacar-root ::file-selector-button {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -1540,74 +1392,74 @@
   font-variation-settings: var(--default-font-variation-settings, normal);
   -webkit-tap-highlight-color: transparent;
 }
-.nacar-root :where(hr) {
+.nacar-root hr {
   height: 0;
   color: inherit;
   border-top-width: 1px;
 }
-.nacar-root :where(abbr:where([title])) {
+.nacar-root abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
 }
-.nacar-root :where(h1), .nacar-root :where(h2), .nacar-root :where(h3), .nacar-root :where(h4), .nacar-root :where(h5), .nacar-root :where(h6) {
+.nacar-root h1, .nacar-root h2, .nacar-root h3, .nacar-root h4, .nacar-root h5, .nacar-root h6 {
   font-size: inherit;
   font-weight: inherit;
 }
-.nacar-root :where(a) {
+.nacar-root a {
   color: inherit;
   -webkit-text-decoration: inherit;
   text-decoration: inherit;
 }
-.nacar-root :where(b), .nacar-root :where(strong) {
+.nacar-root b, .nacar-root strong {
   font-weight: bolder;
 }
-.nacar-root :where(code), .nacar-root :where(kbd), .nacar-root :where(samp), .nacar-root :where(pre) {
+.nacar-root code, .nacar-root kbd, .nacar-root samp, .nacar-root pre {
   font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace);
   font-feature-settings: var(--default-mono-font-feature-settings, normal);
   font-variation-settings: var(--default-mono-font-variation-settings, normal);
   font-size: 1em;
 }
-.nacar-root :where(small) {
+.nacar-root small {
   font-size: 80%;
 }
-.nacar-root :where(sub), .nacar-root :where(sup) {
+.nacar-root sub, .nacar-root sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-.nacar-root :where(sub) {
+.nacar-root sub {
   bottom: -0.25em;
 }
-.nacar-root :where(sup) {
+.nacar-root sup {
   top: -0.5em;
 }
-.nacar-root :where(table) {
+.nacar-root table {
   text-indent: 0;
   border-color: inherit;
   border-collapse: collapse;
 }
-.nacar-root :where(:-moz-focusring) {
+.nacar-root :-moz-focusring {
   outline: auto;
 }
-.nacar-root :where(progress) {
+.nacar-root progress {
   vertical-align: baseline;
 }
-.nacar-root :where(summary) {
+.nacar-root summary {
   display: list-item;
 }
-.nacar-root :where(ol), .nacar-root :where(ul), .nacar-root :where(menu) {
+.nacar-root ol, .nacar-root ul, .nacar-root menu {
   list-style: none;
 }
-.nacar-root :where(img), .nacar-root :where(svg), .nacar-root :where(video), .nacar-root :where(canvas), .nacar-root :where(audio), .nacar-root :where(iframe), .nacar-root :where(embed), .nacar-root :where(object) {
+.nacar-root img, .nacar-root svg, .nacar-root video, .nacar-root canvas, .nacar-root audio, .nacar-root iframe, .nacar-root embed, .nacar-root object {
   display: block;
   vertical-align: middle;
 }
-.nacar-root :where(img), .nacar-root :where(video) {
+.nacar-root img, .nacar-root video {
   max-width: 100%;
   height: auto;
 }
-.nacar-root :where(button), .nacar-root :where(input), .nacar-root :where(select), .nacar-root :where(optgroup), .nacar-root :where(textarea), .nacar-root :where(::file-selector-button) {
+.nacar-root button, .nacar-root input, .nacar-root select, .nacar-root optgroup, .nacar-root textarea, .nacar-root ::file-selector-button {
   font: inherit;
   font-feature-settings: inherit;
   font-variation-settings: inherit;
@@ -1617,55 +1469,55 @@
   background-color: transparent;
   opacity: 1;
 }
-.nacar-root :where(:where(select:is([multiple], [size])) optgroup) {
+.nacar-root :where(select:is([multiple], [size])) optgroup {
   font-weight: bolder;
 }
-.nacar-root :where(:where(select:is([multiple], [size])) optgroup option) {
+.nacar-root :where(select:is([multiple], [size])) optgroup option {
   padding-inline-start: 20px;
 }
-.nacar-root :where(::file-selector-button) {
+.nacar-root ::file-selector-button {
   margin-inline-end: 4px;
 }
-.nacar-root :where(::placeholder) {
+.nacar-root ::placeholder {
   opacity: 1;
 }
 @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
-  .nacar-root :where(::placeholder) {
+  .nacar-root ::placeholder {
     color: currentcolor;
     @supports (color: color-mix(in lab, red, red)) {
       color: color-mix(in oklab, currentcolor 50%, transparent);
     }
   }
 }
-.nacar-root :where(textarea) {
+.nacar-root textarea {
   resize: vertical;
 }
-.nacar-root :where(::-webkit-search-decoration) {
+.nacar-root ::-webkit-search-decoration {
   -webkit-appearance: none;
 }
-.nacar-root :where(::-webkit-date-and-time-value) {
+.nacar-root ::-webkit-date-and-time-value {
   min-height: 1lh;
   text-align: inherit;
 }
-.nacar-root :where(::-webkit-datetime-edit) {
+.nacar-root ::-webkit-datetime-edit {
   display: inline-flex;
 }
-.nacar-root :where(::-webkit-datetime-edit-fields-wrapper) {
+.nacar-root ::-webkit-datetime-edit-fields-wrapper {
   padding: 0;
 }
-.nacar-root :where(::-webkit-datetime-edit), .nacar-root :where(::-webkit-datetime-edit-year-field), .nacar-root :where(::-webkit-datetime-edit-month-field), .nacar-root :where(::-webkit-datetime-edit-day-field), .nacar-root :where(::-webkit-datetime-edit-hour-field), .nacar-root :where(::-webkit-datetime-edit-minute-field), .nacar-root :where(::-webkit-datetime-edit-second-field), .nacar-root :where(::-webkit-datetime-edit-millisecond-field), .nacar-root :where(::-webkit-datetime-edit-meridiem-field) {
+.nacar-root ::-webkit-datetime-edit, .nacar-root ::-webkit-datetime-edit-year-field, .nacar-root ::-webkit-datetime-edit-month-field, .nacar-root ::-webkit-datetime-edit-day-field, .nacar-root ::-webkit-datetime-edit-hour-field, .nacar-root ::-webkit-datetime-edit-minute-field, .nacar-root ::-webkit-datetime-edit-second-field, .nacar-root ::-webkit-datetime-edit-millisecond-field, .nacar-root ::-webkit-datetime-edit-meridiem-field {
   padding-block: 0;
 }
-.nacar-root :where(:-moz-ui-invalid) {
+.nacar-root :-moz-ui-invalid {
   box-shadow: none;
 }
-.nacar-root :where(button), .nacar-root :where(input:where([type='button'], [type='reset'], [type='submit'])), .nacar-root :where(::file-selector-button) {
+.nacar-root button, .nacar-root input:where([type='button'], [type='reset'], [type='submit']), .nacar-root ::file-selector-button {
   appearance: button;
 }
-.nacar-root :where(::-webkit-inner-spin-button), .nacar-root :where(::-webkit-outer-spin-button) {
+.nacar-root ::-webkit-inner-spin-button, .nacar-root ::-webkit-outer-spin-button {
   height: auto;
 }
-.nacar-root :where([hidden]:where(:not([hidden='until-found']))) {
+.nacar-root [hidden]:where(:not([hidden='until-found'])) {
   display: none !important;
 }
 @property --tw-translate-x {
@@ -1883,24 +1735,9 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-scale-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
-    .nacar-root :where(*), .nacar-root :where(::before), .nacar-root :where(::after), .nacar-root :where(::backdrop) {
+    .nacar-root *, .nacar-root ::before, .nacar-root ::after, .nacar-root ::backdrop {
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
@@ -1951,9 +1788,6 @@
       --tw-backdrop-sepia: initial;
       --tw-duration: initial;
       --tw-ease: initial;
-      --tw-scale-x: 1;
-      --tw-scale-y: 1;
-      --tw-scale-z: 1;
     }
   }
 }
@@ -1981,20 +1815,20 @@
     }
 
     /* Smooth scroll-reveal animation */
-    .nacar-root :where(.reveal) {
+    .nacar-root .reveal {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
                   transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .nacar-root :where(.reveal.is-visible) {
+    .nacar-root .reveal.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
     /* Inline RSVP form smooth expansion */
-    .nacar-root :where(.rsvp-form-collapse) {
+    .nacar-root .rsvp-form-collapse {
       max-height: 0;
       opacity: 0;
       overflow: hidden;
@@ -2002,14 +1836,14 @@
                   opacity 0.65s ease 0.15s;
     }
 
-    .nacar-root :where(.rsvp-form-collapse.is-open) {
+    .nacar-root .rsvp-form-collapse.is-open {
       max-height: 1100px;
       opacity: 1;
     }
   
 /* Component scope and shared N&S Atelier viewer integration */
-.nacar-root{--color-background:#f8f6f2;--color-foreground:#3c4b5d;position:relative;width:100%;min-height:100vh;max-width:560px;margin:0 auto;background:#f8f6f2;color:#3c4b5d;font-family:"Jost",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;}
-.nacar-root .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease;}
+.nacar-root{--color-background:#f8f6f2;--color-foreground:#3c4b5d;container-type:inline-size;width:100%;min-height:100vh;max-width:760px;margin:0 auto;background:#f8f6f2;color:#3c4b5d;font-family:"Jost",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;}
+.nacar-root .reveal{opacity:1;transform:none;transition:opacity .9s ease,transform .9s ease;}
 .nacar-root .reveal.is-visible{opacity:1;transform:translateY(0);}
 .nacar-root .rsvp-form-collapse{max-height:0;opacity:0;overflow:hidden;transition:max-height .85s ease,opacity .65s ease;}
 .nacar-root .rsvp-form-collapse.is-open{max-height:1100px;opacity:1;}
@@ -2023,5 +1857,9 @@
 #weiOverlay.nacar-opening #weiTapWrap{position:static;transform:none;}
 #weiOverlay.nacar-opening .wei-chevron{display:none;}
 body.ns-mobile-immersive .nacar-root{max-width:none;}
+.nacar-root main{width:100%;min-width:0;}
+.nacar-root img,.nacar-root video{max-width:100%;}
+.nacar-root .reveal.is-visible{opacity:1;transform:none;}
+body.nacar-mode{background:radial-gradient(ellipse at 48% 12%,#f3eddf,#e6ddcf 62%,#ddd0c0);}
 @media(max-width:560px){.nacar-root{max-width:100%;}}
 @media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}
