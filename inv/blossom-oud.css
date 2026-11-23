@@ -1,0 +1,32 @@
+.blossom-mode #weiOverlay{background:#2e3528}
+.blossom-mode #weiImg{width:min(32vw,165px);filter:drop-shadow(0 12px 22px #171a1260)}
+.blossom-mode #weiTapLabel{color:#303525;background:#f7efe3}
+.blossom{background:#f7efe3;color:#303525;font-family:Georgia,serif;text-align:center;overflow:hidden}
+.blossom section:not(.blossom-hero){padding:clamp(48px,8vw,94px) clamp(20px,5vw,72px)}
+.blossom h1,.blossom h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.02;margin:0 0 16px}
+.blossom h2{font-size:clamp(2.2rem,6vw,4rem)}
+.blossom p:not(.blossom-label){max-width:50ch;margin:12px auto 24px;line-height:1.65}
+.blossom-label{font:600 .73rem/1.5 system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;margin:0 0 20px}
+.blossom-hero{position:relative;min-height:min(86svh,800px);padding:42px 20px;display:grid;place-items:center;isolation:isolate;background:#303525}
+.blossom-hero-image,.blossom-hero-image::after{position:absolute;inset:0;z-index:-1}
+.blossom-hero-image::after{content:'';z-index:auto;background:#20261956}
+.blossom-hero-image img,.blossom-hero-image video{width:100%;height:100%;object-fit:cover;display:block}
+.blossom-inset{width:min(100%,490px);padding:clamp(24px,8vw,52px);background:#f7efe3f5;outline:1px solid #f7efe3;outline-offset:7px}
+.blossom h1{font-size:clamp(3.1rem,10vw,6rem);overflow-wrap:anywhere}
+.blossom h1 span{display:block;color:#756034;font-size:.5em;margin:.09em 0}
+.blossom-inset a{color:#3c472c;text-underline-offset:4px;font-size:.9rem}
+.blossom-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;max-width:430px;margin:34px auto 0;border-block:1px solid #a7905f;padding:18px 0}
+.blossom-count b,.blossom-count small{display:block}
+.blossom-count b{font:500 clamp(1.4rem,6vw,2.5rem)/1 'Cormorant Garamond',Georgia,serif}
+.blossom-count small{font-size:clamp(.66rem,2.6vw,.9rem);margin-top:6px}
+.blossom-agenda,.blossom-rsvp{background:#303525;color:#fcf3e6}
+.blossom-agenda ol{max-width:420px;margin:24px auto 0;padding:0;list-style:none;text-align:left}
+.blossom-agenda li{padding:13px 0;border-bottom:1px solid #e5d1a94f;display:grid;grid-template-columns:4.3rem 1fr;gap:12px;align-items:baseline}
+.blossom-agenda small{display:block;margin-top:5px}
+.blossom-venue{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:29px;align-items:center;max-width:1050px;margin:auto}
+.blossom-venue img{width:100%;height:auto;border:1px solid #b7a47b;padding:8px;background:#fffaf1}
+.blossom-dress{background:#eadcc6}
+.blossom-button{display:inline-block;background:#3d482c;color:#fffaf1;border:1px solid #b7a47b;padding:12px 19px;font:600 .9rem system-ui,sans-serif;text-decoration:none;cursor:pointer}
+.blossom-rsvp .blossom-button{background:#f7efe3;color:#303525}
+.blossom-palette{display:flex;justify-content:center;gap:8px}.blossom-palette i{width:23px;height:23px;border-radius:50%;background:#747b54}.blossom-palette i:nth-child(2){background:#bda58a}.blossom-palette i:nth-child(3){background:#9e7c48}
+@media(max-width:620px){.blossom-venue{grid-template-columns:1fr}}

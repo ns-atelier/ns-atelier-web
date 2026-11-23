@@ -677,6 +677,7 @@
   <link rel="stylesheet" href="dolce-vita.css?v=carta3" />
   <link rel="stylesheet" href="fresco.css" />
   <link rel="stylesheet" href="theatre.css" />
+  <link rel="stylesheet" href="blossom-oud.css" />
   <script src="../assets/demo-ids.js"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
@@ -691,6 +692,7 @@
   <script src="fresco.js"></script>
   <script src="theatre-original.js?v=es"></script>
   <script src="theatre.js?v=es"></script>
+  <script src="blossom-oud.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -1801,7 +1803,9 @@
         (isPreview && id === 'fresco') || style === 'fresco';
       const theatre = (isPublicDemo && publicId === 'theatre' && id === 'theatre') ||
         (isPreview && id === 'theatre') || style === 'theatre';
-      if (theatre) await window.renderTheatre(d,t,m,payload);
+      const blossomOud = id === 'blossom-oud' || style === 'blossom-oud';
+      if (blossomOud) window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl);
+      else if (theatre) await window.renderTheatre(d,t,m,payload);
       else if (fresco) await window.renderFresco(d,t,m,payload);
       else if (dolceVita) await window.renderDolceVita(d,t,m,payload);
       else if (odette) await window.renderOdette(d,t,m,payload);
@@ -1842,6 +1846,7 @@
       } catch (error) {
         if (query.tipo !== 'plantilla') throw error;
       }
+      if (query.id === 'blossom-oud' && !query.preview) return window.blossomOudDemo();
       // Respaldo local exclusivo de la demo: la plantilla privada no se modifica.
       if (query.id === 'nacar') {
         return {
