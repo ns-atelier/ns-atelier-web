@@ -142,7 +142,7 @@
   }
 
   window.renderRedVibrante = async function renderRedVibrante(data, template, media, payload) {
-    const response = await fetch(new URL('red-vibrante-template.html', document.baseURI), { cache: 'force-cache' });
+    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html'), { cache: 'force-cache' });
     if (!response.ok) throw Error('No se pudo cargar la plantilla Red Vibrante.');
     const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
     const node = doc.querySelector('.rv-root');
