@@ -12,7 +12,9 @@
       // /ns-atelier-web/inv/TOKEN -> /ns-atelier-web/inv/?t=TOKEN
       if (i >= 0 && parts[i+1] && parts[i+1] !== 'index.html') {
         const base = '/' + parts.slice(0, i + 1).join('/') + '/';
-        location.replace(base + '?t=' + encodeURIComponent(parts[i+1]));
+        const params = new URLSearchParams(location.search);
+        params.set('t', parts[i+1]);
+        location.replace(base + '?' + params.toString() + location.hash);
         return;
       }
       // /ns-atelier-web/catalogo -> /ns-atelier-web/catalogo.html
