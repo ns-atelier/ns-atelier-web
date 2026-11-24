@@ -1607,6 +1607,120 @@
     function sendPanel(type, extra = {}) {
       if (editingView && panelOrigin) parent.postMessage({type, ...extra}, panelOrigin === "null" ? "*" : panelOrigin);
     }
+    const resourceNodes = new Map();
+    const resourceLabels = {
+      image:'Imagen', video:'Video', audio:'Audio', poster:'Imagen previa del video',
+      background:'Imagen de fondo', mask:'Máscara', border:'Imagen del borde', frame:'Contenido incrustado', link:'Enlace'
+    };
+    function resourceUrl(value) {
+      if (!value || /^[#]/.test(value)) return '';
+      try {
+        const url = new URL(value, document.baseURI);
+        return ['http:', 'https:', 'data:', 'blob:'].includes(url.protocol) ? url.href : '';
+      } catch (error) { return ''; }
+    }
+    function resourcePath(el, root) {
+      const path = [];
+      for (let node = el; node !== root; node = node.parentElement) {
+        if (/^[a-z][a-z0-9_-]*$/i.test(node.id) && document.getElementById(node.id) === node) {
+          // Keep the same resource when an optional section is added before it.
+          path.unshift('id' + [...node.id].map(char => char.charCodeAt(0).toString(16)).join(''));
+          break;
+        }
+        const peers = [...node.parentElement.children].filter(peer => peer.tagName === node.tagName);
+        path.unshift(node.localName.replace(/[^a-z0-9]/g, '') + peers.indexOf(node));
+      }
+      return path.length ? path.join('.') : 'root';
+    }
+    function listResources(t, d, m) {
+      const base = t.media?._layout || {}, custom = d.layout || {};
+      if (!editingView && ![...Object.keys(base), ...Object.keys(custom)].some(key => key.startsWith('resource.'))) return;
+      const items = [];
+      const design = String(t.estilo || t.id || 'general').toLowerCase().replace(/[^a-z0-9]/g, '') || 'general';
+      function register(el, key, kind, value, set, field) {
+        const original = resourceUrl(value);
+        if (!original) return;
+        const patch = {...base[key], ...custom[key]};
+        const hidden = !field && patch.src === '__oculto__';
+        const replacement = !field && safeUrl(patch.src);
+        if (hidden || replacement) set(replacement, hidden);
+        if (!editingView) return;
+        const section = el.closest('section');
+        const title = el.getAttribute('alt') || el.getAttribute('aria-label') || el.getAttribute('title') ||
+          (kind === 'link' ? el.textContent.trim() : '') || resourceLabels[kind];
+        const group = el.closest('#weiOverlay,#weiVideoWrap') || el.id === 'weiAudio' ? 'Sobre y apertura' :
+          section?.querySelector('h1,h2,h3')?.textContent.trim().slice(0, 110) || 'Interior';
+        const url = replacement || original;
+        const target = el.closest('video,audio') || el;
+        resourceNodes.set(key, target);
+        if (!el.dataset.resourceKey) el.dataset.resourceKey = key;
+        if (!target.dataset.resourceKey) target.dataset.resourceKey = key;
+        items.push({key, kind, title:title.trim().slice(0, 140), group, hidden,
+          custom:!field && !!patch.src,
+          field, url:/^https?:\/\//i.test(url) ? url : '',
+          original:/^https?:\/\//i.test(original) ? original : '', embedded:/^(data|blob):/.test(url)});
+      }
+      function describe(root, area) {
+        for (const el of [root, ...root.querySelectorAll('*')]) {
+          const add = (part, kind, value, set, field) => {
+            if (!value) return;
+            const key = 'resource.' + design + '.' + area + '.' + resourcePath(el, root) + '.' + part;
+            register(el, key, kind, value, set, field);
+          };
+          const source = el.getAttribute('src');
+          if (el.matches('img,video,audio,iframe,source,image')) {
+            const field = el.id === 'weiImg' ? 'sobre' : '';
+            const attr = el.matches('image') ? (el.hasAttribute('href') ? 'href' : 'xlink:href') : 'src';
+            const owner = el.closest('video,audio');
+            const kind = el.matches('iframe') ? 'frame' : owner ? owner.localName : 'image';
+            add('source', kind, source || (attr !== 'src' ? el.getAttribute(attr) : ''), (url, hidden) => {
+              if (hidden) {
+                if (el.matches('source')) el.removeAttribute(attr);
+                else el.style.setProperty('display', 'none', 'important');
+              } else {
+                if (el.matches('iframe')) el.referrerPolicy = 'no-referrer';
+                if (el.matches('img')) el.removeAttribute('srcset');
+                el.setAttribute(attr, url);
+                if (el.hasAttribute('data-fallback')) el.dataset.fallback = url;
+              }
+              if (el.matches('source') && owner && !owner.getAttribute('src')) owner.load();
+              if (owner && hidden && el === owner) owner.pause();
+            }, field);
+          }
+          if (el.matches('video')) {
+            add('poster', 'poster', el.getAttribute('poster'), (url, hidden) => {
+              if (hidden) el.removeAttribute('poster'); else el.poster = url;
+            });
+          }
+          if (el.matches('a[href]')) {
+            add('link', 'link', el.getAttribute('href'), (url, hidden) => {
+              if (hidden) el.style.setProperty('display', 'none', 'important'); else el.href = url;
+            });
+          }
+          const style = getComputedStyle(el);
+          for (const [property,kind] of [['background-image','background'],['mask-image','mask'],['border-image-source','border']]) {
+            const image = style.getPropertyValue(property);
+            if (!image.includes('url(')) continue;
+            const layers = [...image.matchAll(/url\((?:"([^"]*)"|'([^']*)'|([^)]*))\)/g)];
+            const changes = [];
+            layers.forEach((layer, index) => add(kind + index, kind, layer[1] ?? layer[2] ?? layer[3], (url, hidden) => {
+              changes.push({index:layer.index, length:layer[0].length, value:hidden ? 'none' : 'url(' + JSON.stringify(url) + ')'});
+            }));
+            if (changes.length) {
+              let updated = image;
+              for (const change of changes.reverse()) updated = updated.slice(0, change.index) + change.value + updated.slice(change.index + change.length);
+              el.style.setProperty(property, updated, 'important');
+            }
+          }
+        }
+      }
+      describe($('weiOverlay'), 'cover');
+      describe($('root'), 'interior');
+      if (!editingView) return;
+      if (!m.__redVibrante && !m.__dolceVita) register($('weiVideo'), 'video', 'video', m.video, null, 'video');
+      register($('weiAudio'), 'musica', 'audio', m.musica, null, 'musica');
+      sendPanel('atelier-resources', {items});
+    }
     let explicitMedia={};
     function visualLayer(root, sectionKey, base, custom) {
       // Keep each name independently selectable inside headings with a decorative separator.
@@ -1696,7 +1810,7 @@
         visualSelected?.el.removeAttribute('data-picked');
         visualSelected=visualNodes.get(node.dataset.visualKey);
         node.dataset.picked='';
-        sendPanel('atelier-pick',{key:node.dataset.visualKey, media:visualSelected.media, kind:node.tagName.toLowerCase(),
+        sendPanel('atelier-pick',{key:node.dataset.visualKey, resourceKey:node.dataset.resourceKey, media:visualSelected.media, kind:node.tagName.toLowerCase(),
           src:node.currentSrc || node.getAttribute('src') || node.querySelector('source')?.src || '',
           text:visualSelected.words.map(n=>n.textContent.trim()).join(' '), editable:visualSelected.words.length===1,
           px:Math.round(parseFloat(getComputedStyle(node).fontSize)),font:getComputedStyle(node).fontFamily.split(',')[0].replace(/["']/g,''),bold:parseInt(getComputedStyle(node).fontWeight)>=600,italic:getComputedStyle(node).fontStyle==='italic',
@@ -1734,6 +1848,15 @@
           pruebaApertura=false;
           showEditorSection(v.cover,v.end);return;
         }
+        if(v?.type==='atelier-resource-focus'){
+          const node=resourceNodes.get(v.key);
+          if(!node || node.id==='weiAudio' || node.id==='weiVideo') return;
+          pruebaApertura=false;
+          showEditorSection(Boolean(node.closest('#weiOverlay')),false);
+          node.scrollIntoView({block:'center'});
+          if (node.dataset.visualKey) node.click();
+          return;
+        }
         if(v?.type!=='atelier-change'||!visualSelected)return;
         if(v.patch.text!==undefined && visualSelected.words.length===1) visualSelected.words[0].textContent=v.patch.text;
         if(v.patch.src && safeUrl(v.patch.src)) visualSelected.el.src=safeUrl(v.patch.src);
@@ -1747,6 +1870,7 @@
       explicitMedia=d.medios||{};
       const m = Object.assign({}, t.media || {});
       Object.entries(d.medios || {}).forEach(([k, v]) => { if (v) m[k] = v; });
+      const hiddenIntro = ['sobre','video','musica'].filter(key => m[key] === '__oculto__');
       Object.entries(m).forEach(([key, value]) => {
         if (typeof value === 'string' && value !== '__oculto__' && !key.startsWith('_')) {
           const normalized = safeUrl(value);
@@ -1819,6 +1943,7 @@
       else if (style === 'perla-nacar' || id === 'perla-nacar') renderPerlaNacar(d,t,m,payload.tipo === 'plantilla');
       else renderUniversal(d,t,m);
 
+      for (const key of hiddenIntro) m[key] = '__oculto__';
       const suppressed={sobre:'#weiImg',ramaIzq:'.sg-branch-l',ramaDer:'.sg-branch-r',rosaLinea:'#sgRose',lugar:'.sg-venue-art',sello:'#openSealBtn img',fotoCierre:'.sg-footer-photo',coronaFinal:'.sg-footer-wreath',flores:'.sg-welcome-bg',caligrafia:'.sg-calig',petalo:'.sg-petal'};
       for(const [key,sel] of Object.entries(suppressed))if(m[key]==='__oculto__')document.querySelectorAll(sel).forEach(el=>el.style.display='none');
       if(editingView){
@@ -1832,6 +1957,7 @@
       setupIntro(m, d.textos || {});
       mostrarInvitacionES();
       connectVisual(t,d);
+      listResources(t,d,m);
       startCountdown(d.fecha);
       wireRsvpModal();
       initObservers();
