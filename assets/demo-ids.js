@@ -11,7 +11,8 @@
     {id:'dolce-vita',name:'Dolce Vita',aliases:[]},
     {id:'fresco',name:'Fresco',aliases:[]},
     {id:'theatre',name:'Theatre',aliases:[]},
-    {id:'blossom-oud',name:'Blossom & Oud',aliases:[]}
+    {id:'blossom-oud',name:'Blossom & Oud',aliases:[]},
+    {id:'ana-diego',name:'Ana & Diego',aliases:[]}
   ];
   const aliases=Object.create(null);
   const names=Object.create(null);

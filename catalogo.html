@@ -748,7 +748,8 @@
       ['dolce-vita','assets/catalogo/catalogo-dolce-vita.webp?v=positano-20261123'],
       ['fresco','assets/catalogo/catalogo-fresco.webp'],
       ['theatre','assets/catalogo/catalogo-theatre.webp?v=telon-4x5'],
-      ['blossom-oud','assets/catalogo/catalogo-blossom-oud.webp?v=dos-vistas']
+      ['blossom-oud','assets/catalogo/catalogo-blossom-oud.webp?v=dos-vistas'],
+      ['ana-diego','assets/catalogo/catalogo-ana-diego.webp']
     ]);
     // Si el panel devuelve exactamente la portada original, usamos la miniatura optimizada.
     // Una imagen personalizada con otra ruta se muestra tal como la haya elegido el cliente.
@@ -902,6 +903,11 @@
         items.push({id:'blossom-oud', nombre:'Blossom & Oud', categoria:'Boda premium',
           descripcion:'Una boda en Marrakech entre tonos oliva y la luz de un jardín marroquí.',
           portadaWeb:'/assets/catalogo/catalogo-blossom-oud.webp?v=dos-vistas'});
+      }
+      if (!items.some(item => item.id === 'ana-diego') && !response.coleccionRegistrada?.includes('ana-diego')) {
+        items.push({id:'ana-diego', nombre:'Ana & Diego', categoria:'Boda premium',
+          descripcion:'Sobre marfil, detalles dorados y un álbum romántico con ubicaciones e itinerario.',
+          portadaWeb:'/assets/catalogo/catalogo-ana-diego.webp'});
       }
       const cards = items.map(item => createCard(item, layout));
       return cards;

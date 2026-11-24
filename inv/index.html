@@ -678,6 +678,7 @@
   <link rel="stylesheet" href="fresco.css" />
   <link rel="stylesheet" href="theatre.css" />
   <link rel="stylesheet" href="blossom-oud.css" />
+  <link rel="stylesheet" href="ana-diego.css" />
   <script src="../assets/demo-ids.js"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js"></script>
@@ -693,6 +694,7 @@
   <script src="theatre-original.js?v=es"></script>
   <script src="theatre.js?v=es"></script>
   <script src="blossom-oud.js"></script>
+  <script src="ana-diego.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -1804,7 +1806,8 @@
       const theatre = (isPublicDemo && publicId === 'theatre' && id === 'theatre') ||
         (isPreview && id === 'theatre') || style === 'theatre';
       const blossomOud = id === 'blossom-oud' || style === 'blossom-oud';
-      if (blossomOud) window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl);
+      if (id === 'ana-diego' || style === 'ana-diego') window.renderAnaDiego(d,m,payload.tipo === 'plantilla',esc,safeUrl);
+      else if (blossomOud) window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl);
       else if (theatre) await window.renderTheatre(d,t,m,payload);
       else if (fresco) await window.renderFresco(d,t,m,payload);
       else if (dolceVita) await window.renderDolceVita(d,t,m,payload);
@@ -1846,6 +1849,7 @@
       } catch (error) {
         if (query.tipo !== 'plantilla') throw error;
       }
+      if (query.id === 'ana-diego' && !query.preview) return window.anaDiegoDemo();
       if (query.id === 'blossom-oud' && !query.preview) return window.blossomOudDemo();
       // Respaldo local exclusivo de la demo: la plantilla privada no se modifica.
       if (query.id === 'nacar') {
