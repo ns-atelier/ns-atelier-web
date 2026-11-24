@@ -897,18 +897,6 @@
         SITE_CONFIG.whatsapp = response.whatsapp;
         document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa));
       }
-      const hasBlossom = items.some(item => item.id === 'blossom-oud');
-      const panelKnowsBlossom = Array.isArray(response.coleccionRegistrada) && response.coleccionRegistrada.includes('blossom-oud');
-      if (!hasBlossom && !panelKnowsBlossom) {
-        items.push({id:'blossom-oud', nombre:'Blossom & Oud', categoria:'Boda premium',
-          descripcion:'Una boda en Marrakech entre tonos oliva y la luz de un jardín marroquí.',
-          portadaWeb:'/assets/catalogo/catalogo-blossom-oud.webp?v=dos-vistas'});
-      }
-      if (!items.some(item => item.id === 'ana-diego') && !response.coleccionRegistrada?.includes('ana-diego')) {
-        items.push({id:'ana-diego', nombre:'Ana & Diego', categoria:'Boda premium',
-          descripcion:'Sobre marfil, detalles dorados y un álbum romántico con ubicaciones e itinerario.',
-          portadaWeb:'/assets/catalogo/catalogo-ana-diego.webp'});
-      }
       const cards = items.map(item => createCard(item, layout));
       return cards;
     }
