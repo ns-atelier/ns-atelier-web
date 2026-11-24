@@ -783,7 +783,7 @@
       if (/^https:\/\//i.test(value)) return window.nsSiteUrl(value);
       // Las rutas guardadas por el panel pueden comenzar en /inv/ o assets/.
       // La base del repositorio se resuelve sin depender de Netlify o de un dominio propio.
-      if (/^\/(?:ns-atelier-web\/)?(?:inv\/assets|images|assets)\/[\w.%/-]+$/i.test(value)) return window.nsSiteUrl(value);
+      if (/^\/(?:ns-atelier-web\/)?(?:inv\/assets|images|assets)\/[\w.%/-]+(?:\?[\w.%~=&+-]+)?$/i.test(value)) return window.nsSiteUrl(value);
       if (/^(?:\.\/)?assets\/[\w.%/-]+$/i.test(value)) return window.nsSiteUrl('inv/' + value.replace(/^\.\//, ''));
       if (/^(?:\.\/)?images\/[\w.%/-]+$/i.test(value)) return window.nsSiteUrl(value.replace(/^\.\//, ''));
       return '';
@@ -843,18 +843,18 @@
       const localCover = premiumCovers.get(item.id) || localCovers.get(item.id);
       const sheetCover = catalogImage(item.portadaWeb);
       const sharedEnvelope = /(?:^|\/)sobre-portada\.jpg(?:[?#]|$)/i.test(sheetCover);
-      // La portada premium local de Sacred Garden siempre prevalece sobre
-      // la imagen externa antigua (que podía desaparecer del catálogo).
-      const cover = item.id === 'the-sacred-garden'
-        ? premiumCovers.get('the-sacred-garden')
-        : ((!sharedEnvelope && !isOriginalCover(item.id, sheetCover) && sheetCover) || localCover);
+      // Un reemplazo guardado en el panel tiene prioridad sobre la portada original.
+      const replacement = item.portadaPersonalizada === true && sheetCover;
+      const cover = replacement || (item.id === 'the-sacred-garden'
+        ? localCover
+        : ((!sharedEnvelope && !isOriginalCover(item.id, sheetCover) && sheetCover) || localCover));
       image.alt = cover ? 'Portada de ' + item.nombre : '';
       if (cover) {
         image.src = cover;
         image.addEventListener('error', () => {
           // Conservar siempre una imagen utilizable, incluso si falla la portada nueva.
           const backup = item.id === 'the-sacred-garden'
-            ? window.nsSiteUrl('inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.webp')
+            ? (replacement && localCover || window.nsSiteUrl('inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.webp'))
             : localCover;
           if (backup && image.src !== new URL(backup, location.href).href) {
             image.src = backup;

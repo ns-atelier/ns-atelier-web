@@ -1842,7 +1842,7 @@
       if (!query) return FALLBACK_SAMPLE;
       try {
         const response = await window.consultarPanel(query);
-        if (response && response.ok) return response;
+        if (response?.ok || response?.codigo === 'DEMO_OCULTA') return response;
         // Sólo mostramos demos locales cuando el servicio no tiene esa plantilla;
         // nunca sustituimos un evento de cliente por datos de prueba.
         if (query.tipo !== 'plantilla') return response;
