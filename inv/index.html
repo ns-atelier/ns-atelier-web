@@ -1620,7 +1620,7 @@
     const visualNodes = new Map();
     let vistaInvitado=false;
     const canEditPreview=()=>editingView && !vistaInvitado;
-    let visualSelected, visualEdits = {}, panelOrigin;
+    let visualSelected, visualEdits = {}, panelOrigin, previewRevision;
     function sendPanel(type, extra = {}) {
       if (editingView && panelOrigin) parent.postMessage({type, ...extra}, panelOrigin === "null" ? "*" : panelOrigin);
     }
@@ -1690,7 +1690,106 @@
       }
       return path.length ? path.join('.') : 'root';
     }
-    function listResources(t, d, m) {
+    // The renderer that was actually used determines which fields the panel can edit.
+    const namesAndDate = 'nombre1 nombre2 fechaCorta fecha zona';
+    const venueFields = 'lugar direccion';
+    const contactFields = 'googleFormUrl whatsapp';
+    const common = namesAndDate + ' ' + venueFields + ' ' + contactFields;
+    const commonMedia = 'sobre video musica';
+    const standardFields = common + ' tipo subtitulo mensaje mapaUrl mapaEmbedUrl cronograma vestimenta regalos rsvpLimite despedida';
+    const standardLabels = 'tx_deslizar tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRegalos tx_tituloRsvp tx_textoRsvp tx_clicAbrir';
+    const standardMedia = 'videoHero caligrafia flores lugar sello fotoCierre coronaFinal';
+    const modelFields = {
+      universal: [standardFields, standardLabels, 'fuente fondo texto acento boton', standardMedia + ' foto1 foto2 foto3'],
+      'sacred-garden': [standardFields, standardLabels, 'fuente fondo texto acento boton',
+        standardMedia + ' ramaIzq ramaDer rosaLinea videoPetalos petalo ramoFinalIzq ramoFinalDer'],
+      'perla-nacar': [common + ' subtitulo mensaje mapaUrl cronograma vestimenta regalos rsvpLimite despedida',
+        'tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRegalos tx_tituloRsvp',
+        'fondo texto acento boton', 'flores ramaIzq ramaDer lugar sello fotoCierre coronaFinal foto1 foto2 foto3'],
+      'red-vibrante': [common + ' tipo mensaje cronograma rsvpLimite despedida',
+        'tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRsvp tx_textoRsvp',
+        'fuente fondo texto', 'videoHero flores ramaIzq ramaDer lugar fotoCierre foto1 foto2'],
+      nacar: [common + ' mapaUrl cronograma vestimenta regalos rsvpLimite despedida', 'tx_tituloRegalos',
+        'fondo texto', 'flores lugar fotoCierre sello foto1 foto2'],
+      eleganza: [common + ' mapaUrl cronograma vestimenta regalos rsvpLimite despedida', '',
+        'fondo texto acento', 'flores lugar fotoCierre foto1 foto2 foto3'],
+      odette: [common + ' mapaUrl cronograma vestimenta regalos despedida', '',
+        'fondo texto', 'videoHero flores lugar fotoCierre foto1 foto2 foto3'],
+      'dolce-vita': ['nombre1 nombre2 fecha zona ' + venueFields + ' ' + contactFields + ' subtitulo cronograma vestimenta rsvpLimite despedida', '',
+        'fondo texto acento', 'videoHero lugar fotoCierre foto1 foto2 foto3'],
+      fresco: [common + ' mensaje mapaUrl cronograma vestimenta rsvpLimite despedida', '',
+        'fondo texto acento', 'videoHero flores lugar fotoCierre foto1 foto2 foto3'],
+      theatre: [common + ' mensaje mapaUrl vestimenta despedida', '',
+        'fondo texto acento', 'flores lugar fotoCierre foto1 foto2 foto3'],
+      'blossom-oud': [common + ' tipo mensaje mapaUrl cronograma vestimenta rsvpLimite despedida',
+        'tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRsvp', '', 'videoHero lugar'],
+      'ana-diego': [common + ' tipo mensaje mapaUrl cronograma vestimenta regalos despedida',
+        'tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRegalos tx_tituloRsvp', '', 'fotoCierre foto1 foto2 foto3 foto4']
+    };
+    const fieldNames = names => names ? names.split(' ') : [];
+    function editableStructure(model, design, mode, hasEnvelopeImage) {
+      const fields = new Set(), media = new Set(fieldNames(commonMedia));
+      const addFields = names => fieldNames(names).forEach(name=>fields.add(name));
+      const addMedia = names => fieldNames(names).forEach(name=>media.add(name));
+      if (model !== 'personalizado') {
+        const [content, labels, appearance, assets] = modelFields[model];
+        addFields(content);
+        addFields(labels);
+        addFields(appearance);
+        addFields('tx_tapAbrir');
+        addMedia(assets);
+        if (model === 'red-vibrante' || model === 'dolce-vita') media.delete('video');
+        if (mode === 'demo' && ['red-vibrante','odette'].includes(model)) fields.delete('googleFormUrl');
+        if (mode === 'demo' && model === 'odette') fields.delete('regalos');
+      } else {
+        addFields('fondo texto acento fuente boton');
+        if (design.apertura === 'directa') {
+          media.delete('sobre');
+          media.delete('video');
+        } else {
+          addFields('tx_tapAbrir');
+          if (!hasEnvelopeImage) addFields('nombre1 nombre2 tipo');
+        }
+        const paragraphs = ['subtitulo','mensaje','vestimenta','regalos','despedida','rsvpLimite'];
+        for (const b of design.bloques) {
+          if (!b || b.oculto || !/^[a-z0-9][a-z0-9-]{0,29}$/.test(b.id)) continue;
+          if (paragraphs.includes(b.origenTexto)) addFields(b.origenTexto);
+          if (b.tipo === 'portada') {
+            addFields('nombre1 nombre2 fechaCorta');
+            if (!b.titulo) addFields('tipo');
+            if (!b.texto) addFields('subtitulo');
+            if (!b.archivo) addMedia('videoHero');
+          }
+          if (b.tipo === 'cuenta') {
+            addFields('fecha zona');
+            if (!b.titulo) addFields('tx_tituloCuenta');
+          }
+          if (b.tipo === 'programa') {
+            addFields('cronograma');
+            if (!b.titulo) addFields('tx_tituloPrograma');
+          }
+          if (b.tipo === 'ubicacion') {
+            addFields('lugar direccion mapaEmbedUrl');
+            if (!b.enlace) addFields('mapaUrl');
+            if (!b.titulo) addFields('tx_tituloUbicacion');
+            if (!b.archivo) addMedia('lugar');
+          }
+          if (b.tipo === 'galeria') addMedia('foto1 foto2 foto3 foto4');
+          if (b.tipo === 'confirmacion') {
+            if (!b.titulo) addFields('tx_tituloRsvp');
+            if (!b.texto) addFields('tx_textoRsvp rsvpLimite');
+            if (!b.enlace) addFields(contactFields);
+          }
+          if (b.tipo === 'cierre') {
+            if (!b.texto) addFields('despedida');
+            if (!b.archivo) addMedia('fotoCierre');
+          }
+        }
+      }
+      return {model,fields:[...fields],media:[...media]};
+    }
+
+    function listResources(t, d, m, structure) {
       const base = t.media?._layout || {}, custom = d.layout || {};
       if (!editingView && ![...Object.keys(base), ...Object.keys(custom)].some(key => key.startsWith('resource.')) &&
           !Object.values(m).includes('__oculto__')) return;
@@ -1707,7 +1806,7 @@
         const hidden = !fixedField && (patch.src === '__oculto__' || m[declared] === '__oculto__');
         const replacement = !fixedField && safeUrl(patch.src);
         if (hidden || replacement) set(replacement, hidden);
-        if (!editingView) return;
+        if (!editingView || el.closest('.np-hidden-preview') || m.__personalizadoDirecto && el.closest('#weiOverlay,#weiVideoWrap')) return;
         const matches = !declared && mediaNode ? mediaFields.filter(name=>m[name] && safeUrl(m[name]) && resourceUrl(safeUrl(m[name])) === original) : [];
         const field = fixedField || declared || (matches.length === 1 ? matches[0] : '');
         const section = el.closest('section');
@@ -1797,7 +1896,7 @@
       if (!editingView) return;
       if (!m.__redVibrante && !m.__dolceVita) register($('weiVideo'), 'video', 'video', m.video, null, 'video');
       register($('weiAudio'), 'musica', 'audio', m.musica, null, 'musica');
-      sendPanel('atelier-resources', {items});
+      sendPanel('atelier-resources', {items,structure,revision:previewRevision});
     }
     let explicitMedia={};
     function visualLayer(root, sectionKey, base, custom) {
@@ -2033,7 +2132,9 @@
       const theatre = (isPublicDemo && publicId === 'theatre' && id === 'theatre') ||
         (isPreview && id === 'theatre') || style === 'theatre';
       const blossomOud = id === 'blossom-oud' || style === 'blossom-oud';
+      let model = 'universal';
       if (style === 'personalizado' && typeof window.renderDisenoPersonalizado === 'function' && window.renderDisenoPersonalizado($('root'),m._diseno,d,m,{esc,safeUrl,preview:canEditPreview()})) {
+        model = 'personalizado';
         m.__personalizadoDirecto = m._diseno.apertura === 'directa';
         if (m.__personalizadoDirecto && !canEditPreview()) m.video='';
         if (!safeUrl(m.sobre)) {
@@ -2050,17 +2151,17 @@
           overlay.prepend(card);
         }
       }
-      else if (id === 'ana-diego' || style === 'ana-diego') window.renderAnaDiego(d,m,payload.tipo === 'plantilla',esc,safeUrl);
-      else if (blossomOud) window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl);
-      else if (theatre) await window.renderTheatre(d,t,m,payload);
-      else if (fresco) await window.renderFresco(d,t,m,payload);
-      else if (dolceVita) await window.renderDolceVita(d,t,m,payload);
-      else if (odette) await window.renderOdette(d,t,m,payload);
-      else if (eleganza) await window.renderEleganza(d,t,m,payload);
-      else if (nacar) await window.renderNacar(d,t,m,payload);
-      else if (red) await window.renderRedVibrante(d,t,m,payload);
-      else if (style === 'sacred-garden' || id === 'the-sacred-garden') renderSacredGarden(d,t,m);
-      else if (style === 'perla-nacar' || id === 'perla-nacar') renderPerlaNacar(d,t,m,payload.tipo === 'plantilla');
+      else if (id === 'ana-diego' || style === 'ana-diego') { model = 'ana-diego'; window.renderAnaDiego(d,m,payload.tipo === 'plantilla',esc,safeUrl); }
+      else if (blossomOud) { model = 'blossom-oud'; window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl); }
+      else if (theatre) { model = 'theatre'; await window.renderTheatre(d,t,m,payload); }
+      else if (fresco) { model = 'fresco'; await window.renderFresco(d,t,m,payload); }
+      else if (dolceVita) { model = 'dolce-vita'; await window.renderDolceVita(d,t,m,payload); }
+      else if (odette) { model = 'odette'; await window.renderOdette(d,t,m,payload); }
+      else if (eleganza) { model = 'eleganza'; await window.renderEleganza(d,t,m,payload); }
+      else if (nacar) { model = 'nacar'; await window.renderNacar(d,t,m,payload); }
+      else if (red) { model = 'red-vibrante'; await window.renderRedVibrante(d,t,m,payload); }
+      else if (style === 'sacred-garden' || id === 'the-sacred-garden') { model = 'sacred-garden'; renderSacredGarden(d,t,m); }
+      else if (style === 'perla-nacar' || id === 'perla-nacar') { model = 'perla-nacar'; renderPerlaNacar(d,t,m,payload.tipo === 'plantilla'); }
       else renderUniversal(d,t,m);
 
       for (const key of hiddenIntro) m[key] = '__oculto__';
@@ -2077,7 +2178,9 @@
       setupIntro(m, d.textos || {});
       mostrarInvitacionES();
       connectVisual(t,d);
-      listResources(t,d,m);
+      const mode = demoId ? 'demo' : payload.tipo === 'evento' ? 'event' : 'template';
+      const structure = editingView ? editableStructure(model,m._diseno,mode,!!safeUrl(m.sobre)) : undefined;
+      listResources(t,d,m,structure);
       startCountdown(d.fecha);
       wireRsvpModal();
       initObservers();
@@ -2271,6 +2374,7 @@
           if(e.source!==parent || e.data?.type!=='atelier-init' || !e.data.payload)return;
           window.removeEventListener('message',init);panelOrigin=e.origin;
           vistaInvitado=Boolean(e.data.prueba);
+          previewRevision=e.data.revision;
           document.documentElement.classList.add('atelier-phone-preview');
           try {
             await renderAll(e.data.payload);
