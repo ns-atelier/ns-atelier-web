@@ -583,6 +583,7 @@
     .sg-location:has(.sg-petal-film.playing) .sg-petal{display:none}
     .visual-editor [data-picked]{outline:2px solid #2878b8!important;outline-offset:-2px;touch-action:none;cursor:move}
 .visual-editor [data-visual-key]{pointer-events:auto}
+    .visual-editor [data-resource-highlight]{outline:3px solid #2878b8!important;outline-offset:-3px}
 .visual-editor .hero-delay,.visual-editor [class*="anim-"]{opacity:1!important}
 .visual-editor #fabDock{display:none}
 .sg-row{grid-template-columns:minmax(0,4.8em) 18px minmax(0,1fr);gap:6px}.sg-row-time,.sg-row-name{font-size:clamp(16px,4.7vw,21px);padding:0;line-height:1.3;overflow-wrap:anywhere}.sg-rose,.sg-timeline:before{left:calc(4.8em + 15px)}
@@ -1612,6 +1613,47 @@
       image:'Imagen', video:'Video', audio:'Audio', poster:'Imagen previa del video',
       background:'Imagen de fondo', mask:'Máscara', border:'Imagen del borde', frame:'Contenido incrustado', link:'Enlace'
     };
+    const resourceSlots = [
+      ['sobre','#weiImg'], ['caligrafia','.sg-calig'], ['lugar','.sg-venue-art,.location-img'],
+      ['videoHero','.sg-hero-video video,.sg-hero-video source'], ['ramaIzq','.sg-branch-l img'], ['ramaDer','.sg-branch-r img'],
+      ['flores','.sg-welcome-bg img'], ['rosaLinea','#sgRose'], ['videoPetalos','.sg-petal-film'],
+      ['sello','#openSealBtn img,#openUniRsvp img'], ['fotoCierre','.sg-footer-photo'],
+      ['coronaFinal','.sg-footer-wreath'], ['ramoFinalIzq','.sg-final-side.side-0'], ['ramoFinalDer','.sg-final-side.side-1']
+    ];
+    const designResourceSlots = {
+      redvibrante:[
+        ['videoHero','#bgVideo,#bgVideo source'],['ramaIzq','.hero-flowers .fl-1'],
+        ['ramaDer','.hero-flowers .fl-7'],['flores','.hero-flowers .fl-4'],
+        ['fotoCierre','.footer-photo-wrap img:not(.footer-photo-overlay)'],
+        ['foto1','.dress-row img.tilt-right'],['foto2','.dress-row img.tilt-left']
+      ],
+      theatre:[
+        ['video','#curtain-video,#curtain-video source'],['lugar','img[alt="Villa Medicea di Artimino Illustration"]'],
+        ['flores','img[alt="Decorative Menu Frame"]'],['fotoCierre','img[alt="Sam & Sofía decorative photo frame"]']
+      ],
+      fresco:[
+        ['videoHero','#hero-video,#hero-video source'],['lugar','img[alt="Mediterranean garden fountain illustration"]'],
+        ['flores','img[alt="Mediterranean floral arch"]'],['fotoCierre','img[alt="Son Bunyola Mediterranean villa illustration"]']
+      ],
+      dolcevita:[
+        ['videoHero','#hero-video,#hero-video source'],['lugar','img[alt*="Wedding Venue"]'],
+        ['fotoCierre','footer img[alt="Alexa & Richard"]']
+      ]
+    };
+    const mediaFields = ['videoHero','caligrafia','lugar','flores','ramaIzq','ramaDer','rosaLinea','videoPetalos',
+      'petalo','sello','fotoCierre','coronaFinal','ramoFinalIzq','ramoFinalDer','foto1','foto2','foto3','foto4'];
+    const namedResources = [
+      ['.sg-sched-bg1 img','Fondo superior del programa'], ['.sg-sched-bg2 img','Fondo inferior del programa'],
+      ['.sg-loc-decor','Adorno de la ubicación'], ['.sg-map-border','Marco del mapa'],
+      ['.sg-map-top','Adorno superior del mapa'], ['.sg-map-bot','Adorno inferior del mapa'],
+      ['.sg-dg-bg img','Fondo de vestimenta y regalos'], ['.sg-dg-l img','Adorno izquierdo de vestimenta y regalos'],
+      ['.sg-dg-r img','Adorno derecho de vestimenta y regalos'], ['.sg-petal','Pétalo'],
+      ['.env-flap-left,.env-left','Solapa izquierda'], ['.env-flap-right,.env-right','Solapa derecha'],
+      ['.env-flap-bottom,.env-bottom','Solapa inferior'], ['.env-flap-top,.env-top','Solapa superior'],
+      ['.details-flowers .df-left','Ramo izquierdo de detalles'],['.details-flowers .df-mid','Ramo central de detalles'],
+      ['.details-flowers .df-right','Ramo derecho de detalles'],['.wave-top','Borde superior'],['.wave-bottom','Borde inferior'],
+      ['.footer-photo-overlay','Marco de la foto de cierre']
+    ];
     function resourceUrl(value) {
       if (!value || /^[#]/.test(value)) return '';
       try {
@@ -1634,30 +1676,48 @@
     }
     function listResources(t, d, m) {
       const base = t.media?._layout || {}, custom = d.layout || {};
-      if (!editingView && ![...Object.keys(base), ...Object.keys(custom)].some(key => key.startsWith('resource.'))) return;
+      if (!editingView && ![...Object.keys(base), ...Object.keys(custom)].some(key => key.startsWith('resource.')) &&
+          !Object.values(m).includes('__oculto__')) return;
       const items = [];
+      const groupCounts = new Map();
       const design = String(t.estilo || t.id || 'general').toLowerCase().replace(/[^a-z0-9]/g, '') || 'general';
-      function register(el, key, kind, value, set, field) {
+      const slots = [...(designResourceSlots[design] || []), ...resourceSlots];
+      function register(el, key, kind, value, set, fixedField) {
         const original = resourceUrl(value);
         if (!original) return;
         const patch = {...base[key], ...custom[key]};
-        const hidden = !field && patch.src === '__oculto__';
-        const replacement = !field && safeUrl(patch.src);
+        const mediaNode = ['image','video','audio'].includes(kind);
+        const declared = mediaNode ? slots.find(([,selector])=>el.matches(selector))?.[0] : '';
+        const hidden = !fixedField && (patch.src === '__oculto__' || m[declared] === '__oculto__');
+        const replacement = !fixedField && safeUrl(patch.src);
         if (hidden || replacement) set(replacement, hidden);
         if (!editingView) return;
+        const matches = !declared && mediaNode ? mediaFields.filter(name=>m[name] && safeUrl(m[name]) && resourceUrl(safeUrl(m[name])) === original) : [];
+        const field = fixedField || declared || (matches.length === 1 ? matches[0] : '');
         const section = el.closest('section');
-        const title = el.getAttribute('alt') || el.getAttribute('aria-label') || el.getAttribute('title') ||
-          (kind === 'link' ? el.textContent.trim() : '') || resourceLabels[kind];
-        const group = el.closest('#weiOverlay,#weiVideoWrap') || el.id === 'weiAudio' ? 'Sobre y apertura' :
+        let title = namedResources.find(([selector])=>el.matches(selector))?.[1] || el.getAttribute('alt') ||
+          el.getAttribute('aria-label') || el.getAttribute('title') || (kind === 'link' ? el.textContent.trim() : '');
+        const group = fixedField === 'musica' ? 'Música' : el.closest('#weiOverlay,#weiVideoWrap') ? 'Sobre y apertura' :
+          section?.matches('.rv-root .hero,.sg-hero') ? 'Portada de la invitación' :
+          el.closest('footer,.sg-footer') ? 'Cierre' : section?.matches('.sg-map') ? 'Mapa' :
           section?.querySelector('h1,h2,h3')?.textContent.trim().slice(0, 110) || 'Interior';
+        if (!title || title === 'Pétalo') {
+          const label = title || resourceLabels[kind];
+          const countKey = group + '|' + label;
+          const count = (groupCounts.get(countKey) || 0) + 1;
+          groupCounts.set(countKey,count);
+          title = label + ' ' + count;
+        }
         const url = replacement || original;
         const target = el.closest('video,audio') || el;
+        const visualKey = target.dataset.visualKey;
+        const legacyKey = visualKey && (custom[visualKey]?.src || base[visualKey]?.src) ? visualKey : '';
         resourceNodes.set(key, target);
         if (!el.dataset.resourceKey) el.dataset.resourceKey = key;
         if (!target.dataset.resourceKey) target.dataset.resourceKey = key;
         items.push({key, kind, title:title.trim().slice(0, 140), group, hidden,
-          custom:!field && !!patch.src,
-          field, url:/^https?:\/\//i.test(url) ? url : '',
+          custom:!fixedField && !!patch.src, legacyKey,
+          field, locatable:!el.matches('#weiVideo,#weiAudio'), url:/^https?:\/\//i.test(url) ? url : '',
           original:/^https?:\/\//i.test(original) ? original : '', embedded:/^(data|blob):/.test(url)});
       }
       function describe(root, area) {
@@ -1853,8 +1913,11 @@
           if(!node || node.id==='weiAudio' || node.id==='weiVideo') return;
           pruebaApertura=false;
           showEditorSection(Boolean(node.closest('#weiOverlay')),false);
-          node.scrollIntoView({block:'center'});
-          if (node.dataset.visualKey) node.click();
+          const target = getComputedStyle(node).display === 'none' ? node.parentElement : node;
+          document.querySelector('[data-resource-highlight]')?.removeAttribute('data-resource-highlight');
+          target.setAttribute('data-resource-highlight','');
+          target.scrollIntoView({block:'center',behavior:'instant'});
+          if (target.dataset.visualKey) target.click();
           return;
         }
         if(v?.type!=='atelier-change'||!visualSelected)return;

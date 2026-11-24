@@ -966,7 +966,7 @@
     window.consultarPanel({tipo:'contacto'}).then(res => {
       if (!/^[1-9]\d{7,14}$/.test(res.whatsapp)) return;
       SITE_CONFIG.whatsapp = res.whatsapp;
-      document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa));
+      document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa, el.dataset.waNumber));
       updateBuilder();
     }).catch(() => {});
     document.querySelectorAll('[data-price]').forEach(el => {
@@ -1015,7 +1015,11 @@
     };
 
     function animateGoldPhrase(phrase) {
-      const phrases = goldPhrases[phrase.dataset.typing].map(text => Array.from(text));
+      const original = phrase.querySelector('.typed-original');
+      const defaults = goldPhrases[phrase.dataset.typing];
+      const getPhrases = () => (original.dataset.webPhrase ? [original.dataset.webPhrase, ...defaults.slice(1)] : defaults).map(text => Array.from(text));
+      let phrases = getPhrases();
+      let override = original.dataset.webPhrase;
       const output = document.createElement('span');
       output.className = 'typed-output';
       output.setAttribute('aria-hidden', 'true');
@@ -1028,6 +1032,13 @@
       let timer;
 
       function step() {
+        if (override !== original.dataset.webPhrase) {
+          override = original.dataset.webPhrase;
+          phrases = getPhrases();
+          phraseIndex = 0;
+          length = 0;
+          deleting = false;
+        }
         const current = phrases[phraseIndex];
         length += deleting ? -1 : 1;
         output.textContent = current.slice(0, length).join('');
@@ -1128,6 +1139,8 @@
       else videoHistorias.pause();
     }
 
+    document.addEventListener('ns-web-content-updated', actualizarReproduccion);
+
     if (tieneObservador) {
       const umbralVisible = 0.25;
       const observadorVideo = new IntersectionObserver(([entrada]) => {
@@ -1183,5 +1196,6 @@
     }
 
   </script>
+  <script src="assets/web-content.js"></script>
 </body>
 </html>

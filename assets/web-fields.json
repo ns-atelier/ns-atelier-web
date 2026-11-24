@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "inicio.logo",
+    "page": "inicio",
+    "group": "Encabezado",
+    "label": "Logotipo",
+    "kind": "image",
+    "mode": "src",
+    "selector": "html > body > header > div > a > img",
+    "default": "assets/logo-ns.webp"
+  },
+  {
+    "id": "inicio.logoAlt",
+    "page": "inicio",
+    "group": "Encabezado",
+    "label": "Descripción del logotipo",
+    "kind": "text",
+    "mode": "alt",
+    "selector": "html > body > header > div > a > img",
+    "default": "Logo N&S ATELIER"
+  },
+  {
+    "id": "inicio.marca",
+    "page": "inicio",
+    "group": "Encabezado",
+    "label": "Nombre de la marca",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > header > div > a > div > strong",
+    "default": "N&S ATELIER"
+  },
+  {
+    "id": "inicio.headerDescripcion",
+    "page": "inicio",
+    "group": "Encabezado",
+    "label": "Texto debajo del nombre",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > header > div > a > div > span",
+    "default": "Invitaciones · Videohistorias 3D"
+  },
+  {
+    "id": "inicio.headerContacto",
+    "page": "inicio",
+    "group": "Encabezado",
+    "label": "Botón de cotización",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > header > div > nav > a:nth-of-type(6)",
+    "default": "Cotizar ahora"
+  },
+  {
+    "id": "inicio.headerMensaje",
+    "page": "inicio",
+    "group": "Encabezado",
+    "label": "Mensaje del botón de cotización",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > header > div > nav > a:nth-of-type(6)",
+    "default": "Hola, quiero cotizar una invitación digital o videohistoria 3D con N&S ATELIER."
+  },
+  {
+    "id": "catalogo.logo",
+    "page": "catalogo",
+    "group": "Encabezado",
+    "label": "Logotipo",
+    "kind": "image",
+    "mode": "src",
+    "selector": "html > body > header > div > a > img",
+    "default": "assets/logo-ns.webp"
+  },
+  {
+    "id": "catalogo.logoAlt",
+    "page": "catalogo",
+    "group": "Encabezado",
+    "label": "Descripción del logotipo",
+    "kind": "text",
+    "mode": "alt",
+    "selector": "html > body > header > div > a > img",
+    "default": "Logo N&S ATELIER"
+  },
+  {
+    "id": "catalogo.marca",
+    "page": "catalogo",
+    "group": "Encabezado",
+    "label": "Nombre de la marca",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > header > div > a > div > strong",
+    "default": "N&S ATELIER"
+  },
+  {
+    "id": "catalogo.headerDescripcion",
+    "page": "catalogo",
+    "group": "Encabezado",
+    "label": "Texto debajo del nombre",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > header > div > a > div > span",
+    "default": "Catálogo de Modelos"
+  },
+  {
+    "id": "catalogo.headerContacto",
+    "page": "catalogo",
+    "group": "Encabezado",
+    "label": "Botón de cotización",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > header > div > nav > a:nth-of-type(5)",
+    "default": "Cotizar ahora"
+  },
+  {
+    "id": "catalogo.headerMensaje",
+    "page": "catalogo",
+    "group": "Encabezado",
+    "label": "Mensaje del botón de cotización",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > header > div > nav > a:nth-of-type(5)",
+    "default": "Hola, estoy viendo el catálogo de N&S ATELIER y quiero cotizar un modelo."
+  },
+  {
+    "id": "inicio.titulo",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Título principal",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(1) > h1",
+    "default": "Invitaciones digitales y videohistorias 3D"
+  },
+  {
+    "id": "inicio.tituloDestacado",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Primera frase animada",
+    "kind": "text",
+    "mode": "typing",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(1) > h1 > span > span",
+    "default": "para recuerdos eternos."
+  },
+  {
+    "id": "inicio.introduccion",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(1) > p",
+    "default": "Abre un sobre animado y descubre una invitación con música, mapa y confirmación de asistencia. Personalizamos cada diseño con tu historia."
+  },
+  {
+    "id": "inicio.explorar",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Botón Explorar invitaciones",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(1) > div > a:nth-of-type(1)",
+    "default": "Explorar invitaciones"
+  },
+  {
+    "id": "inicio.explorarUrl",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Destino del botón Explorar invitaciones",
+    "kind": "link",
+    "mode": "href",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(1) > div > a:nth-of-type(1)",
+    "default": "catalogo.html"
+  },
+  {
+    "id": "inicio.historiasBoton",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Botón Ver videohistorias",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(1) > div > a:nth-of-type(2)",
+    "default": "Ver videohistorias 3D"
+  },
+  {
+    "id": "inicio.demoBoton",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Botón Ver invitación completa",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > a",
+    "default": "Ver invitación completa"
+  },
+  {
+    "id": "inicio.demoUrl",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Destino del botón Ver invitación completa",
+    "kind": "link",
+    "mode": "href",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > a",
+    "default": "inv/?demo=vitral-floral"
+  },
+  {
+    "id": "inicio.demoNombres",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Nombres en la invitación animada",
+    "kind": "text",
+    "mode": "after",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > p",
+    "default": "Amelia & Gabriel"
+  },
+  {
+    "id": "inicio.demoEvento",
+    "page": "inicio",
+    "group": "Portada",
+    "label": "Tipo de evento en la invitación animada",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > p > small",
+    "default": "Nuestra boda"
+  },
+  {
+    "id": "inicio.cinta1",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Tarjetas para bodas",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(1) > strong, html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(1) > strong",
+    "default": "Tarjetas para bodas"
+  },
+  {
+    "id": "inicio.cinta2",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Compromisos",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(2), html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(2)",
+    "default": "Compromisos"
+  },
+  {
+    "id": "inicio.cinta3",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Aniversarios de tarjetas",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(3), html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(3)",
+    "default": "Aniversarios"
+  },
+  {
+    "id": "inicio.cinta5",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Videohistorias para bodas",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(5) > strong, html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(5) > strong",
+    "default": "Videohistorias para bodas"
+  },
+  {
+    "id": "inicio.cinta6",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Aniversarios de video",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(6), html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(6)",
+    "default": "Aniversarios"
+  },
+  {
+    "id": "inicio.cinta7",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Familia",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(7), html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(7)",
+    "default": "Familia"
+  },
+  {
+    "id": "inicio.cinta8",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Graduaciones",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(8), html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(8)",
+    "default": "Graduaciones"
+  },
+  {
+    "id": "inicio.cinta9",
+    "page": "inicio",
+    "group": "Cinta de servicios",
+    "label": "Viajes",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(1) > li:nth-of-type(9), html > body > div:nth-of-type(2) > main > div > div > div > ul:nth-of-type(2) > li:nth-of-type(9)",
+    "default": "Viajes"
+  },
+  {
+    "id": "inicio.videoAntetitulo",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > p:nth-of-type(1)",
+    "default": "Videohistorias 3D personalizadas"
+  },
+  {
+    "id": "inicio.videoTitulo",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Título",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > h2",
+    "default": "Tu historia merece"
+  },
+  {
+    "id": "inicio.videoDestacado",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Frase animada del título",
+    "kind": "text",
+    "mode": "typing",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > h2 > em > span",
+    "default": "una película."
+  },
+  {
+    "id": "inicio.videoDescripcion",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > p:nth-of-type(2)",
+    "default": "Con tus fotos reales y los lugares que significan algo para ti, creamos un video corto en animación 3D para celebrar a tus personas favoritas."
+  },
+  {
+    "id": "inicio.videoBoton",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Texto del botón de WhatsApp",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > a",
+    "default": "Cotizar por WhatsApp"
+  },
+  {
+    "id": "inicio.videoMensaje",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Mensaje que abre WhatsApp",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > a",
+    "default": "Hola, quiero cotizar una videohistoria 3D personalizada. ¿Qué fotos y datos les envío?"
+  },
+  {
+    "id": "inicio.videoMuestra",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Video de muestra",
+    "kind": "video",
+    "mode": "video",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > figure > video",
+    "default": "assets/videohistorias/videohistorias-actual.mp4"
+  },
+  {
+    "id": "inicio.videoPortada",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Imagen de portada del video",
+    "kind": "image",
+    "mode": "poster",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > figure > video",
+    "default": "assets/videohistorias/videohistorias-actual.webp"
+  },
+  {
+    "id": "inicio.videoPie",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Texto debajo del video",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > figure > figcaption > span",
+    "default": "Del personaje a la escena animada"
+  },
+  {
+    "id": "inicio.videoTiempo",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Duración mostrada",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > figure > figcaption > time",
+    "default": "0:34"
+  },
+  {
+    "id": "inicio.ejemplo1",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Imagen de bodas y aniversarios",
+    "kind": "image",
+    "mode": "src",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(1) > img",
+    "default": "assets/videohistorias/escenas-pareja-alpha.webp"
+  },
+  {
+    "id": "inicio.ejemploAlt1",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción para accesibilidad · Bodas y aniversarios",
+    "kind": "text",
+    "mode": "alt",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(1) > img",
+    "default": "Tres escenas animadas de boda, propuesta y aniversario"
+  },
+  {
+    "id": "inicio.ejemploPie1",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Pie de imagen · Bodas y aniversarios",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(1) > figcaption",
+    "default": "Bodas, propuestas y aniversarios"
+  },
+  {
+    "id": "inicio.ejemplo2",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Imagen de familia y viajes",
+    "kind": "image",
+    "mode": "src",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(2) > img",
+    "default": "assets/videohistorias/escenas-familia-alpha.webp"
+  },
+  {
+    "id": "inicio.ejemploAlt2",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción para accesibilidad · Familia y viajes",
+    "kind": "text",
+    "mode": "alt",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(2) > img",
+    "default": "Escenas animadas de familia, graduación y un viaje a Machu Picchu"
+  },
+  {
+    "id": "inicio.ejemploPie2",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Pie de imagen · Familia y viajes",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(2) > figcaption",
+    "default": "Familia, graduaciones y viajes"
+  },
+  {
+    "id": "inicio.ejemplo3",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Imagen de diseño de personajes",
+    "kind": "image",
+    "mode": "src",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(3) > img",
+    "default": "assets/videohistorias/estudio-personajes-alpha.webp"
+  },
+  {
+    "id": "inicio.ejemploAlt3",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción para accesibilidad · Diseño de personajes",
+    "kind": "text",
+    "mode": "alt",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(3) > img",
+    "default": "Dos personajes y sus expresiones en una interfaz de animación 3D"
+  },
+  {
+    "id": "inicio.ejemploPie3",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Pie de imagen · Diseño de personajes",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure:nth-of-type(3) > figcaption",
+    "default": "Diseño de personajes"
+  },
+  {
+    "id": "inicio.pasoVideoTitulo1",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Título del paso 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > ol > li:nth-of-type(1) > strong",
+    "default": "Cuéntanos tu historia."
+  },
+  {
+    "id": "inicio.pasoVideoTexto1",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción del paso 1",
+    "kind": "text",
+    "mode": "after",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > ol > li:nth-of-type(1)",
+    "default": "Comparte tus fotos, los lugares y los momentos que quieres incluir."
+  },
+  {
+    "id": "inicio.pasoVideoTitulo2",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Título del paso 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > ol > li:nth-of-type(2) > strong",
+    "default": "Le damos vida."
+  },
+  {
+    "id": "inicio.pasoVideoTexto2",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción del paso 2",
+    "kind": "text",
+    "mode": "after",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > ol > li:nth-of-type(2)",
+    "default": "Diseñamos personajes inspirados en tus fotos y recreamos tus escenas."
+  },
+  {
+    "id": "inicio.pasoVideoTitulo3",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Título del paso 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > ol > li:nth-of-type(3) > strong",
+    "default": "Comparte tu video."
+  },
+  {
+    "id": "inicio.pasoVideoTexto3",
+    "page": "inicio",
+    "group": "Videohistorias 3D",
+    "label": "Descripción del paso 3",
+    "kind": "text",
+    "mode": "after",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(2) > div > div:nth-of-type(1) > div > ol > li:nth-of-type(3)",
+    "default": "Regálalo, muéstralo en tu celebración o inclúyelo en tu invitación digital."
+  },
+  {
+    "id": "inicio.funcionesAntetitulo",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(1) > div",
+    "default": "Todo en un solo enlace"
+  },
+  {
+    "id": "inicio.funcionesTitulo",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(1) > h2",
+    "default": "La magia de una invitación"
+  },
+  {
+    "id": "inicio.funcionesDestacado",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Parte destacada del título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(1) > h2 > span",
+    "default": "interactiva"
+  },
+  {
+    "id": "inicio.funcionesDescripcion",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(1) > p",
+    "default": "Diseñada para emocionar desde el celular, sin descargar aplicaciones y con todas las herramientas para organizar tu evento."
+  },
+  {
+    "id": "inicio.beneficio1",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Sobre animado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(1) > h3",
+    "default": "Sobre animado"
+  },
+  {
+    "id": "inicio.beneficioTexto1",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Sobre animado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(1) > p",
+    "default": "Apertura cinematográfica con sello de lacre personalizado y video de bienvenida."
+  },
+  {
+    "id": "inicio.beneficio2",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Música de fondo",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(2) > h3",
+    "default": "Música de fondo"
+  },
+  {
+    "id": "inicio.beneficioTexto2",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Música de fondo",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(2) > p",
+    "default": "Tu canción favorita suena al abrir el sobre con control flotante de pausa."
+  },
+  {
+    "id": "inicio.beneficio3",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Cuenta regresiva",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(3) > h3",
+    "default": "Cuenta regresiva"
+  },
+  {
+    "id": "inicio.beneficioTexto3",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Cuenta regresiva",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(3) > p",
+    "default": "Contador animado en tiempo real hasta el día y hora exactos de tu celebración."
+  },
+  {
+    "id": "inicio.beneficio4",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Confirmación de asistencia",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(4) > h3",
+    "default": "Confirmación de asistencia"
+  },
+  {
+    "id": "inicio.beneficioTexto4",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Confirmación de asistencia",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(4) > p",
+    "default": "Tus invitados confirman en segundos y recibes cada respuesta en tu lista privada o por WhatsApp."
+  },
+  {
+    "id": "inicio.beneficio5",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Mapa interactivo",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(5) > h3",
+    "default": "Mapa interactivo"
+  },
+  {
+    "id": "inicio.beneficioTexto5",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Mapa interactivo",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(5) > p",
+    "default": "Google Maps incrustado e indicaciones directas para que nadie se pierda."
+  },
+  {
+    "id": "inicio.beneficio6",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Itinerario animado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(6) > h3",
+    "default": "Itinerario animado"
+  },
+  {
+    "id": "inicio.beneficioTexto6",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Itinerario animado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(6) > p",
+    "default": "Cronograma hora por hora con detalles botánicos que acompañan el recorrido."
+  },
+  {
+    "id": "inicio.beneficio7",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Vestimenta y regalos",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(7) > h3",
+    "default": "Vestimenta y regalos"
+  },
+  {
+    "id": "inicio.beneficioTexto7",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Vestimenta y regalos",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(7) > p",
+    "default": "Informa el código de vestimenta y comparte tus datos de regalos, lluvia de sobres o cuentas."
+  },
+  {
+    "id": "inicio.beneficio8",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título · Fácil de compartir",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(8) > h3",
+    "default": "Fácil de compartir"
+  },
+  {
+    "id": "inicio.beneficioTexto8",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción · Fácil de compartir",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(2) > article:nth-of-type(8) > p",
+    "default": "Un solo enlace elegante listo para enviar por WhatsApp, correo o redes sociales."
+  },
+  {
+    "id": "inicio.coleccionAntetitulo",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Texto sobre el título de la colección",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(3) > div > div",
+    "default": "Catálogo exclusivo"
+  },
+  {
+    "id": "inicio.coleccionTitulo",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Título de la colección",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(3) > div > h3",
+    "default": "Descubre la"
+  },
+  {
+    "id": "inicio.coleccionDestacado",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Parte destacada del título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(3) > div > h3 > span",
+    "default": "Colección de Lujo"
+  },
+  {
+    "id": "inicio.coleccionTexto",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Descripción de la colección",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(3) > div > p",
+    "default": "Explora seis diseños de boda y gala. Prueba el sobre animado de Perla & Nácar o elige otro modelo para personalizar con tus fotos y los datos de tu evento."
+  },
+  {
+    "id": "inicio.coleccionBoton",
+    "page": "inicio",
+    "group": "Qué incluyen",
+    "label": "Botón de la colección",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(3) > div > div:nth-of-type(3) > a",
+    "default": "Ver colección y demos"
+  },
+  {
+    "id": "inicio.paquetesAntetitulo",
+    "page": "inicio",
+    "group": "Paquetes",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(1) > div",
+    "default": "Planes transparentes"
+  },
+  {
+    "id": "inicio.paquetesTitulo",
+    "page": "inicio",
+    "group": "Paquetes",
+    "label": "Título",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(1) > h2",
+    "default": "Elige el paquete"
+  },
+  {
+    "id": "inicio.paquetesDestacado",
+    "page": "inicio",
+    "group": "Paquetes",
+    "label": "Parte destacada del título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(1) > h2 > span",
+    "default": "perfecto para ti"
+  },
+  {
+    "id": "inicio.paquetesDescripcion",
+    "page": "inicio",
+    "group": "Paquetes",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(1) > p",
+    "default": "Acompañamiento personalizado por WhatsApp y varios métodos de pago disponibles."
+  },
+  {
+    "id": "inicio.paqueteEtiqueta1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Etiqueta",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > span",
+    "default": "Esencial"
+  },
+  {
+    "id": "inicio.paquete1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Nombre del paquete",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > h3",
+    "default": "Guardar la fecha"
+  },
+  {
+    "id": "inicio.paqueteTexto1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > p",
+    "default": "Anuncia el gran día con elegancia y anticipación."
+  },
+  {
+    "id": "inicio.paquetePrecio1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Precio mostrado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > div:nth-of-type(1)",
+    "default": "A consultar"
+  },
+  {
+    "id": "inicio.paqueteEntrega1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Plazo de entrega",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > div:nth-of-type(2)",
+    "default": "Entrega en 2–4 días"
+  },
+  {
+    "id": "inicio.paqueteBoton1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Texto del botón",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > a",
+    "default": "Consultar por WhatsApp"
+  },
+  {
+    "id": "inicio.paqueteMensaje1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Mensaje del botón de WhatsApp",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > a",
+    "default": "Hola, me interesa el paquete Guardar la fecha."
+  },
+  {
+    "id": "inicio.paqueteIncluye1_1",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Qué incluye · punto 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > ul > li:nth-of-type(1)",
+    "default": "Página interactiva de Save the Date"
+  },
+  {
+    "id": "inicio.paqueteIncluye1_2",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Qué incluye · punto 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > ul > li:nth-of-type(2)",
+    "default": "Nombres, fecha y cuenta regresiva"
+  },
+  {
+    "id": "inicio.paqueteIncluye1_3",
+    "page": "inicio",
+    "group": "Paquete · Guardar la fecha",
+    "label": "Qué incluye · punto 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(1) > ul > li:nth-of-type(3)",
+    "default": "Ubicación y enlace listo para compartir"
+  },
+  {
+    "id": "inicio.paqueteEtiqueta2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Etiqueta",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > span:nth-of-type(2)",
+    "default": "Tu diseño, tu esencia"
+  },
+  {
+    "id": "inicio.paquete2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Nombre del paquete",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > h3",
+    "default": "Catálogo Personalizado"
+  },
+  {
+    "id": "inicio.paqueteTexto2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > p",
+    "default": "Cualquier diseño de nuestro catálogo adaptado a tus colores, música y fotos."
+  },
+  {
+    "id": "inicio.paquetePrecio2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Precio mostrado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > div:nth-of-type(1)",
+    "default": "A consultar"
+  },
+  {
+    "id": "inicio.paqueteEntrega2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Plazo de entrega",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > div:nth-of-type(2)",
+    "default": "Entrega en 2–5 días"
+  },
+  {
+    "id": "inicio.paqueteBoton2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Texto del botón",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > a",
+    "default": "Reservar por WhatsApp"
+  },
+  {
+    "id": "inicio.paqueteMensaje2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Mensaje del botón de WhatsApp",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > a",
+    "default": "Hola, quiero reservar el paquete Catálogo Personalizado."
+  },
+  {
+    "id": "inicio.paqueteIncluye2_1",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Qué incluye · punto 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > ul > li:nth-of-type(1)",
+    "default": "Sobre animado + música de fondo"
+  },
+  {
+    "id": "inicio.paqueteIncluye2_2",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Qué incluye · punto 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > ul > li:nth-of-type(2)",
+    "default": "Cuenta regresiva, mapa e itinerario"
+  },
+  {
+    "id": "inicio.paqueteIncluye2_3",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Qué incluye · punto 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > ul > li:nth-of-type(3)",
+    "default": "Confirmación de asistencia (lista privada o WhatsApp)"
+  },
+  {
+    "id": "inicio.paqueteIncluye2_4",
+    "page": "inicio",
+    "group": "Paquete · Catálogo Personalizado",
+    "label": "Qué incluye · punto 4",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(2) > ul > li:nth-of-type(4)",
+    "default": "Colores, tipografía y fotos personalizadas"
+  },
+  {
+    "id": "inicio.paqueteEtiqueta3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Etiqueta",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > span",
+    "default": "Exclusivo"
+  },
+  {
+    "id": "inicio.paquete3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Nombre del paquete",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > h3",
+    "default": "Diseño a Medida + Lujo"
+  },
+  {
+    "id": "inicio.paqueteTexto3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > p",
+    "default": "Una propuesta creada desde cero inspirada en la temática exacta de tu evento."
+  },
+  {
+    "id": "inicio.paquetePrecio3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Precio mostrado",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > div:nth-of-type(1)",
+    "default": "A consultar"
+  },
+  {
+    "id": "inicio.paqueteEntrega3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Plazo de entrega",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > div:nth-of-type(2)",
+    "default": "Entrega en 5–10 días"
+  },
+  {
+    "id": "inicio.paqueteBoton3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Texto del botón",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > a",
+    "default": "Cotizar a medida"
+  },
+  {
+    "id": "inicio.paqueteMensaje3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Mensaje del botón de WhatsApp",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > a",
+    "default": "Hola, quiero cotizar una Invitación Personalizada de Lujo."
+  },
+  {
+    "id": "inicio.paqueteIncluye3_1",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Qué incluye · punto 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > ul > li:nth-of-type(1)",
+    "default": "Diseño 100% exclusivo y sobre con tus iniciales"
+  },
+  {
+    "id": "inicio.paqueteIncluye3_2",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Qué incluye · punto 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > ul > li:nth-of-type(2)",
+    "default": "Todas las secciones e idiomas opcionales"
+  },
+  {
+    "id": "inicio.paqueteIncluye3_3",
+    "page": "inicio",
+    "group": "Paquete · Diseño a Medida + Lujo",
+    "label": "Qué incluye · punto 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(2) > article:nth-of-type(3) > ul > li:nth-of-type(3)",
+    "default": "Animaciones a medida y revisiones prioritarias"
+  },
+  {
+    "id": "inicio.cotizadorEtiqueta",
+    "page": "inicio",
+    "group": "Cotizador",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1)",
+    "default": "Cotizador rápido"
+  },
+  {
+    "id": "inicio.cotizadorTitulo",
+    "page": "inicio",
+    "group": "Cotizador",
+    "label": "Título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(3) > div:nth-of-type(1) > h3",
+    "default": "Arma tu invitación ideal en 15 segundos"
+  },
+  {
+    "id": "inicio.cotizadorResumen",
+    "page": "inicio",
+    "group": "Cotizador",
+    "label": "Título del resumen",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(3) > div:nth-of-type(2) > h4",
+    "default": "Tu resumen listo"
+  },
+  {
+    "id": "inicio.cotizadorBoton",
+    "page": "inicio",
+    "group": "Cotizador",
+    "label": "Botón para enviar la cotización",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(4) > div > div:nth-of-type(3) > div:nth-of-type(2) > a",
+    "default": "Enviar cotización por WhatsApp ↗"
+  },
+  {
+    "id": "inicio.procesoEtiqueta",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(1) > div",
+    "default": "Simple y acompañado"
+  },
+  {
+    "id": "inicio.procesoTitulo",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Título",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(1) > h2",
+    "default": "Tu invitación lista en"
+  },
+  {
+    "id": "inicio.procesoDestacado",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Parte destacada del título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(1) > h2 > span",
+    "default": "tres pasos"
+  },
+  {
+    "id": "inicio.procesoPaso1",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Título del paso 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(2) > div:nth-of-type(1) > h3",
+    "default": "Elige tu modelo"
+  },
+  {
+    "id": "inicio.procesoTexto1",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Descripción del paso 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(2) > div:nth-of-type(1) > p",
+    "default": "Explora el catálogo interactivo o cuéntanos tu idea por WhatsApp para recomendarte el estilo ideal."
+  },
+  {
+    "id": "inicio.procesoPaso2",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Título del paso 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(2) > div:nth-of-type(2) > h3",
+    "default": "Envíanos tus datos"
+  },
+  {
+    "id": "inicio.procesoTexto2",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Descripción del paso 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(2) > div:nth-of-type(2) > p",
+    "default": "Nos compartes nombres, fecha, ubicación, música y fotos; nosotros diseñamos cada detalle por ti."
+  },
+  {
+    "id": "inicio.procesoPaso3",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Título del paso 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(2) > div:nth-of-type(3) > h3",
+    "default": "Comparte con todos"
+  },
+  {
+    "id": "inicio.procesoTexto3",
+    "page": "inicio",
+    "group": "Cómo funciona",
+    "label": "Descripción del paso 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(5) > div > div:nth-of-type(2) > div:nth-of-type(3) > p",
+    "default": "Recibes tu enlace exclusivo listo para enviar a tus invitados y llevar el control de asistencia."
+  },
+  {
+    "id": "inicio.preguntasAntetitulo",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(1) > div",
+    "default": "Resolvemos tus dudas"
+  },
+  {
+    "id": "inicio.preguntasTitulo",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Título",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(1) > h2",
+    "default": "Preguntas"
+  },
+  {
+    "id": "inicio.preguntasDestacado",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Parte destacada del título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(1) > h2 > span",
+    "default": "frecuentes"
+  },
+  {
+    "id": "inicio.preguntasDescripcion",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(1) > p",
+    "default": "¿Tienes alguna consulta sobre invitaciones digitales o videohistorias animadas en 3D? Escríbenos directo."
+  },
+  {
+    "id": "inicio.pregunta1",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Pregunta 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(1) > summary",
+    "default": "¿Qué puedo personalizar en mi invitación?"
+  },
+  {
+    "id": "inicio.respuesta1",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Respuesta 1",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(1) > div",
+    "default": "Nombres, textos, fuente, colores, música de fondo, sobre animado, fecha, itinerario, ubicación en Google Maps, código de vestimenta, regalos y fotografías."
+  },
+  {
+    "id": "inicio.pregunta2",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Pregunta 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(2) > summary",
+    "default": "¿Cómo veo quiénes confirman asistencia?"
+  },
+  {
+    "id": "inicio.respuesta2",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Respuesta 2",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(2) > div",
+    "default": "Conectamos un formulario privado con su propia lista de respuestas (o confirmación directa a tu WhatsApp) para que controles quiénes asistirán en tiempo real."
+  },
+  {
+    "id": "inicio.pregunta3",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Pregunta 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(3) > summary",
+    "default": "¿Mis invitados necesitan instalar alguna aplicación?"
+  },
+  {
+    "id": "inicio.respuesta3",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Respuesta 3",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(3) > div",
+    "default": "No. Se abre como cualquier página web desde el navegador de su celular, tablet o computadora con un solo toque."
+  },
+  {
+    "id": "inicio.pregunta4",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Pregunta 4",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(4) > summary",
+    "default": "¿En qué se diferencia de hacer una tarjeta en Canva?"
+  },
+  {
+    "id": "inicio.respuesta4",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Respuesta 4",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(4) > div",
+    "default": "Es una experiencia web interactiva real: apertura con video y sonido, cuenta regresiva en vivo, mapa interactivo, confirmación de asistencia automática y pantalla completa, con acompañamiento personalizado."
+  },
+  {
+    "id": "inicio.pregunta5",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Pregunta 5",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(5) > summary",
+    "default": "¿Qué medios de pago aceptan?"
+  },
+  {
+    "id": "inicio.respuesta5",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Respuesta 5",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(5) > div",
+    "default": "Contamos con varios métodos de pago para tu comodidad. Te enviamos las opciones disponibles y la confirmación de tu reserva por WhatsApp."
+  },
+  {
+    "id": "inicio.pregunta6",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Pregunta 6",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(6) > summary",
+    "default": "¿Puedo contratar solo una videohistoria animada en 3D?"
+  },
+  {
+    "id": "inicio.respuesta6",
+    "page": "inicio",
+    "group": "Preguntas frecuentes",
+    "label": "Respuesta 6",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(6) > div > div:nth-of-type(2) > details:nth-of-type(6) > div",
+    "default": "¡Sí! Puedes solicitar tu videohistoria animada en 3D de manera independiente o en combo con tu invitación digital."
+  },
+  {
+    "id": "catalogo.volver",
+    "page": "catalogo",
+    "group": "Presentación del catálogo",
+    "label": "Botón Volver a la página principal",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(1) > div > div:nth-of-type(1) > a > span:nth-of-type(2)",
+    "default": "Volver a la página principal"
+  },
+  {
+    "id": "catalogo.volverUrl",
+    "page": "catalogo",
+    "group": "Presentación del catálogo",
+    "label": "Destino del botón Volver",
+    "kind": "link",
+    "mode": "href",
+    "selector": "html > body > main > section:nth-of-type(1) > div > div:nth-of-type(1) > a",
+    "default": "index.html"
+  },
+  {
+    "id": "catalogo.catalogoAntetitulo",
+    "page": "catalogo",
+    "group": "Presentación del catálogo",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(1) > div > div:nth-of-type(2) > div",
+    "default": "Colección de invitaciones"
+  },
+  {
+    "id": "catalogo.catalogoTitulo",
+    "page": "catalogo",
+    "group": "Presentación del catálogo",
+    "label": "Título",
+    "kind": "text",
+    "mode": "lead",
+    "selector": "html > body > main > section:nth-of-type(1) > div > div:nth-of-type(2) > h1",
+    "default": "Modelos que"
+  },
+  {
+    "id": "catalogo.catalogoDestacado",
+    "page": "catalogo",
+    "group": "Presentación del catálogo",
+    "label": "Parte destacada del título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(1) > div > div:nth-of-type(2) > h1 > span",
+    "default": "cuentan tu historia"
+  },
+  {
+    "id": "catalogo.catalogoDescripcion",
+    "page": "catalogo",
+    "group": "Presentación del catálogo",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(1) > div > div:nth-of-type(2) > p",
+    "default": "Prueba cualquier demo interactivo en tu celular. Todos los modelos se personalizan con tus nombres, colores, fuente, música y fotografías."
+  },
+  {
+    "id": "inicio.contactoAntetitulo",
+    "page": "inicio",
+    "group": "Contacto",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(7) > div > div",
+    "default": "Tu celebración merece un detalle inolvidable"
+  },
+  {
+    "id": "inicio.contactoTitulo",
+    "page": "inicio",
+    "group": "Contacto",
+    "label": "Título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(7) > div > h2",
+    "default": "La primera impresión de tu evento empieza aquí."
+  },
+  {
+    "id": "inicio.contactoTexto",
+    "page": "inicio",
+    "group": "Contacto",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(7) > div > p",
+    "default": "Cuéntanos qué tienes en mente y diseñaremos una invitación digital o videohistoria 3D hecha a tu medida."
+  },
+  {
+    "id": "inicio.contactoBoton",
+    "page": "inicio",
+    "group": "Contacto",
+    "label": "Texto del botón",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(7) > div > a",
+    "default": "¡Quiero cotizar mi idea! ↗"
+  },
+  {
+    "id": "inicio.contactoMensaje",
+    "page": "inicio",
+    "group": "Contacto",
+    "label": "Mensaje del botón de WhatsApp",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > div:nth-of-type(2) > main > section:nth-of-type(7) > div > a",
+    "default": "Hola, quiero cotizar mi invitación digital con N&S ATELIER."
+  },
+  {
+    "id": "inicio.legal",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Texto del enlace a condiciones y privacidad",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > footer > p > a",
+    "default": "Condiciones del servicio y privacidad"
+  },
+  {
+    "id": "catalogo.contactoAntetitulo",
+    "page": "catalogo",
+    "group": "Contacto",
+    "label": "Texto sobre el título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(2) > div > div",
+    "default": "¿Buscas algo 100% único?"
+  },
+  {
+    "id": "catalogo.contactoTitulo",
+    "page": "catalogo",
+    "group": "Contacto",
+    "label": "Título",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(2) > div > h2",
+    "default": "También creamos diseños a medida y Videohistorias 3D."
+  },
+  {
+    "id": "catalogo.contactoTexto",
+    "page": "catalogo",
+    "group": "Contacto",
+    "label": "Descripción",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(2) > div > p",
+    "default": "Escríbenos por WhatsApp y diseñamos una invitación exclusiva para tu celebración."
+  },
+  {
+    "id": "catalogo.contactoBoton",
+    "page": "catalogo",
+    "group": "Contacto",
+    "label": "Texto del botón",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > main > section:nth-of-type(2) > div > a",
+    "default": "Cotizar mi diseño ↗"
+  },
+  {
+    "id": "catalogo.contactoMensaje",
+    "page": "catalogo",
+    "group": "Contacto",
+    "label": "Mensaje del botón de WhatsApp",
+    "kind": "text",
+    "mode": "data-wa",
+    "selector": "html > body > main > section:nth-of-type(2) > div > a",
+    "default": "Hola, vi el catálogo y quiero cotizar un diseño personalizado."
+  },
+  {
+    "id": "catalogo.legal",
+    "page": "catalogo",
+    "group": "Pie de página",
+    "label": "Texto del enlace a condiciones y privacidad",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > footer > p > a",
+    "default": "Condiciones del servicio y privacidad"
+  },
+  {
+    "id": "inicio.logoPie",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Logotipo del pie",
+    "kind": "image",
+    "mode": "src",
+    "selector": "html > body > footer > div > div:nth-of-type(1) > div:nth-of-type(1) > a > img",
+    "default": "assets/logo-ns.webp"
+  },
+  {
+    "id": "inicio.marcaPie",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Nombre de la marca",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > footer > div > div:nth-of-type(1) > div:nth-of-type(1) > a > div > strong",
+    "default": "N&S ATELIER"
+  },
+  {
+    "id": "inicio.eslogan",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Eslogan",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > footer > div > div:nth-of-type(1) > div:nth-of-type(1) > a > div > span",
+    "default": "Tus recuerdos, nuestra inspiración."
+  },
+  {
+    "id": "inicio.pieTexto",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Descripción del estudio",
+    "kind": "text",
+    "mode": "text",
+    "selector": "html > body > footer > div > div:nth-of-type(1) > div:nth-of-type(1) > p",
+    "default": "Estudio creativo de invitaciones digitales interactivas y videohistorias animadas en 3D para momentos eternos, días especiales y recuerdos inolvidables."
+  },
+  {
+    "id": "inicio.instagram",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Enlace de Instagram",
+    "kind": "link",
+    "mode": "href",
+    "selector": "html > body > footer > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > a:nth-of-type(2)",
+    "default": "https://instagram.com/tuusuario"
+  },
+  {
+    "id": "inicio.tiktok",
+    "page": "inicio",
+    "group": "Pie de página",
+    "label": "Enlace de TikTok",
+    "kind": "link",
+    "mode": "href",
+    "selector": "html > body > footer > div > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > a:nth-of-type(3)",
+    "default": "https://tiktok.com/@tuusuario"
+  }
+]
