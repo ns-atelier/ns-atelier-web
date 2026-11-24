@@ -682,7 +682,7 @@
     <span>Cotizar por WhatsApp</span>
   </a>
 
-  <script src="assets/demo-ids.js?v=2"></script>
+  <script src="assets/demo-ids.js?v=3"></script>
   <script src="assets/panel-api.js"></script>
   <script>
     const SITE_CONFIG = {
@@ -791,13 +791,8 @@
 
     // Los IDs y sus alias identifican el diseño. El nombre público se puede editar.
     const DEMO_ID_ALIASES = window.NS_DEMO_REGISTRY.aliases;
-    function createCard(item, layout) {
-      const modelId = item.id;
+    function createCard(item, layout, rutaDemo) {
       if (DEMO_ID_ALIASES[item.id]) item = { ...item, id: DEMO_ID_ALIASES[item.id] };
-      if (item.nombrePersonalizado !== true &&
-          ['theatre','fresco','dolce-vita','odette','eleganza','nacar','red-vibrante'].includes(item.id)) {
-        item = { ...item, nombre: window.NS_DEMO_REGISTRY.names[item.id] };
-      }
       if (item.id === 'theatre') {
         item = {...item,
           descripcion:item.descripcion || 'Telón que se abre, fecha raspable y detalles burgundy con música de boda.'};
@@ -872,7 +867,7 @@
         price.className = 'design-price';
         card.querySelector('.design-actions').before(price);
       }
-      const demoHref = 'inv/?' + window.NS_DEMO_REGISTRY.search(modelId,item.nombre);
+      const demoHref = 'inv/?demo=' + encodeURIComponent(rutaDemo);
       card.querySelector('.btn-primary').href = demoHref;
       // La portada completa es un enlace táctil, además del botón de la tarjeta.
       if (cover && image.parentElement) {
@@ -898,7 +893,8 @@
         SITE_CONFIG.whatsapp = response.whatsapp;
         document.querySelectorAll('[data-wa]').forEach(el => el.href = waUrl(el.dataset.wa));
       }
-      const cards = items.map(item => createCard(item, layout));
+      const routes = window.NS_DEMO_REGISTRY.catalogRoutes(items);
+      const cards = items.map(item => createCard(item, layout, routes.get(item.id).rutaDemo));
       return cards;
     }
 

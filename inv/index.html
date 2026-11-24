@@ -687,7 +687,7 @@
   <link rel="stylesheet" href="ana-diego.css" />
   <link rel="stylesheet" href="diseno-personalizado.css">
   <script src="diseno-personalizado.js"></script>
-  <script src="../assets/demo-ids.js?v=2"></script>
+  <script src="../assets/demo-ids.js?v=3"></script>
   <script src="../assets/panel-api.js"></script>
   <script src="red-vibrante.js?v=vestimenta"></script>
   <script src="nacar-original.js"></script>
@@ -787,8 +787,8 @@
       const demo = sp.get('demo');
       if (demo) {
         const sourceId = sp.get('modelo') || demo;
-        if (!/^[a-z0-9-]{3,60}$/.test(sourceId)) return {tipo:'plantilla',id:'',sourceId:'',preview:''};
-        return {tipo:'plantilla',id:DEMO_REGISTRY.canonical(sourceId),sourceId,preview:sp.get('preview') || ''};
+        if (!DEMO_REGISTRY.validDemoRoute(sourceId)) return {tipo:'plantilla',id:'',sourceId:'',preview:''};
+        return {tipo:'plantilla',id:DEMO_REGISTRY.canonical(sourceId),sourceId,explicitId:sp.has('modelo'),preview:sp.get('preview') || ''};
       }
       const seg = location.pathname.split('/').filter(Boolean);
       const i = seg.indexOf('inv');
@@ -796,14 +796,24 @@
       return null;
     }
 
-    function updateDemoAddress(payload) {
+    let publishedRoutesPromise;
+    function publishedDemoRoutes() {
+      if (!publishedRoutesPromise) {
+        publishedRoutesPromise = window.consultarPanel({tipo:'catalogo'}).then(response=>
+          response?.ok && Array.isArray(response.items) ? DEMO_REGISTRY.catalogRoutes(response.items) : new Map()
+        ).catch(()=>new Map());
+      }
+      return publishedRoutesPromise;
+    }
+
+    async function updateDemoAddress(payload) {
       if (!payload.demoSourceId) return;
       const current = new URLSearchParams(location.search);
-      const next = DEMO_REGISTRY.search(payload.demoSourceId,payload.plantilla.nombre);
-      for (const name of ['demo','modelo']) {
-        if (next.has(name)) current.set(name,next.get(name));
-        else current.delete(name);
-      }
+      if (current.has('preview')) return;
+      const route = payload.rutaDemo || (await publishedDemoRoutes()).get(payload.demoSourceId)?.rutaDemo;
+      if (!DEMO_REGISTRY.validDemoRoute(route)) return;
+      current.set('demo',route);
+      current.delete('modelo');
       const search = '?' + current.toString();
       if (location.search !== search) history.replaceState(history.state,'',location.pathname + search + location.hash);
     }
@@ -2198,12 +2208,28 @@
       if (!query) return FALLBACK_SAMPLE;
       if (query.tipo !== 'plantilla') return window.consultarPanel(query);
       if (!query.id) throw Error('Esta demostración no está disponible.');
+      async function fetchDemo(id, route) {
+        const response = await window.consultarPanel({tipo:query.tipo,id,preview:query.preview});
+        if (response?.codigo === 'DEMO_OCULTA') return response;
+        if (!response?.ok) return null;
+        const modelId = response.demoId || response.plantilla?.id || id;
+        return {...response,demoId:DEMO_REGISTRY.canonical(modelId),demoSourceId:modelId,rutaDemo:response.rutaDemo || route};
+      }
       try {
         const formerIds = Object.keys(DEMO_ALIASES).filter(alias=>DEMO_ALIASES[alias]===query.id);
-        for (const id of new Set([query.sourceId,query.id,...formerIds])) {
-          const response = await window.consultarPanel({tipo:query.tipo,id,preview:query.preview});
-          if (response?.codigo === 'DEMO_OCULTA') return response;
-          if (response?.ok) return {...response,demoId:query.id,demoSourceId:id};
+        const attempts = new Set([query.sourceId,query.id,...formerIds]);
+        for (const id of attempts) {
+          const result = await fetchDemo(id);
+          if (result) return result;
+        }
+        // Older deployments accept sheet IDs only; use the public catalog to resolve new short URLs.
+        if (!query.explicitId && !query.preview) {
+          for (const [id,{rutaDemo}] of await publishedDemoRoutes()) {
+            if (rutaDemo !== query.sourceId || attempts.has(id)) continue;
+            const result = await fetchDemo(id,rutaDemo);
+            if (result) return result;
+            break;
+          }
         }
       } catch (error) {
         if (query.preview) throw error;
@@ -2402,8 +2428,8 @@
         const data = await loadInvitation(q);
         if (!data || !data.ok) throw Error(data?.error || 'Invitación no encontrada');
         if (q?.tipo === 'plantilla') {
-          data.demoId = q.id;
-          updateDemoAddress(data);
+          data.demoId ||= q.id;
+          void updateDemoAddress(data);
         }
         await renderAll(data);
       } catch (err) {
