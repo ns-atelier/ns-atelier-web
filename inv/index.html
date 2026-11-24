@@ -687,9 +687,9 @@
   <link rel="stylesheet" href="ana-diego.css" />
   <link rel="stylesheet" href="diseno-personalizado.css">
   <script src="diseno-personalizado.js"></script>
-  <script src="../assets/demo-ids.js"></script>
+  <script src="../assets/demo-ids.js?v=2"></script>
   <script src="../assets/panel-api.js"></script>
-  <script src="red-vibrante.js"></script>
+  <script src="red-vibrante.js?v=vestimenta"></script>
   <script src="nacar-original.js"></script>
   <script src="nacar.js"></script>
   <script src="eleganza-original.js"></script>
@@ -778,27 +778,34 @@
       return '';
     }
 
-    // Nombre público actual => slug canónico. Los antiguos solo son alias de URL.
-    // Las plantillas privadas y los tokens de clientes se consultan sin cambios.
-    const DEMO_ALIASES = window.NS_DEMO_REGISTRY.aliases;
+    const DEMO_REGISTRY = window.NS_DEMO_REGISTRY;
+    const DEMO_ALIASES = DEMO_REGISTRY.aliases;
     function getQuery() {
       const sp = new URLSearchParams(location.search);
       const t = sp.get('t') || sp.get('token');
       if (t) return { tipo: 'evento', token: t, nocache: sp.get('v') ? '1' : '' };
       const demo = sp.get('demo');
       if (demo) {
-        const current = DEMO_ALIASES[demo] || demo;
-        // Canonizar la barra de direcciones sin recargar ni perder enlaces antiguos.
-        if (current !== demo) {
-          sp.set('demo', current);
-          history.replaceState(history.state, '', location.pathname + '?' + sp.toString() + location.hash);
-        }
-        return { tipo: 'plantilla', id: current, preview: sp.get('preview') || '' };
+        const sourceId = sp.get('modelo') || demo;
+        if (!/^[a-z0-9-]{3,60}$/.test(sourceId)) return {tipo:'plantilla',id:'',sourceId:'',preview:''};
+        return {tipo:'plantilla',id:DEMO_REGISTRY.canonical(sourceId),sourceId,preview:sp.get('preview') || ''};
       }
       const seg = location.pathname.split('/').filter(Boolean);
       const i = seg.indexOf('inv');
       if (i >= 0 && seg[i + 1] && seg[i + 1] !== 'index.html') return { tipo: 'evento', token: seg[i + 1] };
       return null;
+    }
+
+    function updateDemoAddress(payload) {
+      if (!payload.demoSourceId) return;
+      const current = new URLSearchParams(location.search);
+      const next = DEMO_REGISTRY.search(payload.demoSourceId,payload.plantilla.nombre);
+      for (const name of ['demo','modelo']) {
+        if (next.has(name)) current.set(name,next.get(name));
+        else current.delete(name);
+      }
+      const search = '?' + current.toString();
+      if (location.search !== search) history.replaceState(history.state,'',location.pathname + search + location.hash);
     }
 
     function showError(msg) {
@@ -1708,7 +1715,7 @@
         'fondo texto acento boton', 'flores ramaIzq ramaDer lugar sello fotoCierre coronaFinal foto1 foto2 foto3'],
       'red-vibrante': [common + ' tipo mensaje cronograma rsvpLimite despedida',
         'tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRsvp tx_textoRsvp',
-        'fuente fondo texto', 'videoHero flores ramaIzq ramaDer lugar fotoCierre foto1 foto2'],
+        'fuente fondo texto vestColor1 vestColor2 vestColor3 vestColor4', 'videoHero flores ramaIzq ramaDer lugar fotoCierre foto1 foto2'],
       nacar: [common + ' mapaUrl cronograma vestimenta regalos rsvpLimite despedida', 'tx_tituloRegalos',
         'fondo texto', 'flores lugar fotoCierre sello foto1 foto2'],
       eleganza: [common + ' mapaUrl cronograma vestimenta regalos rsvpLimite despedida', '',
@@ -2107,7 +2114,7 @@
 
       // Los IDs privados de PLANTILLAS no son los identificadores públicos.
       // Cada demo pública utiliza su slug único, las antiguas URLs son alias.
-      const demoId = editingView ? payload.demoId : new URLSearchParams(location.search).get('demo');
+      const demoId = payload.demoId;
       const isPublicDemo = Boolean(demoId) && payload.tipo === 'plantilla';
       const isPreview = editingView && !demoId && payload.tipo === 'plantilla';
       const publicId = DEMO_ALIASES[demoId] || demoId;
@@ -2189,15 +2196,19 @@
 
     async function loadInvitation(query) {
       if (!query) return FALLBACK_SAMPLE;
+      if (query.tipo !== 'plantilla') return window.consultarPanel(query);
+      if (!query.id) throw Error('Esta demostración no está disponible.');
       try {
-        const response = await window.consultarPanel(query);
-        if (response?.ok || response?.codigo === 'DEMO_OCULTA') return response;
-        // Sólo mostramos demos locales cuando el servicio no tiene esa plantilla;
-        // nunca sustituimos un evento de cliente por datos de prueba.
-        if (query.tipo !== 'plantilla') return response;
+        const formerIds = Object.keys(DEMO_ALIASES).filter(alias=>DEMO_ALIASES[alias]===query.id);
+        for (const id of new Set([query.sourceId,query.id,...formerIds])) {
+          const response = await window.consultarPanel({tipo:query.tipo,id,preview:query.preview});
+          if (response?.codigo === 'DEMO_OCULTA') return response;
+          if (response?.ok) return {...response,demoId:query.id,demoSourceId:id};
+        }
       } catch (error) {
-        if (query.tipo !== 'plantilla') throw error;
+        if (query.preview) throw error;
       }
+      if (query.preview) throw Error('La vista previa de esta demo ya no está disponible.');
       if (query.id === 'ana-diego' && !query.preview) return window.anaDiegoDemo();
       if (query.id === 'blossom-oud' && !query.preview) return window.blossomOudDemo();
       // Respaldo local exclusivo de la demo: la plantilla privada no se modifica.
@@ -2390,6 +2401,10 @@
       try {
         const data = await loadInvitation(q);
         if (!data || !data.ok) throw Error(data?.error || 'Invitación no encontrada');
+        if (q?.tipo === 'plantilla') {
+          data.demoId = q.id;
+          updateDemoAddress(data);
+        }
         await renderAll(data);
       } catch (err) {
         showError(err.message + (q?.tipo === 'evento' ? ' Verifica que la invitación esté en estado "Publicada".' : ''));

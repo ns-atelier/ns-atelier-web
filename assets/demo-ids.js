@@ -21,10 +21,19 @@
     for(const alias of row.aliases)aliases[alias]=row.id;
   }
   const canonical=id=>aliases[id]||id;
+  function search(id,name) {
+    const design = canonical(id);
+    const slug = String(name || '').normalize('NFD').replace(/[̀-ͯ]/g,'')
+      .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60).replace(/-+$/,'') || design;
+    const params = new URLSearchParams({demo:slug});
+    // Keep the sheet row addressable after the public name changes.
+    if (slug !== id) params.set('modelo',id);
+    return params;
+  }
   window.NS_DEMO_REGISTRY=Object.freeze({
     records:Object.freeze(records.map(row=>Object.freeze({...row,aliases:Object.freeze(row.aliases)}))),
     aliases:Object.freeze(aliases),
     names:Object.freeze(names),
-    canonical
+    canonical, search
   });
 })();

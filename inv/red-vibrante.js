@@ -177,7 +177,12 @@
     text(q('.location-name')?.parentElement?.querySelector('h2'), tx.tituloUbicacion);
     text(q('.timeline')?.parentElement?.querySelector('h2'), tx.tituloPrograma);
     text(q('#countdownContainer')?.parentElement?.querySelector('h2'), tx.tituloCuenta);
-    text(q('.color-palette')?.parentElement?.querySelector('h2'), tx.tituloVestimenta);
+    const palette = q('.color-palette');
+    text(palette?.parentElement?.querySelector('h2'), tx.tituloVestimenta);
+    const dressColors = data.paletaVestimenta;
+    if (Array.isArray(dressColors) && dressColors.length === 4 && dressColors.every(color=>/^#[0-9a-f]{6}$/i.test(color))) {
+      palette?.querySelectorAll('.swatch').forEach((swatch,index)=>{swatch.style.backgroundColor=dressColors[index];});
+    }
     text(q('.organizer-name'), data.organizador);
     text(q('.footer-section h2'), data.despedida);
     text(q('#open-rsvp')?.parentElement?.querySelector('h2'), tx.tituloRsvp);

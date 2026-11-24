@@ -682,7 +682,7 @@
     <span>Cotizar por WhatsApp</span>
   </a>
 
-  <script src="assets/demo-ids.js"></script>
+  <script src="assets/demo-ids.js?v=2"></script>
   <script src="assets/panel-api.js"></script>
   <script>
     const SITE_CONFIG = {
@@ -792,6 +792,7 @@
     // Los IDs y sus alias identifican el diseño. El nombre público se puede editar.
     const DEMO_ID_ALIASES = window.NS_DEMO_REGISTRY.aliases;
     function createCard(item, layout) {
+      const modelId = item.id;
       if (DEMO_ID_ALIASES[item.id]) item = { ...item, id: DEMO_ID_ALIASES[item.id] };
       if (item.nombrePersonalizado !== true &&
           ['theatre','fresco','dolce-vita','odette','eleganza','nacar','red-vibrante'].includes(item.id)) {
@@ -871,7 +872,7 @@
         price.className = 'design-price';
         card.querySelector('.design-actions').before(price);
       }
-      const demoHref = 'inv/?demo=' + encodeURIComponent(item.id);
+      const demoHref = 'inv/?' + window.NS_DEMO_REGISTRY.search(modelId,item.nombre);
       card.querySelector('.btn-primary').href = demoHref;
       // La portada completa es un enlace táctil, además del botón de la tarjeta.
       if (cover && image.parentElement) {
