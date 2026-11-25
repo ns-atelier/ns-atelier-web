@@ -1145,7 +1145,20 @@ body.rv-mode { background:#66021f; }
   }
 
   .rv-calligraphy .rv-root .section-text { max-width: 590px; }
-  .rv-calligraphy .rv-root .wave-divider { width: 101%; max-width: none; }
+  .rv-calligraphy .rv-root .wave-divider {
+    width: 101%;
+    max-width: none;
+    max-height: 140px;
+    object-fit: cover;
+  }
+  .rv-calligraphy .rv-root .wave-top {
+    top: 0;
+    transform: translate(-50%, -57%);
+  }
+  .rv-calligraphy .rv-root .wave-bottom {
+    bottom: 0;
+    transform: translate(-50%, 57%) rotate(180deg);
+  }
   .rv-calligraphy .rv-root .timeline { max-width: 460px; }
   .rv-calligraphy .rv-root .location-img {
     max-width: 540px;
