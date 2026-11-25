@@ -2068,7 +2068,7 @@
     }
 
     const invitationAssets = {
-      'red-vibrante': ['red-vibrante.css?v=caligrafia','red-vibrante.js?v=ritmo'],
+      'red-vibrante': ['red-vibrante.css?v=caligrafia-completa','red-vibrante.js?v=caligrafia-completa'],
       nacar: ['nacar.css','nacar-original.js','nacar.js'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
@@ -2192,7 +2192,11 @@
       else if (odette) { model = 'odette'; await loadModelAssets(model); await window.renderOdette(d,t,m,payload); }
       else if (eleganza) { model = 'eleganza'; await loadModelAssets(model); await window.renderEleganza(d,t,m,payload); }
       else if (nacar) { model = 'nacar'; await loadModelAssets(model); await window.renderNacar(d,t,m,payload); }
-      else if (red) { model = 'red-vibrante'; await loadModelAssets(model); await window.renderRedVibrante(d,t,m,payload); }
+      else if (red) {
+        model = 'red-vibrante';
+        await loadModelAssets(model);
+        await window.renderRedVibrante(d,t,m,payload,isPublicDemo && publicId === 'red-vibrante');
+      }
       else if (style === 'sacred-garden' || id === 'the-sacred-garden') { model = 'sacred-garden'; renderSacredGarden(d,t,m); }
       else if (style === 'perla-nacar' || id === 'perla-nacar') { model = 'perla-nacar'; renderPerlaNacar(d,t,m,payload.tipo === 'plantilla'); }
       else renderUniversal(d,t,m);

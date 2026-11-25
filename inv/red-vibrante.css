@@ -741,13 +741,14 @@
   
 
 /* Integración con la vista de invitaciones de N&S Atelier */
+body.rv-mode { --rv-calligraphy: 'Great Vibes', 'Cormorant Garamond', Georgia, cursive; }
 .rv-root { --burgundy:#66021f; --burgundy-dark:#660120; --cream:#fffaf8; --charcoal:#3a3a3a; --font-main:'Ovo',Georgia,serif; --font-timer:'Ovo',serif; width:100%; min-height:100vh; }
 .rv-root .invitation-wrapper{ margin-inline:auto; }
 .rv-root .hero-content { padding-left:16px; padding-right:16px; }
 .rv-root .hero-names,
 .rv-root .hero-amp,
 .rv-root [data-rv-welcome] > h2 {
-  font-family: 'Great Vibes', 'Cormorant Garamond', Georgia, cursive;
+  font-family: var(--rv-calligraphy);
   font-weight: 400;
 }
 .rv-root [data-rv-welcome] > h2 { font-size: clamp(31px, 9vw, 47px); line-height: 1.2; }
@@ -926,3 +927,31 @@ body.rv-mode { background:#66021f; }
   .rv-root #countdownContainer.active .time-block:nth-of-type(7) .number { animation-delay: .54s; }
   .visual-editor .rv-root #countdownContainer.active .number { animation: none; }
 }
+
+/* Tipografía de la demo Peonía Carmesí. */
+.rv-calligraphy .rv-root {
+  --font-main: var(--rv-calligraphy);
+  --font-timer: var(--font-main);
+}
+.rv-calligraphy #weiOverlay.rv-envelope-mode #weiTapLabel {
+  font: 400 26px/1.2 var(--rv-calligraphy);
+  letter-spacing: normal;
+  text-transform: none;
+}
+.rv-calligraphy .rv-root :is(.hero-subtitle, .hero-date, .section-title, .timeline-time, .location-name, .organizer-phone, .rsvp-btn, .modal-title) {
+  font-weight: 400;
+  letter-spacing: normal;
+}
+.rv-calligraphy .rv-root :is(.section-text, .timeline-event, .dress-row p, .location-address, .modal-subtitle, .field-label, .radio-option, .form-success) {
+  font-size: clamp(21px, 6vw, 26px);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.rv-calligraphy .rv-root .timeline-time { font-size: clamp(22px, 6vw, 30px); }
+.rv-calligraphy .rv-root #countdownContainer { gap: clamp(3px, 1.4vw, 8px); }
+.rv-calligraphy .rv-root .time-block { min-width: clamp(44px, 15vw, 60px); }
+.rv-calligraphy .rv-root .time-block .number { font-size: clamp(32px, 10vw, 44px); }
+.rv-calligraphy .rv-root .time-block .label { font-size: clamp(17px, 5vw, 22px); }
+.rv-calligraphy .rv-root .modal-close { font-family: var(--font-main); }
+.rv-calligraphy .rv-root :is(.rsvp-btn, .submit-btn, input[type="text"]) { font-size: 24px; }
+.rv-calligraphy .rv-root .rv-demo-disclaimer { font: 400 20px/1.35 var(--font-main); }

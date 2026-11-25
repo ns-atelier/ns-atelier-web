@@ -250,7 +250,7 @@
     queue();
   }
 
-  window.renderRedVibrante = async function renderRedVibrante(data, template, media, payload) {
+  window.renderRedVibrante = async function renderRedVibrante(data, template, media, payload, useDemoCalligraphy = false) {
     const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html?v=ritmo'), { cache: 'force-cache' });
     if (!response.ok) throw Error('No se pudo cargar la plantilla Red Vibrante.');
     const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
@@ -260,6 +260,7 @@
     root.replaceChildren(document.importNode(node, true));
     const rv = root.querySelector('.rv-root');
     document.body.classList.add('rv-mode');
+    document.body.classList.toggle('rv-calligraphy',useDemoCalligraphy);
     const q = selector => rv.querySelector(selector);
     // Los datos editables del panel se reflejan sobre el diseño original.
     const tx = data.textos || {};
@@ -268,7 +269,7 @@
     if (customBg) rv.style.setProperty('--burgundy', customBg);
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', customBg || '#66021f');
     if (colors.texto) rv.style.setProperty('--cream', colors.texto);
-    if (data.fuente) rv.style.setProperty('--font-main', "'" + String(data.fuente).replace(/[^a-zA-Z ]/g, '') + "', Georgia, serif");
+    if (!useDemoCalligraphy && data.fuente) rv.style.setProperty('--font-main', "'" + String(data.fuente).replace(/[^a-zA-Z ]/g, '') + "', Georgia, serif");
     const n1 = data.nombre1 || 'Viktor', n2 = data.nombre2 || 'Paula';
     const n = q('.hero-names');
     n.replaceChildren(document.createTextNode(n1));
