@@ -1864,37 +1864,47 @@ body.nacar-mode{background:radial-gradient(ellipse at 48% 12%,#f3eddf,#e6ddcf 62
 @media(max-width:560px){.nacar-root{max-width:100%;}}
 @media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}
 
-/* Sobre perlado de Nácar. La solapa gira antes de dar paso al video. */
-#weiOverlay.nacar-opening .nacar-envelope {
+/* Formato vertical de la portada perlada y del video de apertura. */
+#weiOverlay.nacar-opening {
+  --nacar-cover-width: min(100vw, 440px, 62svh);
+  background: radial-gradient(ellipse at 50% 38%, #f3ede3, #dcd0bd 78%);
+}
+#weiOverlay.nacar-opening .nacar-cover {
   position: absolute;
-  width: min(500px, 90vw);
-  aspect-ratio: 1.32;
-  isolation: isolate;
-  perspective: 950px;
+  inset: 0;
+  width: var(--nacar-cover-width);
+  margin-inline: auto;
   background:
-    linear-gradient(34deg, #efe3ca 0 49.7%, transparent 50%) left bottom / 51% 100% no-repeat,
-    linear-gradient(-34deg, #f4ead5 0 49.7%, transparent 50%) right bottom / 51% 100% no-repeat,
-    #faf5e9;
-  border: 1px solid #d6c5a5;
-  border-radius: 5px;
-  box-shadow: 0 22px 65px #5e493d28, inset 0 0 40px #daccad51;
+    radial-gradient(ellipse at 20% 22%, #fff 1%, #fff0 52%),
+    radial-gradient(ellipse at 95% 45%, #f3e3d9, #f3e3d900 65%),
+    linear-gradient(140deg, #f1eadd, #fbf8f2 44%, #e5d8c6);
+  box-shadow: 0 0 65px #6a554531, inset 0 0 46px #c5ac842b;
 }
-#weiOverlay.nacar-opening .nacar-envelope-fold {
+#weiOverlay.nacar-opening .nacar-cover::before {
+  content: "";
   position: absolute;
-  inset: 0 0 45%;
-  background: linear-gradient(145deg, #fffdf7, #dfcfad);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: center top;
+  inset: clamp(13px, 4vw, 22px);
+  border: 1px solid #a68b613f;
+  border-radius: 46% 46% 6px 6px / 19% 19% 6px 6px;
+  box-shadow: inset 0 0 0 5px #fff7, 0 0 0 3px #fff5;
 }
-#weiOverlay.nacar-opening .nacar-welcome { position: relative; z-index: 1; }
-#weiOverlay.nacar-opening.nacar-unsealing .nacar-welcome {
-  opacity: 0;
-  scale: .95;
-  transition: opacity .26s ease, scale .36s ease;
+#weiOverlay.nacar-opening .nacar-welcome {
+  position: relative;
+  width: var(--nacar-cover-width);
+  padding: 24px 38px;
 }
-#weiOverlay.nacar-opening.nacar-unsealing .nacar-envelope-fold {
-  transform: rotateX(172deg);
-  transition: transform .68s .04s cubic-bezier(.25,.72,.35,1);
+#weiOverlay.nacar-opening .nacar-welcome h2 {
+  font-size: clamp(29px, 9vw, 44px);
+  overflow-wrap: anywhere;
+}
+#weiOverlay.nacar-opening #weiTapLabel {
+  border: 1px solid #a68b6170;
+  border-radius: 999px;
+  padding: 9px 15px;
+  background: #fff8;
+}
+@media (max-width: 600px) {
+  #weiOverlay.nacar-opening { --nacar-cover-width: 100%; }
 }
 body.nacar-mode #weiVideoWrap { background: #eee6d6; }
 body.nacar-mode #weiVideo { max-width: min(600px, 100%); max-height: 100dvh; }

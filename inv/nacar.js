@@ -42,8 +42,9 @@
     const overlay=document.getElementById('weiOverlay');
     const seal=source(media.sobre,SRC.seal);
     overlay.classList.add('nacar-opening');
+    overlay.setAttribute('aria-label','Abrir la invitación Nácar');
     overlay.innerHTML=[
-      '<div class="nacar-envelope" aria-hidden="true"><div class="nacar-envelope-fold"></div></div>',
+      '<div class="nacar-cover" aria-hidden="true"></div>',
       '<div class="nacar-welcome">',
       '<p>Estás invitado</p>',
       '<img id="weiImg" alt="Sello de Nácar para abrir la invitación" draggable="false">',
@@ -56,8 +57,11 @@
     put('#weiTapLabel',tx.tapAbrir||'Toca para abrir',overlay);
     put('#nacarWelcomeNames',(data.nombre1||'Cornelia')+' & '+(data.nombre2||'James'),overlay);
     media.sobre=seal;
-    if (media.video !== '__oculto__')
-      media.video=source(media.video,window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge.mp4'));
+    if (media.video !== '__oculto__') {
+      const bridge = window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge.mp4');
+      const originalBridge = 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/7781d503-b1ec-46c6-bc7b-d41a48374f14/intro-bridge.mp4';
+      media.video = media.video === originalBridge ? bridge : source(media.video,bridge);
+    }
     // El HTML original incluye música ambiental sintetizada en el botón de la demo.
     // No activar simultáneamente el viejo MP3 genérico de Jardín de Olivo.
     if(legacy.test(media.musica||''))media.musica='';

@@ -972,9 +972,7 @@
           overlay.classList.add('opened');
           overlay.style.pointerEvents = 'none';
           tryPlayAudio();
-          if (peoniaDemo && !editingView && !nativeFullscreenElement() && !cssFullscreenActive()) {
-            void enterFullscreen();
-          }
+          if (peoniaDemo) openFullscreenOnTap();
           // Esperar a que se abran las cuatro solapas, antes de mostrar el contenido.
           setTimeout(() => {
             overlay.style.opacity = '0';
@@ -984,13 +982,14 @@
           return;
         }
         tryPlayAudio();
-        if (media.__nacar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          overlay.classList.add('nacar-unsealing');
-          overlay.style.pointerEvents = 'none';
-          timer = setTimeout(playOpening, 720);
-          return;
-        }
         playOpening();
+        if (media.__nacar) openFullscreenOnTap();
+      }
+
+      function openFullscreenOnTap() {
+        if (!editingView && !nativeFullscreenElement() && !cssFullscreenActive()) {
+          void enterFullscreen();
+        }
       }
 
       function playOpening() {
@@ -1049,7 +1048,7 @@
         clearTimeout(overlayHideTimer);
         clearTimeout(videoHideTimer);
         videoWrap.style.display = 'none';
-        overlay.classList.remove('opened','nacar-unsealing');
+        overlay.classList.remove('opened');
         overlay.style.display = 'flex'; overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
         clearTimeout(controlsTimer);
         dock.classList.remove('visible', 'is-idle');
@@ -2108,7 +2107,7 @@
 
     const invitationAssets = {
       'red-vibrante': ['red-vibrante.css?v=escritorio-bordes','red-vibrante.js?v=flores-cierre-visible'],
-      nacar: ['nacar.css?v=apertura','nacar-original.js?v=apertura','nacar.js?v=apertura'],
+      nacar: ['nacar.css?v=intro-video','nacar-original.js?v=apertura','nacar.js?v=intro-video'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
       'dolce-vita': ['dolce-vita.css?v=carta3','dolce-vita-original.js?v=carta3','dolce-vita.js?v=carta3'],
