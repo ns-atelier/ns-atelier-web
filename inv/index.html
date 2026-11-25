@@ -1657,7 +1657,7 @@
 
     const editingView = window.parent !== window && new URLSearchParams(location.search).get('editor')==='1';
     const visualNodes = new Map();
-    let vistaInvitado=false;
+    let vistaInvitado=false, inlineNacarEditor=false;
     const canEditPreview=()=>editingView && !vistaInvitado;
     let visualSelected, visualEdits = {}, panelOrigin, previewRevision;
     function sendPanel(type, extra = {}) {
@@ -1855,7 +1855,7 @@
         const group = fixedField === 'musica' ? 'Música' : el.closest('#weiOverlay,#weiVideoWrap') ? 'Sobre y apertura' :
           section?.matches('.rv-root .hero,.sg-hero') ? 'Portada de la invitación' :
           el.closest('footer,.sg-footer') ? 'Cierre' : section?.matches('.sg-map') ? 'Mapa' :
-          section?.querySelector('h1,h2,h3')?.textContent.trim().slice(0, 110) || 'Interior';
+          section?.dataset.nacarResourceGroup || section?.querySelector('h1,h2,h3')?.textContent.trim().slice(0, 110) || 'Interior';
         if (!title || title === 'Pétalo') {
           const label = title || resourceLabels[kind];
           const countKey = group + '|' + label;
@@ -1947,7 +1947,7 @@
         });
       });
       const selector = 'img,video,h1,h2,h3,p,span,small,div,a,button,strong,b';
-      const candidates = root.querySelectorAll(textGroup ? selector + ',label,li,em,option' : selector);
+      const candidates = root.querySelectorAll(textGroup ? selector + ',label,li,em,option,input[placeholder],textarea[placeholder]' : selector);
       const nacarLinks = new Set();
       const textDisplay = new Map();
       function setTextVisibility(el) {
@@ -1963,14 +1963,24 @@
       for (const el of candidates) {
         if (el.closest('svg,script,style') || /^cd(Days|Hours|Mins|Secs|-days|-hours|-minutes|-seconds)$/.test(el.id)) continue;
         const media = el.matches('img,video');
+        const placeholder = textGroup && el.getAttribute('placeholder');
         const words = [...el.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim());
-        if (!media && !words.length) continue;
+        if (!media && !words.length && !placeholder) continue;
         let path = [];
         for (let n=el; n && n!==root; n=n.parentElement) {
           const peers = [...n.parentElement.children].filter(k=>k.tagName===n.tagName);
           path.unshift(n.tagName.toLowerCase()+peers.indexOf(n));
         }
         const key = sectionKey + '.' + path.join('.');
+        if (placeholder) {
+          const saved = {...base[key], ...custom[key]};
+          const text = saved.text ?? placeholder;
+          const hidden = saved.hidden === true;
+          const apply = patch=>el.setAttribute('placeholder',patch.hidden ? '' : patch.text);
+          apply({text,hidden});
+          if (editingView) textItems.push({key,group:textGroup,label:placeholder,text,hidden,apply});
+          continue;
+        }
         const original = words.map(n=>n.textContent.trim()).join(' ');
         const patch = {...base[key], ...custom[key]};
         const slot=el.matches('.sg-calig')?'caligrafia':el.matches('.sg-venue-art')?'lugar':'';
@@ -1991,7 +2001,7 @@
           let hasTextPatch = false;
           words.forEach((word,index)=>{
             const label = labelSources[index];
-            if (!/[\p{L}]/u.test(label)) return;
+            if (!/[\p{L}\p{N}]/u.test(label)) return;
             const textKey = editable ? key : key + '.part' + index;
             const saved = {...base[textKey], ...custom[textKey]};
             const value = saved.text ?? word.textContent;
@@ -2131,6 +2141,20 @@
       }else scrollTo({top:0,behavior:'instant'});
       sendPanel('atelier-view',{status,ready:true,hasCorona:!!document.querySelector('.sg-footer-wreath')});
     }
+    function nacarSectionControl(group, section, index, base, custom) {
+      const key = 'nacar-section.' + index;
+      section.dataset.nacarResourceGroup = group;
+      const hidden = Boolean(custom[key]?.hidden ?? base[key]?.hidden);
+      const wrapper = section.parentElement.matches('.reveal') ? section.parentElement : section;
+      const display = wrapper.style.getPropertyValue('display');
+      const priority = wrapper.style.getPropertyPriority('display');
+      function apply(value) {
+        if (value) wrapper.style.setProperty('display','none','important');
+        else wrapper.style.setProperty('display',display,priority);
+      }
+      apply(hidden);
+      return {key,group,hidden,apply};
+    }
     function connectVisual(t,d,model) {
       const base=t.media?._layout || {}, custom=d.layout || {};
       const nacar = model === 'nacar';
@@ -2138,6 +2162,7 @@
       const textItems = [];
       visualLayer($('weiOverlay'),'cover',base,custom,nacar ? 'Sobre' : '',textItems);
       const sections = [...$('root').querySelectorAll('section')];
+      const nacarSections = [];
       if (!sections.length) sections.push($('root'));
       const counts = {};
       const nacarGroups = ['Portada','Cuenta regresiva','Foto raspable','Ubicación','El día','Código de vestimenta','Transporte','Dónde hospedarse','Regalos','Confirmación'];
@@ -2146,16 +2171,41 @@
         counts[name]=(counts[name]||0)+1;
         const existingKey = name+counts[name];
         const sectionKey = nacar && !/^[a-zA-Z0-9_-]+$/.test(existingKey) ? 'nacar-section-'+(index+1) : existingKey;
-        visualLayer(sec,sectionKey,base,custom,nacar ? nacarGroups[index] || 'Interior' : '',textItems);
+        const group = nacar ? nacarGroups[index] || 'Interior' : '';
+        visualLayer(sec,sectionKey,base,custom,group,textItems);
+        if (nacar) nacarSections.push(nacarSectionControl(group,sec,index,base,custom));
       });
       if (nacar) {
         const footer = $('root').querySelector('.nacar-root footer');
         const gifts = $('registry-modal');
-        if (footer) visualLayer(footer,'nacar-footer',base,custom,'Despedida',textItems);
+        if (footer) {
+          visualLayer(footer,'nacar-footer',base,custom,'Despedida',textItems);
+          nacarSections.push(nacarSectionControl('Despedida',footer,'footer',base,custom));
+        }
         if (gifts) visualLayer(gifts,'nacar-gifts',base,custom,'Ventana de regalos',textItems);
         if (editingView) {
-          sendPanel('atelier-nacar-texts',{items:textItems.map(({key,group,text,hidden})=>({key,group,text,hidden})),revision:previewRevision});
-          mountNacarTextEditor(textItems);
+          sendPanel('atelier-nacar-texts',{
+            items:textItems.map(({key,group,label,text,hidden})=>({key,group,label,text,hidden})),
+            sections:nacarSections.map(({key,group,hidden})=>({key,group,hidden})),
+            revision:previewRevision
+          });
+          if (!inlineNacarEditor) mountNacarTextEditor(textItems);
+          const editableText = new Map(textItems.map(item=>[item.key,item]));
+          const editableSections = new Map(nacarSections.map(section=>[section.key,section]));
+          window.addEventListener('message',event=>{
+            const message = event.data;
+            if (event.source !== parent || event.origin !== panelOrigin || message?.type !== 'atelier-nacar-change' ||
+                message.revision !== previewRevision) return;
+            const patch = message.patch;
+            if (!patch || typeof patch !== 'object') return;
+            const section = editableSections.get(message.key);
+            if (section && typeof patch.hidden === 'boolean') section.apply(patch.hidden);
+            const item = editableText.get(message.key);
+            if (!item) return;
+            if (typeof patch.text === 'string') item.text = patch.text.slice(0,2000);
+            if (typeof patch.hidden === 'boolean') item.hidden = patch.hidden;
+            item.apply(item);
+          });
         }
       }
       if (!canEditPreview()) return;
@@ -2621,6 +2671,7 @@
           if(e.source!==parent || e.data?.type!=='atelier-init' || !e.data.payload)return;
           window.removeEventListener('message',init);panelOrigin=e.origin;
           vistaInvitado=Boolean(e.data.prueba);
+          inlineNacarEditor = e.data.inlineNacarEditor === true;
           previewRevision=e.data.revision;
           document.documentElement.classList.add('atelier-phone-preview');
           try {
