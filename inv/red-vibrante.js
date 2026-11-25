@@ -178,7 +178,7 @@
     flowers.setAttribute('aria-hidden', 'true');
     const red = 'uploads/eventos/20261125-121038-7f70e240-peonia-roja-de-petalos-aterciopelados.webp';
     const crimson = 'uploads/eventos/20261125-121118-f19a0ad9-peonia-carmesi-en-plena-floracion.webp';
-    const ivory = 'uploads/eventos/20261125-122004-fdc53e5b-rosi.webp';
+    const ivory = 'uploads/eventos/20261125-121922-e0f98526-rosa-crema-en-floracion.webp';
     for (const file of [red, ivory, crimson, ivory, red]) {
       const flower = document.createElement('img');
       flower.alt = '';
