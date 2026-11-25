@@ -599,7 +599,7 @@
   <div id="loading" role="status">Preparando tu invitación…</div>
 
   <!-- Audio & Opening Sequence -->
-  <audio id="weiAudio" loop preload="auto"></audio>
+  <audio id="weiAudio" loop preload="none"></audio>
 
   <div id="weiOverlay" hidden role="button" tabindex="0" aria-label="Tap to open">
     <img id="weiImg" alt="Open your invitation" draggable="false" />
@@ -610,7 +610,7 @@
   </div>
 
   <div id="weiVideoWrap" aria-hidden="true">
-    <video id="weiVideo" muted playsinline preload="auto"></video>
+    <video id="weiVideo" muted playsinline preload="metadata"></video>
     <button type="button" id="skipVideoBtn">Saltar ›</button>
   </div>
 
@@ -676,33 +676,8 @@
     </div>
   </div>
 
-  <link rel="stylesheet" href="red-vibrante.css" />
-  <link rel="stylesheet" href="nacar.css" />
-  <link rel="stylesheet" href="eleganza.css" />
-  <link rel="stylesheet" href="odette.css" />
-  <link rel="stylesheet" href="dolce-vita.css?v=carta3" />
-  <link rel="stylesheet" href="fresco.css" />
-  <link rel="stylesheet" href="theatre.css" />
-  <link rel="stylesheet" href="blossom-oud.css" />
-  <link rel="stylesheet" href="ana-diego.css" />
-  <link rel="stylesheet" href="diseno-personalizado.css">
-  <script src="diseno-personalizado.js"></script>
   <script src="../assets/demo-ids.js?v=3"></script>
   <script src="../assets/panel-api.js"></script>
-  <script src="red-vibrante.js?v=vestimenta"></script>
-  <script src="nacar-original.js"></script>
-  <script src="nacar.js"></script>
-  <script src="eleganza-original.js"></script>
-  <script src="eleganza.js"></script>
-  <script src="odette.js"></script>
-  <script src="dolce-vita-original.js?v=carta3"></script>
-  <script src="dolce-vita.js?v=carta3"></script>
-  <script src="fresco-original.js"></script>
-  <script src="fresco.js"></script>
-  <script src="theatre-original.js?v=es"></script>
-  <script src="theatre.js?v=es"></script>
-  <script src="blossom-oud.js"></script>
-  <script src="ana-diego.js"></script>
   <script>
     /* URL de tu Google Apps Script desplegado (termina en /exec) */
 
@@ -833,7 +808,7 @@
       if (textos && textos.tapAbrir) $('weiTapLabel').textContent = textos.tapAbrir;
       if (!media.__personalizadoSinImagen) $('weiImg').src = overImg;
       if (vidSrc) { video.src = vidSrc; video.load(); }
-      if (audSrc) { audio.src = audSrc; audio.volume = 1; audio.load(); }
+      if (audSrc) { audio.src = audSrc; audio.volume = 1; }
       else { audioBtn.style.display = 'none'; }
 
       overlay.hidden = false;
@@ -1136,7 +1111,7 @@
           <img class="sg-loc-decor anim-zoomin" src="${SG_ASSETS.locDecor}" alt="">
           <div class="sg-venue anim-fadeinup">${esc(d.lugar || '')}</div>
           <div class="sg-addr anim-fadeinup">${esc(d.direccion || '')}</div>
-          <img class="sg-venue-art anim-zoomin" src="${esc(safeUrl(m.lugar) || SG_ASSETS.lugar)}" alt="">
+          <img loading="lazy" decoding="async" class="sg-venue-art anim-zoomin" src="${esc(safeUrl(m.lugar) || SG_ASSETS.lugar)}" alt="">
           ${safeUrl(m.videoPetalos) ? `<video class="sg-petal-film" autoplay muted loop playsinline src="${esc(safeUrl(m.videoPetalos))}"></video>` : ''}
           ${SG_ASSETS.petals.map((p, idx) => `<img class="sg-petal p${idx + 1}" src="${esc(safeUrl(m.petalo) || p)}" alt="">`).join('')}
         </section>
@@ -1145,10 +1120,10 @@
         <section class="sg-artboard sg-map">
           ${mapEmbed ? `
           <div class="sg-map-frame">
-            <img class="sg-map-border" src="${SG_ASSETS.mapBorder}" alt="">
+            <img loading="lazy" decoding="async" class="sg-map-border" src="${SG_ASSETS.mapBorder}" alt="">
             <iframe class="sg-map-iframe" title="Mapa del evento" src="${esc(mapEmbed)}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <img class="sg-map-top" src="${SG_ASSETS.mapTop}" alt="">
-            <img class="sg-map-bot" src="${SG_ASSETS.mapBot}" alt="">
+            <img loading="lazy" decoding="async" class="sg-map-top" src="${SG_ASSETS.mapTop}" alt="">
+            <img loading="lazy" decoding="async" class="sg-map-bot" src="${SG_ASSETS.mapBot}" alt="">
           </div>` : ''}
           ${mapUrl ? `<a class="sg-map-link" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>` : ''}
         </section>` : ''}
@@ -1184,11 +1159,11 @@
         </section>
 
         <section class="sg-artboard sg-footer">
-          <img class="sg-footer-photo" src="${esc(safeUrl(m.fotoCierre) || SG_ASSETS.fotoCierre)}" alt="">
+          <img loading="lazy" decoding="async" class="sg-footer-photo" src="${esc(safeUrl(m.fotoCierre) || SG_ASSETS.fotoCierre)}" alt="">
           <div class="sg-footer-grad"></div>
           <h2 class="sg-title sg-footer-title anim-fadein">${esc(d.despedida || 'Hope to see you there!')}</h2>
           <div class="sg-footer-names anim-fadeinup">${esc(fullNames)}</div>
-          ${safeUrl(m.ramoFinalIzq) || safeUrl(m.ramoFinalDer) ? ['ramoFinalIzq','ramoFinalDer'].map((key,i) => safeUrl(m[key]) ? `<img class="sg-final-side side-${i}" src="${esc(safeUrl(m[key]))}" alt="">` : '').join('') : `<img class="sg-footer-wreath" src="${esc(safeUrl(m.coronaFinal) || SG_ASSETS.coronaFinal)}" alt="">`}
+          ${safeUrl(m.ramoFinalIzq) || safeUrl(m.ramoFinalDer) ? ['ramoFinalIzq','ramoFinalDer'].map((key,i) => safeUrl(m[key]) ? `<img loading="lazy" decoding="async" class="sg-final-side side-${i}" src="${esc(safeUrl(m[key]))}" alt="">` : '').join('') : `<img loading="lazy" decoding="async" class="sg-footer-wreath" src="${esc(safeUrl(m.coronaFinal) || SG_ASSETS.coronaFinal)}" alt="">`}
         </section>
       </main>`;
 
@@ -1308,7 +1283,7 @@
         <section class="cl-sec anim-fadein">
           <div class="cl-kicker">${L.loc}</div>
           <h2 class="cl-h2">${esc(d.lugar || '')}</h2>
-          ${venueArt ? `<img class="sg-venue-art" src="${esc(venueArt)}" alt="">` : ''}
+          ${venueArt ? `<img loading="lazy" decoding="async" class="sg-venue-art" src="${esc(venueArt)}" alt="">` : ''}
           ${d.direccion ? `<p class="cl-p">${esc(d.direccion)}</p>` : ''}
           ${mapEmbed ? `<div style="margin:18px auto 0;max-width:340px"><iframe class="sg-map-iframe" style="width:100%;height:300px" title="Mapa" src="${esc(mapEmbed)}" allowfullscreen loading="lazy"></iframe></div>` : ''}
           ${mapUrl ? `<p style="margin-top:16px"><a class="sg-pill-btn" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">${L.map}</a></p>` : ''}
@@ -1384,7 +1359,7 @@
         ${photos.length ? `<section class="cl-sec anim-fadein"><h2 class="cl-h2">Nuestros recuerdos</h2><div class="cl-gallery">${photos.map(u => `<img src="${esc(u)}" loading="lazy" alt="">`).join('')}</div></section>` : ''}
         <section class="cl-sec anim-fadein">
           <h2 class="cl-h2">${esc(d.lugar || 'Ubicación')}</h2>
-          ${safeUrl(m.lugar) ? `<img class="sg-venue-art" src="${esc(safeUrl(m.lugar))}" alt="">` : ''}
+          ${safeUrl(m.lugar) ? `<img loading="lazy" decoding="async" class="sg-venue-art" src="${esc(safeUrl(m.lugar))}" alt="">` : ''}
           <p class="cl-p">${esc(d.direccion || '')}</p>
           ${mapUrl ? `<p style="margin-top:16px"><a class="sg-pill-btn" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a></p>` : ''}
         </section>
@@ -2084,6 +2059,38 @@
       document.body.classList.remove('locked');
     }
 
+    const invitationAssets = {
+      'red-vibrante': ['red-vibrante.css','red-vibrante.js?v=vestimenta'],
+      nacar: ['nacar.css','nacar-original.js','nacar.js'],
+      eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
+      odette: ['odette.css','odette.js'],
+      'dolce-vita': ['dolce-vita.css?v=carta3','dolce-vita-original.js?v=carta3','dolce-vita.js?v=carta3'],
+      fresco: ['fresco.css','fresco-original.js','fresco.js'],
+      theatre: ['theatre.css','theatre-original.js?v=es','theatre.js?v=es'],
+      'blossom-oud': ['blossom-oud.css','blossom-oud.js'],
+      'ana-diego': ['ana-diego.css','ana-diego.js'],
+      personalizado: ['diseno-personalizado.css','diseno-personalizado.js']
+    };
+
+    function loadModelAssets(model) {
+      // The scripts register their renderers. Rendering begins after they and the stylesheet load.
+      return Promise.all(invitationAssets[model].map((path,index)=>new Promise((resolve,reject)=>{
+        const node = document.createElement(index ? 'script' : 'link');
+        node.onload = resolve;
+        node.onerror = () => reject(Error('No se pudieron cargar los archivos del diseño. Vuelve a abrir la invitación.'));
+        if (index) node.src = path;
+        else { node.rel = 'stylesheet'; node.href = path; }
+        document.head.append(node);
+      })));
+    }
+
+    const optimizedImages = new Map([
+      'inv/assets/perla-nacar/hero-frame.png',
+      'inv/assets/perla-nacar/transport-nacre-bg.png',
+      'inv/assets/uploads/the-sacred-garden/20261122-233441-70dc4117-sobre-beige-con-sello-de-cera-roja-a-e.png',
+      'inv/assets/uploads/the-sacred-garden/20261122-233425-a4bc00c1-sobre-beige-con-sello-de-cera-roja-a-e.png'
+    ].map(path=>[window.nsSiteUrl(path),window.nsSiteUrl(path.replace(/\.png$/,'.webp'))]));
+
     async function renderAll(payload) {
       const d = payload.datos || {}, t = payload.plantilla || {};
       explicitMedia=d.medios||{};
@@ -2093,7 +2100,7 @@
       Object.entries(m).forEach(([key, value]) => {
         if (typeof value === 'string' && value !== '__oculto__' && !key.startsWith('_')) {
           const normalized = safeUrl(value);
-          if (normalized) m[key] = normalized;
+          if (normalized) m[key] = optimizedImages.get(normalized) || normalized;
         }
       });
       const c = d.colores || {};
@@ -2150,6 +2157,7 @@
         (isPreview && id === 'theatre') || style === 'theatre';
       const blossomOud = id === 'blossom-oud' || style === 'blossom-oud';
       let model = 'universal';
+      if (style === 'personalizado') await loadModelAssets(style);
       if (style === 'personalizado' && typeof window.renderDisenoPersonalizado === 'function' && window.renderDisenoPersonalizado($('root'),m._diseno,d,m,{esc,safeUrl,preview:canEditPreview()})) {
         model = 'personalizado';
         m.__personalizadoDirecto = m._diseno.apertura === 'directa';
@@ -2168,15 +2176,15 @@
           overlay.prepend(card);
         }
       }
-      else if (id === 'ana-diego' || style === 'ana-diego') { model = 'ana-diego'; window.renderAnaDiego(d,m,payload.tipo === 'plantilla',esc,safeUrl); }
-      else if (blossomOud) { model = 'blossom-oud'; window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl); }
-      else if (theatre) { model = 'theatre'; await window.renderTheatre(d,t,m,payload); }
-      else if (fresco) { model = 'fresco'; await window.renderFresco(d,t,m,payload); }
-      else if (dolceVita) { model = 'dolce-vita'; await window.renderDolceVita(d,t,m,payload); }
-      else if (odette) { model = 'odette'; await window.renderOdette(d,t,m,payload); }
-      else if (eleganza) { model = 'eleganza'; await window.renderEleganza(d,t,m,payload); }
-      else if (nacar) { model = 'nacar'; await window.renderNacar(d,t,m,payload); }
-      else if (red) { model = 'red-vibrante'; await window.renderRedVibrante(d,t,m,payload); }
+      else if (id === 'ana-diego' || style === 'ana-diego') { model = 'ana-diego'; await loadModelAssets(model); window.renderAnaDiego(d,m,payload.tipo === 'plantilla',esc,safeUrl); }
+      else if (blossomOud) { model = 'blossom-oud'; await loadModelAssets(model); window.renderBlossomOud(d,m,payload.tipo === 'plantilla',esc,safeUrl); }
+      else if (theatre) { model = 'theatre'; await loadModelAssets(model); await window.renderTheatre(d,t,m,payload); }
+      else if (fresco) { model = 'fresco'; await loadModelAssets(model); await window.renderFresco(d,t,m,payload); }
+      else if (dolceVita) { model = 'dolce-vita'; await loadModelAssets(model); await window.renderDolceVita(d,t,m,payload); }
+      else if (odette) { model = 'odette'; await loadModelAssets(model); await window.renderOdette(d,t,m,payload); }
+      else if (eleganza) { model = 'eleganza'; await loadModelAssets(model); await window.renderEleganza(d,t,m,payload); }
+      else if (nacar) { model = 'nacar'; await loadModelAssets(model); await window.renderNacar(d,t,m,payload); }
+      else if (red) { model = 'red-vibrante'; await loadModelAssets(model); await window.renderRedVibrante(d,t,m,payload); }
       else if (style === 'sacred-garden' || id === 'the-sacred-garden') { model = 'sacred-garden'; renderSacredGarden(d,t,m); }
       else if (style === 'perla-nacar' || id === 'perla-nacar') { model = 'perla-nacar'; renderPerlaNacar(d,t,m,payload.tipo === 'plantilla'); }
       else renderUniversal(d,t,m);

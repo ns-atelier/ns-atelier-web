@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>N&amp;S ATELIER | Invitaciones Digitales de Lujo y Videohistorias 3D</title>
   <meta name="description" content="Invitaciones digitales interactivas con sobre animado, música, confirmación de asistencia y mapa, y videohistorias animadas 3D personalizadas." />
-  <!-- Preparar el catálogo para que abra más rápido desde la página principal. -->
-  <link rel="prefetch" href="catalogo.html" as="document" />
-  <link rel="prefetch" href="assets/catalogo/perla-nacar.webp" as="image" type="image/webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -243,7 +240,7 @@
     .hero-invitation {
       position: absolute; inset: auto 7% 6%; height: 144%; z-index: 1;
       display: grid; place-content: center; text-align: center; color: #573a36;
-      background: #faf1e2 url('inv/assets/coleccion/vitral-floral.jpg') center / cover;
+      background: #faf1e2 url('assets/hero-invitacion.webp') center / cover;
       box-shadow: 0 5px 15px #684b3940; transform: translateY(-50%);
     }
     .hero-invitation p { background: #fff5e5ee; padding: 9px 12px; font: 600 clamp(21px, 2.4vw, 30px)/1 var(--serif); }
@@ -1077,9 +1074,7 @@
 
     const videoHistorias = document.getElementById('videoHistorias');
     const videoFrame = videoHistorias?.closest('.video3d-figure');
-    // El MP4 actual es anamórfico: el archivo declara 1080×720,
-    // pero su display aspect ratio es 540:661 (vertical). No confiar en los
-    // píxeles almacenados para reservar el espacio del reproductor.
+    // Mantener el tamaño de la muestra y adaptar el marco a los videos del panel.
     videoHistorias?.addEventListener('loadedmetadata', () => {
       const url = videoHistorias.currentSrc || '';
       if (/videohistorias-actual\.(?:webm|mp4)(?:[?#]|$)/i.test(url)) return;

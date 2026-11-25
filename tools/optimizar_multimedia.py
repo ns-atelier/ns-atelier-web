@@ -6,8 +6,10 @@ El video nuevo se activa solamente cuando está subido correctamente.
 Las subidas a Google Apps Script no pasan por este proceso.
 """
 from __future__ import annotations
+import hashlib
 import json
 import re
+import shutil
 import subprocess
 from pathlib import Path
 from PIL import Image, ImageOps
@@ -90,6 +92,63 @@ def activate_video():
         old.unlink(missing_ok=True)
     incoming.unlink()
     print(f"Video nuevo activo: {duration:.2f}s {width}x{height}; WebM ligero: {has_webm}")
+
+def optimize_published_videos():
+    # Identify the published masters by content, including copies under earlier URLs.
+    # A replacement or an already optimized video will have a different checksum.
+    profiles = {
+        "7991ececea55089096996fc12d1b40b71e334bc67152cfa55f7d160389b85c2e": ("540:662", "24"),
+        "1442fa71bd03e149ffafe40a4db50200960720d17797695a4af2d8808bcc34bc": ("480:588", "35"),
+        "64e060cf2a2eb40cf81688f85005ae3507fc20e94befda03b123136558e0fb68": ("720:-2", "22"),
+        "da912a2f3da4d3143709d19167b9c50820ab255af489edb6b55e8481bc0403ed": ("720:1280", "22"),
+        "7b7b037beef2cf7de8528b994802edcba99e546eacf3ecd73b3f8df797411b49": (None, "22"),
+    }
+    paths = [
+        V / "videohistorias-actual.mp4",
+        V / "videohistorias-actual.webm",
+        ROOT / "inv/assets/perla-nacar/intro-bridge.mp4",
+        *(ROOT / "inv/assets/uploads").rglob("*.mp4"),
+    ]
+    batches: dict[str, list[Path]] = {}
+    for path in paths:
+        if path.is_file() and path.stat().st_size >= 2_000_000:
+            with path.open("rb") as source:
+                digest = hashlib.file_digest(source, "sha256").hexdigest()
+            if digest in profiles:
+                batches.setdefault(digest, []).append(path)
+
+    for digest, copies in batches.items():
+        original = copies[0]
+        temporary = original.with_name(original.stem + ".optimized" + original.suffix)
+        width_height, crf = profiles[digest]
+        filters = ["-vf", f"scale={width_height}:flags=lanczos,setsar=1"] if width_height else []
+        if original.suffix == ".webm":
+            codec = ["-c:v", "libvpx-vp9", "-crf", crf, "-b:v", "0",
+                     "-row-mt", "1", "-cpu-used", "4"]
+        else:
+            codec = ["-c:v", "libx264", "-crf", crf, "-preset", "slow",
+                     "-pix_fmt", "yuv420p", "-movflags", "+faststart"]
+        try:
+            command("ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-y",
+                    "-i", str(original), "-map", "0:v:0", "-map", "0:a:0?",
+                    *filters, *codec, "-threads", "2", "-c:a", "copy", str(temporary))
+            old_duration, _, _ = video_info(original)
+            new_duration, _, _ = video_info(temporary)
+            new_size = temporary.stat().st_size
+            if abs(old_duration - new_duration) >= 0.1 or new_size >= original.stat().st_size * 0.85:
+                continue
+            for target in copies:
+                replacement = target.with_name(target.stem + ".compressing" + target.suffix)
+                try:
+                    saved = target.stat().st_size - new_size
+                    shutil.copyfile(temporary, replacement)
+                    replacement.replace(target)
+                    print("Video publicado optimizado:", target.relative_to(ROOT), "ahorro bytes:", saved)
+                finally:
+                    replacement.unlink(missing_ok=True)
+        finally:
+            temporary.unlink(missing_ok=True)
+
 
 def optimize_new_uploads():
     """Optimiza video y música nuevos sin cambiar su nombre o URL pública.
@@ -231,6 +290,7 @@ def switch_static_images():
 
 if __name__ == "__main__":
     activate_video()
+    optimize_published_videos()
     optimize_new_uploads()
     images_to_webp()
     audio_to_opus()
