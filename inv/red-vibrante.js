@@ -132,7 +132,7 @@
     });
   }
   function showReveal(root) {
-    const targets = Array.from(root.querySelectorAll('.rv-reveal'));
+    const targets = root.querySelectorAll('.rv-reveal, .color-palette .swatch, .details-flowers img, .footer-photo-wrap, #countdownContainer');
     if (!('IntersectionObserver' in window)) { targets.forEach(el => el.classList.add('active')); return; }
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -142,8 +142,34 @@
     targets.forEach(el => observer.observe(el));
   }
 
+  function animateTimeline(timeline) {
+    if (!timeline || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const marker = document.createElement('span');
+    marker.className = 'rv-timeline-marker';
+    marker.setAttribute('aria-hidden', 'true');
+    // Keep decorative motion outside the editable schedule.
+    const section = timeline.parentElement;
+    section.append(marker);
+    let frame = 0;
+    function update() {
+      frame = 0;
+      const box = timeline.getBoundingClientRect();
+      const localTop = box.top - section.getBoundingClientRect().top;
+      const distance = Math.max(0, box.height - 36);
+      const step = Math.min(distance, Math.max(0, innerHeight * .6 - box.top - 18));
+      marker.style.top = (localTop + 18 + step) + 'px';
+    }
+    function queue() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+    window.addEventListener('scroll', queue, { passive: true, capture: true });
+    window.addEventListener('resize', queue, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(queue).observe(timeline);
+    queue();
+  }
+
   window.renderRedVibrante = async function renderRedVibrante(data, template, media, payload) {
-    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html'), { cache: 'force-cache' });
+    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html?v=movimiento'), { cache: 'force-cache' });
     if (!response.ok) throw Error('No se pudo cargar la plantilla Red Vibrante.');
     const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
     const node = doc.querySelector('.rv-root');
@@ -183,7 +209,10 @@
     if (Array.isArray(dressColors) && dressColors.length === 4 && dressColors.every(color=>/^#[0-9a-f]{6}$/i.test(color))) {
       palette?.querySelectorAll('.swatch').forEach((swatch,index)=>{swatch.style.backgroundColor=dressColors[index];});
     }
-    text(q('.organizer-name'), data.organizador);
+    text(q('.rv-dress-intro'), data.vestimenta);
+    const organizer = q('.organizer-name');
+    if (data.organizador) text(organizer, data.organizador);
+    else organizer.hidden = true;
     text(q('.footer-section h2'), data.despedida);
     text(q('#open-rsvp')?.parentElement?.querySelector('h2'), tx.tituloRsvp);
     text(q('#open-rsvp')?.parentElement?.querySelector('.section-text'), tx.textoRsvp);
@@ -194,6 +223,11 @@
       video.pause();
       video.src = validMedia(media.videoHero);
       video.load();
+    }
+    if (video) {
+      const syncHero = () => rv.classList.toggle('rv-video-ready',video.readyState >= 2 && !video.error);
+      for (const event of ['loadeddata','error','emptied']) video.addEventListener(event,syncHero);
+      syncHero();
     }
     mediaImage(q('.location-img'), isGenericMedia(media.lugar, ['jardin-venue.svg']) ? '' : media.lugar);
     mediaImage(q('.footer-photo-wrap img:not(.footer-photo-overlay)'), media.fotoCierre);
@@ -210,18 +244,22 @@
     if (tel) {
       if (number.length >= 10 && number.length <= 15) {
         tel.href = 'tel:+' + number; tel.textContent = '+' + number;
-      } else tel.remove();
+      } else {
+        tel.hidden = true;
+        tel.removeAttribute('href');
+      }
     }
     // La fecha controlada por el panel es única para el texto y la cuenta regresiva.
     countdown(rv, data.fecha);
     wireRsvp(rv, data, payload.tipo);
     showReveal(rv);
+    animateTimeline(q('.timeline'));
     makeEnvelope(media);
     const heroVideo = video;
     document.getElementById('weiOverlay').addEventListener('click', () => {
       heroVideo?.play().catch(() => {});
     }, { once: true });
-    document.title = 'Red Vibrante · N&S ATELIER';
+    document.title = (template.nombre || 'Peonía Carmesí') + ' · N&S ATELIER';
     return rv;
   };
 })();

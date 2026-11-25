@@ -777,3 +777,92 @@
 #weiOverlay.rv-envelope-mode.opened { opacity: 1; visibility: visible; }
 
 body.rv-mode { background:#66021f; }
+
+/* La apertura, el programa y los adornos tienen ritmos independientes. */
+@keyframes rv-arrival {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rv-bloom {
+  from { opacity: 0; scale: .76; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes rv-attire-sway {
+  0%, 100% { rotate: 0deg; }
+  48% { rotate: var(--rv-sway, 10deg); }
+}
+
+.rv-root .organizer-name[hidden],
+.rv-root .organizer-phone[hidden] { display: none; }
+.rv-root .hero-flowers img { transform-origin: center bottom; }
+.rv-root .timeline-item { grid-template-columns: minmax(0,1fr) 30px minmax(0,1fr); }
+.rv-root .timeline-event { overflow-wrap: anywhere; }
+.rv-root .rv-timeline-marker {
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #f2c982;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #f0b965b3;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* La guirnalda existente gana volumen con dos flores del mismo juego. */
+.rv-root .details-flowers::before,
+.rv-root .details-flowers::after {
+  content: '';
+  position: absolute;
+  bottom: 7px;
+  width: 34%;
+  height: 94px;
+  background: center / contain no-repeat;
+}
+.rv-root .details-flowers::before {
+  left: 16%;
+  rotate: -17deg;
+  background-image: url('https://static.tildacdn.net/tild3137-3335-4936-b237-373239373463/6.png');
+}
+.rv-root .details-flowers::after {
+  right: 13%;
+  rotate: 18deg;
+  background-image: url('https://static.tildacdn.net/tild3532-3561-4666-a237-313238636665/12.png');
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.locked .rv-root .hero-content > *,
+  body.locked .rv-root .hero-flowers img { opacity: 0; }
+  body:not(.locked) .rv-root .hero-content > * { animation: rv-arrival .9s .18s both; }
+  body:not(.locked) .rv-root .hero-content .hero-date { animation-delay: .31s; }
+  body:not(.locked) .rv-root .hero-content .hero-names { animation-delay: .48s; }
+  body:not(.locked) .rv-root .hero-flowers img { animation: rv-bloom .9s .44s both; }
+  body:not(.locked) .rv-root .hero-flowers img:nth-child(even) { animation-delay: .61s; }
+
+  .rv-root .dress-row.rv-reveal:not(.active) { transform: translateX(-26px); }
+  .rv-root .dress-row.reverse.rv-reveal:not(.active) { transform: translateX(26px); }
+  .rv-root .dress-row.active img { animation: rv-attire-sway 1s .25s ease both; }
+  .rv-root .dress-row.reverse img { --rv-sway: -10deg; }
+  .rv-root .color-palette .swatch.active,
+  .rv-root .details-flowers img.active { animation: rv-bloom .78s both; }
+  .rv-root .color-palette .swatch.active:nth-child(2) { animation-delay: .1s; }
+  .rv-root .color-palette .swatch.active:nth-child(3) { animation-delay: .2s; }
+  .rv-root .color-palette .swatch.active:nth-child(4) { animation-delay: .3s; }
+  .rv-root .footer-photo-wrap.active,
+  .rv-root #countdownContainer.active { animation: rv-arrival .85s both; }
+}
+.visual-editor .rv-root .hero-content > *,
+.visual-editor .rv-root .hero-flowers img,
+.visual-editor .rv-root .rv-reveal { animation: none !important; opacity: 1; transform: none; }
+.visual-editor .rv-timeline-marker { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv-root .rv-reveal { opacity: 1; transform: none; }
+}
+
+/* Fondo visible mientras se prepara el video o si el proveedor no lo sirve. */
+.rv-root .hero {
+  background: radial-gradient(ellipse at 50% 28%, #7d203b 0%, #3c091a 70%, var(--burgundy) 100%);
+}
+.rv-root:not(.rv-video-ready) .hero-video { opacity: 0; }
+.rv-root .hero-video { transition: opacity .65s ease; }
