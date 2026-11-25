@@ -61,6 +61,8 @@
       const bridge = window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge.mp4');
       const originalBridge = 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/7781d503-b1ec-46c6-bc7b-d41a48374f14/intro-bridge.mp4';
       media.video = media.video === originalBridge ? bridge : source(media.video,bridge);
+      if (media.video === bridge)
+        document.getElementById('weiVideo').poster=window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge-poster.webp');
     }
     // El HTML original incluye música ambiental sintetizada en el botón de la demo.
     // No activar simultáneamente el viejo MP3 genérico de Jardín de Olivo.

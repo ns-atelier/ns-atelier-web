@@ -1848,14 +1848,6 @@
 .nacar-root .rsvp-form-collapse{max-height:0;opacity:0;overflow:hidden;transition:max-height .85s ease,opacity .65s ease;}
 .nacar-root .rsvp-form-collapse.is-open{max-height:1100px;opacity:1;}
 .nacar-root #hero-content{opacity:1;transition:opacity 1.6s ease-out;}
-#weiOverlay.nacar-opening{background:radial-gradient(circle at 50% 42%,#fff 0%,#f8f6f2 55%,#eae3d5 100%);color:#3c4b5d;}
-#weiOverlay.nacar-opening #weiImg{width:135px;height:auto;max-width:60vw;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(60,75,93,.22));}
-#weiOverlay.nacar-opening #weiTapLabel{font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.22em;color:#3c4b5d;text-transform:uppercase;background:transparent;animation:none;}
-#weiOverlay.nacar-opening .nacar-welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:100%;padding:24px;text-align:center;gap:24px;}
-#weiOverlay.nacar-opening .nacar-welcome h2{font:400 44px/1.1 "Monsieur La Doulaise",cursive;color:#3c4b5d;}
-#weiOverlay.nacar-opening .nacar-welcome p{font:400 16px/1.4 "Cormorant Garamond",serif;letter-spacing:.25em;text-transform:uppercase;}
-#weiOverlay.nacar-opening #weiTapWrap{position:static;transform:none;}
-#weiOverlay.nacar-opening .wei-chevron{display:none;}
 body.ns-mobile-immersive .nacar-root{max-width:none;}
 .nacar-root main{width:100%;min-width:0;}
 .nacar-root img,.nacar-root video{max-width:100%;}
@@ -1864,50 +1856,88 @@ body.nacar-mode{background:radial-gradient(ellipse at 48% 12%,#f3eddf,#e6ddcf 62
 @media(max-width:560px){.nacar-root{max-width:100%;}}
 @media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}
 
-/* Formato vertical de la portada perlada y del video de apertura. */
+/* Portada y video comparten encuadre para que el lazo cobre vida al tocar el sello. */
+body.nacar-mode {
+  --nacar-opening-width: min(100vw, 460px, 56.34dvh);
+  --nacar-opening-matte: #e7dbca;
+}
 #weiOverlay.nacar-opening {
-  --nacar-cover-width: min(100vw, 440px, 62svh);
-  background: radial-gradient(ellipse at 50% 38%, #f3ede3, #dcd0bd 78%);
+  background: radial-gradient(ellipse at 50% 38%, #f3ece1, var(--nacar-opening-matte));
+  color: #354255;
 }
 #weiOverlay.nacar-opening .nacar-cover {
   position: absolute;
   inset: 0;
-  width: var(--nacar-cover-width);
+  width: var(--nacar-opening-width);
   margin-inline: auto;
-  background:
-    radial-gradient(ellipse at 20% 22%, #fff 1%, #fff0 52%),
-    radial-gradient(ellipse at 95% 45%, #f3e3d9, #f3e3d900 65%),
-    linear-gradient(140deg, #f1eadd, #fbf8f2 44%, #e5d8c6);
-  box-shadow: 0 0 65px #6a554531, inset 0 0 46px #c5ac842b;
-}
-#weiOverlay.nacar-opening .nacar-cover::before {
-  content: "";
-  position: absolute;
-  inset: clamp(13px, 4vw, 22px);
-  border: 1px solid #a68b613f;
-  border-radius: 46% 46% 6px 6px / 19% 19% 6px 6px;
-  box-shadow: inset 0 0 0 5px #fff7, 0 0 0 3px #fff5;
+  background: #f0e4d2 url('assets/perla-nacar/intro-bridge-poster.webp') center / cover no-repeat;
+  box-shadow: 0 0 65px #6a554531;
 }
 #weiOverlay.nacar-opening .nacar-welcome {
   position: relative;
-  width: var(--nacar-cover-width);
-  padding: 24px 38px;
+  height: 100%;
+  width: var(--nacar-opening-width);
+  text-align: center;
+}
+#weiOverlay.nacar-opening #weiImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(80px, 25vw, 116px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  filter: drop-shadow(0 5px 12px #5d483a42);
+}
+#weiOverlay.nacar-opening .nacar-welcome p,
+#weiOverlay.nacar-opening .nacar-welcome h2 {
+  position: absolute;
+  inset-inline: 10%;
+  margin: 0;
+  color: #354255;
+  text-shadow: 0 1px 10px #fffcf2, 0 1px 1px #fffcf2;
+}
+#weiOverlay.nacar-opening .nacar-welcome p {
+  top: 24%;
+  font: 500 13px/1.4 "Jost", sans-serif;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
 #weiOverlay.nacar-opening .nacar-welcome h2 {
-  font-size: clamp(29px, 9vw, 44px);
+  top: 69%;
+  font: 400 clamp(32px, 9vw, 49px)/1.13 "Monsieur La Doulaise", cursive;
   overflow-wrap: anywhere;
 }
+#weiOverlay.nacar-opening #weiTapWrap {
+  top: calc(50% + 65px);
+  bottom: auto;
+}
 #weiOverlay.nacar-opening #weiTapLabel {
-  border: 1px solid #a68b6170;
-  border-radius: 999px;
-  padding: 9px 15px;
-  background: #fff8;
+  padding: 9px 14px;
+  color: #354255;
+  background: #fff9eeed;
+  border: 1px solid #ae967468;
+  font: 500 11px/1.35 "Jost", sans-serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  animation: none;
+}
+body.nacar-mode #weiVideoWrap { background: var(--nacar-opening-matte); }
+body.nacar-mode #weiVideo {
+  width: var(--nacar-opening-width);
+  height: 100%;
+  max-width: 100%;
+  max-height: 100dvh;
+  object-fit: cover;
+  object-position: center;
 }
 @media (max-width: 600px) {
-  #weiOverlay.nacar-opening { --nacar-cover-width: 100%; }
+  body.nacar-mode { --nacar-opening-width: 100%; }
 }
-body.nacar-mode #weiVideoWrap { background: #eee6d6; }
-body.nacar-mode #weiVideo { max-width: min(600px, 100%); max-height: 100dvh; }
+@media (prefers-reduced-motion: no-preference) {
+  #weiOverlay.nacar-opening #weiImg { animation: nacar-seal-breathe 2.8s ease-in-out infinite; }
+  @keyframes nacar-seal-breathe { 50% { scale: 1.035; } }
+}
 @media (prefers-reduced-motion: no-preference) {
   body.nacar-mode.locked .nacar-root #hero-content { opacity: 0; }
 }
