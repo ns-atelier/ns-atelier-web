@@ -142,9 +142,28 @@
     targets.forEach(el => observer.observe(el));
   }
 
-  function animateTimeline(timeline) {
-    if (!timeline || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const marker = document.createElement('span');
+  function revealWelcome(section) {
+    if (!section) return;
+    section.setAttribute('data-rv-welcome-pending', '');
+    function reveal() {
+      if (document.body.classList.contains('locked')) return;
+      const heading = section.querySelector('h2').getBoundingClientRect();
+      if (heading.top >= innerHeight * .86 || heading.bottom <= 0) return;
+      section.removeAttribute('data-rv-welcome-pending');
+      window.removeEventListener('scroll', reveal, true);
+    }
+    window.addEventListener('scroll', reveal, { passive: true, capture: true });
+  }
+
+  function animateTimeline(timeline, flower) {
+    if (!timeline) return;
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const marker = document.createElement('img');
+    marker.alt = '';
+    marker.loading = 'lazy';
+    marker.decoding = 'async';
+    marker.src = validMedia(flower) || window.nsSiteUrl('inv/assets/peonia-flor-marfil.webp');
+    marker.hidden = flower === '__oculto__';
     marker.className = 'rv-timeline-marker';
     marker.setAttribute('aria-hidden', 'true');
     // Keep decorative motion outside the editable schedule.
@@ -156,20 +175,20 @@
       const box = timeline.getBoundingClientRect();
       const localTop = box.top - section.getBoundingClientRect().top;
       const distance = Math.max(0, box.height - 36);
-      const step = Math.min(distance, Math.max(0, innerHeight * .6 - box.top - 18));
+      const step = still ? 0 : Math.min(distance, Math.max(0, innerHeight * .6 - box.top - 18));
       marker.style.top = (localTop + 18 + step) + 'px';
     }
     function queue() {
       if (!frame) frame = requestAnimationFrame(update);
     }
-    window.addEventListener('scroll', queue, { passive: true, capture: true });
+    if (!still) window.addEventListener('scroll', queue, { passive: true, capture: true });
     window.addEventListener('resize', queue, { passive: true });
     if ('ResizeObserver' in window) new ResizeObserver(queue).observe(timeline);
     queue();
   }
 
   window.renderRedVibrante = async function renderRedVibrante(data, template, media, payload) {
-    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html?v=movimiento'), { cache: 'force-cache' });
+    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html?v=bienvenida'), { cache: 'force-cache' });
     if (!response.ok) throw Error('No se pudo cargar la plantilla Red Vibrante.');
     const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
     const node = doc.querySelector('.rv-root');
@@ -196,8 +215,21 @@
     }
     text(q('.hero-subtitle'), data.tipo || 'Wedding Day');
     text(q('.hero-date'), data.fechaCorta || readableDate(data.fecha));
-    text(q('.footer-names'), n1 + (n2 ? ' and ' + n2 : ''));
-    text(q('.section-burgundy .section-text'), data.mensaje);
+    text(q('.footer-names'), n1 + (n2 ? ' y ' + n2 : ''));
+    const welcome = q('[data-rv-welcome]');
+    text(welcome?.querySelector('h2'), tx.tituloBienvenida);
+    text(welcome?.querySelector('p'), data.mensaje);
+    text(q('.rv-details-title'),tx.tituloDetalles);
+    text(q('.rv-details-contact'),tx.textoDetalles);
+    text(q('.rv-details-gifts'),tx.regalosDetalles);
+    for (const [selector,title,description] of [
+      ['.dress-row:not(.reverse)',tx.tituloCaballeros,tx.textoCaballeros],
+      ['.dress-row.reverse',tx.tituloDamas,tx.textoDamas]
+    ]) {
+      const paragraph = q(selector)?.querySelector('p');
+      text(paragraph?.querySelector('strong'),title);
+      if (paragraph && description?.trim()) paragraph.lastChild.textContent = description;
+    }
     text(q('.location-name'), data.lugar);
     text(q('.location-address'), data.direccion);
     text(q('.location-name')?.parentElement?.querySelector('h2'), tx.tituloUbicacion);
@@ -214,6 +246,7 @@
     if (data.organizador) text(organizer, data.organizador);
     else organizer.hidden = true;
     text(q('.footer-section h2'), data.despedida);
+    text(q('#open-rsvp'), tx.clicAbrir);
     text(q('#open-rsvp')?.parentElement?.querySelector('h2'), tx.tituloRsvp);
     text(q('#open-rsvp')?.parentElement?.querySelector('.section-text'), tx.textoRsvp);
     text(q('.modal-subtitle'), data.rsvpLimite);
@@ -253,7 +286,8 @@
     countdown(rv, data.fecha);
     wireRsvp(rv, data, payload.tipo);
     showReveal(rv);
-    animateTimeline(q('.timeline'));
+    revealWelcome(welcome);
+    animateTimeline(q('.timeline'),media.rosaLinea);
     makeEnvelope(media);
     const heroVideo = video;
     document.getElementById('weiOverlay').addEventListener('click', () => {

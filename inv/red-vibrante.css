@@ -801,11 +801,10 @@ body.rv-mode { background:#66021f; }
   position: absolute;
   left: 50%;
   translate: -50% -50%;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #f2c982;
-  border-radius: 50%;
-  box-shadow: 0 0 12px #f0b965b3;
+  width: clamp(34px, 10vw, 49px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 3px #42101d88);
   pointer-events: none;
   z-index: 3;
 }
@@ -823,12 +822,12 @@ body.rv-mode { background:#66021f; }
 .rv-root .details-flowers::before {
   left: 16%;
   rotate: -17deg;
-  background-image: url('https://static.tildacdn.net/tild3137-3335-4936-b237-373239373463/6.png');
+  background-image: url('assets/peonia-flor-marfil.webp');
 }
 .rv-root .details-flowers::after {
   right: 13%;
   rotate: 18deg;
-  background-image: url('https://static.tildacdn.net/tild3532-3561-4666-a237-313238636665/12.png');
+  background-image: url('assets/peonia-flor-marfil.webp');
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -855,7 +854,7 @@ body.rv-mode { background:#66021f; }
 .visual-editor .rv-root .hero-content > *,
 .visual-editor .rv-root .hero-flowers img,
 .visual-editor .rv-root .rv-reveal { animation: none !important; opacity: 1; transform: none; }
-.visual-editor .rv-timeline-marker { display: none; }
+.rv-root .rv-timeline-marker[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .rv-root .rv-reveal { opacity: 1; transform: none; }
 }
@@ -866,3 +865,24 @@ body.rv-mode { background:#66021f; }
 }
 .rv-root:not(.rv-video-ready) .hero-video { opacity: 0; }
 .rv-root .hero-video { transition: opacity .65s ease; }
+
+.rv-root [data-rv-welcome] > :is(h2, p) {
+  transition: opacity .7s ease, transform .7s ease;
+}
+.rv-root [data-rv-welcome-pending] > :is(h2, p) {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.rv-root [data-rv-welcome] > p { transition-delay: .12s; }
+.rv-root :is([data-rv-welcome] > p, .rv-details-contact, .rv-details-gifts, .dress-row p) {
+  white-space: pre-line;
+}
+.visual-editor .rv-root [data-rv-welcome-pending] > :is(h2, p) {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-root [data-rv-welcome-pending] > :is(h2, p) { transform: none; }
+}
+.rv-root #open-rsvp.rv-reveal { transition-delay: .14s; }
+.rv-root .footer-names.rv-reveal { transition-delay: .12s; }

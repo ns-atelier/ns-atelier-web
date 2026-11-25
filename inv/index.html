@@ -1624,7 +1624,7 @@
     const resourceSlots = [
       ['sobre','#weiImg'], ['caligrafia','.sg-calig'], ['lugar','.sg-venue-art,.location-img'],
       ['videoHero','.sg-hero-video video,.sg-hero-video source'], ['ramaIzq','.sg-branch-l img'], ['ramaDer','.sg-branch-r img'],
-      ['flores','.sg-welcome-bg img'], ['rosaLinea','#sgRose'], ['videoPetalos','.sg-petal-film'],
+      ['flores','.sg-welcome-bg img'], ['rosaLinea','#sgRose,.rv-timeline-marker'], ['videoPetalos','.sg-petal-film'],
       ['sello','#openSealBtn img,#openUniRsvp img'], ['fotoCierre','.sg-footer-photo'],
       ['coronaFinal','.sg-footer-wreath'], ['ramoFinalIzq','.sg-final-side.side-0'], ['ramoFinalDer','.sg-final-side.side-1']
     ];
@@ -1699,8 +1699,8 @@
         'tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRegalos tx_tituloRsvp',
         'fondo texto acento boton', 'flores ramaIzq ramaDer lugar sello fotoCierre coronaFinal foto1 foto2 foto3'],
       'red-vibrante': [common + ' tipo mensaje cronograma vestimenta rsvpLimite despedida',
-        'tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRsvp tx_textoRsvp',
-        'fuente fondo texto vestColor1 vestColor2 vestColor3 vestColor4', 'videoHero flores ramaIzq ramaDer lugar fotoCierre foto1 foto2'],
+        'tx_tituloCuenta tx_tituloPrograma tx_tituloUbicacion tx_tituloVestimenta tx_tituloRsvp tx_textoRsvp tx_clicAbrir tx_tituloBienvenida tx_tituloCaballeros tx_textoCaballeros tx_tituloDamas tx_textoDamas tx_tituloDetalles tx_textoDetalles tx_regalosDetalles',
+        'fuente fondo texto vestColor1 vestColor2 vestColor3 vestColor4', 'videoHero flores ramaIzq ramaDer lugar fotoCierre foto1 foto2 rosaLinea'],
       nacar: [common + ' mapaUrl cronograma vestimenta regalos rsvpLimite despedida', 'tx_tituloRegalos',
         'fondo texto', 'flores lugar fotoCierre sello foto1 foto2'],
       eleganza: [common + ' mapaUrl cronograma vestimenta regalos rsvpLimite despedida', '',
@@ -2060,7 +2060,7 @@
     }
 
     const invitationAssets = {
-      'red-vibrante': ['red-vibrante.css?v=movimiento','red-vibrante.js?v=movimiento'],
+      'red-vibrante': ['red-vibrante.css?v=bienvenida','red-vibrante.js?v=bienvenida'],
       nacar: ['nacar.css','nacar-original.js','nacar.js'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
