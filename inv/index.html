@@ -1973,6 +1973,14 @@
       if (!canEditPreview()) return;
       const root=document.documentElement;
       root.classList.add('visual-editor');
+      document.addEventListener('keydown', e=>{
+        if ((!e.ctrlKey && !e.metaKey) || e.altKey || e.isComposing || e.defaultPrevented ||
+            e.target.closest?.('input,textarea,select,[contenteditable]')) return;
+        const key = e.key.toLowerCase();
+        if (key !== 'z' && key !== 'y') return;
+        e.preventDefault();
+        sendPanel('atelier-history',{direction:key==='y' || e.shiftKey ? 1 : -1,revision:previewRevision});
+      });
       let drag;
       function commit(v) {
         const key=visualSelected.el.dataset.visualKey;
@@ -2060,7 +2068,7 @@
     }
 
     const invitationAssets = {
-      'red-vibrante': ['red-vibrante.css?v=ritmo','red-vibrante.js?v=ritmo'],
+      'red-vibrante': ['red-vibrante.css?v=caligrafia','red-vibrante.js?v=ritmo'],
       nacar: ['nacar.css','nacar-original.js','nacar.js'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],

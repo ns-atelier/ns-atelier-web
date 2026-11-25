@@ -741,10 +741,23 @@
   
 
 /* Integración con la vista de invitaciones de N&S Atelier */
-.rv-root { --burgundy:#66021f; --burgundy-dark:#660120; --cream:#fffaf8; --charcoal:#3a3a3a; --font-main:'Cormorant Garamond','Ovo',Georgia,serif; --font-timer:'Ovo',serif; width:100%; min-height:100vh; }
+.rv-root { --burgundy:#66021f; --burgundy-dark:#660120; --cream:#fffaf8; --charcoal:#3a3a3a; --font-main:'Ovo',Georgia,serif; --font-timer:'Ovo',serif; width:100%; min-height:100vh; }
 .rv-root .invitation-wrapper{ margin-inline:auto; }
 .rv-root .hero-content { padding-left:16px; padding-right:16px; }
-.rv-root .hero-names { font-size:clamp(48px,13vw,80px); }
+.rv-root .hero-names,
+.rv-root .hero-amp,
+.rv-root [data-rv-welcome] > h2 {
+  font-family: 'Great Vibes', 'Cormorant Garamond', Georgia, cursive;
+  font-weight: 400;
+}
+.rv-root [data-rv-welcome] > h2 { font-size: clamp(31px, 9vw, 47px); line-height: 1.2; }
+.rv-root .hero-names {
+  font-size: clamp(56px, 16.5vw, 90px);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  padding-inline: .12em;
+}
+.rv-root .hero-amp { font-size: .58em; line-height: .88; margin: .08em 0; }
 .rv-root .hero { height: min(820px, 100svh); min-height:620px; }
 .rv-root .hero-video { background:#420014; }
 .rv-root #rsvp-modal { z-index:100001; }
@@ -762,7 +775,6 @@
 .rv-root .rv-demo-disclaimer{ font:13px/1.5 system-ui,sans-serif;color:#666; margin:0 0 12px; }
 .rv-root .rv-loading-media{ background:linear-gradient(120deg,#66021f,#38111e); }
 @media (max-width:480px) {
-  .rv-root .hero-names{font-size:clamp(48px,13vw,70px);}
   .rv-root .hero-date{ margin-bottom:95px; }
   .rv-root .dress-row img {width:42%;}
   .rv-root .timeline-time{font-size:clamp(19px,5vw,28px);}
