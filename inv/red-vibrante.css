@@ -955,3 +955,29 @@ body.rv-mode { background:#66021f; }
 .rv-calligraphy .rv-root .modal-close { font-family: var(--font-main); }
 .rv-calligraphy .rv-root :is(.rsvp-btn, .submit-btn, input[type="text"]) { font-size: 24px; }
 .rv-calligraphy .rv-root .rv-demo-disclaimer { font: 400 20px/1.35 var(--font-main); }
+
+/* La composición floral conserva sus proporciones al cambiar el ancho. */
+.rv-calligraphy .rv-root .hero-flowers { height: auto; aspect-ratio: 1.65; }
+.rv-calligraphy .rv-root .fl-1 { left: -13%; bottom: 10%; width: 30%; }
+.rv-calligraphy .rv-root .fl-2 { left: 15%; bottom: 35%; width: 19%; }
+.rv-calligraphy .rv-root .fl-3 { left: 3%; bottom: 1%; width: 33%; }
+.rv-calligraphy .rv-root .fl-4 { left: 25%; bottom: 1%; width: 36%; z-index: 1; }
+.rv-calligraphy .rv-root .fl-5 { left: 39%; bottom: 13%; width: 45%; }
+.rv-calligraphy .rv-root .fl-6 { right: 4%; bottom: 3%; width: 34%; }
+.rv-calligraphy .rv-root .fl-7 { right: -24%; bottom: 19%; width: 52%; z-index: 2; }
+
+/* Las cuatro solapas comparten la geometría del mismo sobre. */
+.rv-calligraphy #weiOverlay.rv-envelope-mode .envelope-stage { max-width: 440px; }
+.rv-calligraphy .envelope-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f2e8dd;
+  transition: opacity .5s ease .8s;
+}
+.rv-calligraphy .envelope-overlay.opened .envelope-stage::before { opacity: 0; }
+.rv-calligraphy .envelope-stage .env-flap { width: 103%; object-fit: fill; }
+.rv-calligraphy .envelope-stage .env-left { left: -1.5%; }
+.rv-calligraphy .envelope-stage .env-right { right: -1.5%; }
+.rv-calligraphy .envelope-stage .env-top { top: -1%; height: 28%; }
+.rv-calligraphy .envelope-stage .env-bottom { bottom: -1%; height: 30%; }
