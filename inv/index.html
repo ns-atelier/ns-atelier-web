@@ -1924,16 +1924,17 @@
       sendPanel('atelier-resources', {items,structure,revision:previewRevision});
     }
     let explicitMedia={};
-    function visualLayer(root, sectionKey, base, custom) {
+    function visualLayer(root, sectionKey, base, custom, textGroup, textItems) {
       // Keep each name independently selectable inside headings with a decorative separator.
       root.querySelectorAll('.sg-names,.cl-names').forEach(heading=>{
         [...heading.childNodes].filter(n=>n.nodeType===3 && n.textContent.trim()).forEach(n=>{
           const span=document.createElement('span');span.style.cssText='display:inline;font:inherit;color:inherit';n.replaceWith(span);span.append(n);
         });
       });
-      const candidates = root.querySelectorAll('img,video,h1,h2,h3,p,span,small,div,a,button,strong,b');
+      const selector = 'img,video,h1,h2,h3,p,span,small,div,a,button,strong,b';
+      const candidates = root.querySelectorAll(textGroup ? selector + ',label,li,em,option' : selector);
       for (const el of candidates) {
-        if (el.closest('svg,script,style') || el.id && /^cd(Days|Hours|Mins|Secs)$/.test(el.id)) continue;
+        if (el.closest('svg,script,style') || /^cd(Days|Hours|Mins|Secs|-days|-hours|-minutes|-seconds)$/.test(el.id)) continue;
         const media = el.matches('img,video');
         const words = [...el.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim());
         if (!media && !words.length) continue;
@@ -1955,6 +1956,17 @@
         }
         const editable = !el.hasAttribute('data-atelier-variable') && words.length === 1;
         if (!media && patch.text !== undefined && editable) words[0].textContent = patch.text;
+        if (textGroup && !media && !el.hasAttribute('data-atelier-variable') && el.id !== 'iban-value') {
+          words.forEach((word,index)=>{
+            if (!/[\p{L}]/u.test(original) || !/[\p{L}]/u.test(word.textContent) && words.length > 1) return;
+            const textKey = editable ? key : key + '.part' + index;
+            if (!editable) {
+              const saved = custom[textKey]?.text ?? base[textKey]?.text;
+              if (saved !== undefined) word.textContent = saved;
+            }
+            if (editingView) textItems.push({key:textKey,group:textGroup,text:word.textContent.trim()});
+          });
+        }
         applyGeometry(el,patch);
         if (!canEditPreview()) continue;
         el.dataset.visualKey=key;
@@ -1996,18 +2008,30 @@
       }else scrollTo({top:0,behavior:'instant'});
       sendPanel('atelier-view',{status,ready:true,hasCorona:!!document.querySelector('.sg-footer-wreath')});
     }
-    function connectVisual(t,d) {
+    function connectVisual(t,d,model) {
       const base=t.media?._layout || {}, custom=d.layout || {};
-      if(!canEditPreview() && !Object.keys(base).length && !Object.keys(custom).length)return;
-      visualLayer($('weiOverlay'),'cover',base,custom);
+      const nacar = model === 'nacar';
+      if(!canEditPreview() && !(nacar && editingView) && !Object.keys(base).length && !Object.keys(custom).length)return;
+      const textItems = [];
+      visualLayer($('weiOverlay'),'cover',base,custom,nacar ? 'Sobre' : '',textItems);
       const sections = [...$('root').querySelectorAll('section')];
       if (!sections.length) sections.push($('root'));
       const counts = {};
-      sections.forEach(sec=>{
+      const nacarGroups = ['Portada','Cuenta regresiva','Foto raspable','Ubicación','Programa','Vestimenta','Transporte','Alojamiento','Regalos','Confirmación'];
+      sections.forEach((sec,index)=>{
         const name=sec.id || [...sec.classList].filter(c=>!c.startsWith('anim-')).join('-') || 'section';
         counts[name]=(counts[name]||0)+1;
-        visualLayer(sec,name+counts[name],base,custom);
+        const existingKey = name+counts[name];
+        const sectionKey = nacar && !/^[a-zA-Z0-9_-]+$/.test(existingKey) ? 'nacar-section-'+(index+1) : existingKey;
+        visualLayer(sec,sectionKey,base,custom,nacar ? nacarGroups[index] || 'Interior' : '',textItems);
       });
+      if (nacar) {
+        const footer = $('root').querySelector('.nacar-root footer');
+        const gifts = $('registry-modal');
+        if (footer) visualLayer(footer,'nacar-footer',base,custom,'Despedida',textItems);
+        if (gifts) visualLayer(gifts,'nacar-gifts',base,custom,'Ventana de regalos',textItems);
+        if (editingView) sendPanel('atelier-nacar-texts',{items:textItems,revision:previewRevision});
+      }
       if (!canEditPreview()) return;
       const root=document.documentElement;
       root.classList.add('visual-editor');
@@ -2253,7 +2277,7 @@
       }
       setupIntro(m, d.textos || {}, model === 'red-vibrante' && peoniaDemo);
       mostrarInvitacionES();
-      connectVisual(t,d);
+      connectVisual(t,d,model);
       const mode = demoId ? 'demo' : payload.tipo === 'evento' ? 'event' : 'template';
       const structure = editingView ? editableStructure(model,m._diseno,mode,!!safeUrl(m.sobre)) : undefined;
       listResources(t,d,m,structure);
