@@ -1838,7 +1838,7 @@
         const url = replacement || original;
         const target = el.closest('video,audio') || el;
         const visualKey = target.dataset.visualKey;
-        const legacyKey = visualKey && (custom[visualKey]?.src || base[visualKey]?.src) ? visualKey : '';
+        const legacyKey = visualKey || '';
         resourceNodes.set(key, target);
         if (!el.dataset.resourceKey) el.dataset.resourceKey = key;
         if (!target.dataset.resourceKey) target.dataset.resourceKey = key;
@@ -1846,8 +1846,8 @@
           el.closest('[data-diseno-bloque]')?.dataset.disenoBloque;
         items.push({key, kind, title:title.trim().slice(0, 140), group, hidden, editorBlock,
           custom:!fixedField && !!patch.src, legacyKey,
-          field, locatable:!el.matches('#weiVideo,#weiAudio'), url:/^https?:\/\//i.test(url) ? url : '',
-          original:/^https?:\/\//i.test(original) ? original : '', embedded:/^(data|blob):/.test(url)});
+          field, locatable:!el.matches('#weiVideo,#weiAudio'), url:!hidden && /^https?:\/\//i.test(url) ? url : '',
+          embedded:!hidden && /^(data|blob):/.test(url)});
       }
       function describe(root, area) {
         for (const el of [root, ...root.querySelectorAll('*')]) {
@@ -1934,7 +1934,12 @@
         const patch = {...base[key], ...custom[key]};
         const slot=el.matches('.sg-calig')?'caligrafia':el.matches('.sg-venue-art')?'lugar':'';
         if(slot && explicitMedia[slot] && !custom[key]?.src)delete patch.src;
-        if (media && patch.src && safeUrl(patch.src)) el.src = safeUrl(patch.src);
+        const visualSource = media && safeUrl(patch.src);
+        if (visualSource) {
+          if (el.matches('img')) el.removeAttribute('srcset');
+          if (el.hasAttribute('data-fallback')) el.dataset.fallback = visualSource;
+          el.src = visualSource;
+        }
         const editable = !el.hasAttribute('data-atelier-variable') && words.length === 1;
         if (!media && patch.text !== undefined && editable) words[0].textContent = patch.text;
         applyGeometry(el,patch);
