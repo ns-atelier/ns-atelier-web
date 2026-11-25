@@ -886,3 +886,31 @@ body.rv-mode { background:#66021f; }
 }
 .rv-root #open-rsvp.rv-reveal { transition-delay: .14s; }
 .rv-root .footer-names.rv-reveal { transition-delay: .12s; }
+
+.rv-root .rv-typing {
+  position: relative;
+  color: transparent !important;
+}
+.rv-root .rv-type-output {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.rv-root .location-img.rv-reveal {
+  transition: opacity 1s ease, transform 1s ease;
+}
+.rv-root .location-img[data-rv-image-pending] { opacity: 0; }
+
+@keyframes rv-timer-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rv-root #countdownContainer.active .number {
+    animation: rv-timer-float 2.8s ease-in-out infinite;
+  }
+  .rv-root #countdownContainer.active .time-block:nth-of-type(3) .number { animation-delay: .18s; }
+  .rv-root #countdownContainer.active .time-block:nth-of-type(5) .number { animation-delay: .36s; }
+  .rv-root #countdownContainer.active .time-block:nth-of-type(7) .number { animation-delay: .54s; }
+  .visual-editor .rv-root #countdownContainer.active .number { animation: none; }
+}

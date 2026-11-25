@@ -131,28 +131,91 @@
       }
     });
   }
+  function startTyping(element) {
+    const output = document.createElement('span');
+    output.className = 'rv-type-output';
+    output.setAttribute('aria-hidden','true');
+    output.style.color = getComputedStyle(element).color;
+    output.append(...[...element.childNodes].map(node=>node.cloneNode(true)));
+
+    const walker = document.createTreeWalker(output, NodeFilter.SHOW_TEXT);
+    const runs = [];
+    let length = 0;
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const characters = Array.from(node.textContent);
+      runs.push({ node, characters, start:length });
+      length += characters.length;
+      node.textContent = '';
+    }
+    if (!length) return () => {};
+    element.classList.add('rv-typing');
+    element.append(output);
+    const duration = Math.min(3200, length * 28);
+    let start;
+    let frame;
+    function stop() {
+      cancelAnimationFrame(frame);
+      output.remove();
+      element.classList.remove('rv-typing');
+    }
+    function draw(now) {
+      start ??= now;
+      const count = Math.floor(Math.min(1, (now-start)/duration)*length);
+      for (const run of runs) {
+        run.node.textContent = run.characters.slice(0,Math.max(0,count-run.start)).join('');
+      }
+      if (count < length) frame = requestAnimationFrame(draw);
+      else stop();
+    }
+    frame = requestAnimationFrame(draw);
+    return stop;
+  }
+
   function showReveal(root) {
+    const typingTargets = root.querySelectorAll('.rv-dress-title, .rv-dress-intro, .dress-row p, .rv-details-title, .rv-details-contact, .rv-details-gifts');
+    typingTargets.forEach(el=>el.classList.add('rv-reveal'));
     const targets = root.querySelectorAll('.rv-reveal, .color-palette .swatch, .details-flowers img, .footer-photo-wrap, #countdownContainer');
-    if (!('IntersectionObserver' in window)) { targets.forEach(el => el.classList.add('active')); return; }
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      targets.forEach(el=>el.classList.add('active'));
+      return;
+    }
+    const typing = new Set(typingTargets);
+    const stopTyping = new Map();
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
-      });
-    }, { threshold: .12 });
+      for (const {target,isIntersecting,intersectionRatio} of entries) {
+        if (!isIntersecting) {
+          target.classList.remove('active');
+          stopTyping.get(target)?.();
+          stopTyping.delete(target);
+        } else if (intersectionRatio >= .12 && !target.classList.contains('active')) {
+          if (typing.has(target) && !root.closest('.visual-editor')) stopTyping.set(target,startTyping(target));
+          target.classList.add('active');
+        }
+      }
+    }, { threshold: [0,.12] });
     targets.forEach(el => observer.observe(el));
   }
 
   function revealWelcome(section) {
-    if (!section) return;
+    if (!section || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     section.setAttribute('data-rv-welcome-pending', '');
-    function reveal() {
+    window.addEventListener('scroll', () => {
       if (document.body.classList.contains('locked')) return;
-      const heading = section.querySelector('h2').getBoundingClientRect();
-      if (heading.top >= innerHeight * .86 || heading.bottom <= 0) return;
-      section.removeAttribute('data-rv-welcome-pending');
-      window.removeEventListener('scroll', reveal, true);
-    }
-    window.addEventListener('scroll', reveal, { passive: true, capture: true });
+      const {top,bottom} = section.getBoundingClientRect();
+      if (top >= innerHeight || bottom <= 0) section.setAttribute('data-rv-welcome-pending', '');
+      else if (top < innerHeight * .86 && bottom > innerHeight * .14) {
+        section.removeAttribute('data-rv-welcome-pending');
+      }
+    }, { passive: true, capture: true });
+  }
+
+  function revealLocation(image) {
+    if (!image || image.complete) return;
+    image.setAttribute('data-rv-image-pending','');
+    const reveal = () => image.removeAttribute('data-rv-image-pending');
+    image.addEventListener('load',reveal,{once:true});
+    image.addEventListener('error',reveal,{once:true});
   }
 
   function animateTimeline(timeline, flower) {
@@ -188,7 +251,7 @@
   }
 
   window.renderRedVibrante = async function renderRedVibrante(data, template, media, payload) {
-    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html?v=bienvenida'), { cache: 'force-cache' });
+    const response = await fetch(window.nsSiteUrl('inv/red-vibrante-template.html?v=ritmo'), { cache: 'force-cache' });
     if (!response.ok) throw Error('No se pudo cargar la plantilla Red Vibrante.');
     const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
     const node = doc.querySelector('.rv-root');
@@ -262,7 +325,9 @@
       for (const event of ['loadeddata','error','emptied']) video.addEventListener(event,syncHero);
       syncHero();
     }
-    mediaImage(q('.location-img'), isGenericMedia(media.lugar, ['jardin-venue.svg']) ? '' : media.lugar);
+    const placePhoto = q('.location-img');
+    mediaImage(placePhoto, isGenericMedia(media.lugar, ['jardin-venue.svg']) ? '' : media.lugar);
+    revealLocation(placePhoto);
     mediaImage(q('.footer-photo-wrap img:not(.footer-photo-overlay)'), media.fotoCierre);
     const flowerImages = rv.querySelectorAll('.hero-flowers img');
     if (media.ramaIzq && validMedia(media.ramaIzq)) mediaImage(flowerImages[0], media.ramaIzq);
