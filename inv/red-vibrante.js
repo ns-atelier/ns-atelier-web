@@ -172,7 +172,7 @@
     return stop;
   }
 
-  function addFooterFlowers(photo) {
+  function addFooterFlowers(footer) {
     const flowers = document.createElement('div');
     flowers.className = 'footer-flowers';
     flowers.setAttribute('aria-hidden', 'true');
@@ -185,14 +185,13 @@
       mediaImage(flower, window.nsSiteUrl('inv/assets/' + file));
       flowers.append(flower);
     }
-    photo.append(flowers);
+    footer.append(flowers);
   }
 
-  function showReveal(root, floralMotion) {
+  function showReveal(root) {
     const typingTargets = root.querySelectorAll('.rv-dress-title, .rv-dress-intro, .dress-row p, .rv-details-title, .rv-details-contact, .rv-details-gifts');
     typingTargets.forEach(el=>el.classList.add('rv-reveal'));
-    const baseTargets = '.rv-reveal, .color-palette .swatch, .details-flowers img, .footer-photo-wrap, #countdownContainer';
-    const targets = root.querySelectorAll(floralMotion ? baseTargets + ', .hero-flowers, .details-flowers, .footer-flowers' : baseTargets);
+    const targets = root.querySelectorAll('.rv-reveal, .color-palette .swatch, .details-flowers img, .footer-photo-wrap, #countdownContainer');
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       targets.forEach(el=>el.classList.add('active'));
       return;
@@ -348,7 +347,7 @@
     revealLocation(placePhoto);
     const footerPhoto = q('.footer-photo-wrap');
     mediaImage(footerPhoto?.querySelector(':scope > img:not(.footer-photo-overlay)'), media.fotoCierre);
-    if (useDemoCalligraphy && footerPhoto) addFooterFlowers(footerPhoto);
+    if (footerPhoto) addFooterFlowers(footerPhoto.parentElement);
     const flowerImages = rv.querySelectorAll('.hero-flowers img');
     if (media.ramaIzq && validMedia(media.ramaIzq)) mediaImage(flowerImages[0], media.ramaIzq);
     if (media.ramaDer && validMedia(media.ramaDer)) mediaImage(flowerImages[flowerImages.length - 1], media.ramaDer);
@@ -370,7 +369,7 @@
     // La fecha controlada por el panel es única para el texto y la cuenta regresiva.
     countdown(rv, data.fecha);
     wireRsvp(rv, data, payload.tipo);
-    showReveal(rv, useDemoCalligraphy);
+    showReveal(rv);
     revealWelcome(welcome);
     animateTimeline(q('.timeline'),media.rosaLinea);
     makeEnvelope(media);

@@ -1026,55 +1026,63 @@ body.rv-mode { background:#66021f; }
 .rv-calligraphy .details-flowers::after { right: 23%; bottom: 6%; }
 
 .rv-root .footer-flowers {
-  position: absolute;
-  inset: auto 0 0;
-  height: 30%;
-  max-height: 155px;
-  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: clamp(100px, 30vw, 145px);
+  margin-top: clamp(-78px, -18vw, -50px);
   pointer-events: none;
-  background: linear-gradient(to top, var(--burgundy), transparent 65%);
+  background: linear-gradient(to top, var(--burgundy) 22%, transparent 80%);
 }
 .rv-root .footer-flowers img {
   position: absolute;
-  bottom: -10%;
+  bottom: 0;
   width: 28%;
-  max-height: 95%;
+  max-height: 96%;
   object-fit: contain;
   object-position: bottom;
 }
-.rv-root .footer-flowers img:nth-child(1) { left: -5%; bottom: -6%; width: 34%; }
-.rv-root .footer-flowers img:nth-child(2) { left: 17%; bottom: -3%; width: 25%; }
-.rv-root .footer-flowers img:nth-child(3) { left: 38%; bottom: -15%; width: 25%; }
-.rv-root .footer-flowers img:nth-child(4) { right: 17%; bottom: 0; width: 25%; }
-.rv-root .footer-flowers img:nth-child(5) { right: -5%; width: 34%; }
+.rv-root .footer-flowers img:nth-child(1) { left: -3%; bottom: 4%; width: 32%; }
+.rv-root .footer-flowers img:nth-child(2) { left: 18%; bottom: 0; width: 25%; }
+.rv-root .footer-flowers img:nth-child(3) { left: 38%; bottom: 1%; width: 26%; }
+.rv-root .footer-flowers img:nth-child(4) { right: 17%; bottom: 2%; width: 25%; }
+.rv-root .footer-flowers img:nth-child(5) { right: -3%; bottom: 4%; width: 32%; }
 
 @media (prefers-reduced-motion: no-preference) {
   @keyframes rv-flower-sway {
-    0%, 100% { transform: translateY(0) rotate(-1.2deg); }
-    50% { transform: translateY(-3px) rotate(1.2deg); }
+    0%, 100% { transform: translateY(1px) rotate(-2.8deg); }
+    50% { transform: translateY(-7px) rotate(2.8deg); }
   }
-  body.rv-calligraphy:not(.locked) .rv-root .hero-flowers.active img {
-    animation: rv-bloom .9s .44s both, rv-flower-sway 7s 1.34s ease-in-out infinite;
+  .rv-root :is(.hero-flowers, .details-flowers, .footer-flowers) img,
+  .rv-root .details-flowers::before,
+  .rv-root .details-flowers::after { transform-origin: center bottom; }
+  .rv-root .details-flowers,
+  .rv-root .footer-flowers { --flower-delay: -1s; }
+  body:not(.locked) .rv-root .hero-flowers img {
+    animation: rv-bloom .9s .44s both, rv-flower-sway 5.8s 1.34s ease-in-out infinite;
   }
-  body.rv-calligraphy:not(.locked) .rv-root .hero-flowers.active img:nth-child(even) {
-    animation-delay: .61s, 1.51s;
+  body:not(.locked) .rv-root .hero-flowers img:nth-child(even) {
+    animation-delay: .61s, 2s;
   }
-  .rv-calligraphy .rv-root .details-flowers.active img.active {
-    animation: rv-bloom .78s both, rv-flower-sway 7s .78s ease-in-out infinite;
+  .rv-root .details-flowers .df-mid {
+    left: calc(50% - 65px);
+    transform: none;
   }
-  .rv-calligraphy .rv-root .details-flowers.active::before,
-  .rv-calligraphy .rv-root .details-flowers.active::after,
-  .rv-calligraphy .rv-root .footer-flowers.active img {
-    animation: rv-flower-sway 7s ease-in-out infinite;
+  .rv-calligraphy .rv-root .details-flowers .df-mid { left: 35%; }
+  .rv-root .details-flowers img,
+  .rv-root .details-flowers::before,
+  .rv-root .details-flowers::after,
+  .rv-root .footer-flowers img {
+    animation: rv-flower-sway 5.8s var(--flower-delay) ease-in-out infinite;
   }
-  .rv-calligraphy .rv-root .details-flowers.active::after,
-  .rv-calligraphy .rv-root .footer-flowers.active img:nth-child(even) {
-    animation-delay: -2.25s;
+  .rv-root .details-flowers img.active {
+    animation: rv-bloom .78s both, rv-flower-sway 5.8s var(--flower-delay) ease-in-out infinite;
   }
-  .rv-calligraphy .rv-root :is(.details-flowers, .footer-flowers) img,
-  .rv-calligraphy .rv-root .details-flowers::before,
-  .rv-calligraphy .rv-root .details-flowers::after { transform-origin: center bottom; }
-  .visual-editor .rv-calligraphy .rv-root :is(.details-flowers, .footer-flowers) img,
-  .visual-editor .rv-calligraphy .rv-root .details-flowers::before,
-  .visual-editor .rv-calligraphy .rv-root .details-flowers::after { animation: none !important; }
+  .rv-root .details-flowers::after,
+  .rv-root :is(.details-flowers, .footer-flowers) img:nth-child(even) { --flower-delay: -3.4s; }
+  .visual-editor body:not(.locked) .rv-root .hero-flowers img {
+    animation: rv-flower-sway 5.8s ease-in-out infinite !important;
+  }
+  .visual-editor .rv-root :is(.hero-flowers, .details-flowers, .footer-flowers) img[data-picked] {
+    animation: none !important;
+  }
 }
