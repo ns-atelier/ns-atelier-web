@@ -1933,6 +1933,7 @@
       });
       const selector = 'img,video,h1,h2,h3,p,span,small,div,a,button,strong,b';
       const candidates = root.querySelectorAll(textGroup ? selector + ',label,li,em,option' : selector);
+      const nacarLinks = new Set();
       for (const el of candidates) {
         if (el.closest('svg,script,style') || /^cd(Days|Hours|Mins|Secs|-days|-hours|-minutes|-seconds)$/.test(el.id)) continue;
         const media = el.matches('img,video');
@@ -1957,21 +1958,35 @@
         const editable = !el.hasAttribute('data-atelier-variable') && words.length === 1;
         if (!media && patch.text !== undefined && editable) words[0].textContent = patch.text;
         if (textGroup && !media && !el.hasAttribute('data-atelier-variable') && el.id !== 'iban-value') {
+          let hasTextPatch = editable && patch.text !== undefined;
           words.forEach((word,index)=>{
-            if (!/[\p{L}]/u.test(original) || !/[\p{L}]/u.test(word.textContent) && words.length > 1) return;
+            if (!/[\p{L}]/u.test(original) || !editable && !/[\p{L}]/u.test(word.textContent)) return;
             const textKey = editable ? key : key + '.part' + index;
             if (!editable) {
               const saved = custom[textKey]?.text ?? base[textKey]?.text;
-              if (saved !== undefined) word.textContent = saved;
+              if (saved !== undefined) {
+                word.textContent = saved;
+                hasTextPatch = true;
+              }
             }
             if (editingView) textItems.push({key:textKey,group:textGroup,text:word.textContent.trim()});
           });
+          if (hasTextPatch) {
+            const link = el.closest('a[href]');
+            if (link) nacarLinks.add(link);
+            const onlyText = [...el.children].every(child=>child.matches('br'));
+            if (onlyText && !el.textContent.trim()) el.style.setProperty('display','none','important');
+            else if (words.some(word=>word.textContent.trim().includes('\n'))) el.style.whiteSpace='pre-line';
+          }
         }
         applyGeometry(el,patch);
         if (!canEditPreview()) continue;
         el.dataset.visualKey=key;
         visualNodes.set(key,{el, words, media, original, editable});
         if (media) el.style.pointerEvents='auto';
+      }
+      for (const link of nacarLinks) {
+        if (!link.textContent.trim()) link.style.setProperty('display','none','important');
       }
     }
     function applyGeometry(el,v) {
@@ -2017,7 +2032,7 @@
       const sections = [...$('root').querySelectorAll('section')];
       if (!sections.length) sections.push($('root'));
       const counts = {};
-      const nacarGroups = ['Portada','Cuenta regresiva','Foto raspable','Ubicación','Programa','Vestimenta','Transporte','Alojamiento','Regalos','Confirmación'];
+      const nacarGroups = ['Portada','Cuenta regresiva','Foto raspable','Ubicación','El día','Código de vestimenta','Transporte','Dónde hospedarse','Regalos','Confirmación'];
       sections.forEach((sec,index)=>{
         const name=sec.id || [...sec.classList].filter(c=>!c.startsWith('anim-')).join('-') || 'section';
         counts[name]=(counts[name]||0)+1;
@@ -2131,7 +2146,7 @@
 
     const invitationAssets = {
       'red-vibrante': ['red-vibrante.css?v=escritorio-bordes','red-vibrante.js?v=flores-cierre-visible'],
-      nacar: ['nacar.css?v=portada-enlazada','nacar-original.js?v=apertura','nacar.js?v=portada-video-aprobado'],
+      nacar: ['nacar.css?v=portada-enlazada','nacar-original.js?v=textos-editables','nacar.js?v=portada-video-aprobado'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
       'dolce-vita': ['dolce-vita.css?v=carta3','dolce-vita-original.js?v=carta3','dolce-vita.js?v=carta3'],

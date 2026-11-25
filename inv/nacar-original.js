@@ -38,6 +38,11 @@ window.startNacarOriginal=function(){
       const canvas = document.getElementById('scratch-canvas');
       if (!container || !canvas) return;
       const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const prompt = document.createElement('span');
+      prompt.hidden = true;
+      prompt.textContent = 'Raspa\npara revelar';
+      container.append(prompt);
 
       let isDrawing = false;
       let isRevealed = false;
@@ -76,8 +81,12 @@ window.startNacarOriginal=function(){
         ctx.textBaseline = 'middle';
         const fontSize = Math.max(12, Math.round(w * 0.085));
         ctx.font = `500 ${fontSize}px "Cormorant Garamond", Georgia, serif`;
-        ctx.fillText('Raspa', w / 2, h / 2 - fontSize * 0.65);
-        ctx.fillText('para revelar', w / 2, h / 2 + fontSize * 0.55);
+        if (prompt.style.display === 'none' || prompt.hasAttribute('data-atelier-hidden')) return;
+        const lines = prompt.textContent.trim().split(/\r?\n/).filter(line=>line.trim());
+        lines.forEach((line,index)=>{
+          const y = h / 2 + (index - (lines.length - 1) / 2) * fontSize * 1.2;
+          ctx.fillText(line, w / 2, y, w * 0.75);
+        });
       }
 
       function getCoords(e) {
@@ -154,8 +163,7 @@ window.startNacarOriginal=function(){
         isDrawing = false;
       });
 
-      window.addEventListener('load', paintCover);
-      paintCover();
+      requestAnimationFrame(paintCover);
     })();
 
     // =========================================================================
