@@ -61,8 +61,13 @@
       const bridge = window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge.mp4');
       const originalBridge = 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/7781d503-b1ec-46c6-bc7b-d41a48374f14/intro-bridge.mp4';
       media.video = media.video === originalBridge ? bridge : source(media.video,bridge);
-      if (media.video === bridge)
-        document.getElementById('weiVideo').poster=window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge-poster.webp');
+      const approvedOpening = '/inv/assets/uploads/eventos/20261125-140646-d2ee517d-opening_wedding_invitation_card_8abd3aa1.mp4';
+      const poster = new URL(media.video).pathname.endsWith(approvedOpening)
+        ? 'apertura-nacar-poster.webp'
+        : 'intro-bridge-poster.webp';
+      const posterUrl = window.nsSiteUrl('inv/assets/perla-nacar/' + poster);
+      overlay.querySelector('.nacar-cover').style.backgroundImage = 'url("' + posterUrl + '")';
+      document.getElementById('weiVideo').poster = posterUrl;
     }
     // El HTML original incluye música ambiental sintetizada en el botón de la demo.
     // No activar simultáneamente el viejo MP3 genérico de Jardín de Olivo.
