@@ -593,6 +593,21 @@
 .atelier-phone-preview,.atelier-phone-preview body{scrollbar-width:none}
 .atelier-phone-preview::-webkit-scrollbar,.atelier-phone-preview body::-webkit-scrollbar{display:none}
 .sg-row{grid-template-columns:minmax(0,4.8em) 18px minmax(0,1fr);gap:6px}.sg-row-time,.sg-row-name{font-size:clamp(16px,4.7vw,21px);padding:0;line-height:1.3;overflow-wrap:anywhere}.sg-rose,.sg-timeline:before{left:calc(4.8em + 15px)}
+
+    .nacar-text-launch,.nacar-text-dialog{font:14px/1.35 system-ui,sans-serif;color:#332626}
+    .nacar-text-launch{position:fixed;inset:8px auto auto 8px;z-index:2147483647;padding:7px 11px;border:1px solid #e3d1c7;border-radius:20px;background:#fffaf5;box-shadow:0 2px 10px #33262635;cursor:pointer}
+    .nacar-text-dialog{position:fixed;inset:0;margin:auto;width:calc(100% - 20px);max-width:400px;max-height:calc(100% - 20px);box-sizing:border-box;border:1px solid #e3d1c7;border-radius:13px;padding:14px;background:#fffaf5}
+    .nacar-text-dialog::backdrop{background:#33262688}
+    .nacar-text-dialog form,.nacar-text-dialog label{display:grid;gap:6px}
+    .nacar-text-dialog form{gap:12px}
+    .nacar-text-dialog header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .nacar-text-dialog h2{font:600 17px/1.25 system-ui,sans-serif;margin:0}
+    .nacar-text-dialog select,.nacar-text-dialog textarea{box-sizing:border-box;width:100%;min-width:0;font:inherit;color:inherit;padding:7px;border:1px solid #d8c2bb;border-radius:6px;background:white}
+    .nacar-text-dialog textarea{resize:vertical}
+    .nacar-text-dialog .nacar-text-checkbox{display:flex;gap:8px;align-items:center}
+    .nacar-text-dialog button{font:inherit;cursor:pointer;border:1px solid #d8c2bb;border-radius:6px;background:white;color:inherit;padding:6px 9px}
+    .nacar-text-dialog button[type="submit"]{background:#5a0f1b;border-color:#5a0f1b;color:white}
+    .nacar-text-dialog p{font:12px/1.35 system-ui,sans-serif;margin:0}
 </style>
   <script src="idioma-es.js?v=2"></script>
 </head>
@@ -1934,6 +1949,17 @@
       const selector = 'img,video,h1,h2,h3,p,span,small,div,a,button,strong,b';
       const candidates = root.querySelectorAll(textGroup ? selector + ',label,li,em,option' : selector);
       const nacarLinks = new Set();
+      const textDisplay = new Map();
+      function setTextVisibility(el) {
+        if (!el.textContent.trim()) {
+          if (!textDisplay.has(el)) textDisplay.set(el,[el.style.getPropertyValue('display'),el.style.getPropertyPriority('display')]);
+          el.style.setProperty('display','none','important');
+        } else if (textDisplay.has(el)) {
+          const [value,priority] = textDisplay.get(el);
+          el.style.setProperty('display',value,priority);
+          textDisplay.delete(el);
+        }
+      }
       for (const el of candidates) {
         if (el.closest('svg,script,style') || /^cd(Days|Hours|Mins|Secs|-days|-hours|-minutes|-seconds)$/.test(el.id)) continue;
         const media = el.matches('img,video');
@@ -1958,25 +1984,40 @@
         const editable = !el.hasAttribute('data-atelier-variable') && words.length === 1;
         if (!media && patch.text !== undefined && editable) words[0].textContent = patch.text;
         if (textGroup && !media && !el.hasAttribute('data-atelier-variable') && el.id !== 'iban-value') {
-          let hasTextPatch = editable && patch.text !== undefined;
+          const labelSources = words.map(word=>word.textContent.trim());
+          if (editable) labelSources[0] = original;
+          const link = el.closest('a[href]');
+          const onlyText = [...el.children].every(child=>child.matches('br'));
+          let hasTextPatch = false;
           words.forEach((word,index)=>{
-            if (!/[\p{L}]/u.test(original) || !editable && !/[\p{L}]/u.test(word.textContent)) return;
+            const label = labelSources[index];
+            if (!/[\p{L}]/u.test(label)) return;
             const textKey = editable ? key : key + '.part' + index;
-            if (!editable) {
-              const saved = custom[textKey]?.text ?? base[textKey]?.text;
-              if (saved !== undefined) {
-                word.textContent = saved;
-                hasTextPatch = true;
-              }
+            const saved = {...base[textKey], ...custom[textKey]};
+            const value = saved.text ?? word.textContent;
+            const hidden = saved.hidden === true;
+            function apply(next) {
+              word.textContent = next.hidden ? '' : next.text;
+              if (next.text.trim().includes('\n')) el.style.whiteSpace = 'pre-line';
+              if (el.parentElement?.id === 'scratch-container') el.dispatchEvent(new Event('atelier-text-update'));
             }
-            if (editingView) textItems.push({key:textKey,group:textGroup,text:word.textContent.trim()});
+            if (editable && hidden) delete patch.hidden;
+            if (saved.text !== undefined || saved.hidden !== undefined) {
+              apply({text:value,hidden});
+              hasTextPatch = true;
+            }
+            if (editingView) textItems.push({key:textKey,group:textGroup,label,text:value.trim(),hidden,
+              apply(next) {
+                apply(next);
+                if (onlyText) setTextVisibility(el);
+                if (link && link !== el) setTextVisibility(link);
+                if (editable && !next.hidden) delete el.dataset.atelierHidden;
+              }
+            });
           });
           if (hasTextPatch) {
-            const link = el.closest('a[href]');
-            if (link) nacarLinks.add(link);
-            const onlyText = [...el.children].every(child=>child.matches('br'));
-            if (onlyText && !el.textContent.trim()) el.style.setProperty('display','none','important');
-            else if (words.some(word=>word.textContent.trim().includes('\n'))) el.style.whiteSpace='pre-line';
+            if (link && link !== el) nacarLinks.add(link);
+            if (onlyText) setTextVisibility(el);
           }
         }
         applyGeometry(el,patch);
@@ -1985,10 +2026,77 @@
         visualNodes.set(key,{el, words, media, original, editable});
         if (media) el.style.pointerEvents='auto';
       }
-      for (const link of nacarLinks) {
-        if (!link.textContent.trim()) link.style.setProperty('display','none','important');
-      }
+      for (const link of nacarLinks) setTextVisibility(link);
     }
+    function mountNacarTextEditor(items) {
+      // The preview can also run inside versions of the panel without a text list.
+      if (!items.length) return;
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'nacar-text-launch';
+      trigger.textContent = 'Editar textos de Nácar';
+      trigger.dataset.nacarTextControl = '';
+
+      const dialog = document.createElement('dialog');
+      dialog.className = 'nacar-text-dialog';
+      dialog.dataset.nacarTextControl = '';
+      dialog.setAttribute('aria-labelledby','nacar-text-dialog-title');
+      dialog.innerHTML = `
+        <form>
+          <header>
+            <h2 id="nacar-text-dialog-title">Textos de Nácar</h2>
+            <button type="button" data-close aria-label="Cerrar">×</button>
+          </header>
+          <label>Sección <select name="section"></select></label>
+          <label>Texto que quieres editar <select name="field"></select></label>
+          <label>Texto <textarea name="text" rows="4" maxlength="2000"></textarea></label>
+          <label class="nacar-text-checkbox"><input type="checkbox" name="hide"> Ocultar en la invitación</label>
+          <button type="submit">Aplicar al borrador</button>
+          <p role="status">Guarda los cambios desde el panel.</p>
+        </form>`;
+      const form = dialog.querySelector('form');
+      const section = form.elements.namedItem('section');
+      const field = form.elements.namedItem('field');
+      const input = form.elements.namedItem('text');
+      const hide = form.elements.namedItem('hide');
+      const status = dialog.querySelector('[role="status"]');
+      const groups = new Map();
+      const byKey = new Map();
+      for (const item of items) {
+        if (!groups.has(item.group)) groups.set(item.group, []);
+        groups.get(item.group).push(item);
+        byKey.set(item.key,item);
+      }
+      section.replaceChildren(...[...groups.keys()].map(group=>new Option(group,group)));
+      function chooseField() {
+        const item = byKey.get(field.value);
+        input.value = item.text;
+        hide.checked = item.hidden;
+        status.textContent = 'Guarda los cambios desde el panel.';
+      }
+      function chooseGroup() {
+        field.replaceChildren(...groups.get(section.value).map(item=>
+          new Option(item.label.length > 62 ? item.label.slice(0,61)+'…' : item.label,item.key)));
+        chooseField();
+      }
+      section.addEventListener('change',chooseGroup);
+      field.addEventListener('change',chooseField);
+      form.addEventListener('submit',event=>{
+        event.preventDefault();
+        const item = byKey.get(field.value);
+        const patch = {text:input.value,hidden:hide.checked};
+        item.text = patch.text;
+        item.hidden = patch.hidden;
+        item.apply(patch);
+        sendPanel('atelier-edit',{key:item.key,patch});
+        status.textContent = 'Aplicado al borrador. Guarda desde el panel para conservarlo.';
+      });
+      dialog.querySelector('[data-close]').onclick=()=>dialog.close();
+      trigger.onclick=()=>dialog.showModal();
+      chooseGroup();
+      document.body.append(trigger,dialog);
+    }
+
     function applyGeometry(el,v) {
       if(v.font)el.style.fontFamily=v.font;
       if(v.px)el.style.fontSize=v.px+'px';
@@ -2045,7 +2153,10 @@
         const gifts = $('registry-modal');
         if (footer) visualLayer(footer,'nacar-footer',base,custom,'Despedida',textItems);
         if (gifts) visualLayer(gifts,'nacar-gifts',base,custom,'Ventana de regalos',textItems);
-        if (editingView) sendPanel('atelier-nacar-texts',{items:textItems,revision:previewRevision});
+        if (editingView) {
+          sendPanel('atelier-nacar-texts',{items:textItems.map(({key,group,text,hidden})=>({key,group,text,hidden})),revision:previewRevision});
+          mountNacarTextEditor(textItems);
+        }
       }
       if (!canEditPreview()) return;
       const root=document.documentElement;
@@ -2066,6 +2177,7 @@
         sendPanel('atelier-edit',{key,patch:v});
       }
       document.addEventListener('click',e=>{
+        if (e.target.closest('[data-nacar-text-control]')) return;
         const node=e.target.closest('[data-visual-key]');
         if(e.target.isContentEditable)return;
         e.preventDefault();e.stopImmediatePropagation();
@@ -2146,7 +2258,7 @@
 
     const invitationAssets = {
       'red-vibrante': ['red-vibrante.css?v=escritorio-bordes','red-vibrante.js?v=flores-cierre-visible'],
-      nacar: ['nacar.css?v=portada-enlazada','nacar-original.js?v=textos-editables','nacar.js?v=portada-video-aprobado'],
+      nacar: ['nacar.css?v=portada-enlazada','nacar-original.js?v=editor-textos','nacar.js?v=portada-video-aprobado'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
       'dolce-vita': ['dolce-vita.css?v=carta3','dolce-vita-original.js?v=carta3','dolce-vita.js?v=carta3'],

@@ -163,6 +163,9 @@ window.startNacarOriginal=function(){
         isDrawing = false;
       });
 
+      prompt.addEventListener('atelier-text-update',()=>{
+        if (strokeCount === 0) requestAnimationFrame(paintCover);
+      });
       requestAnimationFrame(paintCover);
     })();
 
