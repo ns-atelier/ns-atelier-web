@@ -63,6 +63,7 @@
     .fab-btn.is-active [data-fs-expand] { display: none; }
     .fab-btn.is-active [data-fs-shrink] { display: block; }
     .fab-btn svg { width: 22px; height: 22px; fill: #fff; }
+    #weiAudioBtn [data-peonia-audio] { display: none; }
     .fab-btn.secondary { width: 44px; height: 44px; background: rgba(52, 42, 38, .88); }
 
     /* =====================================================================
@@ -623,8 +624,14 @@
       <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
     </button>
     <button id="weiAudioBtn" class="fab-btn" type="button" title="Música" aria-label="Pausar o reproducir música">
-      <svg id="weiIconPause" viewBox="0 0 24 24" style="display:block"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-      <svg id="weiIconPlay" viewBox="0 0 24 24" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="weiIconPause" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+        <g data-default-audio><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></g>
+        <g data-peonia-audio><path d="M9.5 17V6.4l9.5-2.3v10.6M9.5 9.3 19 7"/><ellipse cx="7" cy="17.6" rx="2.5" ry="1.7"/><ellipse cx="16.5" cy="15.3" rx="2.5" ry="1.7"/></g>
+      </svg>
+      <svg id="weiIconPlay" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+        <polygon data-default-audio points="5,3 19,12 5,21"/>
+        <g data-peonia-audio><path d="M9 5.5v2m0 6.5v3.4m0-11.9 9.5-2.2v10.9M4 4l16 16"/><ellipse cx="6.5" cy="17.9" rx="2.5" ry="1.7"/><path d="M16 16c.9-.2 2.5-.9 2.5-1.9"/></g>
+      </svg>
     </button>
   </div>
 
@@ -797,7 +804,7 @@
       $('loading').innerHTML = `<div class="errBox"><h2>Invitación no disponible</h2><p>${esc(msg)}</p><a href="../">Volver a N&amp;S ATELIER</a></div>`;
     }
 
-    function setupIntro(media, textos) {
+    function setupIntro(media, textos, peoniaDemo) {
       const overlay = $('weiOverlay'), videoWrap = $('weiVideoWrap'), video = $('weiVideo');
       const audio = $('weiAudio'), dock = $('fabDock'), audioBtn = $('weiAudioBtn');
       const iPause = $('weiIconPause'), iPlay = $('weiIconPlay');
@@ -886,8 +893,11 @@
           return;
         }
 
-        // El navegador puede mostrar un mensaje de seguridad que la web no puede ocultar.
-        // La solicitud se hace directamente desde el clic real del usuario.
+        await enterFullscreen();
+      }
+
+      async function enterFullscreen() {
+        // La solicitud se inicia dentro del gesto para conservar la activación del navegador.
         const el = document.documentElement;
         try {
           if (typeof el.requestFullscreen === 'function') {
@@ -918,6 +928,12 @@
       function syncIcons() {
         iPlay.style.display = audio.paused ? 'block' : 'none';
         iPause.style.display = audio.paused ? 'none' : 'block';
+        if (peoniaDemo) {
+          const label = audio.paused ? 'Reproducir música' : 'Pausar música';
+          audioBtn.classList.toggle('is-playing', !audio.paused);
+          audioBtn.setAttribute('aria-label', label);
+          audioBtn.title = label;
+        }
       }
       audio.addEventListener('play', syncIcons);
       audio.addEventListener('pause', syncIcons);
@@ -955,6 +971,9 @@
           overlay.classList.add('opened');
           overlay.style.pointerEvents = 'none';
           tryPlayAudio();
+          if (peoniaDemo && !editingView && !nativeFullscreenElement() && !cssFullscreenActive()) {
+            void enterFullscreen();
+          }
           // Esperar a que se abran las cuatro solapas, antes de mostrar el contenido.
           setTimeout(() => {
             overlay.style.opacity = '0';
@@ -2068,7 +2087,7 @@
     }
 
     const invitationAssets = {
-      'red-vibrante': ['red-vibrante.css?v=rosas-y-sobre','red-vibrante.js?v=caligrafia-completa'],
+      'red-vibrante': ['red-vibrante.css?v=musica-y-pantalla','red-vibrante.js?v=caligrafia-completa'],
       nacar: ['nacar.css','nacar-original.js','nacar.js'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
@@ -2143,6 +2162,7 @@
       const isPublicDemo = Boolean(demoId) && payload.tipo === 'plantilla';
       const isPreview = editingView && !demoId && payload.tipo === 'plantilla';
       const publicId = DEMO_ALIASES[demoId] || demoId;
+      const peoniaDemo = isPublicDemo && publicId === 'red-vibrante';
       const id = String(t.id || '');
       const style = String(t.estilo || '');
       const red = (isPublicDemo && publicId === 'red-vibrante' &&
@@ -2195,7 +2215,7 @@
       else if (red) {
         model = 'red-vibrante';
         await loadModelAssets(model);
-        await window.renderRedVibrante(d,t,m,payload,isPublicDemo && publicId === 'red-vibrante');
+        await window.renderRedVibrante(d,t,m,payload,peoniaDemo);
       }
       else if (style === 'sacred-garden' || id === 'the-sacred-garden') { model = 'sacred-garden'; renderSacredGarden(d,t,m); }
       else if (style === 'perla-nacar' || id === 'perla-nacar') { model = 'perla-nacar'; renderPerlaNacar(d,t,m,payload.tipo === 'plantilla'); }
@@ -2212,7 +2232,7 @@
           node.addEventListener('error',avisar);
         }
       }
-      setupIntro(m, d.textos || {});
+      setupIntro(m, d.textos || {}, model === 'red-vibrante' && peoniaDemo);
       mostrarInvitacionES();
       connectVisual(t,d);
       const mode = demoId ? 'demo' : payload.tipo === 'evento' ? 'event' : 'template';
