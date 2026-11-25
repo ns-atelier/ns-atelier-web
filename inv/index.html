@@ -52,7 +52,7 @@
     #weiVideo { width: 100%; max-width: 440px; max-height: 100vh; object-fit: contain; }
     #skipVideoBtn { position: absolute; bottom: 26px; right: 20px; border: 1px solid rgba(140, 100, 60, .4); background: rgba(255, 250, 242, .85); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: 12px system-ui, sans-serif; }
 
-    .fab-dock { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 90000; visibility: hidden; opacity: 0; transition: opacity .35s ease; }
+    .fab-dock { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 90000; visibility: hidden; opacity: 0; transition: opacity .2s ease; }
     .fab-dock.visible { visibility: visible; opacity: 1; pointer-events: auto; }
     /* Se ocultan solos y se muestran nuevamente con un toque. */
     .fab-dock.visible.is-idle { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -828,7 +828,7 @@
         if (!ended || !dock.classList.contains('visible')) return;
         dock.classList.remove('is-idle');
         clearTimeout(controlsTimer);
-        controlsTimer = setTimeout(() => dock.classList.add('is-idle'), 3400);
+        controlsTimer = setTimeout(() => dock.classList.add('is-idle'), 1600);
       }
 
       // Un toque muestra los controles sin bloquear clics, scroll ni enlaces.
