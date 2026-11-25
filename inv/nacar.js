@@ -5,7 +5,6 @@
   'use strict';
   const SRC = Object.freeze({
     seal: 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ded5dc3b-2809-4259-a52d-b90d16eebd6d/footer-seal.png',
-    opening: 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/7781d503-b1ec-46c6-bc7b-d41a48374f14/intro-bridge.mp4',
     frame: 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/e4c841be-b806-4cde-b447-86c587fc090b/hero-frame.png',
     photo: 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/b046e35e-445d-4ccc-a1fb-979e535f3261/couple-scratch.png',
     venue: 'https://motherofpearl.thedigitalyes.com/__l5e/assets-v1/ecfb6efe-f4df-4d4a-8b1b-8256d7086d6f/venue-illustration.png',
@@ -44,19 +43,21 @@
     const seal=source(media.sobre,SRC.seal);
     overlay.classList.add('nacar-opening');
     overlay.innerHTML=[
+      '<div class="nacar-envelope" aria-hidden="true"><div class="nacar-envelope-fold"></div></div>',
       '<div class="nacar-welcome">',
-      '<p>You Are Invited</p>',
+      '<p>Estás invitado</p>',
       '<img id="weiImg" alt="Sello de Nácar para abrir la invitación" draggable="false">',
-      '<div id="weiTapWrap"><div id="weiTapLabel">Tap to open</div></div>',
+      '<div id="weiTapWrap"><div id="weiTapLabel">Toca para abrir</div></div>',
       '<h2 id="nacarWelcomeNames"></h2>',
       '</div>'
     ].join('');
     document.getElementById('weiImg').src=seal;
     const tx=data.textos||{};
-    put('#weiTapLabel',tx.tapAbrir||'Tap to open',overlay);
+    put('#weiTapLabel',tx.tapAbrir||'Toca para abrir',overlay);
     put('#nacarWelcomeNames',(data.nombre1||'Cornelia')+' & '+(data.nombre2||'James'),overlay);
     media.sobre=seal;
-    media.video=source(media.video,SRC.opening);
+    if (media.video !== '__oculto__')
+      media.video=source(media.video,window.nsSiteUrl('inv/assets/perla-nacar/intro-bridge.mp4'));
     // El HTML original incluye música ambiental sintetizada en el botón de la demo.
     // No activar simultáneamente el viejo MP3 genérico de Jardín de Olivo.
     if(legacy.test(media.musica||''))media.musica='';

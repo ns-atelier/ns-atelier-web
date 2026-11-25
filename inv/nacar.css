@@ -1843,7 +1843,7 @@
   
 /* Component scope and shared N&S Atelier viewer integration */
 .nacar-root{--color-background:#f8f6f2;--color-foreground:#3c4b5d;container-type:inline-size;width:100%;min-height:100vh;max-width:760px;margin:0 auto;background:#f8f6f2;color:#3c4b5d;font-family:"Jost",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;}
-.nacar-root .reveal{opacity:1;transform:none;transition:opacity .9s ease,transform .9s ease;}
+.nacar-root:not(.nacar-reveal-ready) .reveal,.visual-editor .nacar-root .reveal{opacity:1;transform:none;}
 .nacar-root .reveal.is-visible{opacity:1;transform:translateY(0);}
 .nacar-root .rsvp-form-collapse{max-height:0;opacity:0;overflow:hidden;transition:max-height .85s ease,opacity .65s ease;}
 .nacar-root .rsvp-form-collapse.is-open{max-height:1100px;opacity:1;}
@@ -1863,3 +1863,41 @@ body.ns-mobile-immersive .nacar-root{max-width:none;}
 body.nacar-mode{background:radial-gradient(ellipse at 48% 12%,#f3eddf,#e6ddcf 62%,#ddd0c0);}
 @media(max-width:560px){.nacar-root{max-width:100%;}}
 @media(prefers-reduced-motion:reduce){.nacar-root .reveal{opacity:1;transform:none;transition:none;}}
+
+/* Sobre perlado de Nácar. La solapa gira antes de dar paso al video. */
+#weiOverlay.nacar-opening .nacar-envelope {
+  position: absolute;
+  width: min(500px, 90vw);
+  aspect-ratio: 1.32;
+  isolation: isolate;
+  perspective: 950px;
+  background:
+    linear-gradient(34deg, #efe3ca 0 49.7%, transparent 50%) left bottom / 51% 100% no-repeat,
+    linear-gradient(-34deg, #f4ead5 0 49.7%, transparent 50%) right bottom / 51% 100% no-repeat,
+    #faf5e9;
+  border: 1px solid #d6c5a5;
+  border-radius: 5px;
+  box-shadow: 0 22px 65px #5e493d28, inset 0 0 40px #daccad51;
+}
+#weiOverlay.nacar-opening .nacar-envelope-fold {
+  position: absolute;
+  inset: 0 0 45%;
+  background: linear-gradient(145deg, #fffdf7, #dfcfad);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: center top;
+}
+#weiOverlay.nacar-opening .nacar-welcome { position: relative; z-index: 1; }
+#weiOverlay.nacar-opening.nacar-unsealing .nacar-welcome {
+  opacity: 0;
+  scale: .95;
+  transition: opacity .26s ease, scale .36s ease;
+}
+#weiOverlay.nacar-opening.nacar-unsealing .nacar-envelope-fold {
+  transform: rotateX(172deg);
+  transition: transform .68s .04s cubic-bezier(.25,.72,.35,1);
+}
+body.nacar-mode #weiVideoWrap { background: #eee6d6; }
+body.nacar-mode #weiVideo { max-width: min(600px, 100%); max-height: 100dvh; }
+@media (prefers-reduced-motion: no-preference) {
+  body.nacar-mode.locked .nacar-root #hero-content { opacity: 0; }
+}

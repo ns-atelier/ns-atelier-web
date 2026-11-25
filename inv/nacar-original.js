@@ -76,8 +76,8 @@ window.startNacarOriginal=function(){
         ctx.textBaseline = 'middle';
         const fontSize = Math.max(12, Math.round(w * 0.085));
         ctx.font = `500 ${fontSize}px "Cormorant Garamond", Georgia, serif`;
-        ctx.fillText('Scratch', w / 2, h / 2 - fontSize * 0.65);
-        ctx.fillText('to reveal', w / 2, h / 2 + fontSize * 0.55);
+        ctx.fillText('Raspa', w / 2, h / 2 - fontSize * 0.65);
+        ctx.fillText('para revelar', w / 2, h / 2 + fontSize * 0.55);
       }
 
       function getCoords(e) {
@@ -333,12 +333,11 @@ window.startNacarOriginal=function(){
     })();
 
     // =========================================================================
-    // 7. SCROLL-REVEAL ANIMATIONS (IntersectionObserver)
-    // =========================================================================
-    // 6. SCROLL-REVEAL ANIMATIONS (IntersectionObserver)
-    // =========================================================================
+    // Aparición gradual de las secciones al entrar en pantalla.
     (function initScrollReveal() {
-      const items = document.querySelectorAll('.nacar-root .reveal');
+      const root = document.querySelector('.nacar-root');
+      if (!root || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const items = root.querySelectorAll('.reveal');
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -351,6 +350,7 @@ window.startNacarOriginal=function(){
         { threshold: 0.12 }
       );
 
+      root.classList.add('nacar-reveal-ready');
       items.forEach((el) => observer.observe(el));
     })();
   

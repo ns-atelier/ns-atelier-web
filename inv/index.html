@@ -822,7 +822,7 @@
       document.body.classList.add('locked');
 
       let started = false, ended = false, timer = null, wantAudio = !!audSrc;
-      let controlsTimer = null;
+      let controlsTimer = null, overlayHideTimer, videoHideTimer;
 
       function showCinemaControls() {
         if (!ended || !dock.classList.contains('visible')) return;
@@ -955,9 +955,10 @@
 
       function finish() {
         if (ended) return; ended = true; clearTimeout(timer);
+        if (media.__nacar) video.pause();
         videoWrap.classList.remove('wei-video-in');
         videoWrap.classList.add('wei-video-out');
-        setTimeout(() => { videoWrap.style.display = 'none'; }, 1000);
+        videoHideTimer = setTimeout(() => { videoWrap.style.display = 'none'; }, 1000);
         document.body.classList.remove('locked');
         dock.classList.add('visible');
         showCinemaControls();
@@ -982,16 +983,26 @@
           }, media.__dolceVita ? 2450 : 1850);
           return;
         }
-        overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
-        setTimeout(() => { overlay.style.display = 'none'; }, 1100);
         tryPlayAudio();
+        if (media.__nacar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          overlay.classList.add('nacar-unsealing');
+          overlay.style.pointerEvents = 'none';
+          timer = setTimeout(playOpening, 720);
+          return;
+        }
+        playOpening();
+      }
+
+      function playOpening() {
+        overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
+        overlayHideTimer = setTimeout(() => { overlay.style.display = 'none'; }, 1100);
         if (vidSrc) {
           videoWrap.style.display = 'flex';
           videoWrap.classList.remove('wei-video-out');
           videoWrap.classList.add('wei-video-in');
           video.currentTime = 0;
           video.play().catch(() => setTimeout(finish, 900));
-          if (!ended) timer = setTimeout(finish, (media.__nacar || media.__eleganza || media.__odette || media.__fresco || media.__theatre) ? 10500 : 15000);
+          if (!ended) timer = setTimeout(finish, (media.__eleganza || media.__odette || media.__fresco || media.__theatre) ? 10500 : 15000);
         } else {
           setTimeout(finish, 450);
         }
@@ -1006,9 +1017,9 @@
       overlay.addEventListener('click', start);
       $('skipVideoBtn').addEventListener('click', () => { video.pause(); finish(); });
       video.addEventListener('timeupdate', () => {
-        if (video.duration && video.currentTime >= video.duration - 0.8) finish();
+        if (!media.__nacar && video.duration && video.currentTime >= video.duration - 0.8) finish();
       });
-      video.addEventListener('playing', () => { if (!media.__nacar && !media.__eleganza && !media.__odette && !media.__fresco && !media.__theatre) clearTimeout(timer); });
+      video.addEventListener('playing', () => { if (!media.__eleganza && !media.__odette && !media.__fresco && !media.__theatre) clearTimeout(timer); });
       video.addEventListener('waiting', () => { clearTimeout(timer); timer = setTimeout(finish,15000); });
       video.addEventListener('ended', finish);
       video.addEventListener('error', () => { if (started) finish(); });
@@ -1035,7 +1046,10 @@
       $('repeatBtn').addEventListener('click', (ev) => {
         ev.stopPropagation();
         started = false; ended = false;
-        overlay.classList.remove('opened');
+        clearTimeout(overlayHideTimer);
+        clearTimeout(videoHideTimer);
+        videoWrap.style.display = 'none';
+        overlay.classList.remove('opened','nacar-unsealing');
         overlay.style.display = 'flex'; overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
         clearTimeout(controlsTimer);
         dock.classList.remove('visible', 'is-idle');
@@ -2094,7 +2108,7 @@
 
     const invitationAssets = {
       'red-vibrante': ['red-vibrante.css?v=escritorio-bordes','red-vibrante.js?v=flores-cierre-visible'],
-      nacar: ['nacar.css','nacar-original.js','nacar.js'],
+      nacar: ['nacar.css?v=apertura','nacar-original.js?v=apertura','nacar.js?v=apertura'],
       eleganza: ['eleganza.css','eleganza-original.js','eleganza.js'],
       odette: ['odette.css','odette.js'],
       'dolce-vita': ['dolce-vita.css?v=carta3','dolce-vita-original.js?v=carta3','dolce-vita.js?v=carta3'],
