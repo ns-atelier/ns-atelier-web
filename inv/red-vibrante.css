@@ -1086,3 +1086,111 @@ body.rv-mode { background:#66021f; }
     animation: none !important;
   }
 }
+
+/* La portada y el cierre aprovechan el ancho de escritorio sin estirar sus archivos. */
+@media (min-width: 900px) and (min-height: 480px) {
+  body.rv-calligraphy {
+    --peonia-desktop-width: min(880px, calc(100vw - 112px));
+    background: #410717;
+  }
+  .rv-calligraphy .rv-root {
+    background: radial-gradient(ellipse at top, #721d39, #410717 75%) fixed;
+  }
+  .rv-calligraphy .rv-root .invitation-wrapper,
+  .rv-calligraphy.ns-mobile-immersive .rv-root .invitation-wrapper {
+    max-width: var(--peonia-desktop-width);
+  }
+
+  .rv-calligraphy #weiOverlay.rv-envelope-mode {
+    background: radial-gradient(ellipse at center, #7d203b, #410717 74%);
+  }
+  .rv-calligraphy #weiOverlay.rv-envelope-mode .envelope-stage {
+    width: min(440px, calc((100svh - 48px) * 9 / 16));
+    height: auto;
+    aspect-ratio: 9 / 16;
+    max-height: none;
+    border-radius: 6px;
+    box-shadow: 0 18px 65px #22020d80;
+  }
+
+  .rv-calligraphy .rv-root .hero {
+    justify-content: center;
+    align-items: flex-start;
+    height: clamp(560px, 80svh, 700px);
+    min-height: 0;
+  }
+  .rv-calligraphy .rv-root .hero-content {
+    width: 53%;
+    padding: 28px 32px 120px;
+  }
+  .rv-calligraphy .rv-root .hero-date { margin-bottom: 36px; }
+  .rv-calligraphy .rv-root .hero-names { font-size: clamp(64px, 8vw, 100px); }
+  .rv-calligraphy .rv-root .hero-video {
+    left: auto;
+    right: 0;
+    width: 47%;
+    object-fit: contain;
+  }
+  .rv-calligraphy .rv-root .hero-overlay {
+    left: auto;
+    right: 0;
+    width: 47%;
+    background: linear-gradient(90deg, #3c091a80, transparent 24%);
+  }
+  .rv-calligraphy .rv-root .hero-flowers {
+    left: 6%;
+    width: 76%;
+    max-width: 620px;
+    aspect-ratio: 2.14;
+  }
+
+  .rv-calligraphy .rv-root .section-text { max-width: 590px; }
+  .rv-calligraphy .rv-root .wave-divider { width: 101%; max-width: none; }
+  .rv-calligraphy .rv-root .timeline { max-width: 460px; }
+  .rv-calligraphy .rv-root .location-img {
+    max-width: 540px;
+    height: auto;
+    max-height: 540px;
+    object-fit: contain;
+  }
+  .rv-calligraphy .rv-root .dress-row {
+    max-width: 570px;
+    gap: 40px;
+    margin-inline: auto;
+    justify-content: center;
+  }
+  .rv-calligraphy .rv-root .dress-row img { width: min(40%, 205px); height: auto; }
+  .rv-calligraphy .rv-root .dress-row p { max-width: 285px; }
+  .rv-calligraphy .rv-root .details-flowers { max-width: 610px; margin-inline: auto; }
+
+  .rv-calligraphy .rv-root .footer-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    grid-template-rows: 1fr 1fr auto;
+    column-gap: clamp(20px, 4vw, 50px);
+    padding: 32px 38px 24px;
+  }
+  .rv-calligraphy .rv-root .footer-section > .section-title {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    margin-bottom: 16px;
+  }
+  .rv-calligraphy .rv-root .footer-names {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    margin-top: 0;
+  }
+  .rv-calligraphy .rv-root .footer-photo-wrap {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: start;
+  }
+  .rv-calligraphy .rv-root .footer-photo-wrap > img:not(.footer-photo-overlay) { height: auto; }
+  .rv-calligraphy .rv-root .footer-flowers {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: -70px;
+  }
+}
