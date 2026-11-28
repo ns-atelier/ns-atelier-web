@@ -1939,6 +1939,44 @@
       sendPanel('atelier-resources', {items,structure,revision:previewRevision});
     }
     let explicitMedia={};
+    function nacarTextGroups(root, entries, base, custom) {
+      const combined = new Map();
+      const candidates = root.querySelectorAll('p,h1,h2,h3');
+      for (const el of candidates) {
+        const children = [...el.children];
+        if (!children.length || !children.every(child=>child.matches('br,span,strong,em,b,i') && !child.children.length)) continue;
+        const parts = [el,...children].flatMap(node=>entries.get(node) || [])
+          .sort((a,b)=>a.node.compareDocumentPosition(b.node) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+        if (parts.length < 2) continue;
+        const first = parts[0].item;
+        const key = first.key + '.frase';
+        const saved = {...base[key], ...custom[key]};
+        const shown = parts.filter(part=>!part.item.hidden);
+        const phrase = parts.map(part=>part.item.label).join(' ');
+        const legacy = shown.length ? shown : parts;
+        const text = saved.text ?? legacy.map(part=>part.item.text).filter(Boolean).join(' ');
+        const hidden = saved.hidden ?? !shown.length;
+        const output = document.createElement('span');
+        output.style.whiteSpace = 'pre-line';
+        let edited = saved.text !== undefined;
+        const display = el.style.getPropertyValue('display');
+        const priority = el.style.getPropertyPriority('display');
+        const apply = value=>{
+          edited ||= value.text !== text;
+          if (edited) {
+            if (el.firstChild !== output) el.replaceChildren(output);
+            output.textContent = value.text;
+          }
+          if (value.hidden || !value.text.trim()) el.style.setProperty('display','none','important');
+          else if (display === 'none') el.style.removeProperty('display');
+          else el.style.setProperty('display',display,priority);
+        };
+        if (saved.text !== undefined || saved.hidden !== undefined) apply({text,hidden});
+        combined.set(first,{key,group:first.group,label:phrase,text,hidden,apply});
+        for (const part of parts.slice(1)) combined.set(part.item,null);
+      }
+      return combined;
+    }
     function visualLayer(root, sectionKey, base, custom, textGroup, textItems) {
       // Keep each name independently selectable inside headings with a decorative separator.
       root.querySelectorAll('.sg-names,.cl-names').forEach(heading=>{
@@ -1949,6 +1987,8 @@
       const selector = 'img,video,h1,h2,h3,p,span,small,div,a,button,strong,b';
       const candidates = root.querySelectorAll(textGroup ? selector + ',label,li,em,option,input[placeholder],textarea[placeholder]' : selector);
       const nacarLinks = new Set();
+      const textEntries = new Map();
+      const localTextItems = [];
       const textDisplay = new Map();
       function setTextVisibility(el) {
         if (!el.textContent.trim()) {
@@ -1978,7 +2018,7 @@
           const hidden = saved.hidden === true;
           const apply = patch=>el.setAttribute('placeholder',patch.hidden ? '' : patch.text);
           apply({text,hidden});
-          if (editingView) textItems.push({key,group:textGroup,label:placeholder,text,hidden,apply});
+          if (editingView) localTextItems.push({key,group:textGroup,label:placeholder,text,hidden,apply});
           continue;
         }
         const original = words.map(n=>n.textContent.trim()).join(' ');
@@ -2016,14 +2056,17 @@
               apply({text:value,hidden});
               hasTextPatch = true;
             }
-            if (editingView) textItems.push({key:textKey,group:textGroup,label,text:value.trim(),hidden,
+            const item = {key:textKey,group:textGroup,label,text:value.trim(),hidden,
               apply(next) {
                 apply(next);
                 if (onlyText) setTextVisibility(el);
                 if (link && link !== el) setTextVisibility(link);
                 if (editable && !next.hidden) delete el.dataset.atelierHidden;
               }
-            });
+            };
+            if (!textEntries.has(el)) textEntries.set(el,[]);
+            textEntries.get(el).push({node:word,item});
+            if (editingView) localTextItems.push(item);
           });
           if (hasTextPatch) {
             if (link && link !== el) nacarLinks.add(link);
@@ -2037,6 +2080,13 @@
         if (media) el.style.pointerEvents='auto';
       }
       for (const link of nacarLinks) setTextVisibility(link);
+      if (textGroup) {
+        const combined = nacarTextGroups(root,textEntries,base,custom);
+        for (const item of localTextItems) {
+          const field = combined.has(item) ? combined.get(item) : item;
+          if (field) textItems.push(field);
+        }
+      }
     }
     function mountNacarTextEditor(items) {
       // The preview can also run inside versions of the panel without a text list.
